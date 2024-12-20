@@ -7,14 +7,21 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      display: flex;
       height: 100vh;
       margin: 0;
+      display: flex;
+      flex-direction: column;
     }
     .container {
       display: flex;
       width: 100%;
-      height: 100%;
+      height: 50%;
+      border-bottom: 1px solid #ccc;
+    }
+    .annotations {
+      display: flex;
+      flex-direction: column;
+      height: 50%;
     }
     .panel {
       flex: 1;
@@ -35,17 +42,68 @@
       font-weight: bold;
       margin-bottom: 5px;
     }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .cell {
+      flex: 1;
+      padding: 0 5px;
+    }
+    .cell:not(:last-child) {
+      border-right: 1px solid #ddd;
+    }
+    .label {
+      font-weight: bold;
+    }
+    #mappings-panel {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid #ccc;
+      padding: 10px;
+    }
+    .labels-container {
+      display: flex;
+      width: 100%;
+      height: 50%;
+    }
+    #lhs-labels-panel, #rhs-labels-panel {
+      flex: 1;
+      padding: 10px;
+      overflow: auto;
+      border: 1px solid #ccc;
+    }
   </style>
 </head>
 <body>
+  <!-- Text Panels -->
   <div class="container">
     <div class="panel">
-      <div class="subpanel" id="left-text"></div>
-      <div class="subpanel" id="left-annotations"></div>
+      <div class="subpanel" id="left-text">
+        <div class="header">LHS Text</div>
+      </div>
     </div>
     <div class="panel">
-      <div class="subpanel" id="right-text"></div>
-      <div class="subpanel" id="right-annotations"></div>
+      <div class="subpanel" id="right-text">
+        <div class="header">RHS Text</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Annotation Panels -->
+  <div class="annotations">
+    <div id="mappings-panel">
+      <div class="header">Mappings</div>
+    </div>
+    <div class="labels-container">
+      <div id="lhs-labels-panel">
+        <div class="header">LHS Labels</div>
+      </div>
+      <div id="rhs-labels-panel">
+        <div class="header">RHS Labels</div>
+      </div>
     </div>
   </div>
 
