@@ -16,48 +16,31 @@ type TextMapping = {
   rhsRanges: TextRange[];
 };
 
-// Sample LHS and RHS texts
-const lhsText = "Hello fine world!";
-const rhsText = "Hi beautiful planet!";
-
-// Helper function to create TextRange
-function createTextRange(start: number, end: number, text: string): TextRange {
-  return { start, end, text: text.substring(start, end) };
+interface AnnotationsData {
+  mappings: TextMapping[];
+  lhsLabels: TextLabel[];
+  rhsLabels: TextLabel[];
 }
 
-// Sample Data
-const mappings: TextMapping[] = [
-  {
-    label: "Greeting",
-    lhsRanges: [createTextRange(0, 5, lhsText)],
-    rhsRanges: [createTextRange(0, 2, rhsText)],
-  },
-  {
-    label: "Noun",
-    lhsRanges: [createTextRange(11, 16, lhsText)],
-    rhsRanges: [createTextRange(13, 19, rhsText)],
-  },
-  {
-    label: "All Words",
-    lhsRanges: [createTextRange(0, 5, lhsText), createTextRange(6, 10, lhsText), createTextRange(11, 16, lhsText)],
-    rhsRanges: [createTextRange(0, 2, rhsText), createTextRange(3, 12, rhsText), createTextRange(13, 19, rhsText)],
-  },
-];
+// ---------------------------------------------------------------------
+// Utility function to fetch data from a specific example folder.
+// ---------------------------------------------------------------------
+async function loadData(folderName: string) {
+  const basePath = `/data/${folderName}`;
 
-const lhsLabels: TextLabel[] = [
-  { label: "Word", ranges: [createTextRange(0, 5, lhsText), createTextRange(11, 16, lhsText)] },
-];
+  // Fetch all in parallel
+  const [lhsText, rhsText, annotations] = await Promise.all([
+    fetch(`${basePath}/lhs.txt`).then((res) => res.text()),
+    fetch(`${basePath}/rhs.txt`).then((res) => res.text()),
+    fetch(`${basePath}/annotations.json`).then((res) => res.json()),
+  ]);
 
-const rhsLabels: TextLabel[] = [
-  { label: "Term", ranges: [createTextRange(0, 2, rhsText), createTextRange(13, 19, rhsText)] },
-  { label: "Beauty", ranges: [createTextRange(3, 12, rhsText)] },
-];
+  return { lhsText, rhsText, annotations: annotations as AnnotationsData };
+}
 
-// Render the text into the panels
-document.getElementById("lhs-text-content")!.innerText = lhsText;
-document.getElementById("rhs-text-content")!.innerText = rhsText;
-
-// Highlight function
+// ---------------------------------------------------------------------
+// Highlighting logic
+// ---------------------------------------------------------------------
 function highlightRanges(containerId: string, ranges: TextRange[]) {
   const container = document.getElementById(containerId)!;
   const text = container.innerText;
@@ -74,19 +57,20 @@ function highlightRanges(containerId: string, ranges: TextRange[]) {
   container.innerHTML = highlightedText;
 }
 
-// Clear highlights
 function clearHighlights(containerId: string) {
   const container = document.getElementById(containerId)!;
   container.innerText = container.dataset.originalText || container.innerText;
 }
 
-// Store the original text for clearing highlights later
-document.getElementById("lhs-text-content")!.dataset.originalText = lhsText;
-document.getElementById("rhs-text-content")!.dataset.originalText = rhsText;
-
-// Render Mappings
-function renderMappings() {
+// ---------------------------------------------------------------------
+// Rendering Annotations
+// ---------------------------------------------------------------------
+function renderMappings(mappings: TextMapping[]) {
   const mappingsPanel = document.getElementById("mappings-panel")!;
+
+  // Clear existing content if needed
+  mappingsPanel.innerHTML = `<div class="header">Mappings</div>`;
+
   mappings.forEach((mapping) => {
     const row = document.createElement("div");
     row.className = "row";
@@ -111,12 +95,12 @@ function renderMappings() {
   });
 }
 
-// Initialize Rendering
-renderMappings();
-
-// Render Labels
 function renderLabels(panelId: string, labels: TextLabel[], textContainerId: string) {
   const panel = document.getElementById(panelId)!;
+
+  // Clear existing content if needed
+  panel.innerHTML = `<div class="header">${panelId.includes("lhs") ? "LHS Labels" : "RHS Labels"}</div>`;
+
   labels.forEach((label) => {
     const row = document.createElement("div");
     row.className = "row";
@@ -137,6 +121,46 @@ function renderLabels(panelId: string, labels: TextLabel[], textContainerId: str
   });
 }
 
-// Call renderLabels for LHS and RHS labels
-renderLabels("lhs-labels-panel", lhsLabels, "lhs-text-content");
-renderLabels("rhs-labels-panel", rhsLabels, "rhs-text-content");
+// ---------------------------------------------------------------------
+// Main initialization
+// ---------------------------------------------------------------------
+async function main() {
+  // Choose which example folder to load.
+  // You could make this dynamic (query params, user selection, etc.).
+  const folderName = "simpleText";
+
+  // Load the data
+  const { lhsText, rhsText, annotations } = await loadData(folderName);
+
+  // Put the text in the DOM
+  const lhsContainer = document.getElementById("lhs-text-content")!;
+  const rhsContainer = document.getElementById("rhs-text-content")!;
+  lhsContainer.innerText = lhsText;
+  rhsContainer.innerText = rhsText;
+
+  // Store original text for clearing highlights
+  lhsContainer.dataset.originalText = lhsText;
+  rhsContainer.dataset.originalText = rhsText;
+
+  // IMPORTANT: fill the "text" field for each range using lhsText/rhsText
+  // because your JSON only has {start, end}, but we need the substring.
+  // This mutates the objects in-place.
+  annotations.mappings.forEach((m) => {
+    m.lhsRanges.forEach((r) => (r.text = lhsText.substring(r.start, r.end)));
+    m.rhsRanges.forEach((r) => (r.text = rhsText.substring(r.start, r.end)));
+  });
+  annotations.lhsLabels.forEach((lbl) => {
+    lbl.ranges.forEach((r) => (r.text = lhsText.substring(r.start, r.end)));
+  });
+  annotations.rhsLabels.forEach((lbl) => {
+    lbl.ranges.forEach((r) => (r.text = rhsText.substring(r.start, r.end)));
+  });
+
+  // Render everything
+  renderMappings(annotations.mappings);
+  renderLabels("lhs-labels-panel", annotations.lhsLabels, "lhs-text-content");
+  renderLabels("rhs-labels-panel", annotations.rhsLabels, "rhs-text-content");
+}
+
+// Run the main function on page load
+main();
