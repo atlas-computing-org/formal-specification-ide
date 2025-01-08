@@ -1,5 +1,5 @@
 // The datasets to choose from
-const DATASET_NAMES = ["simpleText", "example1"];
+const DATASET_NAMES = ["SHA-1", "simpleText"];
 
 // Data Structures
 type TextRange = {
