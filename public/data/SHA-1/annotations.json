@@ -1,5 +1,153 @@
 {
-  "mappings": [],
+  "mappings": [
+    {
+      "label": "",
+      "lhsRanges": [
+        {
+          "start": 3871,
+          "end": 3913
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1795,
+          "end": 1825
+        }
+      ]
+    },
+    {
+      "label": "",
+      "lhsRanges": [
+        {
+          "start": 3998,
+          "end": 4043
+        },
+        {
+          "start": 4187,
+          "end": 4266
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2165,
+          "end": 2351
+        }
+      ]
+    },
+    {
+      "label": "",
+      "lhsRanges": [
+        {
+          "start": 4045,
+          "end": 4086
+        },
+        {
+          "start": 4267,
+          "end": 4397
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2402,
+          "end": 2521
+        }
+      ]
+    },
+    {
+      "label": "",
+      "lhsRanges": [
+        {
+          "start": 4092,
+          "end": 4128
+        },
+        {
+          "start": 4398,
+          "end": 4487
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1916,
+          "end": 1921
+        }
+      ]
+    },
+    {
+      "label": "",
+      "lhsRanges": [
+        {
+          "start": 4130,
+          "end": 4185
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1826,
+          "end": 1838
+        }
+      ]
+    },
+    {
+      "label": "",
+      "lhsRanges": [
+        {
+          "start": 4489,
+          "end": 4541
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1916,
+          "end": 1936
+        }
+      ]
+    },
+    {
+      "label": "",
+      "lhsRanges": [
+        {
+          "start": 4542,
+          "end": 4697
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1940,
+          "end": 1997
+        }
+      ]
+    },
+    {
+      "label": "",
+      "lhsRanges": [
+        {
+          "start": 4808,
+          "end": 4882
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1925,
+          "end": 1936
+        }
+      ]
+    },
+    {
+      "label": "",
+      "lhsRanges": [
+        {
+          "start": 4885,
+          "end": 4950
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1841,
+          "end": 1913
+        }
+      ]
+    }
+  ],
   "lhsLabels": [],
   "rhsLabels": []
 }
