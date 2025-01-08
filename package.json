@@ -15,5 +15,10 @@
   "devDependencies": {
     "typescript": "^5.7.3",
     "vite": "^6.0.7"
+  },
+  "dependencies": {
+    "@langchain/anthropic": "^0.3.11",
+    "@langchain/core": "^0.3.29",
+    "langchain": "^0.3.11"
   }
 }

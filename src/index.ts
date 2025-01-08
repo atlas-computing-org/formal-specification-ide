@@ -1,3 +1,8 @@
+import { ChatAnthropic } from "@langchain/anthropic";
+
+// TODO: Add API key management
+const ANTHROPIC_API_KEY = "sk-ant-api03-XXXXXX"
+
 // The datasets to choose from
 const DATASET_NAMES = ["SHA-1", "simpleText"];
 
@@ -40,6 +45,7 @@ type LabelType = "default" | "warning" | "error";
 // ---------------------------------------------------------------------
 // Utility function to fetch data from a specific data folder.
 // ---------------------------------------------------------------------
+
 async function loadData(folderName: string) {
   const basePath = `/data/${folderName}`;
 
@@ -219,6 +225,37 @@ function renderLabels(panelId: string, labels: TextLabel[], textContainerId: str
     panel.appendChild(row);
   });
 }
+
+// ---------------------------------------------------------------------
+// AI Query Logic
+// ---------------------------------------------------------------------
+
+// Add the function to handle the AI query
+async function queryAI() {
+  const llm = new ChatAnthropic({
+    model: "claude-3-haiku-20240307",
+    temperature: 0,
+    maxTokens: undefined,
+    maxRetries: 2,
+    apiKey: ANTHROPIC_API_KEY,
+  });
+
+  const framing = "You are a helpful assistant that translates English to French. Translate the user sentence.";
+  const prompt = "Please tell me how your day is going";
+  try {
+    const res = await llm.invoke([
+      ["system", framing],
+      ["human", prompt],
+    ]);
+    console.log("Claude's response:", res.content);
+  } catch (error) {
+    console.error("Error querying Claude:", error);
+  }
+}
+
+// Attach event listener for the "Query AI" button
+document.getElementById("query-ai")!.addEventListener("click", queryAI);
+
 
 // ---------------------------------------------------------------------
 // Main initialization
