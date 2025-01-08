@@ -1,3 +1,6 @@
+// The datasets to choose from
+const DATASET_NAMES = ["simpleText", "example1"];
+
 // Data Structures
 type TextRange = {
   start: number;
@@ -23,7 +26,7 @@ interface AnnotationsData {
 }
 
 // ---------------------------------------------------------------------
-// Utility function to fetch data from a specific example folder.
+// Utility function to fetch data from a specific data folder.
 // ---------------------------------------------------------------------
 async function loadData(folderName: string) {
   const basePath = `/data/${folderName}`;
@@ -124,11 +127,25 @@ function renderLabels(panelId: string, labels: TextLabel[], textContainerId: str
 // ---------------------------------------------------------------------
 // Main initialization
 // ---------------------------------------------------------------------
-async function main() {
-  // Choose which example folder to load.
-  // You could make this dynamic (query params, user selection, etc.).
-  const folderName = "simpleText";
 
+// Populate the dropdown with our DATASET_NAMES array
+function populateDataSelector() {
+  const selector = document.getElementById("data-selector") as HTMLSelectElement;
+  // Clear any existing children (if necessary)
+  selector.innerHTML = "";
+
+  DATASET_NAMES.forEach((dataset, idx) => {
+    const option = document.createElement("option");
+    option.value = dataset;
+    option.textContent = dataset;
+    if (idx === 0) {
+      option.selected = true;
+    }
+    selector.appendChild(option);
+  });
+}
+
+async function loadAndRender(folderName: string) {
   // Load the data
   const { lhsText, rhsText, annotations } = await loadData(folderName);
 
@@ -160,6 +177,24 @@ async function main() {
   renderMappings(annotations.mappings);
   renderLabels("lhs-labels-panel", annotations.lhsLabels, "lhs-text-content");
   renderLabels("rhs-labels-panel", annotations.rhsLabels, "rhs-text-content");
+}
+
+// Main function to set up default and attach listeners
+async function main() {
+  // Populate the dropdown
+  populateDataSelector();
+
+  // Load default dataset on initial page load
+  await loadAndRender(DATASET_NAMES[0]);
+
+  // Add an event listener to the dropdown
+  const selector = document.getElementById("data-selector");
+  if (selector) {
+    selector.addEventListener("change", async (e) => {
+      const folderName = (e.target as HTMLSelectElement).value;
+      await loadAndRender(folderName);
+    });
+  }
 }
 
 // Run the main function on page load
