@@ -287,6 +287,14 @@ async function main() {
   // Listen for double-click events on labels and mappings
   addEditCellListener();
 
+  // Toggle JSON annotations visibility
+  document.getElementById('show-json')!.addEventListener('click', () => {
+    const jsonAnnotationsDiv = document.getElementById('json-annotations')!;
+
+    // Toggle the "show" class
+    jsonAnnotationsDiv.classList.toggle('show');
+  });
+
   // Load default dataset on initial page load
   await loadAndRender(DATASET_NAMES[0]);
 
