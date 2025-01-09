@@ -11,12 +11,16 @@ type TextRange = {
 type TextLabel = {
   label: string;
   ranges: TextRange[];
+  isWarning?: boolean;
+  isError?: boolean;
 };
 
 type TextMapping = {
   label: string;
   lhsRanges: TextRange[];
   rhsRanges: TextRange[];
+  isWarning?: boolean;
+  isError?: boolean;
 };
 
 interface AnnotationsData {
@@ -30,6 +34,8 @@ interface Dataset {
   rhsText: string;
   annotations: AnnotationsData;
 }
+
+type LabelType = "default" | "warning" | "error";
 
 // ---------------------------------------------------------------------
 // Utility function to fetch data from a specific data folder.
@@ -50,7 +56,7 @@ async function loadData(folderName: string) {
 // ---------------------------------------------------------------------
 // Highlighting logic
 // ---------------------------------------------------------------------
-function highlightRanges(containerId: string, ranges: TextRange[]) {
+function highlightRanges(containerId: string, ranges: TextRange[], labelType: LabelType) {
   const container = document.getElementById(containerId)!;
   const text = container.innerText;
   let highlightedText = "";
@@ -58,7 +64,7 @@ function highlightRanges(containerId: string, ranges: TextRange[]) {
 
   ranges.forEach(({ start, end }) => {
     highlightedText += text.substring(currentIndex, start);
-    highlightedText += `<span class="highlight">${text.substring(start, end)}</span>`;
+    highlightedText += `<span class="highlight ${labelType}">${text.substring(start, end)}</span>`;
     currentIndex = end;
   });
 
@@ -143,6 +149,16 @@ function addEditCellListener() {
   });
 }
 
+function getLabelType(item: TextMapping | TextLabel): LabelType  {
+  if (item.isWarning) {
+    return "warning";
+  } else if (item.isError) {
+    return "error";
+  } else {
+    return "default";
+  }
+}
+
 function renderMappings(mappings: TextMapping[]) {
   const mappingsPanel = document.getElementById("mappings-panel")!;
 
@@ -150,8 +166,9 @@ function renderMappings(mappings: TextMapping[]) {
   mappingsPanel.innerHTML = `<div class="header">Mappings</div>`;
 
   mappings.forEach((mapping, i) => {
+    const labelType = getLabelType(mapping);
     const row = document.createElement("div");
-    row.className = "row mapping";
+    row.className = `row mapping ${labelType}`;
     row.dataset.index = i.toString();
     row.innerHTML = `
       <div class="cell label">${mapping.label}</div>
@@ -161,8 +178,8 @@ function renderMappings(mappings: TextMapping[]) {
     `;
 
     row.addEventListener("mouseover", () => {
-      highlightRanges("lhs-text-content", mapping.lhsRanges);
-      highlightRanges("rhs-text-content", mapping.rhsRanges);
+      highlightRanges("lhs-text-content", mapping.lhsRanges, getLabelType(mapping));
+      highlightRanges("rhs-text-content", mapping.rhsRanges, getLabelType(mapping));
     });
 
     row.addEventListener("mouseout", () => {
@@ -182,8 +199,9 @@ function renderLabels(panelId: string, labels: TextLabel[], textContainerId: str
   panel.innerHTML = `<div class="header">${lhs ? "LHS Labels" : "RHS Labels"}</div>`;
 
   labels.forEach((label, i) => {
+    const labelType = getLabelType(label);
     const row = document.createElement("div");
-    row.className = `row ${lhs ? "lhs" : "rhs"}-label`;
+    row.className = `row ${lhs ? "lhs" : "rhs"}-label ${labelType}`;
     row.dataset.index = i.toString();
     row.innerHTML = `
       <div class="cell label">${label.label}</div>
@@ -191,7 +209,7 @@ function renderLabels(panelId: string, labels: TextLabel[], textContainerId: str
     `;
 
     row.addEventListener("mouseover", () => {
-      highlightRanges(textContainerId, label.ranges);
+      highlightRanges(textContainerId, label.ranges, getLabelType(label));
     });
 
     row.addEventListener("mouseout", () => {
