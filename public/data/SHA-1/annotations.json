@@ -1,7 +1,7 @@
 {
   "mappings": [
     {
-      "label": "",
+      "label": "Top-level API: hash",
       "lhsRanges": [
         {
           "start": 3871,
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "label": "",
+      "label": "message schedule",
       "lhsRanges": [
         {
           "start": 3998,
@@ -35,7 +35,7 @@
       ]
     },
     {
-      "label": "",
+      "label": "working variables",
       "lhsRanges": [
         {
           "start": 4045,
@@ -54,7 +54,7 @@
       ]
     },
     {
-      "label": "",
+      "label": "hash value",
       "lhsRanges": [
         {
           "start": 4092,
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "label": "",
+      "label": "Return value: message digest",
       "lhsRanges": [
         {
           "start": 4130,
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "label": "",
+      "label": "set initial hash value",
       "lhsRanges": [
         {
           "start": 4489,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "label": "",
+      "label": "iteratively update hash value",
       "lhsRanges": [
         {
           "start": 4542,
@@ -118,22 +118,34 @@
       ]
     },
     {
-      "label": "",
+      "label": "initial hash value",
       "lhsRanges": [
         {
           "start": 4808,
           "end": 4882
+        },
+        {
+          "start": 714,
+          "end": 768
+        },
+        {
+          "start": 2408,
+          "end": 2472
         }
       ],
       "rhsRanges": [
         {
           "start": 1925,
           "end": 1936
+        },
+        {
+          "start": 277,
+          "end": 435
         }
       ]
     },
     {
-      "label": "",
+      "label": "pad and parse the message",
       "lhsRanges": [
         {
           "start": 4885,
@@ -146,8 +158,187 @@
           "end": 1913
         }
       ]
+    },
+    {
+      "label": "padding",
+      "lhsRanges": [
+        {
+          "start": 4906,
+          "end": 4912
+        },
+        {
+          "start": 619,
+          "end": 656
+        },
+        {
+          "start": 771,
+          "end": 808
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 772,
+          "end": 1317
+        }
+      ]
+    },
+    {
+      "label": "parsing",
+      "lhsRanges": [
+        {
+          "start": 4917,
+          "end": 4923
+        },
+        {
+          "start": 658,
+          "end": 708
+        },
+        {
+          "start": 1895,
+          "end": 1932
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1319,
+          "end": 1621
+        }
+      ]
+    },
+    {
+      "label": "message length",
+      "lhsRanges": [
+        {
+          "start": 1180,
+          "end": 1230
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 842,
+          "end": 905
+        }
+      ]
+    },
+    {
+      "label": "append bit 1",
+      "lhsRanges": [
+        {
+          "start": 1232,
+          "end": 1278
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 908,
+          "end": 974
+        },
+        {
+          "start": 1277,
+          "end": 1287
+        }
+      ]
+    },
+    {
+      "label": "append zero bits",
+      "lhsRanges": [
+        {
+          "start": 1280,
+          "end": 1409
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 974,
+          "end": 1132
+        },
+        {
+          "start": 1288,
+          "end": 1303
+        }
+      ]
+    },
+    {
+      "label": "append message length",
+      "lhsRanges": [
+        {
+          "start": 1411,
+          "end": 1518
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1135,
+          "end": 1270
+        },
+        {
+          "start": 1303,
+          "end": 1317
+        }
+      ]
+    },
+    {
+      "label": "Missing arithmetic proof",
+      "lhsRanges": [
+        {
+          "start": 1309,
+          "end": 1409
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1020,
+          "end": 1053
+        }
+      ],
+      "isError": true
     }
   ],
-  "lhsLabels": [],
+  "lhsLabels": [
+    {
+      "label": "Missing property",
+      "ranges": [
+        {
+          "start": 3915,
+          "end": 3977
+        }
+      ],
+      "isError": true
+    },
+    {
+      "label": "Missing property",
+      "ranges": [
+        {
+          "start": 4161,
+          "end": 4169
+        }
+      ],
+      "isError": true
+    },
+    {
+      "label": "Missing property",
+      "ranges": [
+        {
+          "start": 843,
+          "end": 907
+        },
+        {
+          "start": 1823,
+          "end": 1893
+        }
+      ],
+      "isError": true
+    },
+    {
+      "label": "Possible degree of freedom is constrained out",
+      "ranges": [
+        {
+          "start": 937,
+          "end": 1118
+        }
+      ],
+      "isWarning": true
+    }
+  ],
   "rhsLabels": []
 }
