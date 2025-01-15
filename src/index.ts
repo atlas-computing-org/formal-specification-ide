@@ -3,6 +3,9 @@ import { ChatAnthropic } from "@langchain/anthropic";
 // TODO: Add API key management
 const ANTHROPIC_API_KEY = "sk-ant-api03-XXXXXX"
 
+// The server URL
+const SERVER_URL = "http://localhost:3001";
+
 // The datasets to choose from
 const DATASET_NAMES = ["SHA-1", "simpleText"];
 
@@ -230,24 +233,21 @@ function renderLabels(panelId: string, labels: TextLabel[], textContainerId: str
 // AI Query Logic
 // ---------------------------------------------------------------------
 
-// Add the function to handle the AI query
+// Handle AI queries
 async function queryAI() {
-  const llm = new ChatAnthropic({
-    model: "claude-3-haiku-20240307",
-    temperature: 0,
-    maxTokens: undefined,
-    maxRetries: 2,
-    apiKey: ANTHROPIC_API_KEY,
-  });
-
-  const framing = "You are a helpful assistant that translates English to French. Translate the user sentence.";
   const prompt = "Please tell me how your day is going";
+
   try {
-    const res = await llm.invoke([
-      ["system", framing],
-      ["human", prompt],
-    ]);
-    console.log("Claude's response:", res.content);
+    const response = await fetch(`${SERVER_URL}/query-ai`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ prompt }),
+    });
+
+    const data = await response.json();
+    console.log("Claude's response:", data.response);
   } catch (error) {
     console.error("Error querying Claude:", error);
   }
