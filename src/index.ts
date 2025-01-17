@@ -10,37 +10,37 @@ const SERVER_URL = "http://localhost:3001";
 const DATASET_NAMES = ["SHA-1", "simpleText"];
 
 // Data Structures
-type TextRange = {
+type TextRangeWithText = {
   start: number;
   end: number;
   text: string;
 };
 
-type TextLabel = {
+type TextLabelWithText = {
   label: string;
-  ranges: TextRange[];
+  ranges: TextRangeWithText[];
   isWarning?: boolean;
   isError?: boolean;
 };
 
-type TextMapping = {
+type TextMappingWithText = {
   label: string;
-  lhsRanges: TextRange[];
-  rhsRanges: TextRange[];
+  lhsRanges: TextRangeWithText[];
+  rhsRanges: TextRangeWithText[];
   isWarning?: boolean;
   isError?: boolean;
 };
 
-interface AnnotationsData {
-  mappings: TextMapping[];
-  lhsLabels: TextLabel[];
-  rhsLabels: TextLabel[];
+interface AnnotationsWithText {
+  mappings: TextMappingWithText[];
+  lhsLabels: TextLabelWithText[];
+  rhsLabels: TextLabelWithText[];
 }
 
-interface Dataset {
+interface DatasetWithText {
   lhsText: string;
   rhsText: string;
-  annotations: AnnotationsData;
+  annotations: AnnotationsWithText;
 }
 
 type LabelType = "default" | "warning" | "error";
@@ -59,13 +59,13 @@ async function loadData(folderName: string) {
     fetch(`${basePath}/annotations.json`).then((res) => res.json()),
   ]);
 
-  return { lhsText, rhsText, annotations: annotations as AnnotationsData };
+  return { lhsText, rhsText, annotations: annotations as AnnotationsWithText };
 }
 
 // ---------------------------------------------------------------------
 // Highlighting logic
 // ---------------------------------------------------------------------
-function highlightRanges(containerId: string, ranges: TextRange[], labelType: LabelType) {
+function highlightRanges(containerId: string, ranges: TextRangeWithText[], labelType: LabelType) {
   const container = document.getElementById(containerId)!;
   const text = container.innerText;
   let highlightedText = "";
@@ -91,9 +91,9 @@ function clearHighlights(containerId: string) {
 // ---------------------------------------------------------------------
 
 // Store the current dataset
-let currentDataset: Dataset | null = null;
+let currentDataset: DatasetWithText | null = null;
 
-function startEditing(cell: HTMLElement, item: TextMapping | TextLabel, index: number) {
+function startEditing(cell: HTMLElement, item: TextMappingWithText | TextLabelWithText, index: number) {
   const originalText = cell.textContent!;
   const input = document.createElement("input");
   input.type = "text";
@@ -114,7 +114,7 @@ function startEditing(cell: HTMLElement, item: TextMapping | TextLabel, index: n
   });
 }
 
-function stopEditing(cell: HTMLElement, input: HTMLInputElement, item: TextMapping | TextLabel, index: number, originalText: string) {
+function stopEditing(cell: HTMLElement, input: HTMLInputElement, item: TextMappingWithText | TextLabelWithText, index: number, originalText: string) {
   const newValue = input.value;
   cell.textContent = newValue;
   input.remove();
@@ -158,7 +158,7 @@ function addEditCellListener() {
   });
 }
 
-function getLabelType(item: TextMapping | TextLabel): LabelType  {
+function getLabelType(item: TextMappingWithText | TextLabelWithText): LabelType  {
   if (item.isWarning) {
     return "warning";
   } else if (item.isError) {
@@ -168,7 +168,7 @@ function getLabelType(item: TextMapping | TextLabel): LabelType  {
   }
 }
 
-function renderMappings(mappings: TextMapping[]) {
+function renderMappings(mappings: TextMappingWithText[]) {
   const mappingsPanel = document.getElementById("mappings-panel")!;
 
   // Clear existing content if needed
@@ -200,7 +200,7 @@ function renderMappings(mappings: TextMapping[]) {
   });
 }
 
-function renderLabels(panelId: string, labels: TextLabel[], textContainerId: string) {
+function renderLabels(panelId: string, labels: TextLabelWithText[], textContainerId: string) {
   const panel = document.getElementById(panelId)!;
   const lhs = panelId.includes("lhs");
 
@@ -279,7 +279,7 @@ function populateDataSelector() {
 }
 
 // Print JSON annotations
-function printJSONAnnotations(annotations: AnnotationsData) {
+function printJSONAnnotations(annotations: AnnotationsWithText) {
   if (currentDataset) {
     document.getElementById("json-annotations")!.innerText = JSON.stringify(annotations, null, 2);
   }
@@ -310,7 +310,7 @@ function onUpdatedAnnotations() {
   printJSONAnnotations(annotations);
 }
 
-function updateData(dataset: Dataset) {
+function updateData(dataset: DatasetWithText) {
   currentDataset = dataset;
 
   const { lhsText, rhsText, annotations } = dataset;
