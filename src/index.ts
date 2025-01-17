@@ -230,32 +230,45 @@ function renderLabels(panelId: string, labels: TextLabelWithText[], textContaine
 }
 
 // ---------------------------------------------------------------------
-// AI Query Logic
+// Annotation Generation
 // ---------------------------------------------------------------------
 
-// Handle AI queries
-async function queryAI() {
-  const prompt = "Please tell me how your day is going";
-
+async function generateAnnotations(lhsText: string, rhsText: string) {
   try {
-    const response = await fetch(`${SERVER_URL}/query-ai`, {
+    const response = await fetch(`${SERVER_URL}/generate-annotations`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ prompt }),
+      body: JSON.stringify({ lhsText, rhsText }),
     });
 
     const data = await response.json();
-    console.log("Claude's response:", data.response);
+    console.log("Claude's response:", data);
+
+    if (data.error) {
+      throw new Error(data.error);
+    }
+
+    // Update in-memory annotations with the new annotations
+    currentDataset!.annotations = data.response as AnnotationsWithText;
+    onUpdatedAnnotations();
   } catch (error) {
-    console.error("Error querying Claude:", error);
+    console.error("Error generating annotations:", error);
+    // Clear in-memory annotations if there was an error
+    currentDataset!.annotations = {
+      mappings: [],
+      lhsLabels: [],
+      rhsLabels: [],
+    };
   }
 }
 
-// Attach event listener for the "Query AI" button
-document.getElementById("query-ai")!.addEventListener("click", queryAI);
-
+// Attach event listener for the "Generate Annotations" button
+document.getElementById("generate-annotations")!.addEventListener("click", () => {
+  const {lhsText, rhsText} = currentDataset!;
+  generateAnnotations(lhsText, rhsText);
+});
 
 // ---------------------------------------------------------------------
 // Main initialization
