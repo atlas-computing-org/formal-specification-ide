@@ -1,44 +1,12 @@
+import { AnnotationsWithText, DatasetWithText, LabelType, TextLabelWithText, TextMappingWithText,
+  TextRangeWithText } from "@common/annotations.ts";
+
 // The server URL
 const SERVER_URL = "http://localhost:3001";
 
 // The datasets to choose from
 const DATASET_NAMES = ["SHA-1", "simpleText"];
 
-// Data Structures
-type TextRangeWithText = {
-  start: number;
-  end: number;
-  text: string;
-};
-
-type TextLabelWithText = {
-  label: string;
-  ranges: TextRangeWithText[];
-  isWarning?: boolean;
-  isError?: boolean;
-};
-
-type TextMappingWithText = {
-  label: string;
-  lhsRanges: TextRangeWithText[];
-  rhsRanges: TextRangeWithText[];
-  isWarning?: boolean;
-  isError?: boolean;
-};
-
-interface AnnotationsWithText {
-  mappings: TextMappingWithText[];
-  lhsLabels: TextLabelWithText[];
-  rhsLabels: TextLabelWithText[];
-}
-
-interface DatasetWithText {
-  lhsText: string;
-  rhsText: string;
-  annotations: AnnotationsWithText;
-}
-
-type LabelType = "default" | "warning" | "error";
 
 // ---------------------------------------------------------------------
 // Utility function to fetch data from a specific data folder.

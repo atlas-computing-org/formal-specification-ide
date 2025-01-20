@@ -2,6 +2,7 @@ import express from 'express';
 import { ChatAnthropic } from '@langchain/anthropic';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import { Annotations, LabelType, TextMapping } from "@common/annotations.ts";
 
 const PORT = 3001;
 const CLIENT_PORT = 3000;
@@ -88,33 +89,7 @@ type ModelOutputAnnotation = {
   label: string;
   lhsText: string[];
   rhsText: string[];
-  status: 'default' | 'warning' | 'error';
-}
-
-type TextRange = {
-  start: number;
-  end: number;
-};
-
-type TextLabel = {
-  label: string;
-  ranges: TextRange[];
-  isWarning?: boolean;
-  isError?: boolean;
-};
-
-type TextMapping = {
-  label: string;
-  lhsRanges: TextRange[];
-  rhsRanges: TextRange[];
-  isWarning?: boolean;
-  isError?: boolean;
-};
-
-interface Annotations {
-  mappings: TextMapping[];
-  lhsLabels: TextLabel[];
-  rhsLabels: TextLabel[];
+  status: LabelType;
 }
 
 const app = express();

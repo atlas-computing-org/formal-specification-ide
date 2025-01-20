@@ -3,11 +3,16 @@
     "target": "ES2020",
     "module": "nodenext",
     "moduleResolution": "nodenext",
-    "outDir": "./public/dist",
-    "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "." // Set base URL to root
+    "baseUrl": ".",
+
+    // FIXME: allowImportingTsExtensions shouldn't be needed. Something is wrong
+    // with path-based import configuration
+    "allowImportingTsExtensions": true,
+    "paths": {
+      "@common/*": ["common/*"]
+    }
   }
 }
