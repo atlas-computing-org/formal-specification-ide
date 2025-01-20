@@ -7,22 +7,21 @@
 brew install node
 ```
 
-2. Install TypeScript & create config
+2. Install packages
 ```
-npm install --save-dev typescript
+npm install
 ```
 
 # Build and Run
 
-1. Compile TypeScript to JavaScript
+1. Run the LLM backend server (runs on http://localhost:3001)
 ```
-npx tsc
+npm start
 ```
 
-2. Serve the project (install `serve` globally if needed)
+2. Build and serve the web client at http://localhost:3000 (for now, this is served separately from the LLM backend)
 ```
-npm install --global serve
-serve public
+npm run dev
 ```
 
 3. Visit http://localhost:3000 to see the result
