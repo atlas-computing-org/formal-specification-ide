@@ -1,5 +1,12 @@
-import { Annotations, AnnotationsWithText, Dataset, DatasetWithText, LabelType, TextLabelWithText,
+import { AnnotationLookupImpl, AnnotationAndHighlightsLookup } from "./AnnotationLookup.ts";
+import { AnnotationsSlice, AnnotationsSliceImpl } from "./AnnotationsSlice.ts";
+import { TextPartitionIndices } from "./TextPartitionIndices.ts";
+import { Annotations, AnnotationsWithText, Dataset, DatasetWithText, Direction, LabelType, TextLabelWithText,
   TextMappingWithText, TextRange, TextRangeWithText } from "@common/annotations.ts";
+
+// ---------------------------------------------------------------------
+// App constants
+// ---------------------------------------------------------------------
 
 // The server URL
 const SERVER_URL = "http://localhost:3001";
@@ -18,8 +25,13 @@ const EMPTY_DATASET: DatasetWithText = {
   annotations: EMPTY_ANNOTATIONS,
 };
 
-// Store the current dataset
+// ---------------------------------------------------------------------
+// App state
+// ---------------------------------------------------------------------
+
 let currentDataset: DatasetWithText = EMPTY_DATASET;
+
+let currentHighlights: AnnotationsWithText = EMPTY_ANNOTATIONS;
 
 // ---------------------------------------------------------------------
 // Utility function to fetch data from a specific data folder.
@@ -42,42 +54,63 @@ async function loadData(folderName: string) {
 // Rendering logic
 // ---------------------------------------------------------------------
 
-function renderTexts(dataset: DatasetWithText) {
-  const { lhsText, rhsText, annotations } = dataset;
-
-  // Put the text in the DOM
-  const lhsContainer = document.getElementById("lhs-text-content")!;
-  const rhsContainer = document.getElementById("rhs-text-content")!;
-  lhsContainer.innerText = lhsText;
-  rhsContainer.innerText = rhsText;
-
-  // Store original text for clearing highlights
-  lhsContainer.dataset.originalText = lhsText;
-  rhsContainer.dataset.originalText = rhsText;
+function getSeverity(annotations: AnnotationsSlice): LabelType {
+  if (annotations.mappings.some(mapping => mapping.isError === true) ||
+      annotations.labels.some(label => label.isError === true)) {
+    return "error";
+  } else if (
+      annotations.mappings.some(mapping => mapping.isWarning === true) ||
+      annotations.labels.some(label => label.isWarning === true)) {
+    return "warning";
+  } else {
+    return "default";
+  }
 }
 
-// ---------------------------------------------------------------------
-// Highlighting logic
-// ---------------------------------------------------------------------
-function highlightRanges(containerId: string, ranges: TextRangeWithText[], labelType: LabelType) {
-  const container = document.getElementById(containerId)!;
-  const text = container.innerText;
-  let highlightedText = "";
-  let currentIndex = 0;
+function renderTextSegment(startIdx: number, endIdx: number, textSegment: string,
+    annotationLookup: AnnotationAndHighlightsLookup): string {
+  const annotations = annotationLookup.annotations.getAnnotationsForIndex(startIdx);
+  const highlights = annotationLookup.highlights.getAnnotationsForIndex(startIdx);
+  const hasHighlights = highlights.mappings.length > 0 || highlights.labels.length > 0;
+  const hasAnnotations = annotations.mappings.length > 0 || annotations.labels.length > 0;
 
-  ranges.forEach(({ start, end }) => {
-    highlightedText += text.substring(currentIndex, start);
-    highlightedText += `<span class="highlight ${labelType}">${text.substring(start, end)}</span>`;
-    currentIndex = end;
+  const highlightClass = hasHighlights ? `highlight-${getSeverity(highlights)}` : ""
+  const annotationClass = hasAnnotations ? getSeverity(annotations) : ""
+  return `<span class="${highlightClass} ${annotationClass}" data-start-index="${startIdx}">${textSegment}</span>`;
+}
+
+function renderPartitionedText(text: string, partitionIndices: TextPartitionIndices,
+    annotationLookup: AnnotationAndHighlightsLookup): string {
+  // Iterate through the sorted indices and partition the text
+  let partitionedText = "";
+  let lastIndex = 0;
+  partitionIndices.getSortedIndices().forEach(index => {
+    if (index === 0) {
+      return; // Skip the first index (it's the starting point)
+    }
+    partitionedText += renderTextSegment(lastIndex, index, text.substring(lastIndex, index), annotationLookup);
+    lastIndex = index;
   });
 
-  highlightedText += text.substring(currentIndex);
-  container.innerHTML = highlightedText;
+  return partitionedText;
 }
 
-function clearHighlights(containerId: string) {
-  const container = document.getElementById(containerId)!;
-  container.innerText = container.dataset.originalText || container.innerText;
+function renderText(elementId: string, text: string, annotations: AnnotationsSlice, highlights: AnnotationsSlice) {
+  const container = document.getElementById(elementId)!;
+  const annotationLookup = new AnnotationAndHighlightsLookup(
+    new AnnotationLookupImpl(annotations), new AnnotationLookupImpl(highlights));
+  const partitionIndices = TextPartitionIndices.fromTextAndAnnotations(text, annotations);
+  container.innerHTML = renderPartitionedText(text, partitionIndices, annotationLookup);
+}
+
+function sliceAnnotations(annotations: AnnotationsWithText, direction: Direction): AnnotationsSlice {
+  return AnnotationsSliceImpl.fromAnnotations(annotations, direction);
+}
+
+function renderTexts(dataset: DatasetWithText, highlights: AnnotationsWithText) {
+  const { lhsText, rhsText, annotations } = dataset;
+  renderText("lhs-text-content", lhsText, sliceAnnotations(annotations, "lhs"), sliceAnnotations(highlights, "lhs"));
+  renderText("rhs-text-content", rhsText, sliceAnnotations(annotations, "rhs"), sliceAnnotations(highlights, "rhs"));
 }
 
 // ---------------------------------------------------------------------
@@ -113,8 +146,8 @@ function stopEditing(cell: HTMLElement, input: HTMLInputElement, item: TextMappi
   // Update the in-memory dataset
   item.description = newValue;
 
-  // Update the displayed data
-  renderAnnotationPanels(currentDataset.annotations);
+  // Propagate changes to the UI
+  updateAnnotations(currentDataset.annotations);
 }
 
 function cancelEditing(cell: HTMLElement, input: HTMLInputElement, originalText: string) {
@@ -150,16 +183,16 @@ function addEditCellListener() {
 }
 
 function getLabelType(item: TextMappingWithText | TextLabelWithText): LabelType  {
-  if (item.isWarning) {
-    return "warning";
-  } else if (item.isError) {
+  if (item.isError) {
     return "error";
+  } else if (item.isWarning) {
+    return "warning";
   } else {
     return "default";
   }
 }
 
-function renderMappings(mappings: TextMappingWithText[]) {
+function renderMappings(mappings: TextMappingWithText[], highlights: TextMappingWithText[]) {
   const mappingsPanel = document.getElementById("mappings-panel")!;
 
   // Clear existing content if needed
@@ -167,8 +200,9 @@ function renderMappings(mappings: TextMappingWithText[]) {
 
   mappings.forEach((mapping, i) => {
     const labelType = getLabelType(mapping);
+    const isHighlighted = highlights.includes(mapping);
     const row = document.createElement("div");
-    row.className = `row mapping ${labelType}`;
+    row.className = `row mapping ${labelType} ${isHighlighted ? "highlight" : ""}`;
     row.dataset.index = i.toString();
     row.innerHTML = `
       <div class="cell label">${mapping.description}</div>
@@ -178,30 +212,33 @@ function renderMappings(mappings: TextMappingWithText[]) {
     `;
 
     row.addEventListener("mouseover", () => {
-      highlightRanges("lhs-text-content", mapping.lhsRanges, getLabelType(mapping));
-      highlightRanges("rhs-text-content", mapping.rhsRanges, getLabelType(mapping));
+      const highlights = {
+        mappings: [mapping],
+        lhsLabels: [],
+        rhsLabels: [],
+      }
+      updateHighlights(highlights);
     });
 
     row.addEventListener("mouseout", () => {
-      clearHighlights("lhs-text-content");
-      clearHighlights("rhs-text-content");
+      updateHighlights(EMPTY_ANNOTATIONS);
     });
 
     mappingsPanel.appendChild(row);
   });
 }
 
-function renderLabels(panelId: string, labels: TextLabelWithText[], textContainerId: string) {
-  const panel = document.getElementById(panelId)!;
-  const lhs = panelId.includes("lhs");
+function renderLabels(direction: Direction, labels: TextLabelWithText[], highlights: TextLabelWithText[]) {
+  const panel = document.getElementById(`${direction}-labels-panel`)!;
 
   // Clear existing content if needed
-  panel.innerHTML = `<div class="header">${lhs ? "LHS Labels" : "RHS Labels"}</div>`;
+  panel.innerHTML = `<div class="header">${direction === "lhs" ? "LHS Labels" : "RHS Labels"}</div>`;
 
   labels.forEach((label, i) => {
     const labelType = getLabelType(label);
+    const isHighlighted = highlights.includes(label);
     const row = document.createElement("div");
-    row.className = `row ${lhs ? "lhs" : "rhs"}-label ${labelType}`;
+    row.className = `row ${direction}-label ${labelType} ${isHighlighted ? "highlight" : ""}`;
     row.dataset.index = i.toString();
     row.innerHTML = `
       <div class="cell label">${label.description}</div>
@@ -209,11 +246,13 @@ function renderLabels(panelId: string, labels: TextLabelWithText[], textContaine
     `;
 
     row.addEventListener("mouseover", () => {
-      highlightRanges(textContainerId, label.ranges, getLabelType(label));
+      const lhsLabels = direction === "lhs" ? [label] : [];
+      const rhsLabels = direction === "rhs" ? [label] : [];
+      updateHighlights({ mappings: [], lhsLabels, rhsLabels });
     });
 
     row.addEventListener("mouseout", () => {
-      clearHighlights(textContainerId);
+      updateHighlights(EMPTY_ANNOTATIONS);
     });
 
     panel.appendChild(row);
@@ -253,6 +292,10 @@ async function generateAnnotations(lhsText: string, rhsText: string) {
   }
 }
 
+// ---------------------------------------------------------------------
+// Add Static Event Listeners
+// ---------------------------------------------------------------------
+
 // Attach event listener for the "Generate Annotations" button
 document.getElementById("generate-annotations")!.addEventListener("click", () => {
   const {lhsText, rhsText} = currentDataset;
@@ -282,25 +325,38 @@ function populateDataSelector() {
 
 // Print JSON annotations
 function renderJSONAnnotationsPanel(annotations: AnnotationsWithText) {
-  document.getElementById("json-annotations")!.innerText = JSON.stringify(annotations, null, 2);
+  document.getElementById("json-annotations")!.innerHTML = JSON.stringify(annotations, null, 2);
 }
 
-function renderAnnotationPanels(annotations: AnnotationsWithText) {
-  renderMappings(annotations.mappings);
-  renderLabels("lhs-labels-panel", annotations.lhsLabels, "lhs-text-content");
-  renderLabels("rhs-labels-panel", annotations.rhsLabels, "rhs-text-content");
+function renderAnnotationPanels(annotations: AnnotationsWithText, highlights: AnnotationsWithText) {
+  renderMappings(annotations.mappings, highlights.mappings);
+  renderLabels("lhs", annotations.lhsLabels, highlights.lhsLabels);
+  renderLabels("rhs", annotations.rhsLabels, highlights.rhsLabels);
 
   renderJSONAnnotationsPanel(annotations);
 }
 
-function render() {
-  renderTexts(currentDataset);
-  renderAnnotationPanels(currentDataset.annotations);
+function render(dataset: DatasetWithText, highlights: AnnotationsWithText) {
+  renderTexts(dataset, highlights);
+  renderAnnotationPanels(dataset.annotations, highlights);
+}
+
+function updateHighlights(highlights: AnnotationsWithText) {
+  updateAppState(currentDataset, highlights);
+}
+
+function updateAnnotations(annotations: AnnotationsWithText) {
+  updateData({ ...currentDataset, annotations });
 }
 
 function updateData(dataset: DatasetWithText) {
+  updateAppState(dataset, EMPTY_ANNOTATIONS);
+}
+
+function updateAppState(dataset: DatasetWithText, highlights: AnnotationsWithText) {
   currentDataset = dataset;
-  render();
+  currentHighlights = highlights;
+  render(dataset, highlights);
 }
 
 function cacheRangeText(ranges: TextRange[], text: string): TextRangeWithText[] {
@@ -351,11 +407,15 @@ async function main() {
   // Listen for double-click events on labels and mappings
   addEditCellListener();
 
-  // Toggle JSON annotations visibility
+  // Toggle highlighting all annotations on click
+  document.getElementById('highlight-all-annotations')!.addEventListener('click', () => {
+    const textContentDiv = document.getElementById('text-content')!;
+    textContentDiv.classList.toggle('highlight-all');
+  });
+
+  // Toggle JSON annotations visibility on click
   document.getElementById('show-json')!.addEventListener('click', () => {
     const jsonAnnotationsDiv = document.getElementById('json-annotations')!;
-
-    // Toggle the "show" class
     jsonAnnotationsDiv.classList.toggle('show');
   });
 

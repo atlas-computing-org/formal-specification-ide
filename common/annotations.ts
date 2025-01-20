@@ -39,3 +39,4 @@ export type AnnotationsWithText = Annotations<TextRangeWithText>;
 export type DatasetWithText = Dataset<TextRangeWithText>;
 
 export type LabelType = "default" | "warning" | "error";
+export type Direction = "lhs" | "rhs";

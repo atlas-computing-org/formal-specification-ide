@@ -38,11 +38,12 @@
     #data-selector {
       padding: 4px;
       margin-left: 4px;
+      margin-right: 8px;
     }
 
-    #generate-annotations {
+    button {
+      margin-right: 8px;
       padding: 4px;
-      margin-left: 8px;
     }
 
     /* Fixed footer */
@@ -58,10 +59,6 @@
       display: flex;
       align-items: center;
       z-index: 10;
-    }
-
-    #show-json {
-      padding: 6px;
     }
 
     /* Main content area */
@@ -111,6 +108,43 @@
     #rhs-text-content {
       white-space: pre;
     }
+    .panel-text-content > .warning {
+      text-decoration: underline;
+      text-decoration-color: #f1c23288;
+      text-decoration-style: wavy;
+    }
+    .panel-text-content > .error {
+      text-decoration: underline;
+      text-decoration-color: #ff000088;
+      text-decoration-style: wavy;
+    }
+    .panel-text-content > .highlight-default {
+      background-color: #44444426;
+    }
+    .panel-text-content > .highlight-warning {
+      background-color: #f1c23226;
+    }
+    .panel-text-content > .highlight-error {
+      background-color: #ff000026;
+    }
+    #text-content.highlight-all .panel-text-content > .default {
+      background-color: #44444426;
+    }
+    #text-content.highlight-all .panel-text-content > .warning {
+      background-color: #f1c23226;
+    }
+    #text-content.highlight-all .panel-text-content > .error {
+      background-color: #ff000026;
+    }
+    #text-content.highlight-all .panel-text-content > .highlight-default {
+      background-color: #44444455;
+    }
+    #text-content.highlight-all .panel-text-content > .highlight-warning {
+      background-color: #f1c23255;
+    }
+    #text-content.highlight-all .panel-text-content > .highlight-error {
+      background-color: #ff000055;
+    }
     .row {
       display: flex;
       justify-content: space-between;
@@ -143,14 +177,24 @@
       padding: 10px;
       border: 1px solid #ccc;
     }
-    .highlight {
-      background-color: lightgray;
+    #annotations .highlight.default {
+      background-color: #44444426;
     }
-    .mapping.warning, .lhs-label.warning, .rhs-label.warning, .highlight.warning {
+    #annotations .highlight.warning {
       background-color: #f1c23226;
     }
-    .mapping.error, .lhs-label.error, .rhs-label.error, .highlight.error {
+    #annotations .highlight.error {
       background-color: #ff000026;
+    }
+    #annotations .warning > .label {
+      text-decoration: underline;
+      text-decoration-color: #f1c23288;
+      text-decoration-style: wavy;
+    }
+    #annotations .error > .label {
+      text-decoration: underline;
+      text-decoration-color: #ff000088;
+      text-decoration-style: wavy;
     }
     #json-annotations {
       display: none;
@@ -187,13 +231,13 @@
       <div class="panel">
         <div class="subpanel" id="left-text">
           <div class="header">LHS Text</div>
-          <div id="lhs-text-content"></div>
+          <div class="panel-text-content" id="lhs-text-content"></div>
         </div>
       </div>
       <div class="panel">
         <div class="subpanel" id="right-text">
           <div class="header">RHS Text</div>
-          <div id="rhs-text-content"></div>
+          <div class="panel-text-content" id="rhs-text-content"></div>
         </div>
       </div>
     </div>
@@ -218,6 +262,7 @@
   </main>
 
   <footer>
+    <button id="highlight-all-annotations">Highlight All</button>
     <button id="show-json">Show JSON</button>
   </footer>
 
