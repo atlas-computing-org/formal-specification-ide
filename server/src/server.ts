@@ -236,7 +236,7 @@ const splitAnnotations = (annotations: TextMapping[]): Annotations => {
   return result;
 };
 
-const annotateWithClaude = async (lhsText: string, rhsText) => {
+const annotateWithClaude = async (lhsText: string, rhsText: string) => {
   const llm = new ChatAnthropic({
     model: "claude-3-haiku-20240307",
     temperature: 0,
