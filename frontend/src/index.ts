@@ -1,8 +1,3 @@
-import { ChatAnthropic } from "@langchain/anthropic";
-
-// TODO: Add API key management
-const ANTHROPIC_API_KEY = "sk-ant-api03-XXXXXX"
-
 // The server URL
 const SERVER_URL = "http://localhost:3001";
 
