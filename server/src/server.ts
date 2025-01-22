@@ -146,15 +146,13 @@ const extractJSON = (content: string) => {
       content.slice(jsonStart, content.lastIndexOf('},\n') + 1).trim() + ']' :
       content.slice(jsonStart, jsonEnd).trim();
 
-    console.log("### JSON STRING ###");
+    console.log("Extracted JSON:");
     console.log(jsonString)
-    console.log("### done ###");
 
     return JSON.parse(escapeString(jsonString));
   } catch (error) {
     console.error("Error parsing JSON annotations. Content: %s", content)
     console.error(error);
-    console.log("....x..");
     throw new Error(error);
   }
 };
