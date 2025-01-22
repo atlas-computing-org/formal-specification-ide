@@ -9,6 +9,7 @@
     "start": "npx tsx server/src/server.ts"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "body-parser": "^1.20.3",
     "tsx": "^4.19.2",
