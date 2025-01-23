@@ -1,5 +1,5 @@
-import { AnnotationsWithText, DatasetWithText, LabelType, TextLabelWithText, TextMappingWithText,
-  TextRangeWithText } from "@common/annotations.ts";
+import { Annotations, AnnotationsWithText, Dataset, DatasetWithText, LabelType, TextLabelWithText,
+  TextMappingWithText, TextRange, TextRangeWithText } from "@common/annotations.ts";
 
 // The server URL
 const SERVER_URL = "http://localhost:3001";
@@ -7,14 +7,15 @@ const SERVER_URL = "http://localhost:3001";
 // The datasets to choose from
 const DATASET_NAMES = ["SHA-1", "simpleText"];
 
+const EMPTY_ANNOTATIONS: AnnotationsWithText = {
+  mappings: [],
+  lhsLabels: [],
+  rhsLabels: [],
+};
 const EMPTY_DATASET: DatasetWithText = {
   lhsText: "",
   rhsText: "",
-  annotations: {
-    mappings: [],
-    lhsLabels: [],
-    rhsLabels: [],
-  },
+  annotations: EMPTY_ANNOTATIONS,
 };
 
 // Store the current dataset
@@ -34,7 +35,7 @@ async function loadData(folderName: string) {
     fetch(`${basePath}/annotations.json`).then((res) => res.json()),
   ]);
 
-  return { lhsText, rhsText, annotations: annotations as AnnotationsWithText };
+  return { lhsText, rhsText, annotations: annotations as Annotations };
 }
 
 // ---------------------------------------------------------------------
@@ -223,16 +224,14 @@ async function generateAnnotations(lhsText: string, rhsText: string) {
     }
 
     // Update in-memory annotations with the new annotations
-    currentDataset.annotations = data.response as AnnotationsWithText;
-    onUpdatedAnnotations();
+    const annotations = data.response as Annotations;
+    const dataset = cacheDatasetText({ lhsText, rhsText, annotations });
+    updateData(dataset);
   } catch (error) {
     console.error("Error generating annotations:", error);
     // Clear in-memory annotations if there was an error
-    currentDataset.annotations = {
-      mappings: [],
-      lhsLabels: [],
-      rhsLabels: [],
-    };
+    const dataset = { lhsText, rhsText, annotations: EMPTY_ANNOTATIONS };
+    updateData(dataset);
   }
 }
 
@@ -269,21 +268,7 @@ function printJSONAnnotations(annotations: AnnotationsWithText) {
 }
 
 function onUpdatedAnnotations() {
-  const { lhsText, rhsText, annotations } = currentDataset;
-
-  // IMPORTANT: fill the "text" field for each range using lhsText/rhsText
-  // because your JSON only has {start, end}, but we need the substring.
-  // This mutates the objects in-place.
-  annotations.mappings.forEach((m) => {
-    m.lhsRanges.forEach((r) => (r.text = lhsText.substring(r.start, r.end)));
-    m.rhsRanges.forEach((r) => (r.text = rhsText.substring(r.start, r.end)));
-  });
-  annotations.lhsLabels.forEach((lbl) => {
-    lbl.ranges.forEach((r) => (r.text = lhsText.substring(r.start, r.end)));
-  });
-  annotations.rhsLabels.forEach((lbl) => {
-    lbl.ranges.forEach((r) => (r.text = rhsText.substring(r.start, r.end)));
-  });
+  const { annotations } = currentDataset;
 
   // Render everything
   renderMappings(annotations.mappings);
@@ -311,10 +296,44 @@ function updateData(dataset: DatasetWithText) {
   onUpdatedAnnotations();
 }
 
+function cacheRangeText(ranges: TextRange[], text: string): TextRangeWithText[] {
+  return ranges.map(({start, end}) => ({
+    start,
+    end,
+    text: text.substring(start, end),
+  }));
+}
+
+function cacheDatasetText(dataset: Dataset): DatasetWithText {
+  const { annotations, lhsText, rhsText } = dataset;
+  const annotationsWithText = {
+    mappings: annotations.mappings.map(mapping => ({
+      ...mapping,
+      lhsRanges: cacheRangeText(mapping.lhsRanges, lhsText),
+      rhsRanges: cacheRangeText(mapping.rhsRanges, rhsText),
+    })),
+    lhsLabels: annotations.lhsLabels.map(label => ({
+      ...label,
+      ranges: cacheRangeText(label.ranges, lhsText),
+    })),
+    rhsLabels: annotations.rhsLabels.map(label => ({
+      ...label,
+      ranges: cacheRangeText(label.ranges, rhsText),
+    })),
+  };
+
+  return {
+    lhsText,
+    rhsText,
+    annotations: annotationsWithText,
+  };
+}
+
 async function loadAndRender(folderName: string) {
   // Load the data
   const dataset = await loadData(folderName);
-  updateData(dataset);
+  const datasetWithText = cacheDatasetText(dataset);
+  updateData(datasetWithText);
 }
 
 // Main function to set up default and attach listeners

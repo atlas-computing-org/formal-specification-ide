@@ -24,6 +24,12 @@ export interface Annotations {
   rhsLabels: TextLabel[];
 }
 
+export interface Dataset {
+  lhsText: string;
+  rhsText: string;
+  annotations: Annotations;
+}
+
 export type TextRangeWithText = {
   start: number;
   end: number;
