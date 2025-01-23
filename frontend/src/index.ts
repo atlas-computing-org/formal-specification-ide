@@ -39,6 +39,24 @@ async function loadData(folderName: string) {
 }
 
 // ---------------------------------------------------------------------
+// Rendering logic
+// ---------------------------------------------------------------------
+
+function renderTexts(dataset: DatasetWithText) {
+  const { lhsText, rhsText, annotations } = dataset;
+
+  // Put the text in the DOM
+  const lhsContainer = document.getElementById("lhs-text-content")!;
+  const rhsContainer = document.getElementById("rhs-text-content")!;
+  lhsContainer.innerText = lhsText;
+  rhsContainer.innerText = rhsText;
+
+  // Store original text for clearing highlights
+  lhsContainer.dataset.originalText = lhsText;
+  rhsContainer.dataset.originalText = rhsText;
+}
+
+// ---------------------------------------------------------------------
 // Highlighting logic
 // ---------------------------------------------------------------------
 function highlightRanges(containerId: string, ranges: TextRangeWithText[], labelType: LabelType) {
@@ -96,7 +114,7 @@ function stopEditing(cell: HTMLElement, input: HTMLInputElement, item: TextMappi
   item.label = newValue;
 
   // Update the displayed data
-  onUpdatedAnnotations();
+  renderAnnotationPanels(currentDataset.annotations);
 }
 
 function cancelEditing(cell: HTMLElement, input: HTMLInputElement, originalText: string) {
@@ -263,37 +281,26 @@ function populateDataSelector() {
 }
 
 // Print JSON annotations
-function printJSONAnnotations(annotations: AnnotationsWithText) {
+function renderJSONAnnotationsPanel(annotations: AnnotationsWithText) {
   document.getElementById("json-annotations")!.innerText = JSON.stringify(annotations, null, 2);
 }
 
-function onUpdatedAnnotations() {
-  const { annotations } = currentDataset;
-
-  // Render everything
+function renderAnnotationPanels(annotations: AnnotationsWithText) {
   renderMappings(annotations.mappings);
   renderLabels("lhs-labels-panel", annotations.lhsLabels, "lhs-text-content");
   renderLabels("rhs-labels-panel", annotations.rhsLabels, "rhs-text-content");
 
-  printJSONAnnotations(annotations);
+  renderJSONAnnotationsPanel(annotations);
+}
+
+function render() {
+  renderTexts(currentDataset);
+  renderAnnotationPanels(currentDataset.annotations);
 }
 
 function updateData(dataset: DatasetWithText) {
   currentDataset = dataset;
-
-  const { lhsText, rhsText, annotations } = dataset;
-
-  // Put the text in the DOM
-  const lhsContainer = document.getElementById("lhs-text-content")!;
-  const rhsContainer = document.getElementById("rhs-text-content")!;
-  lhsContainer.innerText = lhsText;
-  rhsContainer.innerText = rhsText;
-
-  // Store original text for clearing highlights
-  lhsContainer.dataset.originalText = lhsText;
-  rhsContainer.dataset.originalText = rhsText;
-
-  onUpdatedAnnotations();
+  render();
 }
 
 function cacheRangeText(ranges: TextRange[], text: string): TextRangeWithText[] {
