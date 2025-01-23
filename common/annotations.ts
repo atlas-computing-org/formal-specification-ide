@@ -3,64 +3,39 @@ export type TextRange = {
   end: number;
 };
 
-export type TextLabel = {
+export type TextLabel<T extends TextRange = TextRange> = {
   label: string;
-  ranges: TextRange[];
+  ranges: T[];
   isWarning?: boolean;
   isError?: boolean;
 };
 
-export type TextMapping = {
+export type TextMapping<T extends TextRange = TextRange> = {
   label: string;
-  lhsRanges: TextRange[];
-  rhsRanges: TextRange[];
+  lhsRanges: T[];
+  rhsRanges: T[];
   isWarning?: boolean;
   isError?: boolean;
 };
 
-export interface Annotations {
-  mappings: TextMapping[];
-  lhsLabels: TextLabel[];
-  rhsLabels: TextLabel[];
+export interface Annotations<T extends TextRange = TextRange> {
+  mappings: TextMapping<T>[];
+  lhsLabels: TextLabel<T>[];
+  rhsLabels: TextLabel<T>[];
 }
 
-export interface Dataset {
+export interface Dataset<T extends TextRange = TextRange> {
   lhsText: string;
   rhsText: string;
-  annotations: Annotations;
+  annotations: Annotations<T>;
 }
 
-export type TextRangeWithText = {
-  start: number;
-  end: number;
+export type TextRangeWithText = TextRange & {
   text: string;
 };
-
-export type TextLabelWithText = {
-  label: string;
-  ranges: TextRangeWithText[];
-  isWarning?: boolean;
-  isError?: boolean;
-};
-
-export type TextMappingWithText = {
-  label: string;
-  lhsRanges: TextRangeWithText[];
-  rhsRanges: TextRangeWithText[];
-  isWarning?: boolean;
-  isError?: boolean;
-};
-
-export interface AnnotationsWithText {
-  mappings: TextMappingWithText[];
-  lhsLabels: TextLabelWithText[];
-  rhsLabels: TextLabelWithText[];
-}
-
-export interface DatasetWithText {
-  lhsText: string;
-  rhsText: string;
-  annotations: AnnotationsWithText;
-}
+export type TextLabelWithText = TextLabel<TextRangeWithText>;
+export type TextMappingWithText = TextMapping<TextRangeWithText>;
+export type AnnotationsWithText = Annotations<TextRangeWithText>;
+export type DatasetWithText = Dataset<TextRangeWithText>;
 
 export type LabelType = "default" | "warning" | "error";
