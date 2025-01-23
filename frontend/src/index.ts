@@ -7,6 +7,18 @@ const SERVER_URL = "http://localhost:3001";
 // The datasets to choose from
 const DATASET_NAMES = ["SHA-1", "simpleText"];
 
+const EMPTY_DATASET: DatasetWithText = {
+  lhsText: "",
+  rhsText: "",
+  annotations: {
+    mappings: [],
+    lhsLabels: [],
+    rhsLabels: [],
+  },
+};
+
+// Store the current dataset
+let currentDataset: DatasetWithText = EMPTY_DATASET;
 
 // ---------------------------------------------------------------------
 // Utility function to fetch data from a specific data folder.
@@ -52,9 +64,6 @@ function clearHighlights(containerId: string) {
 // ---------------------------------------------------------------------
 // Rendering Annotations
 // ---------------------------------------------------------------------
-
-// Store the current dataset
-let currentDataset: DatasetWithText | null = null;
 
 function startEditing(cell: HTMLElement, item: TextMappingWithText | TextLabelWithText, index: number) {
   const originalText = cell.textContent!;
@@ -108,11 +117,11 @@ function addEditCellListener() {
       // Fetch the relevant item (mapping or label) based on the row's index and type
       let item;
       if (type === "mapping") {
-        item = currentDataset!.annotations.mappings[index];
+        item = currentDataset.annotations.mappings[index];
       } else if (type === "lhs-label") {
-        item = currentDataset!.annotations.lhsLabels[index];
+        item = currentDataset.annotations.lhsLabels[index];
       } else {
-        item = currentDataset!.annotations.rhsLabels[index];
+        item = currentDataset.annotations.rhsLabels[index];
       }
 
       // Start editing the label
@@ -214,12 +223,12 @@ async function generateAnnotations(lhsText: string, rhsText: string) {
     }
 
     // Update in-memory annotations with the new annotations
-    currentDataset!.annotations = data.response as AnnotationsWithText;
+    currentDataset.annotations = data.response as AnnotationsWithText;
     onUpdatedAnnotations();
   } catch (error) {
     console.error("Error generating annotations:", error);
     // Clear in-memory annotations if there was an error
-    currentDataset!.annotations = {
+    currentDataset.annotations = {
       mappings: [],
       lhsLabels: [],
       rhsLabels: [],
@@ -229,7 +238,7 @@ async function generateAnnotations(lhsText: string, rhsText: string) {
 
 // Attach event listener for the "Generate Annotations" button
 document.getElementById("generate-annotations")!.addEventListener("click", () => {
-  const {lhsText, rhsText} = currentDataset!;
+  const {lhsText, rhsText} = currentDataset;
   generateAnnotations(lhsText, rhsText);
 });
 
@@ -256,13 +265,11 @@ function populateDataSelector() {
 
 // Print JSON annotations
 function printJSONAnnotations(annotations: AnnotationsWithText) {
-  if (currentDataset) {
-    document.getElementById("json-annotations")!.innerText = JSON.stringify(annotations, null, 2);
-  }
+  document.getElementById("json-annotations")!.innerText = JSON.stringify(annotations, null, 2);
 }
 
 function onUpdatedAnnotations() {
-  const { lhsText, rhsText, annotations } = currentDataset!;
+  const { lhsText, rhsText, annotations } = currentDataset;
 
   // IMPORTANT: fill the "text" field for each range using lhsText/rhsText
   // because your JSON only has {start, end}, but we need the substring.
