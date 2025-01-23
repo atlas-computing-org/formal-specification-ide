@@ -111,7 +111,7 @@ function stopEditing(cell: HTMLElement, input: HTMLInputElement, item: TextMappi
   input.remove();
 
   // Update the in-memory dataset
-  item.label = newValue;
+  item.description = newValue;
 
   // Update the displayed data
   renderAnnotationPanels(currentDataset.annotations);
@@ -171,9 +171,9 @@ function renderMappings(mappings: TextMappingWithText[]) {
     row.className = `row mapping ${labelType}`;
     row.dataset.index = i.toString();
     row.innerHTML = `
-      <div class="cell label">${mapping.label}</div>
+      <div class="cell label">${mapping.description}</div>
       <div class="cell">${mapping.lhsRanges.map(r => `${r.start}-${r.end}: ${r.text}`).join(", ")}</div>
-      <div class="cell label">${mapping.label}</div>
+      <div class="cell label">${mapping.description}</div>
       <div class="cell">${mapping.rhsRanges.map(r => `${r.start}-${r.end}: ${r.text}`).join(", ")}</div>
     `;
 
@@ -204,7 +204,7 @@ function renderLabels(panelId: string, labels: TextLabelWithText[], textContaine
     row.className = `row ${lhs ? "lhs" : "rhs"}-label ${labelType}`;
     row.dataset.index = i.toString();
     row.innerHTML = `
-      <div class="cell label">${label.label}</div>
+      <div class="cell label">${label.description}</div>
       <div class="cell">${label.ranges.map(r => `${r.start}-${r.end}: ${r.text}`).join(", ")}</div>
     `;
 

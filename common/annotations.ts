@@ -4,14 +4,14 @@ export type TextRange = {
 };
 
 export type TextLabel<T extends TextRange = TextRange> = {
-  label: string;
+  description: string;
   ranges: T[];
   isWarning?: boolean;
   isError?: boolean;
 };
 
 export type TextMapping<T extends TextRange = TextRange> = {
-  label: string;
+  description: string;
   lhsRanges: T[];
   rhsRanges: T[];
   isWarning?: boolean;

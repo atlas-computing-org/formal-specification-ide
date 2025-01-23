@@ -5,7 +5,7 @@ import { SYSTEM_PROMPT } from './prompt.ts';
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 
 type ModelOutputAnnotation = {
-  label: string;
+  description: string;
   lhsText: string[];
   rhsText: string[];
   status: LabelType;
@@ -49,11 +49,11 @@ const validateJSONAnnotations = (annotations: any) => {
       throw new Error(`Annotation at index ${index} must be an object.`);
     }
 
-    const { label, lhsText, rhsText, status } = annotation;
+    const { description, lhsText, rhsText, status } = annotation;
 
-    // Validate "label" field
-    if (typeof label !== 'string') {
-      throw new Error(`Annotation at index ${index} must have a "label" field of type string.`);
+    // Validate "description" field
+    if (typeof description !== 'string') {
+      throw new Error(`Annotation at index ${index} must have a "description" field of type string.`);
     }
 
     // Validate "lhsText" field
@@ -74,7 +74,7 @@ const validateJSONAnnotations = (annotations: any) => {
 };
 
 const indexAnnotation = (annotation: ModelOutputAnnotation, lhsText: string, rhsText: string): TextMapping => {
-  const { label, lhsText: lhsTextList, rhsText: rhsTextList, status } = annotation;
+  const { description, lhsText: lhsTextList, rhsText: rhsTextList, status } = annotation;
 
   // Function to find the start and end index of each string in the given text
   const findIndexes = (textList: string[], text: string) => {
@@ -89,9 +89,9 @@ const indexAnnotation = (annotation: ModelOutputAnnotation, lhsText: string, rhs
   const lhsRanges = findIndexes(lhsTextList, lhsText);
   const rhsRanges = findIndexes(rhsTextList, rhsText);
 
-  return status == "error" ? {label, lhsRanges, rhsRanges, isError: true} :
-         status == "warning" ? {label, lhsRanges, rhsRanges, isWarning: true} :
-         {label, lhsRanges, rhsRanges};
+  return status == "error" ? {description, lhsRanges, rhsRanges, isError: true} :
+         status == "warning" ? {description, lhsRanges, rhsRanges, isWarning: true} :
+         {description, lhsRanges, rhsRanges};
 };
 
 const splitAnnotations = (annotations: TextMapping[]): Annotations => {
@@ -102,14 +102,14 @@ const splitAnnotations = (annotations: TextMapping[]): Annotations => {
   };
 
   annotations.forEach((annotation) => {
-    const { label, lhsRanges, rhsRanges, isError, isWarning } = annotation;
+    const { description, lhsRanges, rhsRanges, isError, isWarning } = annotation;
 
     if (lhsRanges.length > 0 && rhsRanges.length > 0) {
       result.mappings.push(annotation); // Mappings have both lhs and rhs
     } else if (lhsRanges.length > 0 && rhsRanges.length === 0) {
-      result.lhsLabels.push({label, ranges: lhsRanges, isError, isWarning}); // Drop rhsRanges
+      result.lhsLabels.push({description, ranges: lhsRanges, isError, isWarning}); // Drop rhsRanges
     } else if (rhsRanges.length > 0 && lhsRanges.length === 0) {
-      result.rhsLabels.push({label, ranges: rhsRanges, isError, isWarning}); // Drop lhsRanges
+      result.rhsLabels.push({description, ranges: rhsRanges, isError, isWarning}); // Drop lhsRanges
     }
   });
 
