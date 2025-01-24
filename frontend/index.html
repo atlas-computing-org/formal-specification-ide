@@ -6,6 +6,10 @@
   <title>Text Analysis Tool</title>
   <style>
 
+    /***************************************************************************
+     * General
+     **************************************************************************/
+
     /* General reset and box-sizing */
     * {
       margin: 0;
@@ -20,6 +24,10 @@
       font-family: Arial, sans-serif;
     }
 
+    /***************************************************************************
+     * Header and Footer
+     **************************************************************************/
+
     /* Fixed header */
     header {
       position: fixed;
@@ -33,17 +41,6 @@
       display: flex;
       align-items: center;
       z-index: 10;
-    }
-
-    #data-selector {
-      padding: 4px;
-      margin-left: 4px;
-      margin-right: 8px;
-    }
-
-    button {
-      margin-right: 8px;
-      padding: 4px;
     }
 
     /* Fixed footer */
@@ -69,18 +66,28 @@
       padding-top: 60px; /* Give space for the fixed header */
       padding-bottom: 60px; /* Give space for the fixed footer */
     }
+
+    #data-selector {
+      padding: 4px;
+      margin-left: 4px;
+      margin-right: 8px;
+    }
+
+    button {
+      margin-right: 8px;
+      padding: 4px;
+    }
+
+    /***************************************************************************
+     * Text Panels
+     **************************************************************************/
+
     #text-content {
       flex: 1;
       display: flex;
       width: 100%;
       border-bottom: 1px solid #ccc;
       overflow: hidden;
-    }
-    #annotations {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: auto;
     }
     .panel {
       flex: 1;
@@ -108,6 +115,7 @@
     #rhs-text-content {
       white-space: pre;
     }
+    /* Underline warnings and errors */
     .panel-text-content > .warning {
       text-decoration: underline;
       text-decoration-color: #f1c23288;
@@ -118,6 +126,7 @@
       text-decoration-color: #ff000088;
       text-decoration-style: wavy;
     }
+    /* Normal highlights */
     .panel-text-content > .highlight-default {
       background-color: #44444426;
     }
@@ -127,6 +136,7 @@
     .panel-text-content > .highlight-error {
       background-color: #ff000026;
     }
+    /* Highlight all anotations */
     #text-content.highlight-all .panel-text-content > .default {
       background-color: #44444426;
     }
@@ -136,6 +146,7 @@
     #text-content.highlight-all .panel-text-content > .error {
       background-color: #ff000026;
     }
+    /* Emphasize selected highlights on top of highlight-all */
     #text-content.highlight-all .panel-text-content > .highlight-default {
       background-color: #44444455;
     }
@@ -144,6 +155,17 @@
     }
     #text-content.highlight-all .panel-text-content > .highlight-error {
       background-color: #ff000055;
+    }
+
+    /***************************************************************************
+     * Annotation Panels
+     **************************************************************************/
+
+    #annotations {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
     }
     .row {
       display: flex;
@@ -196,6 +218,11 @@
       text-decoration-color: #ff000088;
       text-decoration-style: wavy;
     }
+
+    /***************************************************************************
+     * JSON Data Export
+     **************************************************************************/
+
     #json-annotations {
       display: none;
       position: fixed;
