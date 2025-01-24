@@ -211,7 +211,7 @@ function renderMappings(mappings: TextMappingWithText[], highlights: TextMapping
       <div class="cell">${mapping.rhsRanges.map(r => `${r.start}-${r.end}: ${r.text}`).join(", ")}</div>
     `;
 
-    row.addEventListener("mouseover", () => {
+    row.addEventListener("mouseenter", () => {
       const highlights = {
         mappings: [mapping],
         lhsLabels: [],
@@ -220,7 +220,7 @@ function renderMappings(mappings: TextMappingWithText[], highlights: TextMapping
       updateHighlights(highlights);
     });
 
-    row.addEventListener("mouseout", () => {
+    row.addEventListener("mouseleave", () => {
       updateHighlights(EMPTY_ANNOTATIONS);
     });
 
@@ -245,13 +245,13 @@ function renderLabels(direction: Direction, labels: TextLabelWithText[], highlig
       <div class="cell">${label.ranges.map(r => `${r.start}-${r.end}: ${r.text}`).join(", ")}</div>
     `;
 
-    row.addEventListener("mouseover", () => {
+    row.addEventListener("mouseenter", () => {
       const lhsLabels = direction === "lhs" ? [label] : [];
       const rhsLabels = direction === "rhs" ? [label] : [];
       updateHighlights({ mappings: [], lhsLabels, rhsLabels });
     });
 
-    row.addEventListener("mouseout", () => {
+    row.addEventListener("mouseleave", () => {
       updateHighlights(EMPTY_ANNOTATIONS);
     });
 
