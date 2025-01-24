@@ -408,10 +408,24 @@ function initializeFooter() {
     textContentDiv.classList.toggle('highlight-all');
   });
 
+  // Toggle annotations panel visibility on click
+  const hideAnnotationsPanelButton = document.getElementById('hide-annotations-panel')!;
+  hideAnnotationsPanelButton.addEventListener('click', () => {
+    const annotationsElement = document.getElementById('annotations')!;
+    annotationsElement.classList.toggle('hide');
+    annotationsElement.classList.contains('hide') ?
+      hideAnnotationsPanelButton.textContent = 'Show Annotations Panel' :
+      hideAnnotationsPanelButton.textContent = 'Hide Annotations Panel';
+  });
+
   // Toggle JSON annotations visibility on click
-  document.getElementById('show-json')!.addEventListener('click', () => {
-    const jsonAnnotationsDiv = document.getElementById('json-annotations')!;
-    jsonAnnotationsDiv.classList.toggle('show');
+  const showJSONButton = document.getElementById('show-json')!;
+  showJSONButton.addEventListener('click', () => {
+    const jsonAnnotationsElement = document.getElementById('json-annotations')!;
+    jsonAnnotationsElement.classList.toggle('show');
+    jsonAnnotationsElement.classList.contains('show') ?
+      showJSONButton.textContent = 'Hide JSON' :
+      showJSONButton.textContent = 'Show JSON';
   });
 }
 
