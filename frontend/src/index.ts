@@ -33,6 +33,8 @@ let currentDataset: DatasetWithText = EMPTY_DATASET;
 
 let currentHighlights: AnnotationsWithText = EMPTY_ANNOTATIONS;
 
+let listenersToRemove: Array<() => void> = [];
+
 // ---------------------------------------------------------------------
 // Data Loading
 // ---------------------------------------------------------------------
@@ -250,18 +252,24 @@ function renderMappings(mappings: TextMappingWithText[], highlights: TextMapping
       <div class="cell">${mapping.rhsRanges.map(r => `${r.start}-${r.end}: ${r.text}`).join(", ")}</div>
     `;
 
-    row.addEventListener("mouseenter", () => {
+    const mouseEnterListener = () => {
       const highlights = {
         mappings: [mapping],
         lhsLabels: [],
         rhsLabels: [],
       }
-      updateHighlights(highlights);
-    });
+      updateHighlightsIfChanged(highlights);
+    };
 
-    row.addEventListener("mouseleave", () => {
-      updateHighlights(EMPTY_ANNOTATIONS);
-    });
+    const mouseLeaveListener = () => {
+      updateHighlightsIfChanged(EMPTY_ANNOTATIONS);
+    };
+
+    row.addEventListener("mouseenter", mouseEnterListener);
+    row.addEventListener("mouseleave", mouseLeaveListener);
+
+    listenersToRemove.push(() => { row.removeEventListener('mouseenter', mouseEnterListener); });
+    listenersToRemove.push(() => { row.removeEventListener('mouseleave', mouseLeaveListener); });
 
     mappingsPanel.appendChild(row);
   });
@@ -284,15 +292,21 @@ function renderLabels(direction: Direction, labels: TextLabelWithText[], highlig
       <div class="cell">${label.ranges.map(r => `${r.start}-${r.end}: ${r.text}`).join(", ")}</div>
     `;
 
-    row.addEventListener("mouseenter", () => {
+    const mouseEnterListener = () => {
       const lhsLabels = direction === "lhs" ? [label] : [];
       const rhsLabels = direction === "rhs" ? [label] : [];
-      updateHighlights({ mappings: [], lhsLabels, rhsLabels });
-    });
+      updateHighlightsIfChanged({ mappings: [], lhsLabels, rhsLabels });
+    };
 
-    row.addEventListener("mouseleave", () => {
-      updateHighlights(EMPTY_ANNOTATIONS);
-    });
+    const mouseLeaveListener = () => {
+      updateHighlightsIfChanged(EMPTY_ANNOTATIONS);
+    };
+
+    row.addEventListener("mouseenter", mouseEnterListener);
+    row.addEventListener("mouseleave", mouseLeaveListener);
+
+    listenersToRemove.push(() => { row.removeEventListener('mouseenter', mouseEnterListener); });
+    listenersToRemove.push(() => { row.removeEventListener('mouseleave', mouseLeaveListener); });
 
     panel.appendChild(row);
   });
@@ -341,15 +355,35 @@ async function generateAnnotations(lhsText: string, rhsText: string) {
 // State Management
 // ---------------------------------------------------------------------
 
+function removeEventListeners() {
+  listenersToRemove.forEach(removeListener => removeListener());
+  listenersToRemove = [];
+}
+
 // Print JSON annotations
 function renderJSONAnnotationsPanel(annotations: AnnotationsWithText) {
   document.getElementById("json-annotations")!.innerHTML = JSON.stringify(annotations, null, 2);
 }
 
 function render(dataset: DatasetWithText, highlights: AnnotationsWithText) {
+  // Remove dynamic event listeners before re-rendering dynamic content to avoid cycles.
+  // Renders shouldn't trigger events that would cause re-renders.
+  // TODO: Fix this hack by using a proper state management library.
+  removeEventListeners();
+
   renderTexts(dataset, highlights);
   renderAnnotationPanels(dataset.annotations, highlights);
   renderJSONAnnotationsPanel(dataset.annotations);
+}
+
+function highlightsDidChange(prevHighlights: AnnotationsWithText, newHighlights: AnnotationsWithText) {
+  return JSON.stringify(prevHighlights) !== JSON.stringify(newHighlights);
+}
+
+function updateHighlightsIfChanged(highlights: AnnotationsWithText) {
+  if (highlightsDidChange(currentHighlights, highlights)) {
+    updateHighlights(highlights);
+  }
 }
 
 function updateHighlights(highlights: AnnotationsWithText) {
