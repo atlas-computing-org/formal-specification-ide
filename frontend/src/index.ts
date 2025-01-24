@@ -5,7 +5,7 @@ import { Annotations, AnnotationsWithText, Dataset, DatasetWithText, Direction, 
   TextMappingWithText, TextRange, TextRangeWithText } from "@common/annotations.ts";
 
 // ---------------------------------------------------------------------
-// App constants
+// App Constants
 // ---------------------------------------------------------------------
 
 // The server URL
@@ -26,7 +26,7 @@ const EMPTY_DATASET: DatasetWithText = {
 };
 
 // ---------------------------------------------------------------------
-// App state
+// App State
 // ---------------------------------------------------------------------
 
 let currentDataset: DatasetWithText = EMPTY_DATASET;
@@ -34,10 +34,43 @@ let currentDataset: DatasetWithText = EMPTY_DATASET;
 let currentHighlights: AnnotationsWithText = EMPTY_ANNOTATIONS;
 
 // ---------------------------------------------------------------------
-// Utility function to fetch data from a specific data folder.
+// Data Loading
 // ---------------------------------------------------------------------
 
-async function loadData(folderName: string) {
+function cacheRangeText(ranges: TextRange[], text: string): TextRangeWithText[] {
+  return ranges.map(({start, end}) => ({
+    start,
+    end,
+    text: text.substring(start, end),
+  }));
+}
+
+function cacheDatasetText(dataset: Dataset): DatasetWithText {
+  const { annotations, lhsText, rhsText } = dataset;
+  const annotationsWithText = {
+    mappings: annotations.mappings.map(mapping => ({
+      ...mapping,
+      lhsRanges: cacheRangeText(mapping.lhsRanges, lhsText),
+      rhsRanges: cacheRangeText(mapping.rhsRanges, rhsText),
+    })),
+    lhsLabels: annotations.lhsLabels.map(label => ({
+      ...label,
+      ranges: cacheRangeText(label.ranges, lhsText),
+    })),
+    rhsLabels: annotations.rhsLabels.map(label => ({
+      ...label,
+      ranges: cacheRangeText(label.ranges, rhsText),
+    })),
+  };
+
+  return {
+    lhsText,
+    rhsText,
+    annotations: annotationsWithText,
+  };
+}
+
+async function fetchRawData(folderName: string): Promise<Dataset> {
   const basePath = `/data/${folderName}`;
 
   // Fetch all in parallel
@@ -50,8 +83,13 @@ async function loadData(folderName: string) {
   return { lhsText, rhsText, annotations: annotations as Annotations };
 }
 
+async function fetchData(folderName: string) {
+  const dataset = await fetchRawData(folderName);
+  return cacheDatasetText(dataset);
+}
+
 // ---------------------------------------------------------------------
-// Rendering logic
+// Text Panels
 // ---------------------------------------------------------------------
 
 function getSeverity(annotations: AnnotationsSlice): LabelType {
@@ -114,7 +152,7 @@ function renderTexts(dataset: DatasetWithText, highlights: AnnotationsWithText) 
 }
 
 // ---------------------------------------------------------------------
-// Rendering Annotations
+// Annotation Panels
 // ---------------------------------------------------------------------
 
 function startEditing(cell: HTMLElement, item: TextMappingWithText | TextLabelWithText, index: number) {
@@ -155,6 +193,7 @@ function cancelEditing(cell: HTMLElement, input: HTMLInputElement, originalText:
   input.remove();
 }
 
+// Note: This listener is attached statically during initialization
 function addEditCellListener() {
   document.getElementById("annotations")!.addEventListener("dblclick", (e) => {
     const target = e.target as HTMLElement;
@@ -259,6 +298,12 @@ function renderLabels(direction: Direction, labels: TextLabelWithText[], highlig
   });
 }
 
+function renderAnnotationPanels(annotations: AnnotationsWithText, highlights: AnnotationsWithText) {
+  renderMappings(annotations.mappings, highlights.mappings);
+  renderLabels("lhs", annotations.lhsLabels, highlights.lhsLabels);
+  renderLabels("rhs", annotations.rhsLabels, highlights.rhsLabels);
+}
+
 // ---------------------------------------------------------------------
 // Annotation Generation
 // ---------------------------------------------------------------------
@@ -293,52 +338,18 @@ async function generateAnnotations(lhsText: string, rhsText: string) {
 }
 
 // ---------------------------------------------------------------------
-// Add Static Event Listeners
+// State Management
 // ---------------------------------------------------------------------
-
-// Attach event listener for the "Generate Annotations" button
-document.getElementById("generate-annotations")!.addEventListener("click", () => {
-  const {lhsText, rhsText} = currentDataset;
-  generateAnnotations(lhsText, rhsText);
-});
-
-// ---------------------------------------------------------------------
-// Main initialization
-// ---------------------------------------------------------------------
-
-// Populate the dropdown with our DATASET_NAMES array
-function populateDataSelector() {
-  const selector = document.getElementById("data-selector") as HTMLSelectElement;
-  // Clear any existing children (if necessary)
-  selector.innerHTML = "";
-
-  DATASET_NAMES.forEach((dataset, idx) => {
-    const option = document.createElement("option");
-    option.value = dataset;
-    option.textContent = dataset;
-    if (idx === 0) {
-      option.selected = true;
-    }
-    selector.appendChild(option);
-  });
-}
 
 // Print JSON annotations
 function renderJSONAnnotationsPanel(annotations: AnnotationsWithText) {
   document.getElementById("json-annotations")!.innerHTML = JSON.stringify(annotations, null, 2);
 }
 
-function renderAnnotationPanels(annotations: AnnotationsWithText, highlights: AnnotationsWithText) {
-  renderMappings(annotations.mappings, highlights.mappings);
-  renderLabels("lhs", annotations.lhsLabels, highlights.lhsLabels);
-  renderLabels("rhs", annotations.rhsLabels, highlights.rhsLabels);
-
-  renderJSONAnnotationsPanel(annotations);
-}
-
 function render(dataset: DatasetWithText, highlights: AnnotationsWithText) {
   renderTexts(dataset, highlights);
   renderAnnotationPanels(dataset.annotations, highlights);
+  renderJSONAnnotationsPanel(dataset.annotations);
 }
 
 function updateHighlights(highlights: AnnotationsWithText) {
@@ -359,54 +370,38 @@ function updateAppState(dataset: DatasetWithText, highlights: AnnotationsWithTex
   render(dataset, highlights);
 }
 
-function cacheRangeText(ranges: TextRange[], text: string): TextRangeWithText[] {
-  return ranges.map(({start, end}) => ({
-    start,
-    end,
-    text: text.substring(start, end),
-  }));
+// ---------------------------------------------------------------------
+// Static Content Initialization
+// ---------------------------------------------------------------------
+
+// Populate the dropdown with the static DATASET_NAMES array
+function populateDataSelector() {
+  const selector = document.getElementById("data-selector") as HTMLSelectElement;
+  // Clear any existing children (if necessary)
+  selector.innerHTML = "";
+
+  DATASET_NAMES.forEach((dataset, idx) => {
+    const option = document.createElement("option");
+    option.value = dataset;
+    option.textContent = dataset;
+    if (idx === 0) {
+      option.selected = true;
+    }
+    selector.appendChild(option);
+  });
 }
 
-function cacheDatasetText(dataset: Dataset): DatasetWithText {
-  const { annotations, lhsText, rhsText } = dataset;
-  const annotationsWithText = {
-    mappings: annotations.mappings.map(mapping => ({
-      ...mapping,
-      lhsRanges: cacheRangeText(mapping.lhsRanges, lhsText),
-      rhsRanges: cacheRangeText(mapping.rhsRanges, rhsText),
-    })),
-    lhsLabels: annotations.lhsLabels.map(label => ({
-      ...label,
-      ranges: cacheRangeText(label.ranges, lhsText),
-    })),
-    rhsLabels: annotations.rhsLabels.map(label => ({
-      ...label,
-      ranges: cacheRangeText(label.ranges, rhsText),
-    })),
-  };
-
-  return {
-    lhsText,
-    rhsText,
-    annotations: annotationsWithText,
-  };
-}
-
-async function loadAndRender(folderName: string) {
-  // Load the data
-  const dataset = await loadData(folderName);
-  const datasetWithText = cacheDatasetText(dataset);
-  updateData(datasetWithText);
-}
-
-// Main function to set up default and attach listeners
-async function main() {
-  // Populate the dropdown
+function initializeHeader() {
   populateDataSelector();
 
-  // Listen for double-click events on labels and mappings
-  addEditCellListener();
+  // Attach event listener for the "Generate Annotations" button
+  document.getElementById("generate-annotations")!.addEventListener("click", () => {
+    const { lhsText, rhsText } = currentDataset;
+    generateAnnotations(lhsText, rhsText);
+  });
+}
 
+function initializeFooter() {
   // Toggle highlighting all annotations on click
   document.getElementById('highlight-all-annotations')!.addEventListener('click', () => {
     const textContentDiv = document.getElementById('text-content')!;
@@ -418,6 +413,31 @@ async function main() {
     const jsonAnnotationsDiv = document.getElementById('json-annotations')!;
     jsonAnnotationsDiv.classList.toggle('show');
   });
+}
+
+function initializeMainStaticContent() {
+  addEditCellListener();
+}
+
+// Initialize content that is not data-dependent
+function initializeStaticContent() {
+  initializeHeader();
+  initializeFooter();
+  initializeMainStaticContent();
+}
+
+// ---------------------------------------------------------------------
+// Main Initialization
+// ---------------------------------------------------------------------
+
+async function loadAndRender(folderName: string) {
+  const dataset = await fetchData(folderName);
+  updateData(dataset);
+}
+
+// Main function to set up default and attach listeners
+async function main() {
+  initializeStaticContent();
 
   // Load default dataset on initial page load
   await loadAndRender(DATASET_NAMES[0]);
