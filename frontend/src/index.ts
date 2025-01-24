@@ -1,5 +1,6 @@
 import { AnnotationLookupImpl, AnnotationAndHighlightsLookup } from "./AnnotationLookup.ts";
 import { AnnotationsSlice, AnnotationsSliceImpl } from "./AnnotationsSlice.ts";
+import { LeftTabMode, RightTabMode, TabState } from "./TabState.ts";
 import { TextPartitionIndices } from "./TextPartitionIndices.ts";
 import { Annotations, AnnotationsWithText, Dataset, DatasetWithText, Direction, LabelType, TextLabelWithText,
   TextMappingWithText, TextRange, TextRangeWithText } from "@common/annotations.ts";
@@ -19,10 +20,16 @@ const EMPTY_ANNOTATIONS: AnnotationsWithText = {
   lhsLabels: [],
   rhsLabels: [],
 };
+
 const EMPTY_DATASET: DatasetWithText = {
   lhsText: "",
   rhsText: "",
   annotations: EMPTY_ANNOTATIONS,
+};
+
+const INITIAL_TAB_STATE: TabState = {
+  left: "selected-text",
+  right: "pre-written",
 };
 
 // ---------------------------------------------------------------------
@@ -32,6 +39,8 @@ const EMPTY_DATASET: DatasetWithText = {
 let currentDataset: DatasetWithText = EMPTY_DATASET;
 
 let currentHighlights: AnnotationsWithText = EMPTY_ANNOTATIONS;
+
+let currentTabState: TabState = INITIAL_TAB_STATE;
 
 let listenersToRemove: Array<() => void> = [];
 
@@ -159,6 +168,11 @@ function renderPartitionedText(text: string, partitionIndices: TextPartitionIndi
   return fragment;
 }
 
+function clearRenderedText(elementId: string) {
+  const container = document.getElementById(elementId)!;
+  container.innerHTML = '';  // Clear the existing content
+}
+
 function renderText(elementId: string, text: string, annotations: AnnotationsSlice, highlights: AnnotationsSlice,
     updateHighlightsForIndex: (index: number) => void) {
   const annotationLookup = new AnnotationAndHighlightsLookup(
@@ -167,9 +181,7 @@ function renderText(elementId: string, text: string, annotations: AnnotationsSli
   const partitionedText = renderPartitionedText(text, partitionIndices, annotationLookup, updateHighlightsForIndex);
 
   const container = document.getElementById(elementId)!;
-  container.innerHTML = '';  // Clear the existing content
   container.appendChild(partitionedText);
-
 }
 
 function filterAnnotationsForIndex(annotations: AnnotationsWithText, index: number, direction: Direction): AnnotationsWithText {
@@ -192,17 +204,39 @@ function updateHighlightsForIndexAndDirection(annotations: AnnotationsWithText, 
   updateHighlightsIfChanged(filteredAnnotations);
 }
 
+function updateTabStateStyles(tabState: TabState) {
+  const tabs: Array<LeftTabMode | RightTabMode> = ["pdf", "full-text", "selected-text", "pre-written", "generated"];
+  tabs.forEach(tab => {
+    const element = document.getElementById(`tab-${tab}`)!;
+    element.classList.remove("active");
+  });
+
+  document.getElementById(`tab-${tabState.left}`)!.classList.add("active");
+  document.getElementById(`tab-${tabState.right}`)!.classList.add("active");
+}
+
 function sliceAnnotations(annotations: AnnotationsWithText, direction: Direction): AnnotationsSlice {
   return AnnotationsSliceImpl.fromAnnotations(annotations, direction);
 }
 
-function renderTexts(dataset: DatasetWithText, highlights: AnnotationsWithText) {
+function renderTextPanels(dataset: DatasetWithText, highlights: AnnotationsWithText, tabState: TabState) {
   const { lhsText, rhsText, annotations } = dataset;
 
-  renderText("lhs-text-content", lhsText, sliceAnnotations(annotations, "lhs"), sliceAnnotations(highlights, "lhs"),
-    (index) => updateHighlightsForIndexAndDirection(annotations, index, "lhs"));
-  renderText("rhs-text-content", rhsText, sliceAnnotations(annotations, "rhs"), sliceAnnotations(highlights, "rhs"),
-    (index) => updateHighlightsForIndexAndDirection(annotations, index, "rhs"));
+  updateTabStateStyles(tabState);
+
+  clearRenderedText("lhs-text-content");
+  clearRenderedText("rhs-text-content");
+
+  // For now, only some tabs are supported
+  // TODO: Support all tab states
+  if (tabState.left === "selected-text") {
+    renderText("lhs-text-content", lhsText, sliceAnnotations(annotations, "lhs"), sliceAnnotations(highlights, "lhs"),
+      (index) => updateHighlightsForIndexAndDirection(annotations, index, "lhs"));
+  }
+  if (tabState.right === "pre-written") {
+    renderText("rhs-text-content", rhsText, sliceAnnotations(annotations, "rhs"), sliceAnnotations(highlights, "rhs"),
+      (index) => updateHighlightsForIndexAndDirection(annotations, index, "rhs"));
+  }
 }
 
 // ---------------------------------------------------------------------
@@ -412,13 +446,13 @@ function renderJSONAnnotationsPanel(annotations: AnnotationsWithText) {
   document.getElementById("json-annotations")!.innerHTML = JSON.stringify(annotations, null, 2);
 }
 
-function render(dataset: DatasetWithText, highlights: AnnotationsWithText) {
+function render(dataset: DatasetWithText, highlights: AnnotationsWithText, tabState: TabState) {
   // Remove dynamic event listeners before re-rendering dynamic content to avoid cycles.
   // Renders shouldn't trigger events that would cause re-renders.
   // TODO: Fix this hack by using a proper state management library.
   removeEventListeners();
 
-  renderTexts(dataset, highlights);
+  renderTextPanels(dataset, highlights, tabState);
   renderAnnotationPanels(dataset.annotations, highlights);
   renderJSONAnnotationsPanel(dataset.annotations);
 }
@@ -434,7 +468,7 @@ function updateHighlightsIfChanged(highlights: AnnotationsWithText) {
 }
 
 function updateHighlights(highlights: AnnotationsWithText) {
-  updateAppState(currentDataset, highlights);
+  updateAppState(currentDataset, highlights, currentTabState);
 }
 
 function updateAnnotations(annotations: AnnotationsWithText) {
@@ -442,13 +476,22 @@ function updateAnnotations(annotations: AnnotationsWithText) {
 }
 
 function updateData(dataset: DatasetWithText) {
-  updateAppState(dataset, EMPTY_ANNOTATIONS);
+  updateAppState(dataset, EMPTY_ANNOTATIONS, currentTabState);
 }
 
-function updateAppState(dataset: DatasetWithText, highlights: AnnotationsWithText) {
+function selectLeftPanelTab(tab: "pdf" | "full-text" | "selected-text") {
+  updateAppState(currentDataset, currentHighlights, { ...currentTabState, left: tab });
+}
+
+function selectRightPanelTab(tab: "pre-written" | "generated") {
+  updateAppState(currentDataset, currentHighlights, { ...currentTabState, right: tab });
+}
+
+function updateAppState(dataset: DatasetWithText, highlights: AnnotationsWithText, tabState: TabState) {
   currentDataset = dataset;
   currentHighlights = highlights;
-  render(dataset, highlights);
+  currentTabState = tabState;
+  render(dataset, highlights, tabState);
 }
 
 // ---------------------------------------------------------------------
@@ -512,6 +555,13 @@ function initializeFooter() {
 
 function initializeMainStaticContent() {
   addEditCellListener();
+
+  // Switch tabs when tab buttons are clicked
+  document.getElementById("tab-pdf")!.addEventListener("click", () => selectLeftPanelTab("pdf"));
+  document.getElementById("tab-full-text")!.addEventListener("click", () => selectLeftPanelTab("full-text"));
+  document.getElementById("tab-selected-text")!.addEventListener("click", () => selectLeftPanelTab("selected-text"));
+  document.getElementById("tab-pre-written")!.addEventListener("click", () => selectRightPanelTab("pre-written"));
+  document.getElementById("tab-generated")!.addEventListener("click", () => selectRightPanelTab("generated"));
 }
 
 // Initialize content that is not data-dependent
