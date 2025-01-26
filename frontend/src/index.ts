@@ -86,8 +86,8 @@ async function fetchRawData(folderName: string): Promise<Dataset> {
 
   // Fetch all in parallel
   const [lhsText, rhsText, annotations] = await Promise.all([
-    fetch(`${basePath}/lhs.txt`).then((res) => res.text()),
-    fetch(`${basePath}/rhs.txt`).then((res) => res.text()),
+    fetch(`${basePath}/selected-text.txt`).then((res) => res.text()),
+    fetch(`${basePath}/pre-written.txt`).then((res) => res.text()),
     fetch(`${basePath}/annotations.json`).then((res) => res.json()),
   ]);
 
