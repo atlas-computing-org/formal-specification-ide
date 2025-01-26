@@ -114,8 +114,8 @@ function renderTextSegment(startIdx: number, endIdx: number, textSegment: string
   const hasHighlights = highlights.mappings.length > 0 || highlights.labels.length > 0;
   const hasAnnotations = annotations.mappings.length > 0 || annotations.labels.length > 0;
 
-  const highlightClass = hasHighlights ? `highlight-${getSeverity(highlights)}` : ""
-  const annotationClass = hasAnnotations ? getSeverity(annotations) : ""
+  const highlightClass = hasHighlights ? `highlight-${getSeverity(highlights)}` : "";
+  const annotationClass = hasAnnotations ? getSeverity(annotations) : "";
 
   const span = document.createElement("span");
   span.className = `${highlightClass} ${annotationClass}`;
@@ -264,24 +264,20 @@ function renderMappings(mappings: TextMappingWithText[], highlights: TextMapping
       <div class="cell">${mapping.rhsRanges.map(r => `${r.start}-${r.end}: ${r.text}`).join(", ")}</div>
     `;
 
-    const mouseEnterListener = () => {
-      const highlights = {
-        mappings: [mapping],
-        lhsLabels: [],
-        rhsLabels: [],
-      }
-      updateHighlightsIfChanged(highlights);
-    };
-
-    const mouseLeaveListener = () => {
-      updateHighlightsIfChanged(EMPTY_ANNOTATIONS);
-    };
+    const mouseEnterListener = () => updateHighlightsIfChanged({
+      mappings: [mapping],
+      lhsLabels: [],
+      rhsLabels: [],
+    });
+    const mouseLeaveListener = () => updateHighlightsIfChanged(EMPTY_ANNOTATIONS);
 
     row.addEventListener("mouseenter", mouseEnterListener);
     row.addEventListener("mouseleave", mouseLeaveListener);
 
-    listenersToRemove.push(() => { row.removeEventListener('mouseenter', mouseEnterListener); });
-    listenersToRemove.push(() => { row.removeEventListener('mouseleave', mouseLeaveListener); });
+    listenersToRemove.push(() => {
+      row.removeEventListener('mouseenter', mouseEnterListener);
+      row.removeEventListener('mouseleave', mouseLeaveListener);
+    });
 
     mappingsPanel.appendChild(row);
   });
@@ -309,16 +305,15 @@ function renderLabels(direction: Direction, labels: TextLabelWithText[], highlig
       const rhsLabels = direction === "rhs" ? [label] : [];
       updateHighlightsIfChanged({ mappings: [], lhsLabels, rhsLabels });
     };
-
-    const mouseLeaveListener = () => {
-      updateHighlightsIfChanged(EMPTY_ANNOTATIONS);
-    };
+    const mouseLeaveListener = () => updateHighlightsIfChanged(EMPTY_ANNOTATIONS);
 
     row.addEventListener("mouseenter", mouseEnterListener);
     row.addEventListener("mouseleave", mouseLeaveListener);
 
-    listenersToRemove.push(() => { row.removeEventListener('mouseenter', mouseEnterListener); });
-    listenersToRemove.push(() => { row.removeEventListener('mouseleave', mouseLeaveListener); });
+    listenersToRemove.push(() => {
+      row.removeEventListener('mouseenter', mouseEnterListener);
+      row.removeEventListener('mouseleave', mouseLeaveListener);
+    });
 
     panel.appendChild(row);
   });
