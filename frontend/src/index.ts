@@ -167,7 +167,7 @@ function renderText(elementId: string, text: string, annotations: AnnotationsSli
   const partitionedText = renderPartitionedText(text, partitionIndices, annotationLookup, updateHighlightsForIndex);
 
   const container = document.getElementById(elementId)!;
-  container.textContent = '';  // Clear the existing content
+  container.innerHTML = '';  // Clear the existing content
   container.appendChild(partitionedText);
 
 }
@@ -216,7 +216,7 @@ function startEditing(cell: HTMLElement, item: TextMappingWithText | TextLabelWi
   input.value = originalText;
 
   // Replace cell content with input field
-  cell.textContent = "";
+  cell.innerHTML = "";
   cell.appendChild(input);
   input.focus();
 
