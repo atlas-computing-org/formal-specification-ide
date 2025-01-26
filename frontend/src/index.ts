@@ -108,7 +108,7 @@ function getSeverity(annotations: AnnotationsSlice): LabelType {
 }
 
 function renderTextSegment(startIdx: number, endIdx: number, textSegment: string,
-    annotationLookup: AnnotationAndHighlightsLookup): string {
+    annotationLookup: AnnotationAndHighlightsLookup): HTMLElement {
   const annotations = annotationLookup.annotations.getAnnotationsForIndex(startIdx);
   const highlights = annotationLookup.highlights.getAnnotationsForIndex(startIdx);
   const hasHighlights = highlights.mappings.length > 0 || highlights.labels.length > 0;
@@ -116,31 +116,43 @@ function renderTextSegment(startIdx: number, endIdx: number, textSegment: string
 
   const highlightClass = hasHighlights ? `highlight-${getSeverity(highlights)}` : ""
   const annotationClass = hasAnnotations ? getSeverity(annotations) : ""
-  return `<span class="${highlightClass} ${annotationClass}" data-start-index="${startIdx}">${textSegment}</span>`;
+
+  const span = document.createElement("span");
+  span.className = `${highlightClass} ${annotationClass}`;
+  span.setAttribute("data-start-index", startIdx.toString());
+  span.textContent = textSegment;
+
+  return span;
 }
 
 function renderPartitionedText(text: string, partitionIndices: TextPartitionIndices,
-    annotationLookup: AnnotationAndHighlightsLookup): string {
+    annotationLookup: AnnotationAndHighlightsLookup): DocumentFragment {
   // Iterate through the sorted indices and partition the text
-  let partitionedText = "";
+  const fragment = document.createDocumentFragment();
   let lastIndex = 0;
   partitionIndices.getSortedIndices().forEach(index => {
     if (index === 0) {
       return; // Skip the first index (it's the starting point)
     }
-    partitionedText += renderTextSegment(lastIndex, index, text.substring(lastIndex, index), annotationLookup);
+    const segment = text.substring(lastIndex, index);
+    const span = renderTextSegment(lastIndex, index, segment, annotationLookup);
+    fragment.appendChild(span);
     lastIndex = index;
   });
 
-  return partitionedText;
+  return fragment;
 }
 
 function renderText(elementId: string, text: string, annotations: AnnotationsSlice, highlights: AnnotationsSlice) {
-  const container = document.getElementById(elementId)!;
   const annotationLookup = new AnnotationAndHighlightsLookup(
     new AnnotationLookupImpl(annotations), new AnnotationLookupImpl(highlights));
   const partitionIndices = TextPartitionIndices.fromTextAndAnnotations(text, annotations);
-  container.innerHTML = renderPartitionedText(text, partitionIndices, annotationLookup);
+  const partitionedText = renderPartitionedText(text, partitionIndices, annotationLookup);
+
+  const container = document.getElementById(elementId)!;
+  container.textContent = '';  // Clear the existing content
+  container.appendChild(partitionedText);
+
 }
 
 function sliceAnnotations(annotations: AnnotationsWithText, direction: Direction): AnnotationsSlice {
