@@ -327,7 +327,7 @@ function renderLabels(direction: Direction, labels: TextLabelWithText[], highlig
   const panel = document.getElementById(`${direction}-labels-panel`)!;
 
   // Clear existing content if needed
-  panel.innerHTML = `<div class="header">${direction === "lhs" ? "LHS Labels" : "RHS Labels"}</div>`;
+  panel.innerHTML = `<div class="header">${direction === "lhs" ? "Left-Side Labels" : "Right-Side Labels"}</div>`;
 
   labels.forEach((label, i) => {
     const labelType = getLabelType(label);
