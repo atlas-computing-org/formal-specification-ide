@@ -40,6 +40,10 @@ let currentDataset: DatasetWithText = EMPTY_DATASET;
 
 let currentHighlights: AnnotationsWithText = EMPTY_ANNOTATIONS;
 
+// FIXME
+let HACK_pdfSrc = "";
+let HACK_fullText = "";
+
 let currentTabState: TabState = INITIAL_TAB_STATE;
 
 let listenersToRemove: Array<() => void> = [];
@@ -85,13 +89,18 @@ async function fetchRawData(folderName: string): Promise<Dataset> {
   const basePath = `/data/${folderName}`;
 
   // Fetch all in parallel
-  const [lhsText, rhsText, annotations] = await Promise.all([
+  const [fullText, selectedText, preWritten, annotations] = await Promise.all([
+    fetch(`${basePath}/full-text.txt`).then((res) => res.text()),
     fetch(`${basePath}/selected-text.txt`).then((res) => res.text()),
     fetch(`${basePath}/pre-written.txt`).then((res) => res.text()),
     fetch(`${basePath}/annotations.json`).then((res) => res.json()),
   ]);
 
-  return { lhsText, rhsText, annotations: annotations as Annotations };
+  // FIXME: Move this data into the returned data structure instead of hacking the global state
+  HACK_pdfSrc = `${basePath}/pdf.pdf`;
+  HACK_fullText = fullText;
+
+  return { lhsText: selectedText, rhsText: preWritten, annotations: annotations as Annotations };
 }
 
 async function fetchData(folderName: string) {
@@ -168,20 +177,23 @@ function renderPartitionedText(text: string, partitionIndices: TextPartitionIndi
   return fragment;
 }
 
-function clearRenderedText(elementId: string) {
-  const container = document.getElementById(elementId)!;
-  container.innerHTML = '';  // Clear the existing content
-}
-
-function renderText(elementId: string, text: string, annotations: AnnotationsSlice, highlights: AnnotationsSlice,
+function renderText(container: HTMLElement, text: string, annotations: AnnotationsSlice, highlights: AnnotationsSlice,
     updateHighlightsForIndex: (index: number) => void) {
   const annotationLookup = new AnnotationAndHighlightsLookup(
     new AnnotationLookupImpl(annotations), new AnnotationLookupImpl(highlights));
   const partitionIndices = TextPartitionIndices.fromTextAndAnnotations(text, annotations);
   const partitionedText = renderPartitionedText(text, partitionIndices, annotationLookup, updateHighlightsForIndex);
 
-  const container = document.getElementById(elementId)!;
   container.appendChild(partitionedText);
+}
+
+function renderPDF(container: HTMLElement, src: string) {
+  const iframe = document.createElement("iframe");
+  iframe.id = "pdf-frame"
+  iframe.src = src;
+  iframe.width = "100%";
+  iframe.height = "100%";
+  container.appendChild(iframe);
 }
 
 function filterAnnotationsForIndex(annotations: AnnotationsWithText, index: number, direction: Direction): AnnotationsWithText {
@@ -224,18 +236,47 @@ function renderTextPanels(dataset: DatasetWithText, highlights: AnnotationsWithT
 
   updateTabStateStyles(tabState);
 
-  clearRenderedText("lhs-text-content");
-  clearRenderedText("rhs-text-content");
+  const lhsContainer = document.getElementById("lhs-text-content")!;
+  const rhsContainer = document.getElementById("rhs-text-content")!;
 
-  // For now, only some tabs are supported
-  // TODO: Support all tab states
-  if (tabState.left === "selected-text") {
-    renderText("lhs-text-content", lhsText, sliceAnnotations(annotations, "lhs"), sliceAnnotations(highlights, "lhs"),
-      (index) => updateHighlightsForIndexAndDirection(annotations, index, "lhs"));
+  // Clear the existing content
+  lhsContainer.innerHTML = '';
+  rhsContainer.innerHTML = '';
+
+  // Render the left-side panel
+  switch (tabState.left) {
+    case "pdf":
+      renderPDF(lhsContainer, HACK_pdfSrc);
+      break;
+
+    case "full-text":
+      // TODO: Support annotations against the full-text document
+      renderText(lhsContainer, HACK_fullText, sliceAnnotations(EMPTY_ANNOTATIONS, "lhs"),
+        sliceAnnotations(EMPTY_ANNOTATIONS, "lhs"), _ => {});
+      break;
+
+    case "selected-text":
+      renderText(lhsContainer, lhsText, sliceAnnotations(annotations, "lhs"), sliceAnnotations(highlights, "lhs"),
+        (index) => updateHighlightsForIndexAndDirection(annotations, index, "lhs"));
+      break;
+
+    default:
+      console.error(`Unsupported left tab state: ${tabState.left}`);
   }
-  if (tabState.right === "pre-written") {
-    renderText("rhs-text-content", rhsText, sliceAnnotations(annotations, "rhs"), sliceAnnotations(highlights, "rhs"),
-      (index) => updateHighlightsForIndexAndDirection(annotations, index, "rhs"));
+
+  // Render the right-side panel
+  switch (tabState.right) {
+    case "pre-written":
+      renderText(rhsContainer, rhsText, sliceAnnotations(annotations, "rhs"), sliceAnnotations(highlights, "rhs"),
+        (index) => updateHighlightsForIndexAndDirection(annotations, index, "rhs"));
+      break;
+
+    case "generated":
+      // TODO: Support generated mode
+      break;
+
+    default:
+      console.error(`Unsupported right tab state: ${tabState.left}`);
   }
 }
 
