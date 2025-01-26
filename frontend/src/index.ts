@@ -108,7 +108,7 @@ function getSeverity(annotations: AnnotationsSlice): LabelType {
 }
 
 function renderTextSegment(startIdx: number, endIdx: number, textSegment: string,
-    annotationLookup: AnnotationAndHighlightsLookup): HTMLElement {
+    annotationLookup: AnnotationAndHighlightsLookup, updateHighlightsForIndex: (index: number) => void): HTMLElement {
   const annotations = annotationLookup.annotations.getAnnotationsForIndex(startIdx);
   const highlights = annotationLookup.highlights.getAnnotationsForIndex(startIdx);
   const hasHighlights = highlights.mappings.length > 0 || highlights.labels.length > 0;
@@ -122,11 +122,27 @@ function renderTextSegment(startIdx: number, endIdx: number, textSegment: string
   span.setAttribute("data-start-index", startIdx.toString());
   span.textContent = textSegment;
 
+  // Only add event listeners if the span has annotations to highlight
+  if (hasAnnotations) {
+    const mouseEnterListener = () => updateHighlightsForIndex(startIdx);
+    const mouseLeaveListener = () => updateHighlightsIfChanged(EMPTY_ANNOTATIONS);
+
+    // Register the event listeners
+    span.addEventListener("mouseenter", mouseEnterListener);
+    span.addEventListener("mouseleave", mouseLeaveListener);
+
+    // Add cleanup functions for listeners to be removed later
+    listenersToRemove.push(() => {
+      span.removeEventListener('mouseenter', mouseEnterListener);
+      span.removeEventListener('mouseleave', mouseLeaveListener);
+    });
+  }
+
   return span;
 }
 
 function renderPartitionedText(text: string, partitionIndices: TextPartitionIndices,
-    annotationLookup: AnnotationAndHighlightsLookup): DocumentFragment {
+    annotationLookup: AnnotationAndHighlightsLookup, updateHighlightsForIndex: (index: number) => void): DocumentFragment {
   // Iterate through the sorted indices and partition the text
   const fragment = document.createDocumentFragment();
   let lastIndex = 0;
@@ -135,7 +151,7 @@ function renderPartitionedText(text: string, partitionIndices: TextPartitionIndi
       return; // Skip the first index (it's the starting point)
     }
     const segment = text.substring(lastIndex, index);
-    const span = renderTextSegment(lastIndex, index, segment, annotationLookup);
+    const span = renderTextSegment(lastIndex, index, segment, annotationLookup, updateHighlightsForIndex);
     fragment.appendChild(span);
     lastIndex = index;
   });
@@ -143,16 +159,37 @@ function renderPartitionedText(text: string, partitionIndices: TextPartitionIndi
   return fragment;
 }
 
-function renderText(elementId: string, text: string, annotations: AnnotationsSlice, highlights: AnnotationsSlice) {
+function renderText(elementId: string, text: string, annotations: AnnotationsSlice, highlights: AnnotationsSlice,
+    updateHighlightsForIndex: (index: number) => void) {
   const annotationLookup = new AnnotationAndHighlightsLookup(
     new AnnotationLookupImpl(annotations), new AnnotationLookupImpl(highlights));
   const partitionIndices = TextPartitionIndices.fromTextAndAnnotations(text, annotations);
-  const partitionedText = renderPartitionedText(text, partitionIndices, annotationLookup);
+  const partitionedText = renderPartitionedText(text, partitionIndices, annotationLookup, updateHighlightsForIndex);
 
   const container = document.getElementById(elementId)!;
   container.textContent = '';  // Clear the existing content
   container.appendChild(partitionedText);
 
+}
+
+function filterAnnotationsForIndex(annotations: AnnotationsWithText, index: number, direction: Direction): AnnotationsWithText {
+  const filteredMappings = annotations.mappings.filter(mapping =>
+    mapping[`${direction}Ranges`].some(range => index >= range.start && index < range.end)
+  );
+  const filteredLabels = annotations[`${direction}Labels`].filter(label =>
+    label.ranges.some(range => index >= range.start && index < range.end)
+  );
+
+  return {
+    mappings: filteredMappings,
+    lhsLabels: direction === "lhs" ? filteredLabels : [],
+    rhsLabels: direction === "rhs" ? filteredLabels : [],
+  };
+}
+
+function updateHighlightsForIndexAndDirection(annotations: AnnotationsWithText, index: number, direction: Direction) {
+  const filteredAnnotations = filterAnnotationsForIndex(annotations, index, direction);
+  updateHighlightsIfChanged(filteredAnnotations);
 }
 
 function sliceAnnotations(annotations: AnnotationsWithText, direction: Direction): AnnotationsSlice {
@@ -161,8 +198,11 @@ function sliceAnnotations(annotations: AnnotationsWithText, direction: Direction
 
 function renderTexts(dataset: DatasetWithText, highlights: AnnotationsWithText) {
   const { lhsText, rhsText, annotations } = dataset;
-  renderText("lhs-text-content", lhsText, sliceAnnotations(annotations, "lhs"), sliceAnnotations(highlights, "lhs"));
-  renderText("rhs-text-content", rhsText, sliceAnnotations(annotations, "rhs"), sliceAnnotations(highlights, "rhs"));
+
+  renderText("lhs-text-content", lhsText, sliceAnnotations(annotations, "lhs"), sliceAnnotations(highlights, "lhs"),
+    (index) => updateHighlightsForIndexAndDirection(annotations, index, "lhs"));
+  renderText("rhs-text-content", rhsText, sliceAnnotations(annotations, "rhs"), sliceAnnotations(highlights, "rhs"),
+    (index) => updateHighlightsForIndexAndDirection(annotations, index, "rhs"));
 }
 
 // ---------------------------------------------------------------------
