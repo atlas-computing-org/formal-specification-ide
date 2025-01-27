@@ -1,3 +1,5 @@
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 import { AnnotationLookupImpl, AnnotationAndHighlightsLookup } from "./AnnotationLookup.ts";
 import { AnnotationsSlice, AnnotationsSliceImpl } from "./AnnotationsSlice.ts";
 import { LeftTabMode, RightTabMode, TabState } from "./TabState.ts";

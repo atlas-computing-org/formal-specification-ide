@@ -52,6 +52,10 @@
       z-index: 10;
     }
 
+    i {
+      margin-right: 4px;
+    }
+
     /* Fixed footer */
     footer {
       position: fixed;
@@ -318,11 +322,13 @@
 <body>
   <header>
     <!-- Data Selector -->
-    <label for="data-selector">Select Spec:</label>
-    <select id="data-selector">
-      <!-- Options populated dynamically in TypeScript -->
-    </select>
-    <button id="generate-annotations">Generate AI Annotations</button>
+    <div id="data-selector-container">
+      <label for="data-selector"><i class="fas fa-arrow-up-from-bracket"></i>Load Documentation:</label>
+      <select id="data-selector">
+        <!-- Options populated dynamically in TypeScript -->
+      </select>
+    </div>
+    <button id="generate-annotations"><i class="fas fa-file-pen"></i>Generate Annotations</button>
   </header>
 
   <main>
