@@ -4,8 +4,8 @@
       "description": "Top-level API: hash",
       "lhsRanges": [
         {
-          "start": 3871,
-          "end": 3913
+          "start": 3319,
+          "end": 3361
         }
       ],
       "rhsRanges": [
@@ -19,12 +19,12 @@
       "description": "message schedule",
       "lhsRanges": [
         {
-          "start": 3998,
-          "end": 4043
+          "start": 3446,
+          "end": 3491
         },
         {
-          "start": 4187,
-          "end": 4266
+          "start": 3635,
+          "end": 3714
         }
       ],
       "rhsRanges": [
@@ -38,12 +38,12 @@
       "description": "working variables",
       "lhsRanges": [
         {
-          "start": 4045,
-          "end": 4086
+          "start": 3493,
+          "end": 3534
         },
         {
-          "start": 4267,
-          "end": 4397
+          "start": 3715,
+          "end": 3845
         }
       ],
       "rhsRanges": [
@@ -57,12 +57,12 @@
       "description": "hash value",
       "lhsRanges": [
         {
-          "start": 4092,
-          "end": 4128
+          "start": 3540,
+          "end": 3576
         },
         {
-          "start": 4398,
-          "end": 4487
+          "start": 3846,
+          "end": 3935
         }
       ],
       "rhsRanges": [
@@ -76,8 +76,8 @@
       "description": "Return value: message digest",
       "lhsRanges": [
         {
-          "start": 4130,
-          "end": 4185
+          "start": 3578,
+          "end": 3633
         }
       ],
       "rhsRanges": [
@@ -91,8 +91,8 @@
       "description": "set initial hash value",
       "lhsRanges": [
         {
-          "start": 4489,
-          "end": 4541
+          "start": 3937,
+          "end": 3989
         }
       ],
       "rhsRanges": [
@@ -106,8 +106,8 @@
       "description": "iteratively update hash value",
       "lhsRanges": [
         {
-          "start": 4542,
-          "end": 4697
+          "start": 3990,
+          "end": 4145
         }
       ],
       "rhsRanges": [
@@ -121,16 +121,16 @@
       "description": "initial hash value",
       "lhsRanges": [
         {
-          "start": 4808,
-          "end": 4882
+          "start": 4256,
+          "end": 4330
         },
         {
-          "start": 714,
-          "end": 768
+          "start": 162,
+          "end": 216
         },
         {
-          "start": 2408,
-          "end": 2472
+          "start": 1856,
+          "end": 1920
         }
       ],
       "rhsRanges": [
@@ -148,8 +148,8 @@
       "description": "pad and parse the message",
       "lhsRanges": [
         {
-          "start": 4885,
-          "end": 4950
+          "start": 4333,
+          "end": 4398
         }
       ],
       "rhsRanges": [
@@ -163,16 +163,16 @@
       "description": "padding",
       "lhsRanges": [
         {
-          "start": 4906,
-          "end": 4912
+          "start": 4354,
+          "end": 4360
         },
         {
-          "start": 619,
-          "end": 656
+          "start": 67,
+          "end": 104
         },
         {
-          "start": 771,
-          "end": 808
+          "start": 219,
+          "end": 256
         }
       ],
       "rhsRanges": [
@@ -186,16 +186,16 @@
       "description": "parsing",
       "lhsRanges": [
         {
-          "start": 4917,
-          "end": 4923
+          "start": 4365,
+          "end": 4371
         },
         {
-          "start": 658,
-          "end": 708
+          "start": 106,
+          "end": 156
         },
         {
-          "start": 1895,
-          "end": 1932
+          "start": 1343,
+          "end": 1380
         }
       ],
       "rhsRanges": [
@@ -209,8 +209,8 @@
       "description": "message length",
       "lhsRanges": [
         {
-          "start": 1180,
-          "end": 1230
+          "start": 628,
+          "end": 678
         }
       ],
       "rhsRanges": [
@@ -224,8 +224,8 @@
       "description": "append bit 1",
       "lhsRanges": [
         {
-          "start": 1232,
-          "end": 1278
+          "start": 680,
+          "end": 726
         }
       ],
       "rhsRanges": [
@@ -243,8 +243,8 @@
       "description": "append zero bits",
       "lhsRanges": [
         {
-          "start": 1280,
-          "end": 1409
+          "start": 728,
+          "end": 857
         }
       ],
       "rhsRanges": [
@@ -262,8 +262,8 @@
       "description": "append message length",
       "lhsRanges": [
         {
-          "start": 1411,
-          "end": 1518
+          "start": 859,
+          "end": 966
         }
       ],
       "rhsRanges": [
@@ -281,8 +281,8 @@
       "description": "Missing arithmetic proof",
       "lhsRanges": [
         {
-          "start": 1309,
-          "end": 1409
+          "start": 757,
+          "end": 857
         }
       ],
       "rhsRanges": [
@@ -299,8 +299,8 @@
       "description": "Missing property",
       "ranges": [
         {
-          "start": 3915,
-          "end": 3977
+          "start": 3363,
+          "end": 3425
         }
       ],
       "isError": true
@@ -309,8 +309,8 @@
       "description": "Missing property",
       "ranges": [
         {
-          "start": 4161,
-          "end": 4169
+          "start": 3609,
+          "end": 3617
         }
       ],
       "isError": true
@@ -319,12 +319,12 @@
       "description": "Missing property",
       "ranges": [
         {
-          "start": 843,
-          "end": 907
+          "start": 291,
+          "end": 355
         },
         {
-          "start": 1823,
-          "end": 1893
+          "start": 1271,
+          "end": 1341
         }
       ],
       "isError": true
@@ -333,8 +333,8 @@
       "description": "Possible degree of freedom is constrained out",
       "ranges": [
         {
-          "start": 937,
-          "end": 1118
+          "start": 385,
+          "end": 566
         }
       ],
       "isWarning": true

@@ -1,29 +1,3 @@
-\documentclass[10pt]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{hyperref}
-\hypersetup{colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan,}
-\urlstyle{same}
-\usepackage{graphicx}
-\usepackage[export]{adjustbox}
-\graphicspath{ {./images/} }
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage[version=4]{mhchem}
-\usepackage{stmaryrd}
-
-\title{*** SHA-1 SLICE *** \\ - \\
- Federal Information \\
- Processing Standards Publication 180-4 }
-
-\author{}
-\date{}
-
-
-\begin{document}
-\maketitle
-
 \section*{5. PREPROCESSING}
 Preprocessing consists of three steps: padding the message, \(M\) (Sec. 5.1), parsing the message into message blocks (Sec. 5.2), and setting the initial hash value, \(H^{(0)}\) (Sec. 5.3).
 
@@ -140,5 +114,3 @@ After repeating steps one through four a total of \(N\) times (i.e., after proce
 \[
 H_{0}^{(N)}\left\|H_{1}^{(N)}\right\| H_{2}^{(N)}\left\|H_{3}^{(N)}\right\| H_{4}^{(N)}
 \]
-
-\end{document}
