@@ -606,8 +606,8 @@ function initializeHeader() {
 function initializeFooter() {
   // Toggle highlighting all annotations on click
   document.getElementById('highlight-all-annotations')!.addEventListener('click', () => {
-    const textContentDiv = document.getElementById('text-content')!;
-    textContentDiv.classList.toggle('highlight-all');
+    const textPanelsDiv = document.getElementById('text-panels')!;
+    textPanelsDiv.classList.toggle('highlight-all');
   });
 
   // Toggle annotations panel visibility on click
