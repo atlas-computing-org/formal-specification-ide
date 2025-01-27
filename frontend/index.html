@@ -241,14 +241,20 @@
       cursor: pointer;
     }
     .cell {
-      flex: 1;
       padding: 0 5px;
     }
     .cell:not(:last-child) {
       border-right: 1px solid #ddd;
     }
-    .label {
+    .cell.description {
+      flex: 1;
       font-weight: bold;
+    }
+    .cell.content {
+      flex: 2;
+    }
+    .cell.content .index {
+      color: #888;
     }
     #mappings-panel {
       display: flex;
@@ -256,7 +262,7 @@
       border-bottom: 1px solid #ccc;
       padding: 10px;
     }
-    #labels-container {
+    #label-panels {
       display: flex;
       width: 100%;
     }
@@ -274,12 +280,12 @@
     #annotations .highlight.error {
       background-color: #ff000026;
     }
-    #annotations .warning > .label {
+    #annotations .warning > .description {
       text-decoration: underline;
       text-decoration-color: #f1c23288;
       text-decoration-style: wavy;
     }
-    #annotations .error > .label {
+    #annotations .error > .description {
       text-decoration: underline;
       text-decoration-color: #ff000088;
       text-decoration-style: wavy;
@@ -349,7 +355,7 @@
       <div id="mappings-panel">
         <div class="header">Mappings</div>
       </div>
-      <div id="labels-container">
+      <div id="label-panels">
         <div id="lhs-labels-panel">
           <div class="header">Left-Side Labels</div>
         </div>

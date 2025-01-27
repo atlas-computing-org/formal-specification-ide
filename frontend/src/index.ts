@@ -360,6 +360,39 @@ function getLabelType(item: TextMappingWithText | TextLabelWithText): LabelType 
   }
 }
 
+function renderCellDescription(description: string): HTMLElement {
+  const div = document.createElement("div");
+  div.classList.add("cell", "description");
+  div.textContent = description;
+  return div;
+}
+
+function renderCellContent(content: TextRangeWithText[]): HTMLElement {
+  const div = document.createElement("div");
+  div.classList.add("cell", "content");
+  for (const range of content) {
+    // Example element:
+    // <div class="range">
+    //   <span class="index">1-10: </span>
+    //   <span class="text">This is a range</span>
+    // </div>
+    const rangeDiv = document.createElement("div");
+    rangeDiv.classList.add("range");
+    div.appendChild(rangeDiv);
+
+    const indexSpan = document.createElement("span");
+    indexSpan.classList.add("index");
+    indexSpan.textContent = `${range.start}-${range.end}: `;
+    rangeDiv.appendChild(indexSpan);
+
+    const textSpan = document.createElement("span");
+    textSpan.classList.add("text");
+    textSpan.textContent = range.text;
+    rangeDiv.appendChild(textSpan);
+  }
+  return div;
+}
+
 function renderMappings(mappings: TextMappingWithText[], highlights: TextMappingWithText[]) {
   const mappingsPanel = document.getElementById("mappings-panel")!;
 
@@ -372,12 +405,15 @@ function renderMappings(mappings: TextMappingWithText[], highlights: TextMapping
     const row = document.createElement("div");
     row.className = `row mapping ${labelType} ${isHighlighted ? "highlight" : ""}`;
     row.dataset.index = i.toString();
-    row.innerHTML = `
-      <div class="cell label">${mapping.description}</div>
-      <div class="cell">${mapping.lhsRanges.map(r => `${r.start}-${r.end}: ${r.text}`).join(", ")}</div>
-      <div class="cell label">${mapping.description}</div>
-      <div class="cell">${mapping.rhsRanges.map(r => `${r.start}-${r.end}: ${r.text}`).join(", ")}</div>
-    `;
+
+    const lhsDescription = renderCellDescription(mapping.description);
+    const lhsContent = renderCellContent(mapping.lhsRanges);
+    const rhsDescription = renderCellDescription(mapping.description);
+    const rhsContent = renderCellContent(mapping.rhsRanges);
+    row.appendChild(lhsDescription);
+    row.appendChild(lhsContent);
+    row.appendChild(rhsDescription);
+    row.appendChild(rhsContent);
 
     const mouseEnterListener = () => updateHighlightsIfChanged({
       mappings: [mapping],
@@ -410,10 +446,11 @@ function renderLabels(direction: Direction, labels: TextLabelWithText[], highlig
     const row = document.createElement("div");
     row.className = `row ${direction}-label ${labelType} ${isHighlighted ? "highlight" : ""}`;
     row.dataset.index = i.toString();
-    row.innerHTML = `
-      <div class="cell label">${label.description}</div>
-      <div class="cell">${label.ranges.map(r => `${r.start}-${r.end}: ${r.text}`).join(", ")}</div>
-    `;
+
+    const description = renderCellDescription(label.description);
+    const content = renderCellContent(label.ranges);
+    row.appendChild(description);
+    row.appendChild(content);
 
     const mouseEnterListener = () => {
       const lhsLabels = direction === "lhs" ? [label] : [];
