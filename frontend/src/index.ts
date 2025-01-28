@@ -48,6 +48,8 @@ let HACK_fullText = "";
 
 let currentTabState: TabState = INITIAL_TAB_STATE;
 
+let useDemoCache = false;
+
 let listenersToRemove: Array<() => void> = [];
 
 // ---------------------------------------------------------------------
@@ -483,14 +485,14 @@ function renderAnnotationPanels(annotations: AnnotationsWithText, highlights: An
 // Annotation Generation
 // ---------------------------------------------------------------------
 
-async function generateAnnotations(lhsText: string, rhsText: string) {
+async function generateAnnotations(lhsText: string, rhsText: string, useDemoCache: boolean) {
   try {
     const response = await fetch(`${SERVER_URL}/generate-annotations`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ lhsText, rhsText }),
+      body: JSON.stringify({ lhsText, rhsText, useDemoCache}),
     });
 
     const data = await response.json();
@@ -601,7 +603,7 @@ function initializeHeader() {
   // Attach event listener for the "Generate Annotations" button
   document.getElementById("generate-annotations")!.addEventListener("click", () => {
     const { lhsText, rhsText } = currentDataset;
-    generateAnnotations(lhsText, rhsText);
+    generateAnnotations(lhsText, rhsText, useDemoCache);
   });
 }
 
@@ -630,6 +632,15 @@ function initializeFooter() {
     jsonAnnotationsElement.classList.contains('show') ?
       showJSONButton.textContent = 'Hide JSON' :
       showJSONButton.textContent = 'Show JSON';
+  });
+
+  // Toggle demo cache usage
+  const useDemoCacheButton = document.getElementById('use-demo-cache')!;
+  useDemoCacheButton.addEventListener('click', () => {
+    useDemoCache = !useDemoCache;
+    useDemoCache ?
+      useDemoCacheButton.textContent = 'Use Live Responses' :
+      useDemoCacheButton.textContent = 'Use Cached Responses';
   });
 }
 

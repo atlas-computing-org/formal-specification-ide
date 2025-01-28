@@ -1,3 +1,4 @@
+import { promises as fs } from 'fs';
 import { ChatAnthropic } from '@langchain/anthropic';
 import { Annotations, LabelType, TextMapping } from "@common/annotations.ts";
 import { SYSTEM_PROMPT } from './prompt.ts';
@@ -118,7 +119,7 @@ const splitAnnotations = (annotations: TextMapping[]): Annotations => {
   return result;
 };
 
-const annotateWithClaude = async (lhsText: string, rhsText: string, logger: Logger) => {
+const queryClaude = async (lhsText: string, rhsText: string, logger: Logger) => {
   const llm = new ChatAnthropic({
     model: "claude-3-haiku-20240307",
     temperature: 0,
@@ -147,7 +148,19 @@ ${rhsText}`;
   if (meta !== undefined) {
     logger.info(`Claude usage: ${meta.input_tokens} input tokens, ${meta.output_tokens} output tokens`);
   }
-  const response = res.content as string;
+  return res.content as string;
+}
+
+const readDemoCachedResponse = async (logger: Logger) => {
+  logger.info("Reading cached Claude response from file. This only works for the demo.");
+  return await fs.readFile('./server/src/annotation/cachedClaudeResponse.txt', 'utf-8');
+}
+
+const annotateWithClaude = async (lhsText: string, rhsText: string, useDemoCache: boolean, logger: Logger) => {
+  const response = useDemoCache ?
+    await readDemoCachedResponse(logger) :
+    await queryClaude(lhsText, rhsText, logger);
+
   logger.debug(`Claude's response:\n${response}`);
 
   const outputAnnotations = extractJSON(response, logger);
@@ -162,8 +175,8 @@ ${rhsText}`;
   return annotations;
 };
 
-const annotate = async (lhsText: string, rhsText: string, logger: Logger) => {
-    return annotateWithClaude(lhsText, rhsText, logger);
+const annotate = async (lhsText: string, rhsText: string, useDemoCache: boolean, logger: Logger) => {
+    return annotateWithClaude(lhsText, rhsText, useDemoCache, logger);
 }
 
 export { annotate };

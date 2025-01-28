@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 
 // Route to generate annotations
 app.post('/generate-annotations', async (req, res) => {
-  const { lhsText, rhsText } = req.body;
+  const { lhsText, rhsText, useDemoCache } = req.body;
 
   const requestId = requestCounter.next();
   const requestLogger = logger.withMessagePrefix(`POST /generate-annotations (${requestId}): `);
@@ -47,7 +47,7 @@ app.post('/generate-annotations', async (req, res) => {
   }
 
   try {
-    const response = await annotate(lhsText, rhsText, requestLogger);
+    const response = await annotate(lhsText, rhsText, useDemoCache, requestLogger);
     requestLogger.debug(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
     res.json({ response });
   } catch (e) {
