@@ -1,9 +1,12 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { annotate } from './annotation/annotate.ts';
+import { annotate, chatWithClaude } from './annotation/annotate.ts';
 import { getLogger } from './Logger.ts';
 import { Counter } from '@common/util/Counter.ts';
+import { v4 as uuidv4 } from 'uuid';
+
+const USER_UUID = uuidv4();
 
 const PORT = 3001;
 const CLIENT_PORT = 3000;
@@ -55,6 +58,34 @@ app.post('/generate-annotations', async (req, res) => {
     requestLogger.error(`REQUEST FAILED: ${error}`);
     res.status(500).send({ error });
   }
+});
+
+app.post('/chat-with-assistant', async (req, res) => {
+
+  const requestId = requestCounter.next();
+  const requestLogger = logger.withMessagePrefix(`POST /chat-with-assistant (${requestId}): `);
+
+  requestLogger.info("REQUEST RECEIVED.");
+  requestLogger.info(`Request body: ${JSON.stringify(req.body, null, 2)}`);
+
+  const { userInput } = req.body;
+  if (!userInput) {
+    return res.status(400).json({ error: "userInput is required." });
+  }
+  
+  logger.info(`Chat request from user: ${userInput}`);
+  
+  try {
+    const response = await chatWithClaude(userInput, USER_UUID, requestLogger);
+    requestLogger.info(`RESPONSE!: ${response}`);
+    requestLogger.info(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
+    res.json({ response });
+  } catch (e) {
+    const error = `Error chatting with assistant. ${e}`;
+    requestLogger.error(`REQUEST FAILED: ${error}`);
+    res.status(500).send({ error });
+  }
+
 });
 
 // Serve static files (including your frontend)

@@ -614,6 +614,24 @@ function initializeHeader() {
   document.getElementById("slice-text")!.addEventListener("click", showModal);
   document.getElementById("autoformalize")!.addEventListener("click", showModal);
   document.getElementById("ai-assistant")!.addEventListener("click", showModal);
+
+  document.getElementById('send-chat')?.addEventListener('click', async () => {
+    const inputElement = document.getElementById('chat-input') as HTMLInputElement;
+    const message = inputElement.value.trim();
+    if (!message) return;
+
+    const response = await fetch(`${SERVER_URL}/chat-with-assistant`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userInput: message }),
+    });
+    
+    const data = await response.json();
+    const chatMessages = document.getElementById('chat-messages');
+    chatMessages!.innerHTML += `<div>User: ${message}</div><div>AI: ${data.response}</div>`;
+    inputElement.value = '';
+  });
+  
 }
 
 function initializeFooter() {

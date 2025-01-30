@@ -1,10 +1,43 @@
 import { promises as fs } from 'fs';
 import { ChatAnthropic } from '@langchain/anthropic';
 import { Annotations, LabelType, TextMapping } from "@common/annotations.ts";
+import {
+  START,
+  END,
+  MessagesAnnotation,
+  StateGraph,
+  MemorySaver,
+} from "@langchain/langgraph";
 import { SYSTEM_PROMPT } from './prompt.ts';
 import { Logger } from '../Logger.ts';
 
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+
+const llm = new ChatAnthropic({
+  model: "claude-3-haiku-20240307",
+  temperature: 0,
+  maxTokens: undefined,
+  maxRetries: 2,
+  apiKey: ANTHROPIC_API_KEY,
+});
+
+// Define the function that calls the model
+const callModel = async (state: typeof MessagesAnnotation.State) => {
+  const response = await llm.invoke(state.messages);
+  // Update message history with response:
+  return { messages: response };
+};
+
+// Define a new graph
+const workflow = new StateGraph(MessagesAnnotation)
+  // Define the (single) node in the graph
+  .addNode("model", callModel)
+  .addEdge(START, "model")
+  .addEdge("model", END);
+
+// Add memory
+const memory = new MemorySaver();
+const app = workflow.compile({ checkpointer: memory });
 
 type ModelOutputAnnotation = {
   description: string;
@@ -120,7 +153,7 @@ const splitAnnotations = (annotations: TextMapping[]): Annotations => {
 };
 
 const queryClaude = async (lhsText: string, rhsText: string, logger: Logger) => {
-  const llm = new ChatAnthropic({
+  const llmAnnotate = new ChatAnthropic({
     model: "claude-3-haiku-20240307",
     temperature: 0,
     maxTokens: undefined,
@@ -139,7 +172,7 @@ ${rhsText}`;
 
   logger.info("Sending prompt to Claude.");
 
-  const res = await llm.invoke([
+  const res = await llmAnnotate.invoke([
     ["system", SYSTEM_PROMPT],
     ["human", userPrompt],
   ]);
@@ -179,4 +212,22 @@ const annotate = async (lhsText: string, rhsText: string, useDemoCache: boolean,
     return annotateWithClaude(lhsText, rhsText, useDemoCache, logger);
 }
 
-export { annotate };
+const chatWithClaude = async (userInput: string, userUUID: string, logger: Logger) => {
+  const config = { configurable: { thread_id: userUUID } };
+
+  const input = [
+    {
+      role: "user",
+      content: userInput,
+    },
+  ];
+
+  logger.info("Sending prompt to Claude.");
+  
+  const output = await app.invoke({ messages: input }, config);
+  const res = output.messages[output.messages.length - 1]
+  logger.info("Received response from Claude.");
+  return res.content as string;
+}
+
+export { annotate, chatWithClaude };
