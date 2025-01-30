@@ -15,7 +15,7 @@ import { Annotations, AnnotationsWithText, Dataset, DatasetWithText, Direction, 
 const SERVER_URL = "http://localhost:3001";
 
 // The datasets to choose from
-const DATASET_NAMES = ["SHA-1", "simpleText"];
+const DATASET_NAMES = ["SHA-1", "SHA-1-noAnn", "simpleText"];
 
 const EMPTY_ANNOTATIONS: AnnotationsWithText = {
   mappings: [],
