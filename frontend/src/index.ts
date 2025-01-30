@@ -5,7 +5,7 @@ import { AnnotationsSlice, AnnotationsSliceImpl } from "./AnnotationsSlice.ts";
 import { LeftTabMode, RightTabMode, TabState } from "./TabState.ts";
 import { TextPartitionIndices } from "./TextPartitionIndices.ts";
 import { Annotations, AnnotationsWithText, Dataset, DatasetWithText, Direction, LabelType, TextLabelWithText,
-  TextMappingWithText, TextRange, TextRangeWithText } from "@common/annotations.ts";
+  TextMappingWithText, TextRange, TextRangeWithText, mergeAnnotations } from "@common/annotations.ts";
 
 // ---------------------------------------------------------------------
 // App Constants
@@ -86,6 +86,24 @@ function cacheDatasetText(dataset: Dataset): DatasetWithText {
     lhsText,
     rhsText,
     annotations: annotationsWithText,
+  };
+}
+
+function removeCachedTextFromRanges(annotations: TextRangeWithText[]): TextRange[] {
+  return annotations.map(({ start, end }) => ({ start, end }));
+}
+
+function removeCachedText(annotations: AnnotationsWithText): Annotations {
+  return {
+    mappings: annotations.mappings.map(({ description, lhsRanges, rhsRanges, isError, isWarning }) => ({
+      description, lhsRanges: removeCachedTextFromRanges(lhsRanges), rhsRanges: removeCachedTextFromRanges(rhsRanges), isError, isWarning
+    })),
+    lhsLabels: annotations.lhsLabels.map(({ description, ranges, isError, isWarning }) => ({
+      description, ranges: removeCachedTextFromRanges(ranges), isError, isWarning
+    })),
+    rhsLabels: annotations.rhsLabels.map(({ description, ranges, isError, isWarning }) => ({
+      description, ranges: removeCachedTextFromRanges(ranges), isError, isWarning
+    })),
   };
 }
 
@@ -485,14 +503,16 @@ function renderAnnotationPanels(annotations: AnnotationsWithText, highlights: An
 // Annotation Generation
 // ---------------------------------------------------------------------
 
-async function generateAnnotations(lhsText: string, rhsText: string, useDemoCache: boolean) {
+async function generateAnnotations(lhsText: string, rhsText: string,
+    currentAnnotations: AnnotationsWithText, useDemoCache: boolean) {
+  const currentAnnotationsNoCache = removeCachedText(currentAnnotations);
   try {
     const response = await fetch(`${SERVER_URL}/generate-annotations`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ lhsText, rhsText, useDemoCache}),
+      body: JSON.stringify({ lhsText, rhsText, currentAnnotations: currentAnnotationsNoCache, useDemoCache}),
     });
 
     const data = await response.json();
@@ -503,7 +523,8 @@ async function generateAnnotations(lhsText: string, rhsText: string, useDemoCach
     }
 
     // Update in-memory annotations with the new annotations
-    const annotations = data.response as Annotations;
+    const newAnnotations = data.response as Annotations;
+    const annotations = mergeAnnotations(currentAnnotationsNoCache, newAnnotations);
     const dataset = cacheDatasetText({ lhsText, rhsText, annotations });
     updateData(dataset);
   } catch (error) {
@@ -602,8 +623,8 @@ function initializeHeader() {
 
   // Attach event listener for the "Generate Annotations" button
   document.getElementById("generate-annotations")!.addEventListener("click", () => {
-    const { lhsText, rhsText } = currentDataset;
-    generateAnnotations(lhsText, rhsText, useDemoCache);
+    const { lhsText, rhsText, annotations } = currentDataset;
+    generateAnnotations(lhsText, rhsText, annotations, useDemoCache);
   });
 
   // Attach event listener for the "Coming Soon" buttons

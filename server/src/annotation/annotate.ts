@@ -1,17 +1,20 @@
 import { promises as fs } from 'fs';
 import { ChatAnthropic } from '@langchain/anthropic';
-import { Annotations, LabelType, TextMapping } from "@common/annotations.ts";
-import {
-  START,
-  END,
-  MessagesAnnotation,
-  StateGraph,
-  MemorySaver,
-} from "@langchain/langgraph";
+import { Annotations, LabelType, TextMapping, TextRange } from "@common/annotations.ts";
+import { START, END, MessagesAnnotation, StateGraph, MemorySaver } from "@langchain/langgraph";
 import { SYSTEM_PROMPT } from './prompt.ts';
 import { Logger } from '../Logger.ts';
 
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+
+type ModelAnnotation = {
+  description: string;
+  lhsText: string[];
+  rhsText: string[];
+  status: LabelType;
+}
+
+type MergedAnnotation<T extends TextRange = TextRange> = TextMapping<T>;
 
 const llm = new ChatAnthropic({
   model: "claude-3-haiku-20240307",
@@ -38,13 +41,6 @@ const workflow = new StateGraph(MessagesAnnotation)
 // Add memory
 const memory = new MemorySaver();
 const app = workflow.compile({ checkpointer: memory });
-
-type ModelOutputAnnotation = {
-  description: string;
-  lhsText: string[];
-  rhsText: string[];
-  status: LabelType;
-}
 
 const escapeString = (str: string) => {
   return str.replace(/\\/g, '\\\\');
@@ -106,7 +102,7 @@ const validateJSONAnnotations = (annotations: any) => {
   });
 };
 
-const indexAnnotation = (annotation: ModelOutputAnnotation, lhsText: string, rhsText: string, logger: Logger): TextMapping => {
+const decodeModelAnnotation = (annotation: ModelAnnotation, lhsText: string, rhsText: string, logger: Logger): MergedAnnotation => {
   const { description, lhsText: lhsTextList, rhsText: rhsTextList, status } = annotation;
 
   // Function to find the start and end index of each string in the given text
@@ -114,7 +110,7 @@ const indexAnnotation = (annotation: ModelOutputAnnotation, lhsText: string, rhs
     return textList.map((substring) => {
       const start = text.indexOf(substring);
       if (start === -1) {
-        logger.warn(`Failed to determine the index for a generated annotation. Claude gave the phrase "${substring}" for the ${description} text.`);
+        logger.warn(`Failed to determine the index for a generated annotation. Claude gave the phrase "${substring}" for the ${textDescription} text.`);
         return { start, end: -1 };
       }
       return { start, end: start + substring.length };
@@ -125,12 +121,28 @@ const indexAnnotation = (annotation: ModelOutputAnnotation, lhsText: string, rhs
   const lhsRanges = findIndexes(lhsTextList, lhsText, "natural language documentation");
   const rhsRanges = findIndexes(rhsTextList, rhsText, "mechanized spec");
 
-  return status == "error" ? {description, lhsRanges, rhsRanges, isError: true} :
-         status == "warning" ? {description, lhsRanges, rhsRanges, isWarning: true} :
-         {description, lhsRanges, rhsRanges};
+  const baseAnnotation = { description, lhsRanges, rhsRanges };
+  return status === "error" ? { ...baseAnnotation, isError: true } :
+          status === "warning" ? { ...baseAnnotation, isWarning: true } :
+          baseAnnotation;
 };
 
-const splitAnnotations = (annotations: TextMapping[]): Annotations => {
+const encodeModelAnnotation = (annotation: MergedAnnotation, lhsText: string, rhsText: string, logger: Logger): ModelAnnotation => {
+  const { description, lhsRanges, rhsRanges, isError, isWarning } = annotation;
+
+  // Function to extract the text from the given ranges
+  const extractText = (ranges: TextRange[], text: string) => {
+    return ranges.map(({ start, end }) => text.slice(start, end));
+  };
+
+  const lhsTextList = extractText(lhsRanges, lhsText);
+  const rhsTextList = extractText(rhsRanges, rhsText);
+
+  const status = isError ? "error" : isWarning ? "warning" : "default";
+  return { description, lhsText: lhsTextList, rhsText: rhsTextList, status };
+}
+
+const splitMergedAnnotations = (annotations: MergedAnnotation[]): Annotations => {
   const result: Annotations = {
     mappings: [],
     lhsLabels: [],
@@ -150,9 +162,37 @@ const splitAnnotations = (annotations: TextMapping[]): Annotations => {
   });
 
   return result;
-};
+}
 
-const queryClaude = async (lhsText: string, rhsText: string, logger: Logger) => {
+const mergeAnnotations = (annotations: Annotations): MergedAnnotation[] => {
+  const result: MergedAnnotation[] = [];
+
+  annotations.mappings.forEach((mapping) => {
+    result.push(mapping);
+  });
+
+  annotations.lhsLabels.forEach(({ description, ranges, isError, isWarning }) => {
+    result.push({ description, lhsRanges: ranges, rhsRanges: [], isError, isWarning });
+  });
+
+  annotations.rhsLabels.forEach(({ description, ranges, isError, isWarning }) => {
+    result.push({ description, lhsRanges: [], rhsRanges: ranges, isError, isWarning });
+  });
+
+  return result;
+}
+
+const decodeAnnotationsFromModelFormat = (modelAnnotations: ModelAnnotation[], lhsText: string, rhsText: string, logger: Logger): Annotations => {
+  const indexedAnnotations = (modelAnnotations as ModelAnnotation[]).map(a => decodeModelAnnotation(a, lhsText, rhsText, logger));
+  return splitMergedAnnotations(indexedAnnotations);
+}
+
+const encodeAnnotationsInModelFormat = (currentAnnotations: Annotations, lhsText: string, rhsText: string, logger: Logger): ModelAnnotation[] => {
+  const indexedAnnotations = mergeAnnotations(currentAnnotations);
+  return indexedAnnotations.map(a => encodeModelAnnotation(a, lhsText, rhsText, logger));
+}
+
+const queryClaude = async (lhsText: string, rhsText: string, currentAnnotations: ModelAnnotation[], logger: Logger) => {
   const llmAnnotate = new ChatAnthropic({
     model: "claude-3-haiku-20240307",
     temperature: 0,
@@ -168,7 +208,11 @@ ${lhsText}
 
 ### RHS TEXT
 
-${rhsText}`;
+${lhsText}
+
+### CURRENT ANNOTATIONS
+
+${JSON.stringify(currentAnnotations, null, 2)}`;
 
   logger.info("Sending prompt to Claude.");
 
@@ -189,10 +233,13 @@ const readDemoCachedResponse = async (logger: Logger) => {
   return await fs.readFile('./server/src/annotation/cachedClaudeResponse.txt', 'utf-8');
 }
 
-const annotateWithClaude = async (lhsText: string, rhsText: string, useDemoCache: boolean, logger: Logger) => {
+const annotateWithClaude = async (lhsText: string, rhsText: string, currentAnnotations: Annotations,
+    useDemoCache: boolean, logger: Logger) => {
+  const encodedAnnotations = encodeAnnotationsInModelFormat(currentAnnotations, lhsText, rhsText, logger);
+
   const response = useDemoCache ?
     await readDemoCachedResponse(logger) :
-    await queryClaude(lhsText, rhsText, logger);
+    await queryClaude(lhsText, rhsText, encodedAnnotations, logger);
 
   logger.debug(`Claude's response:\n${response}`);
 
@@ -203,13 +250,12 @@ const annotateWithClaude = async (lhsText: string, rhsText: string, useDemoCache
   validateJSONAnnotations(outputAnnotations);
   logger.info("Validated JSON annotations.");
 
-  const indexedAnnotations = (outputAnnotations as ModelOutputAnnotation[]).map(a => indexAnnotation(a, lhsText, rhsText, logger));
-  const annotations = splitAnnotations(indexedAnnotations);
-  return annotations;
+  return decodeAnnotationsFromModelFormat(outputAnnotations, lhsText, rhsText, logger);
 };
 
-const annotate = async (lhsText: string, rhsText: string, useDemoCache: boolean, logger: Logger) => {
-    return annotateWithClaude(lhsText, rhsText, useDemoCache, logger);
+const annotate = async (lhsText: string, rhsText: string, currentAnnotations: Annotations,
+    useDemoCache: boolean, logger: Logger) => {
+  return annotateWithClaude(lhsText, rhsText, currentAnnotations, useDemoCache, logger);
 }
 
 const chatWithClaude = async (userInput: string, userUUID: string, logger: Logger) => {
@@ -223,7 +269,7 @@ const chatWithClaude = async (userInput: string, userUUID: string, logger: Logge
   ];
 
   logger.info("Sending prompt to Claude.");
-  
+
   const output = await app.invoke({ messages: input }, config);
   const res = output.messages[output.messages.length - 1]
   logger.info("Received response from Claude.");

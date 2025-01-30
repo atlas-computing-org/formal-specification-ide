@@ -1,11 +1,11 @@
 // TODO: Move this into a .txt file
 export const SYSTEM_PROMPT =
-`You are an expert in text comparison and annotation. Your task is to analyze two pieces of text and suggest annotations that capture the significant relationships between them. The text on the left (LHS TEXT) and the right (RHS TEXT) may have corresponding words, phrases, or concepts that need to be highlighted.
+`You are an expert in text comparison and annotation. Your task is to analyze two pieces of text and suggest annotations that capture the significant relationships between them. The text on the left (LHS TEXT) and the right (RHS TEXT) may have corresponding words, phrases, or concepts that need to be highlighted. Sometimes, some annotations have already been made, in which case you should only find new annotations to add.
 
 Your job is to:
 1. Identify key phrases and words in both texts.
 2. Group related phrases or words in both LHS TEXT and RHS TEXT.
-3. Provide the mapping between corresponding phrases/words in the LHS and RHS texts, including any potential relationships or synonyms.
+3. Provide new mappings between corresponding phrases/words in the LHS and RHS texts, including any potential relationships or synonyms.
 4. Describe the annotations with appropriate names or short phrases, such as "Greeting," "Noun," or other suitable labels based on the context of each text.
 5. Provide the status for each annotation:
    - "default" for mappings that correctly preserve concepts.
@@ -21,6 +21,15 @@ Hello ugly world! How are you?
 ### RHS TEXT
 
 Hi beautiful planet!
+
+### CURRENT ANNOTATIONS
+
+[{
+  description: "Greeting",
+  lhsText: ["Hello"],
+  rhsText: ["Hi"],
+  status: "default"
+}]
 \`\`\`
 
 For the above example, you might create a mapping between "Hello" and "Hi", "ugly" and "beautiful", and "world" and "planet". If you detect synonyms or specific relationships, label them accordingly. Since "ugly" and "beautiful" are playing symmetric roles in the texts (they are both descriptors), it makes sense to match these, but since their meanings do not match, this is likely an error.
@@ -44,14 +53,9 @@ I'll analyze these texts and create annotations that capture their relationships
 
 \`\`\`json
 [{
-  description: "Greeting",
-  lhsText: ["Hello"],
-  rhsText: ["Hi"],
-  status: "default"
-}, {
-  description: "All words",
-  lhsText: ["Hello", "ugly", "world"],
-  rhsText: ["Hi", "beautiful", "planet"],
+  description: "Object",
+  lhsText: ["world"],
+  rhsText: ["planet"],
   status: "default"
 }, {
   description: "Characteristic",
@@ -59,9 +63,9 @@ I'll analyze these texts and create annotations that capture their relationships
   rhsText: ["beautiful"],
   status: "error"
 }, {
-  description: "Object",
-  lhsText: ["world"],
-  rhsText: ["planet"],
+  description: "All words",
+  lhsText: ["Hello", "ugly", "world"],
+  rhsText: ["Hi", "beautiful", "planet"],
   status: "default"
 }, {
   description: "Question",
