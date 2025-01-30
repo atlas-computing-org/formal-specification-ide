@@ -529,9 +529,6 @@ async function generateAnnotations(lhsText: string, rhsText: string,
     updateData(dataset);
   } catch (error) {
     console.error("Error generating annotations:", error);
-    // Clear in-memory annotations if there was an error
-    const dataset = { lhsText, rhsText, annotations: EMPTY_ANNOTATIONS };
-    updateData(dataset);
   }
 }
 
