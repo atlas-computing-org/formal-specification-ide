@@ -605,6 +605,15 @@ function initializeHeader() {
     const { lhsText, rhsText } = currentDataset;
     generateAnnotations(lhsText, rhsText, useDemoCache);
   });
+
+  // Attach event listener for the "Coming Soon" buttons
+  const modal = document.getElementById("coming-soon-modal") as HTMLElement;
+  function showModal() {
+    modal.classList.add("show");
+  }
+  document.getElementById("slice-text")!.addEventListener("click", showModal);
+  document.getElementById("autoformalize")!.addEventListener("click", showModal);
+  document.getElementById("ai-assistant")!.addEventListener("click", showModal);
 }
 
 function initializeFooter() {
@@ -655,11 +664,20 @@ function initializeMainStaticContent() {
   document.getElementById("tab-generated")!.addEventListener("click", () => selectRightPanelTab("generated"));
 }
 
+function initializeModal() {
+  const modal = document.getElementById("coming-soon-modal") as HTMLElement;
+
+  modal.addEventListener("click", () => {
+    modal.classList.remove("show");
+  });
+}
+
 // Initialize content that is not data-dependent
 function initializeStaticContent() {
   initializeHeader();
   initializeFooter();
   initializeMainStaticContent();
+  initializeModal();
 }
 
 // ---------------------------------------------------------------------
