@@ -4,6 +4,7 @@ import cors from 'cors';
 import { annotate, chatWithClaude } from './annotation/annotate.ts';
 import { getLogger } from './Logger.ts';
 import { Counter } from '@common/util/Counter.ts';
+import { Annotations } from "@common/annotations.ts";
 import { v4 as uuidv4 } from 'uuid';
 
 const USER_UUID = uuidv4();
@@ -29,7 +30,7 @@ app.use(bodyParser.json());
 
 // Route to generate annotations
 app.post('/generate-annotations', async (req, res) => {
-  const { lhsText, rhsText, useDemoCache } = req.body;
+  const { lhsText, rhsText, currentAnnotations, useDemoCache } = req.body;
 
   const requestId = requestCounter.next();
   const requestLogger = logger.withMessagePrefix(`POST /generate-annotations (${requestId}): `);
@@ -49,8 +50,14 @@ app.post('/generate-annotations', async (req, res) => {
     return res.status(400).send({ error });
   }
 
+  if (!currentAnnotations) {
+    const error = "currentAnnotations is required.";
+    requestLogger.error(`INVALID REQUEST: ${error}`);
+    return res.status(400).send({ error });
+  }
+
   try {
-    const response = await annotate(lhsText, rhsText, useDemoCache, requestLogger);
+    const response = await annotate(lhsText, rhsText, currentAnnotations, useDemoCache, requestLogger);
     requestLogger.debug(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
     res.json({ response });
   } catch (e) {

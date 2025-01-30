@@ -40,3 +40,11 @@ export type DatasetWithText = Dataset<TextRangeWithText>;
 
 export type LabelType = "default" | "warning" | "error";
 export type Direction = "lhs" | "rhs";
+
+export function mergeAnnotations(first: Annotations, second: Annotations): Annotations {
+  return {
+    mappings: first.mappings.concat(second.mappings),
+    lhsLabels: first.lhsLabels.concat(second.lhsLabels),
+    rhsLabels: first.rhsLabels.concat(second.rhsLabels),
+  };
+}
