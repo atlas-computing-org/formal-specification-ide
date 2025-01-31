@@ -47,7 +47,7 @@ let HACK_pdfSrc = "";
 let HACK_fullText = "";
 
 let currentTabState: TabState = INITIAL_TAB_STATE;
-let resetChatHistory = false;
+let isNewChat = true;
 
 let useDemoCache = false;
 
@@ -564,12 +564,14 @@ async function sendChatMessage() {
     // Clear input
     chatInput.value = "";
 
+    const { lhsText, rhsText, annotations } = currentDataset;
+    const annotationsNoCache = removeCachedText(annotations);
     const response = await fetch(`${SERVER_URL}/chat-with-assistant`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userInput: message, reset: resetChatHistory }),
+      body: JSON.stringify({ userInput: message, lhsText, rhsText, annotations: annotationsNoCache, reset: isNewChat }),
     });
-    resetChatHistory = false;
+    isNewChat = false;
     const data = await response.json();
     addChatMessage(data.response, "assistant");
   }
@@ -583,7 +585,7 @@ function initializeChat() {
 
 function resetChat() {
   initializeChat();
-  resetChatHistory = true;
+  isNewChat = true;
 }
 
 // ---------------------------------------------------------------------
