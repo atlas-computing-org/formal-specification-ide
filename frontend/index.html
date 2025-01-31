@@ -300,7 +300,90 @@
     }
 
     /***************************************************************************
-     * Modal
+     * Chat with AI Assistant
+     **************************************************************************/
+
+    #chat-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200; /* Above everything */
+    }
+
+    #chat-modal.show {
+      display: flex;
+    }
+
+    #chat-modal .modal-content {
+      background-color: #fff;
+      border-radius: 8px;
+      width: 80%;
+      height: 90%;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    #chat-header {
+      background-color: #f8f8f8;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+    }
+
+    #chat-thread {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      background-color: #fff;
+    }
+
+    .chat-message {
+      margin-top: 6px;
+      padding: 6px;
+      border-radius: 8px;
+      white-space: pre-line;
+    }
+
+    .chat-message.user {
+      margin-left: 10%;
+      background-color: lightblue;
+    }
+
+    #chat-compose-bar {
+      display: flex;
+      background-color: #f8f8f8;
+      padding: 10px;
+      border-top: 1px solid #ccc;
+    }
+
+    #chat-input {
+      flex: 1;
+      padding: 10px;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    #send-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /***************************************************************************
+     * Coming Soon Modal
      **************************************************************************/
 
     #coming-soon-modal {
@@ -320,7 +403,7 @@
       display: flex;
     }
 
-    .modal-content {
+    #coming-soon-modal .modal-content {
       background-color: #fff;
       padding: 20px;
       border-radius: 5px;
@@ -374,13 +457,6 @@
     <button id="autoformalize"><i class="fas fa-atom"></i>Autoformalize</button>
     <button id="generate-annotations"><i class="fas fa-file-pen"></i>Generate Annotations</button>
     <button id="ai-assistant"><i class="far fa-comments"></i>Chat with AI Assistant</button>
-    
-    <!-- Chat with AI Assistant -->
-    <div id="chat-container">
-      <div id="chat-messages"></div>
-      <input type="text" id="chat-input" placeholder="Type a message...">
-      <button id="send-chat">Send</button>
-    </div>
 
   </header>
 
@@ -436,7 +512,20 @@
     <button id="use-demo-cache">Use Cached Responses</button>
   </footer>
 
-  <div id="coming-soon-modal">
+  <div id="chat-modal" class="modal">
+    <div class="modal-content">
+      <div id="chat-header">
+        <button id="hide-chat">Hide AI Assistant</button>
+      </div>
+      <div id="chat-thread"></div>
+      <div id="chat-compose-bar">
+        <input type="text" id="chat-input" placeholder="Type a message...">
+        <button id="send-message">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="coming-soon-modal" class="modal">
     <div class="modal-content">
       <span id="close-modal" class="close-btn">&times;</span>
       <p>Coming soon...</p>
