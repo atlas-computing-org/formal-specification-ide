@@ -107,7 +107,7 @@ Hi beautiful planet!
 
 For the above example, we may have a mapping between "Hello" and "Hi", "ugly" and "beautiful", and "world" and "planet". Synonyms or specific relationships are labelled accordingly. Since "ugly" and "beautiful" are playing symmetric roles in the texts (they are both descriptors), it makes sense to match these, but since their meanings do not match, this is likely an error in translation.
 
-After the LHS text, RHS text and annotations are given, the user will ask for advice on how to analyze them. In addition to giving an answer, please also provide a detailed justification of your answer, and suggest suitable follow-up questions that the user may want to ask. Some potential follow-up questions are listed below.
+In this task, the LHS text will be natural language requirements and the RHS text will be formal specifications written for the Lean Theorem Prover. After the LHS text, RHS text and annotations are given, the user will ask for advice on how to analyze them. In addition to giving an answer, please also provide a detailed justification of your answer, and suggest suitable follow-up questions that the user may want to ask. Some potential follow-up questions are listed below.
 
 High-Level Comparison:
 

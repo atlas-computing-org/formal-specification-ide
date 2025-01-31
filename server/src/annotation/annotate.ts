@@ -271,15 +271,23 @@ const chatWithAssistant = async (userUUID: string, userInput: string, lhsText: s
   const config = { configurable: { thread_id: userUUID } };
   const userContext = makeUserPrompt(lhsText, rhsText, currentAnnotations, logger);
   const chatPrompt = CHAT_PROMPT + userContext;
+  const systemInput = { 
+    role: "system",
+    content: chatPrompt
+  };
+  const input : (typeof systemInput)[] = [];
+
+  logger.info(`Reset chat? ${resetChat}`);
+  if (resetChat) {
+    input.push(systemInput);
+  } 
 
   logger.info(`Chat Prompt:\n${chatPrompt}`);
-  const input = [
-    { role: "system",
-      content: chatPrompt},
-    { role: "user",
-      content: userInput}
-  ];
-
+  input.push({ 
+    role: "user",
+    content: userInput
+  });
+  logger.info(`Full input:\n${JSON.stringify(input, null, 2)}`);
   logger.info("Sending prompt to Claude.");
 
   const output = await app.invoke({ messages: input }, config);
