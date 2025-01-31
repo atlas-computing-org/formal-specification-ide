@@ -1,8 +1,8 @@
 import { promises as fs } from 'fs';
 import { ChatAnthropic } from '@langchain/anthropic';
 import { Annotations, LabelType, TextMapping, TextRange } from "@common/annotations.ts";
-import { START, END, MessagesAnnotation, StateGraph, MemorySaver } from "@langchain/langgraph";
-import { SYSTEM_PROMPT } from './prompt.ts';
+import { START, END, MessagesAnnotation, StateGraph, MemorySaver, Annotation } from "@langchain/langgraph";
+import { SYSTEM_PROMPT, CHAT_PROMPT } from './prompt.ts';
 import { Logger } from '../Logger.ts';
 
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
@@ -16,7 +16,7 @@ type ModelAnnotation = {
 
 type MergedAnnotation<T extends TextRange = TextRange> = TextMapping<T>;
 
-const llm = new ChatAnthropic({
+const llmChat = new ChatAnthropic({
   model: "claude-3-haiku-20240307",
   temperature: 0,
   maxTokens: undefined,
@@ -26,7 +26,7 @@ const llm = new ChatAnthropic({
 
 // Define the function that calls the model
 const callModel = async (state: typeof MessagesAnnotation.State) => {
-  const response = await llm.invoke(state.messages);
+  const response = await llmChat.invoke(state.messages);
   // Update message history with response:
   return { messages: response };
 };
@@ -192,14 +192,8 @@ const encodeAnnotationsInModelFormat = (currentAnnotations: Annotations, lhsText
   return indexedAnnotations.map(a => encodeModelAnnotation(a, lhsText, rhsText, logger));
 }
 
-const queryClaude = async (lhsText: string, rhsText: string, currentAnnotations: ModelAnnotation[], logger: Logger) => {
-  const llmAnnotate = new ChatAnthropic({
-    model: "claude-3-haiku-20240307",
-    temperature: 0,
-    maxTokens: undefined,
-    maxRetries: 2,
-    apiKey: ANTHROPIC_API_KEY,
-  });
+const makeUserPrompt = (lhsText: string, rhsText: string, currentAnnotations: Annotations, logger: Logger): string => {
+  const encodedAnnotations = encodeAnnotationsInModelFormat(currentAnnotations, lhsText, rhsText, logger);
 
   const userPrompt =
 `### LHS TEXT
@@ -208,11 +202,23 @@ ${lhsText}
 
 ### RHS TEXT
 
-${lhsText}
+${rhsText}
 
 ### CURRENT ANNOTATIONS
 
-${JSON.stringify(currentAnnotations, null, 2)}`;
+${JSON.stringify(encodedAnnotations, null, 2)}`;
+
+  return userPrompt;
+}
+
+const queryClaude = async (userPrompt: string, logger: Logger) => {
+  const llmAnnotate = new ChatAnthropic({
+    model: "claude-3-haiku-20240307",
+    temperature: 0,
+    maxTokens: undefined,
+    maxRetries: 2,
+    apiKey: ANTHROPIC_API_KEY,
+  });
 
   logger.info("Sending prompt to Claude.");
 
@@ -235,11 +241,12 @@ const readDemoCachedResponse = async (logger: Logger) => {
 
 const annotateWithClaude = async (lhsText: string, rhsText: string, currentAnnotations: Annotations,
     useDemoCache: boolean, logger: Logger) => {
-  const encodedAnnotations = encodeAnnotationsInModelFormat(currentAnnotations, lhsText, rhsText, logger);
+
+  const userPrompt = makeUserPrompt(lhsText, rhsText, currentAnnotations, logger);
 
   const response = useDemoCache ?
     await readDemoCachedResponse(logger) :
-    await queryClaude(lhsText, rhsText, encodedAnnotations, logger);
+    await queryClaude(userPrompt, logger);
 
   logger.debug(`Claude's response:\n${response}`);
 
@@ -258,14 +265,19 @@ const annotate = async (lhsText: string, rhsText: string, currentAnnotations: An
   return annotateWithClaude(lhsText, rhsText, currentAnnotations, useDemoCache, logger);
 }
 
-const chatWithClaude = async (userInput: string, userUUID: string, logger: Logger) => {
-  const config = { configurable: { thread_id: userUUID } };
+const chatWithAssistant = async (userUUID: string, userInput: string, lhsText: string, rhsText: string, 
+    currentAnnotations: Annotations, resetChat: boolean, logger: Logger) => {
 
+  const config = { configurable: { thread_id: userUUID } };
+  const userContext = makeUserPrompt(lhsText, rhsText, currentAnnotations, logger);
+  const chatPrompt = CHAT_PROMPT + userContext;
+
+  logger.info(`Chat Prompt:\n${chatPrompt}`);
   const input = [
-    {
-      role: "user",
-      content: userInput,
-    },
+    { role: "system",
+      content: chatPrompt},
+    { role: "user",
+      content: userInput}
   ];
 
   logger.info("Sending prompt to Claude.");
@@ -276,4 +288,4 @@ const chatWithClaude = async (userInput: string, userUUID: string, logger: Logge
   return res.content as string;
 }
 
-export { annotate, chatWithClaude };
+export { annotate, chatWithAssistant };

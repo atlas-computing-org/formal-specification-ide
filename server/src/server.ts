@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { annotate, chatWithClaude } from './annotation/annotate.ts';
+import { annotate, chatWithAssistant } from './annotation/annotate.ts';
 import { getLogger } from './Logger.ts';
 import { Counter } from '@common/util/Counter.ts';
 import { Annotations } from "@common/annotations.ts";
@@ -68,6 +68,7 @@ app.post('/generate-annotations', async (req, res) => {
 });
 
 app.post('/chat-with-assistant', async (req, res) => {
+  const { userInput, lhsText, rhsText, currentAnnotations, resetChat } = req.body;
 
   const requestId = requestCounter.next();
   const requestLogger = logger.withMessagePrefix(`POST /chat-with-assistant (${requestId}): `);
@@ -75,15 +76,32 @@ app.post('/chat-with-assistant', async (req, res) => {
   requestLogger.info("REQUEST RECEIVED.");
   requestLogger.info(`Request body: ${JSON.stringify(req.body, null, 2)}`);
 
-  const { userInput } = req.body;
   if (!userInput) {
-    return res.status(400).json({ error: "userInput is required." });
+    const error = "userInput is required.";
+    requestLogger.error(`INVALID REQUEST: ${error}`);
+    return res.status(400).send({ error });
   }
-  
-  logger.info(`Chat request from user: ${userInput}`);
-  
+
+  if (!lhsText) {
+    const error = "lhsText is required.";
+    requestLogger.error(`INVALID REQUEST: ${error}`);
+    return res.status(400).send({ error });
+  }
+
+  if (!rhsText) {
+    const error = "rhsText is required.";
+    requestLogger.error(`INVALID REQUEST: ${error}`);
+    return res.status(400).send({ error });
+  }
+
+  if (!currentAnnotations) {
+    const error = "currentAnnotations is required.";
+    requestLogger.error(`INVALID REQUEST: ${error}`);
+    return res.status(400).send({ error });
+  }
+
   try {
-    const response = await chatWithClaude(userInput, USER_UUID, requestLogger);
+    const response = await chatWithAssistant(USER_UUID, userInput, lhsText, rhsText, currentAnnotations, resetChat, requestLogger);
     requestLogger.info(`RESPONSE!: ${response}`);
     requestLogger.info(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
     res.json({ response });
