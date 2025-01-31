@@ -7,7 +7,7 @@ import { Counter } from '@common/util/Counter.ts';
 import { Annotations } from "@common/annotations.ts";
 import { v4 as uuidv4 } from 'uuid';
 
-const USER_UUID = uuidv4();
+var userUUID = uuidv4();
 
 const PORT = 3001;
 const CLIENT_PORT = 3000;
@@ -68,7 +68,7 @@ app.post('/generate-annotations', async (req, res) => {
 });
 
 app.post('/chat-with-assistant', async (req, res) => {
-  const { userInput, lhsText, rhsText, annotations, resetChat } = req.body;
+  const { userInput, lhsText, rhsText, annotations, reset } = req.body;
 
   const requestId = requestCounter.next();
   const requestLogger = logger.withMessagePrefix(`POST /chat-with-assistant (${requestId}): `);
@@ -100,8 +100,12 @@ app.post('/chat-with-assistant', async (req, res) => {
     return res.status(400).send({ error });
   }
 
+  if (reset) {
+    userUUID = uuidv4();
+  }
+
   try {
-    const response = await chatWithAssistant(USER_UUID, userInput, lhsText, rhsText, annotations, resetChat, requestLogger);
+    const response = await chatWithAssistant(userUUID, userInput, lhsText, rhsText, annotations, reset, requestLogger);
     requestLogger.info(`RESPONSE!: ${response}`);
     requestLogger.info(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
     res.json({ response });
