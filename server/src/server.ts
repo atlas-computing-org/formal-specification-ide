@@ -68,7 +68,7 @@ app.post('/generate-annotations', async (req, res) => {
 });
 
 app.post('/chat-with-assistant', async (req, res) => {
-  const { userInput, lhsText, rhsText, currentAnnotations, resetChat } = req.body;
+  const { userInput, lhsText, rhsText, annotations, resetChat } = req.body;
 
   const requestId = requestCounter.next();
   const requestLogger = logger.withMessagePrefix(`POST /chat-with-assistant (${requestId}): `);
@@ -94,14 +94,14 @@ app.post('/chat-with-assistant', async (req, res) => {
     return res.status(400).send({ error });
   }
 
-  if (!currentAnnotations) {
-    const error = "currentAnnotations is required.";
+  if (!annotations) {
+    const error = "annotations is required.";
     requestLogger.error(`INVALID REQUEST: ${error}`);
     return res.status(400).send({ error });
   }
 
   try {
-    const response = await chatWithAssistant(USER_UUID, userInput, lhsText, rhsText, currentAnnotations, resetChat, requestLogger);
+    const response = await chatWithAssistant(USER_UUID, userInput, lhsText, rhsText, annotations, resetChat, requestLogger);
     requestLogger.info(`RESPONSE!: ${response}`);
     requestLogger.info(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
     res.json({ response });
