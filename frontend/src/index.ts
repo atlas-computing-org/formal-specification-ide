@@ -533,6 +533,39 @@ async function generateAnnotations(lhsText: string, rhsText: string,
   }
 }
 
+
+// ---------------------------------------------------------------------
+// Chat With Assistant
+// ---------------------------------------------------------------------
+
+async function chatWithAssistant(message: string, lhsText: string, rhsText: string,
+  currentAnnotations: AnnotationsWithText, resetChat: boolean) {
+const currentAnnotationsNoCache = removeCachedText(currentAnnotations);
+try {
+
+  const response = await fetch(`${SERVER_URL}/chat-with-assistant`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ userInput: message, lhsText, rhsText, 
+                           currentAnnotations: currentAnnotationsNoCache, resetChat }),
+  });
+  
+  const data = await response.json();
+  console.log("Claude's response:", data);
+
+  if (data.error) {
+    throw new Error(data.error);
+  }
+
+  // Append new user input and new response to display
+  const chatMessages = document.getElementById('chat-messages');
+  chatMessages!.innerHTML += `<div>User: ${message}</div><div>AI: ${data.response}</div>`;
+
+} catch (error) {
+  console.error("Error chatting with assistant:", error);
+}
+}
+
 // ---------------------------------------------------------------------
 // AI Assistant Chat
 // ---------------------------------------------------------------------
@@ -685,8 +718,21 @@ function initializeHeader() {
   function showComingSoonModal() {
     modal.classList.add("show");
   }
-  document.getElementById("slice-text")!.addEventListener("click", showComingSoonModal);
-  document.getElementById("autoformalize")!.addEventListener("click", showComingSoonModal);
+  document.getElementById("slice-text")!.addEventListener("click", showModal);
+  document.getElementById("autoformalize")!.addEventListener("click", showModal);
+  document.getElementById("ai-assistant")!.addEventListener("click", showModal);
+
+  document.getElementById('send-chat')?.addEventListener('click', async () => {
+    const inputElement = document.getElementById('chat-input') as HTMLInputElement;
+    const message = inputElement.value.trim();
+    if (!message) return;
+
+    const { lhsText, rhsText, annotations } = currentDataset;
+    const resetChat = false;
+    chatWithAssistant(message, lhsText, rhsText, annotations, resetChat);
+    inputElement.value = '';
+  });
+  
 }
 
 function initializeFooter() {
