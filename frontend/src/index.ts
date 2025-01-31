@@ -40,7 +40,6 @@ const INITIAL_TAB_STATE: TabState = {
 // ---------------------------------------------------------------------
 
 let currentDataset: DatasetWithText = EMPTY_DATASET;
-
 let currentHighlights: AnnotationsWithText = EMPTY_ANNOTATIONS;
 
 // FIXME
@@ -48,6 +47,7 @@ let HACK_pdfSrc = "";
 let HACK_fullText = "";
 
 let currentTabState: TabState = INITIAL_TAB_STATE;
+let resetChatHistory = false;
 
 let useDemoCache = false;
 
@@ -567,8 +567,9 @@ async function sendChatMessage() {
     const response = await fetch(`${SERVER_URL}/chat-with-assistant`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userInput: message }),
+      body: JSON.stringify({ userInput: message, reset: resetChatHistory }),
     });
+    resetChatHistory = false;
     const data = await response.json();
     addChatMessage(data.response, "assistant");
   }
@@ -578,6 +579,11 @@ function initializeChat() {
   const chatThread = document.getElementById("chat-thread")!;
   chatThread.innerHTML = ""; // Clear the chat thread
   addChatMessage(AI_ASSISTANT_WELCOME_MESSAGE, "system");
+}
+
+function resetChat() {
+  initializeChat();
+  resetChatHistory = true;
 }
 
 // ---------------------------------------------------------------------
@@ -735,6 +741,7 @@ function initializeModals() {
   // Attach event listeners for the chat modal
   document.getElementById("ai-assistant")!.addEventListener("click", openChatModal);
   document.getElementById("hide-chat")!.addEventListener("click", closeChatModal);
+  document.getElementById('reset-chat')?.addEventListener('click', resetChat);
   document.getElementById('send-message')?.addEventListener('click', sendChatMessage);
   document.getElementById("chat-input")!.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
