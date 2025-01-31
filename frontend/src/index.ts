@@ -6,6 +6,7 @@ import { LeftTabMode, RightTabMode, TabState } from "./TabState.ts";
 import { TextPartitionIndices } from "./TextPartitionIndices.ts";
 import { Annotations, AnnotationsWithText, Dataset, DatasetWithText, Direction, LabelType, TextLabelWithText,
   TextMappingWithText, TextRange, TextRangeWithText, mergeAnnotations } from "@common/annotations.ts";
+import { AI_ASSISTANT_WELCOME_MESSAGE } from './aiAssistantWelcomeMessage.ts';
 
 // ---------------------------------------------------------------------
 // App Constants
@@ -533,6 +534,53 @@ async function generateAnnotations(lhsText: string, rhsText: string,
 }
 
 // ---------------------------------------------------------------------
+// AI Assistant Chat
+// ---------------------------------------------------------------------
+
+function openChatModal() {
+  document.getElementById("chat-modal")!.classList.add("show");
+}
+
+function closeChatModal() {
+  document.getElementById("chat-modal")!.classList.remove("show");
+}
+
+type ChatUser = "user" | "assistant" | "system";
+
+function addChatMessage(message: string, sender: ChatUser) {
+  const messageDiv = document.createElement("div");
+  messageDiv.className = `chat-message ${sender}`;
+  messageDiv.innerHTML = message;
+  const chatThread = document.getElementById("chat-thread")!;
+  chatThread.appendChild(messageDiv);
+  chatThread.scrollTop = chatThread.scrollHeight; // Scroll to bottom
+}
+
+async function sendChatMessage() {
+  const chatInput = document.getElementById("chat-input") as HTMLInputElement;
+  const message = chatInput.value.trim();
+  if (message) {
+    addChatMessage(message, "user");
+    // Clear input
+    chatInput.value = "";
+
+    const response = await fetch(`${SERVER_URL}/chat-with-assistant`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userInput: message }),
+    });
+    const data = await response.json();
+    addChatMessage(data.response, "assistant");
+  }
+}
+
+function initializeChat() {
+  const chatThread = document.getElementById("chat-thread")!;
+  chatThread.innerHTML = ""; // Clear the chat thread
+  addChatMessage(AI_ASSISTANT_WELCOME_MESSAGE, "system");
+}
+
+// ---------------------------------------------------------------------
 // State Management
 // ---------------------------------------------------------------------
 
@@ -624,32 +672,13 @@ function initializeHeader() {
     generateAnnotations(lhsText, rhsText, annotations, useDemoCache);
   });
 
-  // Attach event listener for the "Coming Soon" buttons
+  // Attach event listeners for the "Coming Soon" buttons
   const modal = document.getElementById("coming-soon-modal") as HTMLElement;
-  function showModal() {
+  function showComingSoonModal() {
     modal.classList.add("show");
   }
-  document.getElementById("slice-text")!.addEventListener("click", showModal);
-  document.getElementById("autoformalize")!.addEventListener("click", showModal);
-  document.getElementById("ai-assistant")!.addEventListener("click", showModal);
-
-  document.getElementById('send-chat')?.addEventListener('click', async () => {
-    const inputElement = document.getElementById('chat-input') as HTMLInputElement;
-    const message = inputElement.value.trim();
-    if (!message) return;
-
-    const response = await fetch(`${SERVER_URL}/chat-with-assistant`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userInput: message }),
-    });
-    
-    const data = await response.json();
-    const chatMessages = document.getElementById('chat-messages');
-    chatMessages!.innerHTML += `<div>User: ${message}</div><div>AI: ${data.response}</div>`;
-    inputElement.value = '';
-  });
-  
+  document.getElementById("slice-text")!.addEventListener("click", showComingSoonModal);
+  document.getElementById("autoformalize")!.addEventListener("click", showComingSoonModal);
 }
 
 function initializeFooter() {
@@ -700,11 +729,23 @@ function initializeMainStaticContent() {
   document.getElementById("tab-generated")!.addEventListener("click", () => selectRightPanelTab("generated"));
 }
 
-function initializeModal() {
-  const modal = document.getElementById("coming-soon-modal") as HTMLElement;
+function initializeModals() {
+  initializeChat();
 
-  modal.addEventListener("click", () => {
-    modal.classList.remove("show");
+  // Attach event listeners for the chat modal
+  document.getElementById("ai-assistant")!.addEventListener("click", openChatModal);
+  document.getElementById("hide-chat")!.addEventListener("click", closeChatModal);
+  document.getElementById('send-message')?.addEventListener('click', sendChatMessage);
+  document.getElementById("chat-input")!.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      sendChatMessage();
+    }
+  });
+
+  // Attach event listeners for the "Coming Soon" modal
+  const comingSoonModal = document.getElementById("coming-soon-modal") as HTMLElement;
+  comingSoonModal.addEventListener("click", () => {
+    comingSoonModal.classList.remove("show");
   });
 }
 
@@ -713,7 +754,7 @@ function initializeStaticContent() {
   initializeHeader();
   initializeFooter();
   initializeMainStaticContent();
-  initializeModal();
+  initializeModals();
 }
 
 // ---------------------------------------------------------------------
