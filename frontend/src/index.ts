@@ -219,18 +219,40 @@ function renderPDF(container: HTMLElement, src: string) {
   container.appendChild(iframe);
 }
 
+function getMatchingRangesForIndex(ranges: TextRangeWithText[], index: number): TextRangeWithText[] {
+  return ranges.filter(range => range.start <= index && index < range.end);
+}
+
+function isInnerMostRange(targetRanges: TextRangeWithText[], index: number, matchingRanges: TextRangeWithText[]): boolean {
+  const rangesAreIdentical = (a: TextRangeWithText, b: TextRangeWithText): boolean =>
+    a.start === b.start && a.end === b.end;
+  const rangeIsStrictSuperset = (a: TextRangeWithText, b: TextRangeWithText): boolean =>
+    a.start <= b.start && b.end <= a.end && !rangesAreIdentical(a, b);
+
+  // A range is inner-most if it is not a strict superset of any other matching range
+  return targetRanges
+    .filter(range => range.start <= index && index < range.end) // performance optimization: filter by index first
+    .filter(range => !matchingRanges.some(other => rangeIsStrictSuperset(range, other)))
+    .length > 0;
+}
+
+// Filter to the inner-most annotations at the given index
 function filterAnnotationsForIndex(annotations: AnnotationsWithText, index: number, direction: Direction): AnnotationsWithText {
-  const filteredMappings = annotations.mappings.filter(mapping =>
-    mapping[`${direction}Ranges`].some(range => index >= range.start && index < range.end)
-  );
-  const filteredLabels = annotations[`${direction}Labels`].filter(label =>
-    label.ranges.some(range => index >= range.start && index < range.end)
-  );
+  const matchingMappingRanges = annotations.mappings.flatMap(
+    mapping => getMatchingRangesForIndex(mapping[`${direction}Ranges`], index));
+  const innerMatchingMappings = annotations.mappings.filter(
+    mapping => isInnerMostRange(mapping[`${direction}Ranges`], index, matchingMappingRanges));
+
+  const matchingLabelRanges = annotations[`${direction}Labels`].flatMap(
+    label => getMatchingRangesForIndex(label.ranges, index));
+  const innerMatchingLabels = annotations[`${direction}Labels`].filter(
+    label => isInnerMostRange(label.ranges, index, matchingLabelRanges));
+
 
   return {
-    mappings: filteredMappings,
-    lhsLabels: direction === "lhs" ? filteredLabels : [],
-    rhsLabels: direction === "rhs" ? filteredLabels : [],
+    mappings: innerMatchingMappings,
+    lhsLabels: direction === "lhs" ? innerMatchingLabels : [],
+    rhsLabels: direction === "rhs" ? innerMatchingLabels : [],
   };
 }
 
