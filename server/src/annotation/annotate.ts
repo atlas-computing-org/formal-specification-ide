@@ -1,7 +1,8 @@
 import { promises as fs } from 'fs';
+import Fuse from 'fuse.js';
 import { ChatAnthropic } from '@langchain/anthropic';
-import { Annotations, LabelType, TextMapping, TextRange } from "@common/annotations.ts";
 import { START, END, MessagesAnnotation, StateGraph, MemorySaver, Annotation } from "@langchain/langgraph";
+import { Annotations, LabelType, TextMapping, TextRange } from "@common/annotations.ts";
 import { SYSTEM_PROMPT, CHAT_PROMPT } from './prompt.ts';
 import { Logger } from '../Logger.ts';
 
@@ -102,13 +103,49 @@ const validateJSONAnnotations = (annotations: any) => {
   });
 };
 
+// FIXME: This algorithm has terrible performance.
+const fuzzyFindIndex = (query: string, text: string, logger: Logger, threshold: number = 0.7): number => {
+  // First, try an exact match
+  const exactIndex = text.indexOf(query);
+  if (exactIndex !== -1) {
+    return exactIndex;
+  }
+
+  // Build an array of candidate windows—each candidate is a substring of length equal to the query
+  const candidateWindows = [];
+  for (let i = 0; i <= text.length - query.length; i++) {
+    candidateWindows.push({ index: i, text: text.substring(i, i + query.length) });
+  }
+
+  // Configure Fuse.js to search the candidate windows
+  const fuseOptions = {
+    keys: ['text'],
+    includeScore: true,
+    threshold: 1.0, // include all candidates
+  };
+  const fuse = new Fuse(candidateWindows, fuseOptions);
+  const results = fuse.search(query);
+  if (!results.length) {
+    logger.warn("No fuzzy-matching results found.")
+    return -1;
+  }
+
+  const bestMatch = results[0];
+  // Fuse.js scores range from 0 (perfect match) upward; we accept if the score is below the threshold.
+  if (bestMatch.score !== undefined && bestMatch.score <= threshold) {
+    return bestMatch.item.index;
+  }
+  logger.warn(`Found ${results.length} results. Best match score: ${bestMatch.score}.`);
+  return -1;
+};
+
 const decodeModelAnnotation = (annotation: ModelAnnotation, lhsText: string, rhsText: string, logger: Logger): MergedAnnotation => {
   const { description, lhsText: lhsTextList, rhsText: rhsTextList, status } = annotation;
 
   // Function to find the start and end index of each string in the given text
   const findIndexes = (textList: string[], text: string, textDescription: string) => {
     return textList.map((substring) => {
-      const start = text.indexOf(substring);
+      const start = fuzzyFindIndex(substring, text, logger);
       if (start === -1) {
         logger.warn(`Failed to determine the index for a generated annotation. Claude gave the phrase "${substring}" for the ${textDescription} text.`);
         return { start, end: -1 };
@@ -257,7 +294,10 @@ const annotateWithClaude = async (lhsText: string, rhsText: string, currentAnnot
   validateJSONAnnotations(outputAnnotations);
   logger.info("Validated JSON annotations.");
 
-  return decodeAnnotationsFromModelFormat(outputAnnotations, lhsText, rhsText, logger);
+  const decodedAnnotations = decodeAnnotationsFromModelFormat(outputAnnotations, lhsText, rhsText, logger);
+  logger.info("Finished decoding annotations.");
+
+  return decodedAnnotations;
 };
 
 const annotate = async (lhsText: string, rhsText: string, currentAnnotations: Annotations,

@@ -23,6 +23,7 @@
     "@langchain/langgraph": "^0.2.44",
     "cors": "^2.8.5",
     "express": "^4.21.2",
+    "fuse.js": "^7.1.0",
     "langchain": "^0.3.11",
     "winston": "^3.17.0"
   }
