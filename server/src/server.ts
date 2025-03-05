@@ -26,7 +26,7 @@ app.use(cors({
 }));
 
 // Middleware to parse JSON
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '1mb'}));
 
 // Route to generate annotations
 app.post('/generate-annotations', async (req, res) => {
@@ -119,6 +119,17 @@ app.post('/chat-with-assistant', async (req, res) => {
 
 // Serve static files (including your frontend)
 app.use(express.static('public'));
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  if (err.type === 'entity.too.large') {
+    logger.error(`Payload too large error: ${err.message}`);
+    res.status(413).json({ error: "Payload too large" });
+  } else {
+    logger.error(`Unhandled error: ${err.message}`);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 // Start the server
 app.listen(PORT, () => {

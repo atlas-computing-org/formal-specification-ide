@@ -1,119 +1,134 @@
 ### CHAIN-OF-THOUGHT ANALYSIS
 
-The LHS TEXT and RHS TEXT appear to be describing the same topic - the SHA-1 hash algorithm. The LHS TEXT provides a detailed description of the SHA-1 algorithm, including the preprocessing steps, the hash computation, and the final hash value. The RHS TEXT appears to be an implementation of the SHA-1 algorithm in the Lean programming language.
+The LHS text provides a detailed description of the preprocessing steps for the SHA-1 hash algorithm, including padding the message, parsing the message into blocks, and setting the initial hash value. The RHS text contains the Lean implementation of the SHA-1 hash function, which closely follows the steps described in the LHS text.
 
-The key similarities and differences between the two texts are:
-
-1. **Preprocessing**: Both texts describe the preprocessing steps, including padding the message and parsing it into message blocks.
-2. **Hash Computation**: The LHS TEXT provides a step-by-step description of the hash computation, including the message schedule, the working variables, and the final hash value computation. The RHS TEXT also implements the main hash function, including the message schedule and the main loop.
-3. **Initial Hash Value**: Both texts specify the initial hash value, `H^(0)`, for the SHA-1 algorithm.
-4. **Differences in Notation**: The LHS TEXT uses mathematical notation and equations, while the RHS TEXT uses Lean programming language constructs and functions.
-5. **Implementation Details**: The RHS TEXT provides additional implementation details, such as the `padMessage` and `chunkify` functions, which are not explicitly described in the LHS TEXT.
+The annotations will focus on mapping the key concepts and steps between the LHS and RHS texts, while also highlighting any potential issues or missing information.
 
 ### JSON ANNOTATIONS
 
 ```json
 [
   {
-    "description": "Preprocessing",
+    "description": "Padding the message",
     "lhsText": [
-      "Preprocessing consists of three steps: padding the message, \(M\) (Sec. 5.1), parsing the message into message blocks (Sec. 5.2), and setting the initial hash value, \(H^{(0)}\) (Sec. 5.3)."
+      "Padding the message, \\(M\\) (Sec. 5.1)",
+      "Append the bit \" 1 \" to the end of the message, followed by \\(k\\) zero bits, where \\(k\\) is the smallest, non-negative solution to the equation \\(\\ell+1+k \\equiv 448 \\bmod 512\\). Then append the 64 -bit block that is equal to the number \\(\\ell\\) expressed using a binary representation."
     ],
     "rhsText": [
-      "-- Padding function",
-      "def padMessage (msg : ByteArray) : ByteArray :",
-      "-- Break message into 512-bit (64-byte) chunks",
-      "def chunkify (msg : ByteArray) : Array ByteArray :"
+      "-- Padding function\ndef padMessage (msg : ByteArray) : ByteArray :=\n  let ml := UInt64.ofNat (msg.size * 8) -- Message length in bits\n  let padding : ByteArray := ByteArray.mk #[0x80] -- Append '1' bit and seven '0' bits\n  let zeroPaddingLength := (56 - ((msg.size + 1) % 64)) % 64\n  let zeroPadding := ByteArray.mk (List.replicate zeroPaddingLength 0).toArray\n  let lengthBytes := ByteArray.mk $ ((List.range 8).reverse.map fun (i: Nat) =>\n    ((ml >>> (i * 8).toUInt64) &&& 0xFF).toUInt8).toArray\n  msg ++ padding ++ zeroPadding ++ lengthBytes"
     ],
     "status": "default"
   },
   {
-    "description": "Initial Hash Value",
+    "description": "Parsing the message",
     "lhsText": [
-      "For SHA-1, the initial hash value, \(H^{(0)}\), shall consist of the following five 32-bit words, in hex:"
+      "parsing the message into message blocks (Sec. 5.2)",
+      "For SHA-1, SHA-224 and SHA-256, the message and its padding are parsed into \\(N\\) 512-bit blocks, \\(M^{(1)}, M^{(2)}, \\ldots, M^{(N)}\\)."
     ],
     "rhsText": [
-      "-- Initial hash values (H0) as per FIPS 180-4",
-      "def initialHash : Mathlib.Vector Word 5 :="
+      "-- Break message into 512-bit (64-byte) chunks\ndef chunkify (msg : ByteArray) : Array ByteArray :=\n  let chunkSize := 64\n  let numChunks := (msg.size + chunkSize - 1) / chunkSize\n  let chunks := List.range numChunks |>.map\n    fun i => msg.extract (i * chunkSize) ((i + 1) * chunkSize)\n  chunks.toArray"
     ],
     "status": "default"
   },
   {
-    "description": "Hash Computation",
+    "description": "Setting the initial hash value",
     "lhsText": [
-      "The SHA-1 hash computation uses functions and constants previously defined in Sec. 4.1.1 and Sec. 4.2.1, respectively. Addition (+) is performed modulo \(2^{32}\).",
-      "Each message block, \(M^{(1)}, M^{(2)}, \ldots, M^{(N)}\), is processed in order, using the following steps:"
+      "setting the initial hash value, \\(H^{(0)}\\) (Sec. 5.3)",
+      "For SHA-1, the initial hash value, \\(H^{(0)}\\), shall consist of the following five 32-bit words, in hex:"
     ],
     "rhsText": [
-      "-- Main hash function",
-      "def hash (message : ByteArray) : ByteArray :"
+      "-- Initial hash values (H0) as per FIPS 180-4\ndef initialHash : Mathlib.Vector Word 5 :=\n  ⟨[0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0], rfl⟩"
     ],
     "status": "default"
   },
   {
-    "description": "Message Schedule",
+    "description": "Message schedule",
     "lhsText": [
-      "Prepare the message schedule, \(\left\{W_{t}\right\}\) :"
+      "1) a message schedule of eighty 32 -bit words",
+      "The words of the message schedule are labeled \\(W_{0}, W_{1}, \\ldots, W_{79}\\)."
     ],
     "rhsText": [
-      "-- Prepare the message schedule W"
+      " let W := Id.run do\n      let mut W := words\n      for t in [16:80] do\n        let wt := ROTL 1 (W[t - 3]! ^^^ W[t - 8]! ^^^ W[t - 14]! ^^^ W[t - 16]!)\n        W := W.append [wt]\n      W"
     ],
     "status": "default"
   },
   {
-    "description": "Working Variables",
+    "description": "Working variables",
     "lhsText": [
-      "Initialize the five working variables, \(\boldsymbol{a}, \boldsymbol{b}, \boldsymbol{c}, \boldsymbol{d}\), and \(\boldsymbol{e}\), with the \((i-1)^{\text {st }}\) hash value:"
+      "2) five working variables of 32 bits each",
+      "The five working variables are labeled \\(\\boldsymbol{a}, \\boldsymbol{b}, \\boldsymbol{c}, \\boldsymbol{d}\\), and \\(\\boldsymbol{e}\\)."
     ],
     "rhsText": [
-      "-- Initialize working variables"
+      "    let mut a := h0[0]!\n    let mut b := h0[1]!\n    let mut c := h0[2]!\n    let mut d := h0[3]!\n    let mut e := h0[4]!"
     ],
     "status": "default"
   },
   {
-    "description": "Main Loop",
+    "description": "Hash value",
     "lhsText": [
-      "For \(t=0\) to 79 :\\\\{",
-      "\[\\begin{aligned} & T=R O T L^{5}(a)+f_{t}(b, c, d)+e+K_{t}+W_{t} \\\\ & e=d \\\\ & d=c \\\\ & c=R O T L^{30}(b) \\\\ & b=a \\\\ & a=T\\end{aligned}\]",
-      "}"
+      "3) a hash value of five 32-bit words",
+      "The words of the hash value are labeled \\(H_{0}^{(i)}, H_{1}^{(i)}, \\ldots, H_{4}^{(i)}\\)"
     ],
     "rhsText": [
-      "-- Main loop",
-      "for t in [0:80] do"
+      "let H"
     ],
     "status": "default"
   },
   {
-    "description": "Final Hash Value",
+    "description": "Final hash value",
     "lhsText": [
-      "Compute the \(i^{\text {th }}\) intermediate hash value \(H^{(i)}\) :",
-      "\[\\begin{aligned} & H_{0}^{(i)}=a+H_{0}^{(i-1)} \\\\ & H_{1}^{(i)}=b+H_{1}^{(i-1)} \\\\ & H_{2}^{(i)}=c+H_{2}^{(i-1)} \\\\ & H_{3}^{(i)}=d+H_{3}^{(i-1)} \\\\ & H_{4}^{(i)}=e+H_{4}^{(i-1)}\\end{aligned}\]",
-      "After repeating steps one through four a total of \(N\) times (i.e., after processing \(M^{(N)}\) ), the resulting 160-bit message digest of the message, \(M\), is",
-      "\[H_{0}^{(N)}\left\|H_{1}^{(N)}\right\| H_{2}^{(N)}\left\|H_{3}^{(N)}\right\| H_{4}^{(N)}\]"
+      "The final result of SHA-1 is a 160 -bit message digest."
     ],
     "rhsText": [
-      "-- Compute the new hash values",
-      "let finalHash := chunks.foldl (init := H) fun h0 chunk =>",
-      "-- Concatenate the final hash values into a ByteArray"
+      ": ByteArray "
     ],
     "status": "default"
   },
   {
-    "description": "Utility Functions",
+    "description": "Iterative hash computation",
     "lhsText": [
-      "The SHA-1 hash computation uses functions and constants previously defined in Sec. 4.1.1 and Sec. 4.2.1, respectively."
+      "replaced by each successive intermediate hash value (after each message block is processed), \\(H^{(i)}\\), and ending with the final hash value, \\(H^{(N)}\\)"
     ],
     "rhsText": [
-      "-- Left rotate operation using mathlib's rotateLeft",
-      "def ROTL (n : Nat) (x : Word) : Word :",
-      "-- Convert a 4-byte slice to a Word (UInt32)",
-      "def bytesToWord (bytes : ByteArray) : Word :"
+      "let finalHash := chunks.foldl (init := H) fun h0 chunk =>"
     ],
     "status": "default"
-  }
-]
-```
+  },
+  {
+    "description": "Missing property: Message length range",
+    "lhsText": [
+      "having a length of \\(\\ell\\) bits, where \\(0 \\leq \\ell<2^{64}\\)"
+    ],
+    "rhsText": [],
+    "status": "error"
+  },
+  {
+    "description": "Missing property: Output length",
+    "lhsText": [
+      "160 -bit"
+    ],
+    "rhsText": [],
+    "status": "error"
+  },
+  {
+    "description": "Missing property: Padded message length",
+    "lhsText": [
+      "ensure that the padded message is a multiple of 512 or 1024 bits",
+      "The length of the padded message should now be a multiple of 512 bits."
+    ],
+    "rhsText": [],
+    "status": "error"
+  },
+  {
+    "description": "Possible degree of freedom in padding",
+    "lhsText": [
+      "Padding can be inserted before hash computation begins on a message, or at any other time during the hash computation prior to processing the block(s) that will contain the padding."
+    ],
+    "rhsText": [],
+    "status": "warning"
+  },
+  {
+    "description": "Missing arithmetic proof for padding",
+    "lhsText": [
+      "where \\(k\\) is the smallest, non-
 
-### NOTES AND CONCERNS
-
-The LHS TEXT and RHS TEXT appear to be well-aligned and complementary. The LHS TEXT provides a detailed mathematical description of the SHA-1 algorithm, while the RHS TEXT provides a concrete implementation in the Lean programming language. The annotations capture the key similarities and differences between the two texts, and there are no major concerns.

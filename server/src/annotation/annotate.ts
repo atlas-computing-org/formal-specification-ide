@@ -17,8 +17,12 @@ type ModelAnnotation = {
 
 type MergedAnnotation<T extends TextRange = TextRange> = TextMapping<T>;
 
+// TODO: Switch to using Anthropic's streaming or batch API. This may resolve the response
+// truncation bug, and will also improve performance.
 const llmChat = new ChatAnthropic({
-  model: "claude-3-haiku-20240307",
+  // See https://docs.anthropic.com/en/docs/about-claude/models/all-models for model options.
+  // This page also includes documentation on effective model and API usage.
+  model: "claude-3-7-sonnet-20250219",
   temperature: 0,
   maxTokens: undefined,
   maxRetries: 2,
@@ -44,7 +48,7 @@ const memory = new MemorySaver();
 const app = workflow.compile({ checkpointer: memory });
 
 const escapeString = (str: string) => {
-  return str.replace(/\\/g, '\\\\');
+  return str;//.replace(/\\/g, '\\\\');
 }
 
 const extractJSON = (content: string, logger: Logger) => {
