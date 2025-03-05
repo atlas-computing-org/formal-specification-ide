@@ -16,7 +16,7 @@ import { AI_ASSISTANT_WELCOME_MESSAGE } from './aiAssistantWelcomeMessage.ts';
 const SERVER_URL = "http://localhost:3001";
 
 // The datasets to choose from
-const DATASET_NAMES = ["SHA-1", "SHA-1-noAnn", "simpleText"];
+const DATASET_NAMES = ["SHA-1", "SHA-1-noAnn", "AES", "simpleText"];
 
 const EMPTY_ANNOTATIONS: AnnotationsWithText = {
   mappings: [],
