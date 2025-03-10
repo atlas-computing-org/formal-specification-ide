@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "npx tsx server/src/server.ts"
+    "start": "npx tsx server/src/server.ts",
+    "convert": "npx tsx scripts/src/parseModelOutput.ts"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
