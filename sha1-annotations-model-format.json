@@ -1,0 +1,208 @@
+[
+  {
+    "description": "Top-level API: hash",
+    "lhsText": [
+      "SHA-1 may be used to hash a message, \\(M\\)"
+    ],
+    "rhsText": [
+      "def hash (message : ByteArray)"
+    ],
+    "status": "default"
+  },
+  {
+    "description": "message schedule",
+    "lhsText": [
+      "1) a message schedule of eighty 32 -bit words",
+      "The words of the message schedule are labeled \\(W_{0}, W_{1}, \\ldots, W_{79}\\)."
+    ],
+    "rhsText": [
+      " let W := Id.run do\\n      let mut W := words\\n      for t in [16:80] do\\n        let wt := ROTL 1 (W[t - 3]! ^^^ W[t - 8]! ^^^ W[t - 14]! ^^^ W[t - 16]!)\\n        W := W.append [wt]\\n      W"
+    ],
+    "status": "default"
+  },
+  {
+    "description": "working variables",
+    "lhsText": [
+      "2) five working variables of 32 bits each",
+      "The five working variables are labeled \\(\\boldsymbol{a}, \\boldsymbol{b}, \\boldsymbol{c}, \\boldsymbol{d}\\), and \\(\\boldsymbol{e}\\)."
+    ],
+    "rhsText": [
+      "    let mut a := h0[0]!\\n    let mut b := h0[1]!\\n    let mut c := h0[2]!\\n    let mut d := h0[3]!\\n    let mut e := h0[4]!"
+    ],
+    "status": "default"
+  },
+  {
+    "description": "hash value",
+    "lhsText": [
+      "3) a hash value of five 32-bit words",
+      "The words of the hash value are labeled \\(H_{0}^{(i)}, H_{1}^{(i)}, \\ldots, H_{4}^{(i)}\\)"
+    ],
+    "rhsText": [
+      "let H"
+    ],
+    "status": "default"
+  },
+  {
+    "description": "Return value: message digest",
+    "lhsText": [
+      "The final result of SHA-1 is a 160 -bit message digest."
+    ],
+    "rhsText": [
+      ": ByteArray "
+    ],
+    "status": "default"
+  },
+  {
+    "description": "set initial hash value",
+    "lhsText": [
+      "which will hold the initial hash value, \\(H^{(0)}\\),"
+    ],
+    "rhsText": [
+      "let H := initialHash"
+    ],
+    "status": "default"
+  },
+  {
+    "description": "iteratively update hash value",
+    "lhsText": [
+      "replaced by each successive intermediate hash value (after each message block is processed), \\(H^{(i)}\\), and ending with the final hash value, \\(H^{(N)}\\)"
+    ],
+    "rhsText": [
+      "let finalHash := chunks.foldl (init := H) fun h0 chunk =>"
+    ],
+    "status": "default"
+  },
+  {
+    "description": "initial hash value",
+    "lhsText": [
+      "\\item Set the initial hash value, \\(H^{(0)}\\), as specified in Sec. 5.3.1.",
+      "setting the initial hash value, \\(H^{(0)}\\) (Sec. 5.3)",
+      "\\subsection*{5.3 Setting the Initial Hash Value ( \\(H^{(0)}\\) )}"
+    ],
+    "rhsText": [
+      "initialHash",
+      "-- Initial hash values (H0) as per FIPS 180-4\\ndef initialHash : Mathlib.Vector Word 5 :=\\n  ⟨[0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0], rfl⟩"
+    ],
+    "status": "default"
+  },
+  {
+    "description": "pad and parse the message",
+    "lhsText": [
+      "\\item The message is padded and parsed as specified in Section 5."
+    ],
+    "rhsText": [
+      "  let paddedMsg := padMessage message\\n  let chunks := chunkify paddedMsg"
+    ],
+    "status": "default"
+  },
+  {
+    "description": "padding",
+    "lhsText": [
+      "padded",
+      "padding the message, \\(M\\) (Sec. 5.1)",
+      "\\subsection*{5.1 Padding the Message}"
+    ],
+    "rhsText": [
+      "-- Padding function\\ndef padMessage (msg : ByteArray) : ByteArray :=\\n  let ml := UInt64.ofNat (msg.size * 8) -- Message length in bits\\n  let padding : ByteArray := ByteArray.mk #[0x80] -- Append '1' bit and seven '0' bits\\n  let zeroPaddingLength := (56 - ((msg.size + 1) % 64)) % 64\\n  let zeroPadding := ByteArray.mk (List.replicate zeroPaddingLength 0).toArray\\n  let lengthBytes := ByteArray.mk $ ((List.range 8).reverse.map fun (i: Nat) =>\\n    ((ml >>> (i * 8).toUInt64) &&& 0xFF).toUInt8).toArray\\n  msg ++ padding ++ zeroPadding ++ lengthBytes"
+    ],
+    "status": "default"
+  },
+  {
+    "description": "parsing",
+    "lhsText": [
+      "parsed",
+      "parsing the message into message blocks (Sec. 5.2)",
+      "\\subsection*{5.2 Parsing the Message}"
+    ],
+    "rhsText": [
+      "-- Break message into 512-bit (64-byte) chunks\\ndef chunkify (msg : ByteArray) : Array ByteArray :=\\n  let chunkSize := 64\\n  let numChunks := (msg.size + chunkSize - 1) / chunkSize\\n  let chunks := List.range numChunks |>.map\\n    fun i => msg.extract (i * chunkSize) ((i + 1) * chunkSize)\\n  chunks.toArray"
+    ],
+    "status": "default"
+  },
+  {
+    "description": "message length",
+    "lhsText": [
+      "the length of the message, \\(M\\), is \\(\\ell\\) bits"
+    ],
+    "rhsText": [
+      "let ml := UInt64.ofNat (msg.size * 8) -- Message length in bits"
+    ],
+    "status": "default"
+  },
+  {
+    "description": "append bit 1",
+    "lhsText": [
+      "Append the bit 1 to the end of the message"
+    ],
+    "rhsText": [
+      "let padding : ByteArray := ByteArray.mk #[0x80] -- Append '1' bit ",
+      "++ padding"
+    ],
+    "status": "default"
+  },
+  {
+    "description": "append zero bits",
+    "lhsText": [
+      "followed by \\(k\\) zero bits, where \\(k\\) is the smallest, non-negative solution to the equation \\(\\ell+1+k \\equiv 448 \\bmod 512\\)"
+    ],
+    "rhsText": [
+      "and seven '0' bits\\n  let zeroPaddingLength := (56 - ((msg.size + 1) % 64)) % 64\\n  let zeroPadding := ByteArray.mk (List.replicate zeroPaddingLength 0).toArray",
+      "++ zeroPadding "
+    ],
+    "status": "default"
+  },
+  {
+    "description": "append message length",
+    "lhsText": [
+      "Then append the 64 -bit block that is equal to the number \\(\\ell\\) expressed using a binary representation."
+    ],
+    "rhsText": [
+      "let lengthBytes := ByteArray.mk $ ((List.range 8).reverse.map fun (i: Nat) =>\\n    ((ml >>> (i * 8).toUInt64) &&& 0xFF).toUInt8).toArray",
+      "++ lengthBytes"
+    ],
+    "status": "default"
+  },
+  {
+    "description": "Missing arithmetic proof",
+    "lhsText": [
+      "where \\(k\\) is the smallest, non-negative solution to the equation \\(\\ell+1+k \\equiv 448 \\bmod 512\\)"
+    ],
+    "rhsText": [
+      "(56 - ((msg.size + 1) % 64)) % 64"
+    ],
+    "status": "error"
+  },
+  {
+    "description": "Missing property",
+    "lhsText": [
+      "having a length of \\(\\ell\\) bits, where \\(0 \\leq \\ell<2^{64}\\)"
+    ],
+    "rhsText": [],
+    "status": "error"
+  },
+  {
+    "description": "Missing property",
+    "lhsText": [
+      "160 -bit"
+    ],
+    "rhsText": [],
+    "status": "error"
+  },
+  {
+    "description": "Missing property",
+    "lhsText": [
+      "ensure that the padded message is a multiple of 512 or 1024 bits",
+      "The length of the padded message should now be a multiple of 512 bits."
+    ],
+    "rhsText": [],
+    "status": "error"
+  },
+  {
+    "description": "Possible degree of freedom is constrained out",
+    "lhsText": [
+      "Padding can be inserted before hash computation begins on a message, or at any other time during the hash computation prior to processing the block(s) that will contain the padding."
+    ],
+    "rhsText": [],
+    "status": "warning"
+  }
+]
