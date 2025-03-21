@@ -3,7 +3,8 @@ import Fuse from 'fuse.js';
 import { ChatAnthropic } from '@langchain/anthropic';
 import { START, END, MessagesAnnotation, StateGraph, MemorySaver, Annotation } from "@langchain/langgraph";
 import { Annotations, LabelType, TextMapping, TextRange } from "@common/annotations.ts";
-import { SYSTEM_PROMPT, CHAT_PROMPT } from './prompt.ts';
+import { ANNOTATE_PROMPT } from './prompt-annotate.ts';
+import { ASSESS_PROMPT } from './prompt-assess.ts';
 import { Logger } from '../Logger.ts';
 import { GenerateAnnotationsResponse } from '@common/serverAPI/generateAnnotationsAPI.ts';
 import { ChatAboutAnnotationsSuccessResponse } from '@common/serverAPI/chatAboutAnnotationsAPI.ts';
@@ -262,7 +263,7 @@ const queryClaude = async (userPrompt: string, logger: Logger) => {
   logger.info("Sending prompt to Claude.");
 
   const res = await llmAnnotate.invoke([
-    ["system", SYSTEM_PROMPT],
+    ["system", ANNOTATE_PROMPT],
     ["human", userPrompt],
   ]);
   logger.info("Received response from Claude.");
@@ -316,7 +317,7 @@ const chatWithAssistant = async (userUUID: string, userInput: string, lhsText: s
 
   const config = { configurable: { thread_id: userUUID } };
   const userContext = makeUserPrompt(lhsText, rhsText, currentAnnotations, logger);
-  const chatPrompt = CHAT_PROMPT + userContext;
+  const chatPrompt = ASSESS_PROMPT + userContext;
   const systemInput = { 
     role: "system",
     content: chatPrompt
