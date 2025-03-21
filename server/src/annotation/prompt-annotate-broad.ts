@@ -9,9 +9,13 @@ Your job is to:
 4. Provide new mappings that are not in the existing annotations, between semantically related groups of paragraphs in the LHS and RHS texts
 5. Provide a description for each mapping that summarizes the common theme of the mapped paragraphs.
 6. Provide the status for each mapping:
-   - "default" for mappings where the translation was successful or correct,
-   - "error" for mappings where the translation was a failure or incorrect,
-   - "warning" for possibly ambiguous or concerning mappings, or for paragraphs which do not have a counterpart in the other text.
+   - "success" for mappings where the translation was successful or correct,
+   - "failure" for mappings where the translation was a failure or incorrect,
+   - "ambiguous" for possibly ambiguous or concerning mappings,
+   - "missing" for paragraphs which do not have a counterpart in the other text.
+7. Provide additional comments when the mapping is a:
+   - "failure" - explain which part is incorrectly translated,
+   - "ambiguous" - explain which part is ambiguously translated.
 
 Example of the input texts:
 \`\`\`
@@ -203,27 +207,50 @@ end SHA1
 
 [{
   description: "Preprocessing",
-  lhsText: ["\subsection*{6.1.1 SHA-1 Preprocessing}",
-"\item Set the initial hash value, \(H^{(0)}\), as specified in Sec. 5.3.1.",
-"\item The message is padded and parsed as specified in Section 5."],
+  lhsText: ["\subsection*{6.1.1 SHA-1 Preprocessing}
+\begin{enumerate}
+\item Set the initial hash value, \(H^{(0)}\), as specified in Sec. 5.3.1.
+\item The message is padded and parsed as specified in Section 5.
+\end{enumerate}"],
   rhsText: ["-- Initial hash values (H0) as per FIPS 180-4
-def initialHash : Mathlib.Vector Word 5 :=",
+def initialHash : Mathlib.Vector Word 5 :=
+  ⟨[0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0], rfl⟩",
   "-- Padding function
-def padMessage (msg : ByteArray) : ByteArray :="],
-  status: "default",
+def padMessage (msg : ByteArray) : ByteArray :=
+  let ml := UInt64.ofNat (msg.size * 8) -- Message length in bits
+  let padding : ByteArray := ByteArray.mk #[0x80] -- Append '1' bit and seven '0' bits
+  let zeroPaddingLength := (56 - ((msg.size + 1) % 64)) % 64
+  let zeroPadding := ByteArray.mk (List.replicate zeroPaddingLength 0).toArray
+  let lengthBytes := ByteArray.mk $ ((List.range 8).reverse.map fun (i: Nat) =>
+    ((ml >>> (i * 8).toUInt64) &&& 0xFF).toUInt8).toArray
+  msg ++ padding ++ zeroPadding ++ lengthBytes",
+  "-- Break message into 512-bit (64-byte) chunks
+def chunkify (msg : ByteArray) : Array ByteArray :=
+  let chunkSize := 64
+  let numChunks := (msg.size + chunkSize - 1) / chunkSize
+  let chunks := List.range numChunks |>.map
+    fun i => msg.extract (i * chunkSize) ((i + 1) * chunkSize)
+  chunks.toArray",
+  "def hash (message : ByteArray) : ByteArray :=
+  let paddedMsg := padMessage message
+  let chunks := chunkify paddedMsg
+  let H := initialHash"],
+  status: "success",
+  comment: ""
 }]
 \`\`\`
 
 Now, based on these instructions, please generate a JSON object with annotations. Each annotation should include:
 - A short description for the common themem of each mapping.
-- The LHS paragraph(s) and RHS paragraph(s) that are matched in the mapping. There can be more than one paragraph for each side. Provide just the first few sentences of the LHS and the RHS paragraphs. Every LHS sentence needs to be an exact substring of the LHS input text, and likewise for every RHS sentence. Please take extra care to make substrings exact, including whitespace and escape characters.
-- Status for each mapping: "default", "error", "warning".
+- The LHS paragraph(s) and RHS paragraph(s) that are matched in the mapping. There can be more than one paragraph for each side. Every LHS paragraph needs to be an exact substring of the LHS input text, and likewise for every RHS paragraph. Please take extra care to make substrings exact, including whitespace and escape characters.
+- Status for each mapping: "success", "failure", "ambiguous", "missing".
+- Comment that explains why a mapping is ambiguous or a failure; leave empty otherwise.
 
-The JSON output format should be a list of objects. Each object has four fields: a text field "description", a text list field "lhsText", a text list field "rhsText", and a text field "status". The status field value must be one of "default", "error" or "warning".
+The JSON output format should be a list of objects. Each object has four fields: a text field "description", a text list field "lhsText", a text list field "rhsText", a text field "status", and a text field "comment". The status field value must be one of "success", "failure", "ambiguous" or "missing".
 
 Please organize your output into the three sections shown below, each of which begins with "### <SECTION NAME>". The second section, JSON ANNOTATIONS, should contain the JSON output in a code formatting block and nothing else.
 
-Please focus on constants found in the LHS and RHS texts, as well as pseudocodes on the LHS text and functions on the RHS texts. Please provide the top 20 mappings that you can find in the two texts.
+Please focus on constants found in the LHS and RHS texts, as well as pseudocodes on the LHS text and functions on the RHS texts. Please also provide at least 20 annotations.
 
 Here's an example output:
 
@@ -237,31 +264,89 @@ I'll analyze these texts and create annotations that capture their relationships
 [{
   description: "Preamble",
   lhsText: [],
-  rhsText: ["import Init.Data.ByteArray"],
-  status: "warning",
+  rhsText: ["-- SHA1.lean
+import Init.Data.ByteArray
+import Init.Data.Repr
+import Mathlib.Data.UInt
+import Mathlib.Data.Vector.Defs
+import Init.Data.Nat.Basic
+import VerifiedFipsCryptography.Util.HexString", 
+"namespace SHA1
+open Mathlib"],
+  status: "missing",
+  comment: ""
 }, {
   description: "Prepare messaage schedule",
-  lhsText: ["\item Prepare the message schedule, \(\left\{W_{t}\right\}\) :",
-  "\[
+  lhsText: ["\begin{enumerate}
+\item Prepare the message schedule, \(\left\{W_{t}\right\}\) :
+\end{enumerate}","\[
 W_{t}= \begin{cases}M_{t}^{(i)} & 0 \leq t \leq 15 \\ R O T L^{1}\left(W_{t-3} \oplus W_{t-8} \oplus W_{t-14} \oplus W_{t-16}\right) & 16 \leq t \leq 79\end{cases}
 \]"],
-  rhsText: ["let words := List.range 16 |>.map fun i =>"],
-  status: "default",
+  rhsText: ["-- Prepare the message schedule W
+    let words := List.range 16 |>.map fun i =>
+      let bytes := chunk.extract (i * 4) ((i + 1) * 4)
+      bytesToWord bytes
+    let W := Id.run do
+      let mut W := words
+      for t in [16:80] do
+        let wt := ROTL 1 (W[t - 3]! ^^^ W[t - 8]! ^^^ W[t - 14]! ^^^ W[t - 16]!)
+        W := W.append [wt]
+      W"],
+  status: "success",
+  comment: ""
 }, {
   description: "Initialize working variables",
-  lhsText: ["\item Initialize the five working variables, \(\boldsymbol{a}, \boldsymbol{b}, \boldsymbol{c}, \boldsymbol{d}\), and \(\boldsymbol{e}\), with the \((i-1)^{\text {st }}\) hash value:",
-  "& a=H_{0}^{(i-1)} \\"],
-  rhsText: ["let mut a := h0[0]!"],
-  status: "default",
+  lhsText: ["\begin{enumerate}
+\setcounter{enumi}{1}
+\item Initialize the five working variables, \(\boldsymbol{a}, \boldsymbol{b}, \boldsymbol{c}, \boldsymbol{d}\), and \(\boldsymbol{e}\), with the \((i-1)^{\text {st }}\) hash value:
+\end{enumerate}","\[
+\begin{aligned}
+& a=H_{0}^{(i-1)} \\
+& b=H_{1}^{(i-1)} \\
+& c=H_{2}^{(i-1)} \\
+& d=H_{3}^{(i-1)} \\
+& e=H_{4}^{(i-1)}
+\end{aligned}
+\]"],
+  rhsText: ["-- Initialize working variables
+    let mut a := h0[0]!
+    let mut b := h0[1]!
+    let mut c := h0[2]!
+    let mut d := h0[3]!
+    let mut e := h0[4]!"],
+  status: "success",
+  comment: ""
 }, {
   description: "Main loop",
-  lhsText: ["\item For \(t=0\) to 79 :\\",
-  "& T=R O T L^{5}(a)+f_{t}(b, c, d)+e+K_{t}+W_{t} \\",
-  "& c=R O T L^{30}(b) \\"],
-  rhsText: ["for t in [0:80] do",
-  "let temp := (ROTL 5 a) + f + e + K t + W[t]!",
-  "c := ROTL 40 b"],
-  status: "error",
+  lhsText: ["\begin{enumerate}
+\setcounter{enumi}{2}
+\item For \(t=0\) to 79 :\\
+\{
+\end{enumerate}","\[
+\begin{aligned}
+& T=R O T L^{5}(a)+f_{t}(b, c, d)+e+K_{t}+W_{t} \\
+& e=d \\
+& d=c \\
+& c=R O T L^{30}(b) \\
+& b=a \\
+& a=T
+\end{aligned}
+\]"],
+  rhsText: ["-- Main loop
+    for t in [0:80] do
+      let f :=
+        if t ≤ 19 then (b &&& c) ||| ((~~~b) &&& d)
+        else if t ≤ 39 then b ^^^ c ^^^ d
+        else if t ≤ 59 then (b &&& c) ||| (b &&& d) ||| (c &&& d)
+        else b ^^^ c ^^^ d
+      let temp := (ROTL 5 a) + f + e + K t + W[t]!
+      e := d
+      d := c
+      c := ROTL 40 b
+      b := a
+      a := temp"],
+  status: "failure",
+  comment: "For variable c, ROTL parameter should be 30 not 40"
 }]
 \`\`\`
 
