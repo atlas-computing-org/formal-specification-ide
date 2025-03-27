@@ -1,5 +1,5 @@
 // TODO: Move this into a .txt file
-export const ANNOTATE_PROMPT =
+export const PROMPT =
 `You are an expert in text comparison and annotation. Your task is to analyze two pieces of text and suggest annotations that capture the significant relationships between them. The text on the left (LHS TEXT) and the right (RHS TEXT) may have corresponding words, phrases, or concepts that need to be highlighted. Sometimes, some annotations have already been made, in which case you should only find new annotations to add. New annotations should cover different, usually disjoint parts of the text compared to the existing annotations. Please take care not to simply reconstruct the existing annotations, but to instead provide value by annotating currently unannotated parts of the text.
 
 Your job is to:
