@@ -1,22 +1,13 @@
-import { ChatAnthropic } from '@langchain/anthropic';
 import { START, END, MessagesAnnotation, StateGraph, MemorySaver } from "@langchain/langgraph";
 import { Annotations } from "@common/annotations.ts";
 import { PROMPT } from './prompt.ts';
-import { Logger } from '../Logger.ts';
+import { Logger } from '../../../Logger.ts';
+import { newModel } from '../../Agent.ts';
 
 // Put into common folder?
 import { makeUserPrompt } from '../annotation/annotate.ts';
 
-
-const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
-
-const llm = new ChatAnthropic({
-  model: "claude-3-haiku-20240307",
-  temperature: 0,
-  maxTokens: undefined,
-  maxRetries: 2,
-  apiKey: ANTHROPIC_API_KEY,
-});
+const llm = newModel("Anthropic");
 
 // Define the function that calls the model
 const callModel = async (state: typeof MessagesAnnotation.State) => {

@@ -1,13 +1,11 @@
 import { promises as fs } from 'fs';
 import Fuse from 'fuse.js';
-import { ChatAnthropic } from '@langchain/anthropic';
 import { Annotations, LabelType, TextMapping, TextRange } from "@common/annotations.ts";
 import { PROMPT } from './prompt.ts';
-import { Logger } from '../Logger.ts';
 import { GenerateAnnotationsResponse } from '@common/serverAPI/generateAnnotationsAPI.ts';
 import { ChatAboutAnnotationsSuccessResponse } from '@common/serverAPI/chatAboutAnnotationsAPI.ts';
-
-const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+import { Logger } from '../../../Logger.ts';
+import { newModel } from '../../Agent.ts';
 
 type ModelAnnotation = {
   description: string;
@@ -224,13 +222,7 @@ ${JSON.stringify(encodedAnnotations, null, 2)}`;
 }
 
 const queryClaude = async (userPrompt: string, logger: Logger) => {
-  const llmAnnotate = new ChatAnthropic({
-    model: "claude-3-haiku-20240307",
-    temperature: 0,
-    maxTokens: undefined,
-    maxRetries: 2,
-    apiKey: ANTHROPIC_API_KEY,
-  });
+  const llmAnnotate = newModel("Anthropic");
 
   logger.info("Sending prompt to Claude.");
 
