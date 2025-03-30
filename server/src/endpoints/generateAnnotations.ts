@@ -1,8 +1,11 @@
 import { Request, Response } from 'express';
-import { annotate} from '../annotation/annotate.ts';
+import { annotate } from '../APIEndpoints/annotate.ts';
 import { Logger } from '../Logger.ts';
 import { Counter } from '@common/util/Counter.ts';
 import { GenerateAnnotationsRequest } from "@common/serverAPI/generateAnnotationsAPI.ts";
+import { v4 as uuidv4 } from 'uuid';
+
+var userUUID = uuidv4();
 
 export function generateAnnotationsHandler(requestCounter: Counter, logger: Logger) {
   return async (req: Request<{}, {}, GenerateAnnotationsRequest>, res: Response): Promise<void> => {
@@ -36,7 +39,7 @@ export function generateAnnotationsHandler(requestCounter: Counter, logger: Logg
     }
 
     try {
-      const response = await annotate(lhsText, rhsText, currentAnnotations, useDemoCache, requestLogger);
+      const response = await annotate(userUUID, lhsText, rhsText, currentAnnotations, useDemoCache, requestLogger);
       requestLogger.debug(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
       res.json({ response });
     } catch (e) {

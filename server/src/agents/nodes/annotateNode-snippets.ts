@@ -1,4 +1,6 @@
-// TODO: Move this into a .txt file
+import { HumanMessage, SystemMessage } from "@langchain/core/messages";
+import { StateInfo } from "../agent.ts";
+
 export const PROMPT =
 `You are an expert in text comparison, especially in finding semantic relationships between a natural language text and a formal language text that was translated from the natural language text. Specifically, your task is to analyze two pieces of text, namely the left text (LHS TEXT) in natural language and the right text (RHS TEXT) in the Lean4 programming language. You will identify mappings between high-level paragraphs, sections or functions in the texts. Each mappings will have one of four statuses: the mapping may relate paragraphs where the semantics were successfully translated, or where the semantics were failures in translation, or where there is ambiguity in the correctness of the translation, or where a paragraph exists in one text but not in the other. Each mapping will be represented as an annotation, which consists of a paragraph from the LHS TEXT, a paragraph from the RHS TEXT, a few words summarizing common theme of the two paragraphs, and the status of the mapping: "success", "failure", "ambiguous" or "missing". If the status is "missing", no paragraphs will be selected for one of the texts. Sometimes, existing annotations may be provided, in which case you should only find new annotations to add. New annotations should cover different, usually disjoint paragraphs in the text compared to the existing annotations. Please take care not to simply reconstruct the existing annotations, but to instead provide value by annotating currently unmapped parts of the text.
 
@@ -268,3 +270,12 @@ W_{t}= \begin{cases}M_{t}^{(i)} & 0 \leq t \leq 15 \\ R O T L^{1}\left(W_{t-3} \
 ### NOTES AND CONCERNS
 
 This was a simple example, so there are no concerns.`;
+
+export const annotateNode = (state: typeof StateInfo.State) => {
+  state.logger.info(`System Message:\n${PROMPT}`);
+  state.logger.info(`Human Message:\n${state.systemData}`);
+  return { messages: [
+    new SystemMessage(PROMPT),
+    new HumanMessage(state.systemData)
+  ]};
+}

@@ -538,7 +538,7 @@ async function generateAnnotations(lhsText: string, rhsText: string,
     });
 
     const data = await response.json();
-    console.log("Claude's response:", data);
+    console.log("LLM's response:", data);
 
     if (data.error) {
       throw new Error(data.error);

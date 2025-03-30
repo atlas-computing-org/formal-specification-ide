@@ -13,6 +13,7 @@
     "npm:@observablehq/plot@0.6": "0.6.17",
     "npm:@types/cors@^2.8.17": "2.8.17",
     "npm:@types/express@5": "5.0.1",
+    "npm:@types/node@*": "22.12.0",
     "npm:body-parser@^1.20.3": "1.20.3",
     "npm:cors@^2.8.5": "2.8.5",
     "npm:express@^4.21.2": "4.21.2",

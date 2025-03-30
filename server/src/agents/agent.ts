@@ -1,8 +1,30 @@
+import process from "node:process";
 import { ChatAnthropic } from '@langchain/anthropic';
 import { ChatOpenAI } from "@langchain/openai";
 import { ChatDeepSeek } from "@langchain/deepseek";
+import { BaseMessage } from "@langchain/core/messages";
+import { Annotation, messagesStateReducer } from "@langchain/langgraph";
+import { Logger } from "../Logger.ts";
+import { Annotations } from "@common/annotations.ts";
 
 export const MODEL_PROVIDERS = ["Anthopic", "OpenAI", "DeepSeek"];
+
+export const StateInfo = Annotation.Root({
+  lhsText: Annotation<string>,
+  rhsText: Annotation<string>,
+  currentAnnotations: Annotation<Annotations>,
+  resetChat: Annotation<boolean>,
+  useDemoCache: Annotation<boolean>,
+  systemData: Annotation<string>,
+  userInput: Annotation<string>,
+  outputAnnotations: Annotation<any>,
+  decodedAnnotations: Annotation<Annotations>,
+  messages: Annotation<BaseMessage[]>({
+    reducer: messagesStateReducer,
+    default: () => [],
+  }),
+  logger: Annotation<Logger>,
+});
 
 export function newModel(provider: string): ChatAnthropic | ChatDeepSeek | ChatOpenAI {
   if (provider === "Anthropic") {
