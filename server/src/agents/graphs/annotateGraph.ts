@@ -6,7 +6,6 @@ import { decodeAnnotationsNode } from "../nodes/decodeAnnotationsNode.ts";
 import { modelNode } from "../nodes/modelNode.ts";
 import { cacheNode } from "../nodes/cacheNode.ts";
 import { extractJSONNode } from "../nodes/extractJSONNode.ts";
-import { validateJSONNode } from "../nodes/validateJSONNode.ts";
 
 // Add conditional edge for cached response
 const cacheChoice = (state: typeof StateInfo.State) => {
@@ -20,15 +19,13 @@ const workflow = new StateGraph(StateInfo)
   .addNode("model", modelNode)
   .addNode("cache", cacheNode)
   .addNode("extractJSON", extractJSONNode)
-  .addNode("validateJSON", validateJSONNode)
   .addNode("decodeAnnotations", decodeAnnotationsNode)
   .addConditionalEdges(START, cacheChoice)
   .addEdge("cache", "extractJSON")
   .addEdge("encodeAnnotations","annotate")
   .addEdge("annotate", "model")
   .addEdge("model", "extractJSON")
-  .addEdge("extractJSON", "validateJSON")
-  .addEdge("validateJSON", "decodeAnnotations")
+  .addEdge("extractJSON", "decodeAnnotations")
   .addEdge("decodeAnnotations", END);
 
 // Compile graph
