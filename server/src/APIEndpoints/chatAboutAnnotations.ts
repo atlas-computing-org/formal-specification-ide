@@ -14,7 +14,7 @@ export function chatAboutAnnotationsHandler(requestCounter: Counter, logger: Log
     const requestLogger = logger.withMessagePrefix(`POST /chat-with-assistant (${requestId}): `);
 
     requestLogger.info("REQUEST RECEIVED.");
-    requestLogger.info(`Request body: ${JSON.stringify(req.body, null, 2)}`);
+    requestLogger.debug(`Request body: ${JSON.stringify(req.body, null, 2)}`);
 
     if (!userInput) {
       const error = "userInput is required.";
@@ -46,8 +46,8 @@ export function chatAboutAnnotationsHandler(requestCounter: Counter, logger: Log
 
     try {
       const response = await chatWithAssistant(userUUID, userInput, lhsText, rhsText, annotations, reset, requestLogger);
-      requestLogger.info(`RESPONSE!: ${response}`);
-      requestLogger.info(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
+      requestLogger.debug(`RESPONSE!: ${response}`);
+      requestLogger.debug(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
       res.json({ response });
     } catch (e) {
       const error = `Error chatting with assistant. ${e}`;
