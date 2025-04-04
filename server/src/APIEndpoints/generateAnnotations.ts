@@ -5,7 +5,7 @@ import { Counter } from '@common/util/Counter.ts';
 import { GenerateAnnotationsRequest } from "@common/serverAPI/generateAnnotationsAPI.ts";
 
 export function generateAnnotationsHandler(requestCounter: Counter, logger: Logger) {
-  return async (req: Request<{}, {}, GenerateAnnotationsRequest>, res: Response) => {
+  return async (req: Request<{}, {}, GenerateAnnotationsRequest>, res: Response): Promise<void> => {
     const { lhsText, rhsText, currentAnnotations, useDemoCache } = req.body;
 
     const requestId = requestCounter.next();
@@ -17,19 +17,22 @@ export function generateAnnotationsHandler(requestCounter: Counter, logger: Logg
     if (!lhsText) {
       const error = "lhsText is required.";
       requestLogger.error(`INVALID REQUEST: ${error}`);
-      return res.status(400).send({ error });
+      res.status(400).send({ error });
+      return;
     }
 
     if (!rhsText) {
       const error = "rhsText is required.";
       requestLogger.error(`INVALID REQUEST: ${error}`);
-      return res.status(400).send({ error });
+      res.status(400).send({ error });
+      return;
     }
 
     if (!currentAnnotations) {
       const error = "currentAnnotations is required.";
       requestLogger.error(`INVALID REQUEST: ${error}`);
-      return res.status(400).send({ error });
+      res.status(400).send({ error });
+      return;
     }
 
     try {

@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 var userUUID = uuidv4();
 
 export function chatAboutAnnotationsHandler(requestCounter: Counter, logger: Logger) {
-  return async (req: Request<{}, {}, ChatAboutAnnotationsRequest>, res: Response) => {
+  return async (req: Request<{}, {}, ChatAboutAnnotationsRequest>, res: Response): Promise<void> => {
     const { userInput, lhsText, rhsText, annotations, reset } = req.body;
 
     const requestId = requestCounter.next();
@@ -20,25 +20,29 @@ export function chatAboutAnnotationsHandler(requestCounter: Counter, logger: Log
     if (!userInput) {
       const error = "userInput is required.";
       requestLogger.error(`INVALID REQUEST: ${error}`);
-      return res.status(400).send({ error });
+      res.status(400).send({ error });
+      return;
     }
 
     if (!lhsText) {
       const error = "lhsText is required.";
       requestLogger.error(`INVALID REQUEST: ${error}`);
-      return res.status(400).send({ error });
+      res.status(400).send({ error });
+      return;
     }
 
     if (!rhsText) {
       const error = "rhsText is required.";
       requestLogger.error(`INVALID REQUEST: ${error}`);
-      return res.status(400).send({ error });
+      res.status(400).send({ error });
+      return;
     }
 
     if (!annotations) {
       const error = "annotations is required.";
       requestLogger.error(`INVALID REQUEST: ${error}`);
-      return res.status(400).send({ error });
+      res.status(400).send({ error });
+      return;
     }
 
     if (reset) {

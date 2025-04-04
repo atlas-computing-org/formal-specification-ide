@@ -26,8 +26,8 @@ app.use(cors({
 app.use(bodyParser.json());
 
 // Routes
-app.post('/generate-annotations', generateAnnotationsHandler(requestCounter, logger) as any);
-app.post('/chat-with-assistant', chatAboutAnnotationsHandler(requestCounter, logger) as any);
+app.post('/generate-annotations', generateAnnotationsHandler(requestCounter, logger));
+app.post('/chat-with-assistant', chatAboutAnnotationsHandler(requestCounter, logger));
 
 // Serve static files (including your frontend)
 app.use(express.static('public'));
