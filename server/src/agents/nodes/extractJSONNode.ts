@@ -1,5 +1,6 @@
 import { StateInfo } from "../agent.ts";
 import { Logger } from "../../Logger.ts";
+import { responseContent } from "../agent.ts";
 
 const escapeString = (str: string) => {
   return str.replace(/\\/g, '\\\\');
@@ -26,9 +27,8 @@ const extractJSON = (content: string, logger: Logger) => {
 };
 
 export const extractJSONNode = (state: typeof StateInfo.State) => {
-  const response = state.messages[state.messages.length - 1];
-  const responseContent = response.content as string; 
-  const outputAnnotations = extractJSON(responseContent, state.logger);
+  const resContent = responseContent(state); 
+  const outputAnnotations = extractJSON(resContent, state.logger);
   state.logger.info("Successfully parsed JSON annotations from LLM's response.");
   state.logger.debug(`Parsed annotations:\n${JSON.stringify(outputAnnotations, null, 2)}`);
   return { outputAnnotations: outputAnnotations };

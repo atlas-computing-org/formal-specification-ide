@@ -30,9 +30,9 @@ export function newModel(provider: string): ChatAnthropic | ChatDeepSeek | ChatO
   if (provider === "Anthropic") {
     // https://docs.anthropic.com/en/docs/about-claude/models/all-models 
     return new ChatAnthropic({
-      model: "claude-3-haiku-20240307",
+      model: "claude-3-5-haiku-20241022",
       temperature: 0,
-      maxTokens: undefined,
+      maxTokens: 8192,
       maxRetries: 2,
       apiKey: process.env.ANTHROPIC_API_KEY,
     });
@@ -59,4 +59,10 @@ export function newModel(provider: string): ChatAnthropic | ChatDeepSeek | ChatO
   } else {
     throw new Error(`Unsupported provider: ${provider}`);
   }
+}
+
+export function responseContent(state: typeof StateInfo.State): string {
+  const response = state.messages[state.messages.length - 1];
+  const responseContent = response.content as string; 
+  return responseContent
 }
