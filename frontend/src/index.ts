@@ -17,9 +17,6 @@ import { AI_ASSISTANT_WELCOME_MESSAGE } from './aiAssistantWelcomeMessage.ts';
 // The server URL
 const SERVER_URL = "http://localhost:3001";
 
-// The datasets to choose from
-const DATASET_NAMES = ["SHA-1", "SHA-1-noAnn", "AES", "simpleText"];
-
 const EMPTY_ANNOTATIONS: AnnotationsWithText = {
   mappings: [],
   lhsLabels: [],
@@ -110,22 +107,16 @@ function removeCachedText(annotations: AnnotationsWithText): Annotations {
   };
 }
 
-async function fetchRawData(folderName: string): Promise<Dataset> {
-  const basePath = `/data/${folderName}`;
-
-  // Fetch all in parallel
-  const [fullText, selectedText, preWritten, annotations] = await Promise.all([
-    fetch(`${basePath}/full-text.txt`).then((res) => res.text()),
-    fetch(`${basePath}/selected-text.txt`).then((res) => res.text()),
-    fetch(`${basePath}/pre-written.txt`).then((res) => res.text()),
-    fetch(`${basePath}/annotations.json`).then((res) => res.json()),
-  ]);
-
-  // FIXME: Move this data into the returned data structure instead of hacking the global state
-  HACK_pdfSrc = `${basePath}/pdf.pdf`;
-  HACK_fullText = fullText;
-
-  return { lhsText: selectedText, rhsText: preWritten, annotations: annotations as Annotations };
+async function fetchRawData(datasetName: string): Promise<Dataset> {
+  // Use the new API endpoint to fetch dataset
+  const response = await fetch(`${SERVER_URL}/getDataset/${datasetName}`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch dataset');
+  }
+  const data = await response.json();
+  HACK_pdfSrc = `${SERVER_URL}${data.pdfUrl}`;
+  HACK_fullText = data.fullText;
+  return { lhsText: data.lhsText, rhsText: data.rhsText, annotations: data.annotations as Annotations };
 }
 
 async function fetchData(folderName: string) {
@@ -692,12 +683,12 @@ function updateAppState(dataset: DatasetWithText, highlights: AnnotationsWithTex
 // ---------------------------------------------------------------------
 
 // Populate the dropdown with the static DATASET_NAMES array
-function populateDataSelector() {
+function populateDataSelector(datasetNames: string[]) {
   const selector = document.getElementById("data-selector") as HTMLSelectElement;
   // Clear any existing children (if necessary)
   selector.innerHTML = "";
 
-  DATASET_NAMES.forEach((dataset, idx) => {
+  datasetNames.forEach((dataset, idx) => {
     const option = document.createElement("option");
     option.value = dataset;
     option.textContent = dataset;
@@ -708,8 +699,8 @@ function populateDataSelector() {
   });
 }
 
-function initializeHeader() {
-  populateDataSelector();
+function initializeHeader(datasetNames: string[]) {
+  populateDataSelector(datasetNames);
 
   // Attach event listener for the "Generate Annotations" button
   document.getElementById("generate-annotations")!.addEventListener("click", () => {
@@ -796,8 +787,8 @@ function initializeModals() {
 }
 
 // Initialize content that is not data-dependent
-function initializeStaticContent() {
-  initializeHeader();
+function initializeStaticContent(datasetNames: string[]) {
+  initializeHeader(datasetNames);
   initializeFooter();
   initializeMainStaticContent();
   initializeModals();
@@ -814,10 +805,14 @@ async function loadAndRender(folderName: string) {
 
 // Main function to set up default and attach listeners
 async function main() {
-  initializeStaticContent();
+  const response = await fetch(`${SERVER_URL}/getDatasetNames`);
+  const data = await response.json();
+  const datasetNames: string[] = data.datasetNames;
+
+  initializeStaticContent(datasetNames);
 
   // Load default dataset on initial page load
-  await loadAndRender(DATASET_NAMES[0]);
+  await loadAndRender(datasetNames[0]);
 
   // Add an event listener to the dropdown
   const selector = document.getElementById("data-selector");

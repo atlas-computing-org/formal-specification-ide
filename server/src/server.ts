@@ -1,9 +1,12 @@
-import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import express from 'express';
 import { chatAboutAnnotationsHandler } from './APIEndpoints/chatAboutAnnotations.ts';
 import { generateAnnotationsHandler } from './APIEndpoints/generateAnnotations.ts';
+import { getDatasetNamesHandler } from './APIEndpoints/getDatasetNames.ts';
+import { getDatasetHandler } from './APIEndpoints/getDataset.ts';
 import { getLogger } from './Logger.ts';
+import { DATA_DIR } from './util/fileUtils.ts';
 import { Counter } from '@common/util/Counter.ts';
 
 const PORT = 3001;
@@ -22,12 +25,17 @@ app.use(cors({
   allowedHeaders: 'Content-Type',
 }));
 
+// Serve static files from the data directory
+app.use('/data', express.static(DATA_DIR));
+
 // Middleware to parse JSON
 app.use(bodyParser.json());
 
 // Routes
 app.post('/generate-annotations', generateAnnotationsHandler(requestCounter, logger));
 app.post('/chat-with-assistant', chatAboutAnnotationsHandler(requestCounter, logger));
+app.get('/getDatasetNames', getDatasetNamesHandler(requestCounter, logger));
+app.get('/getDataset/:datasetName', getDatasetHandler(requestCounter, logger));
 
 // Serve static files (including your frontend)
 app.use(express.static('public'));
