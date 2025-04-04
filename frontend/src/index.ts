@@ -6,6 +6,8 @@ import { LeftTabMode, RightTabMode, TabState } from "./TabState.ts";
 import { TextPartitionIndices } from "./TextPartitionIndices.ts";
 import { Annotations, AnnotationsWithText, Dataset, DatasetWithText, Direction, LabelType, TextLabelWithText,
   TextMappingWithText, TextRange, TextRangeWithText, mergeAnnotations } from "@common/annotations.ts";
+import { ChatAboutAnnotationsRequest } from "@common/serverAPI/chatAboutAnnotationsAPI.ts";
+import { GenerateAnnotationsRequest } from "@common/serverAPI/generateAnnotationsAPI.ts";
 import { AI_ASSISTANT_WELCOME_MESSAGE } from './aiAssistantWelcomeMessage.ts';
 
 // ---------------------------------------------------------------------
@@ -530,12 +532,18 @@ async function generateAnnotations(lhsText: string, rhsText: string,
     currentAnnotations: AnnotationsWithText, useDemoCache: boolean) {
   const currentAnnotationsNoCache = removeCachedText(currentAnnotations);
   try {
+    const body: GenerateAnnotationsRequest = {
+      lhsText,
+      rhsText,
+      currentAnnotations: currentAnnotationsNoCache,
+      useDemoCache,
+    };
     const response = await fetch(`${SERVER_URL}/generate-annotations`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ lhsText, rhsText, currentAnnotations: currentAnnotationsNoCache, useDemoCache}),
+      body: JSON.stringify(body),
     });
 
     const data = await response.json();
@@ -588,10 +596,17 @@ async function sendChatMessage() {
 
     const { lhsText, rhsText, annotations } = currentDataset;
     const annotationsNoCache = removeCachedText(annotations);
+    const body: ChatAboutAnnotationsRequest = {
+      userInput: message,
+      lhsText,
+      rhsText,
+      annotations: annotationsNoCache,
+      reset: isNewChat,
+    };
     const response = await fetch(`${SERVER_URL}/chat-with-assistant`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userInput: message, lhsText, rhsText, annotations: annotationsNoCache, reset: isNewChat }),
+      body: JSON.stringify(body),
     });
     isNewChat = false;
     const data = await response.json();

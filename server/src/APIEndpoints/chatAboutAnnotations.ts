@@ -2,12 +2,13 @@ import { Request, Response } from 'express';
 import { chatWithAssistant } from '../annotation/annotate.ts';
 import { Logger } from '../Logger.ts';
 import { Counter } from '@common/util/Counter.ts';
+import { ChatAboutAnnotationsRequest } from "@common/serverAPI/chatAboutAnnotationsAPI.ts";
 import { v4 as uuidv4 } from 'uuid';
 
 var userUUID = uuidv4();
 
 export function chatAboutAnnotationsHandler(requestCounter: Counter, logger: Logger) {
-  return async (req: Request, res: Response) => {
+  return async (req: Request<{}, {}, ChatAboutAnnotationsRequest>, res: Response) => {
     const { userInput, lhsText, rhsText, annotations, reset } = req.body;
 
     const requestId = requestCounter.next();

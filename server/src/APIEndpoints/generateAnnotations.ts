@@ -2,9 +2,10 @@ import { Request, Response } from 'express';
 import { annotate} from '../annotation/annotate.ts';
 import { Logger } from '../Logger.ts';
 import { Counter } from '@common/util/Counter.ts';
+import { GenerateAnnotationsRequest } from "@common/serverAPI/generateAnnotationsAPI.ts";
 
 export function generateAnnotationsHandler(requestCounter: Counter, logger: Logger) {
-  return async (req: Request, res: Response) => {
+  return async (req: Request<{}, {}, GenerateAnnotationsRequest>, res: Response) => {
     const { lhsText, rhsText, currentAnnotations, useDemoCache } = req.body;
 
     const requestId = requestCounter.next();
