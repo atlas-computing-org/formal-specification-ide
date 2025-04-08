@@ -3,3 +3,6 @@ frontend/dist
 *.swp
 .vscode
 log/
+
+**/.DS_Store
+

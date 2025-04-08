@@ -1,0 +1,7 @@
+langchain
+langgraph
+langchain-ollama
+langchain_anthropic
+tqdm
+python-dotenv
+jinja2
