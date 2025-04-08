@@ -22,7 +22,7 @@ export function getDatasetNamesHandler(requestCounter: Counter, logger: Logger) 
     } catch (e) {
       const error = `Failed to read datasets directory. ${e}`;
       requestLogger.error(`REQUEST FAILED: ${error}`);
-      res.status(500).send({ error });
+      res.status(400).send({ error });
     }
   }
 }

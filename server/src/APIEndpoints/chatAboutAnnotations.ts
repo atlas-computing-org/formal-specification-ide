@@ -57,7 +57,7 @@ export function chatAboutAnnotationsHandler(requestCounter: Counter, logger: Log
     } catch (e) {
       const error = `Error chatting with assistant. ${e}`;
       requestLogger.error(`REQUEST FAILED: ${error}`);
-      res.status(500).send({ error });
+      res.status(400).send({ error });
     }
   }
 }

@@ -42,7 +42,7 @@ export function getDatasetHandler(requestCounter: Counter, logger: Logger) {
     } catch (e) {
       const error = `Failed to read dataset files. ${e}`;
       requestLogger.error(`REQUEST FAILED: ${error}`);
-      res.status(500).send({ error });
+      res.status(400).send({ error });
     }
   }
 }

@@ -42,7 +42,7 @@ export function generateAnnotationsHandler(requestCounter: Counter, logger: Logg
     } catch (e) {
       const error = `Error generating annotations. ${e}`;
       requestLogger.error(`REQUEST FAILED: ${error}`);
-      res.status(500).send({ error });
+      res.status(400).send({ error });
     }
   }
 }
