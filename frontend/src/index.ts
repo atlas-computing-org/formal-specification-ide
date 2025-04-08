@@ -718,8 +718,8 @@ function initializeFooter() {
     const textPanelsDiv = document.getElementById('text-panels')!;
     textPanelsDiv.classList.toggle('highlight-all');
     textPanelsDiv.classList.contains('highlight-all') ?
-      highlightAllButton.innerText = "Unhighlight All" : 
-      highlightAllButton.innerText = "Highlight All";
+      highlightAllButton.textContent = "Unhighlight All" : 
+      highlightAllButton.textContent = "Highlight All";
   });
 
   // Toggle annotations panel visibility on click
