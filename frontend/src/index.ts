@@ -713,9 +713,13 @@ function initializeHeader() {
 
 function initializeFooter() {
   // Toggle highlighting all annotations on click
-  document.getElementById('highlight-all-annotations')!.addEventListener('click', () => {
+  const highlightAllButton = document.getElementById('highlight-all-annotations')!;
+  highlightAllButton.addEventListener('click', () => {
     const textPanelsDiv = document.getElementById('text-panels')!;
     textPanelsDiv.classList.toggle('highlight-all');
+    textPanelsDiv.classList.contains('highlight-all') ?
+      highlightAllButton.innerText = "Unhighlight All" : 
+      highlightAllButton.innerText = "Highlight All";
   });
 
   // Toggle annotations panel visibility on click
