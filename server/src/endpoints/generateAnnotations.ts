@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { annotate } from '../APIEndpoints/annotate.ts';
+import { annotateGraph } from "../agents/graphs/annotateGraph.ts";
 import { Logger } from '../Logger.ts';
 import { Counter } from '@common/util/Counter.ts';
 import { GenerateAnnotationsRequest, GenerateAnnotationsResponse } from "@common/serverAPI/generateAnnotationsAPI.ts";
@@ -39,7 +39,9 @@ export function generateAnnotationsHandler(requestCounter: Counter, logger: Logg
     }
 
     try {
-      const response = await annotate(userUUID, lhsText, rhsText, currentAnnotations, useDemoCache, requestLogger);
+      const config = { configurable: { thread_id: userUUID } };
+      const output = await annotateGraph.invoke({ lhsText, rhsText, currentAnnotations, useDemoCache, logger }, config);
+      const response = output.decodedAnnotations;
       if ("error" in response) {
         requestLogger.error(`REQUEST FAILED: ${response.error}`);
         res.status(400).send(response);
