@@ -1,10 +1,10 @@
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import express, { Request, Response, NextFunction } from 'express';
-import { chatAboutAnnotationsHandler } from './APIEndpoints/chatAboutAnnotations.ts';
-import { generateAnnotationsHandler } from './APIEndpoints/generateAnnotations.ts';
-import { getDatasetNamesHandler } from './APIEndpoints/getDatasetNames.ts';
-import { getDatasetHandler } from './APIEndpoints/getDataset.ts';
+import { chatAboutAnnotationsHandler } from './endpoints/chatAboutAnnotations.ts';
+import { generateAnnotationsHandler } from './endpoints/generateAnnotations.ts';
+import { getDatasetNamesHandler } from './endpoints/getDatasetNames.ts';
+import { getDatasetHandler } from './endpoints/getDataset.ts';
 import { getLogger } from './Logger.ts';
 import { DATA_DIR } from './util/fileUtils.ts';
 import { Counter } from '@common/util/Counter.ts';
