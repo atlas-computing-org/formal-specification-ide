@@ -1,6 +1,6 @@
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import { chatAboutAnnotationsHandler } from './APIEndpoints/chatAboutAnnotations.ts';
 import { generateAnnotationsHandler } from './APIEndpoints/generateAnnotations.ts';
 import { getDatasetNamesHandler } from './APIEndpoints/getDatasetNames.ts';
@@ -29,7 +29,7 @@ app.use(cors({
 app.use('/data', express.static(DATA_DIR));
 
 // Middleware to parse JSON
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '1mb'}));
 
 // Routes
 app.post('/generate-annotations', generateAnnotationsHandler(requestCounter, logger));
@@ -39,6 +39,17 @@ app.get('/getDataset/:datasetName', getDatasetHandler(requestCounter, logger));
 
 // Serve static files (including your frontend)
 app.use(express.static('public'));
+
+// Error handling middleware
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  if (err.type === 'entity.too.large') {
+    logger.error(`Payload too large error: ${err.message}`);
+    res.status(413).json({ error: "Payload too large" });
+  } else {
+    logger.error(`Unhandled error: ${err.message}`);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 // Start the server
 app.listen(PORT, () => {
