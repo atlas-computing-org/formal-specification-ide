@@ -30,9 +30,9 @@ export function newModel(provider: string): ChatAnthropic | ChatDeepSeek | ChatO
   if (provider === "Anthropic") {
     // https://docs.anthropic.com/en/docs/about-claude/models/all-models 
     return new ChatAnthropic({
-      model: "claude-3-5-haiku-20241022",
+      model: "claude-3-7-sonnet-20250219",
       temperature: 0,
-      maxTokens: 8192,
+      maxTokens: 10000,
       maxRetries: 2,
       apiKey: process.env.ANTHROPIC_API_KEY,
     });
