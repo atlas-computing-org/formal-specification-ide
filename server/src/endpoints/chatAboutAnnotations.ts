@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
-import { chatWithAssistant } from '../APIEndpoints/chat.ts';
+import { chatGraph } from "../agents/graphs/chatGraph.ts";
+import { responseContent } from "../agents/agent.ts";
 import { Logger } from '../Logger.ts';
 import { Counter } from '@common/util/Counter.ts';
 import { ChatAboutAnnotationsRequest, ChatAboutAnnotationsResponse } from "@common/serverAPI/chatAboutAnnotationsAPI.ts";
@@ -50,10 +51,11 @@ export function chatAboutAnnotationsHandler(requestCounter: Counter, logger: Log
     }
 
     try {
-      const response = await chatWithAssistant(userUUID, userInput, lhsText, rhsText, annotations, reset, requestLogger);
-      requestLogger.debug(`RESPONSE!: ${response}`);
-      requestLogger.debug(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
-      res.json(response);
+      const config = { configurable: { thread_id: userUUID } };
+      const output = await chatGraph.invoke({ userInput, lhsText, rhsText, currentAnnotations: annotations, resetChat: reset, logger }, config);
+      const response = responseContent(output);
+      requestLogger.debug(`RESPONSE: ${response}`);
+      res.json({ response });
     } catch (e) {
       const error = `Error chatting with assistant. ${e}`;
       requestLogger.error(`REQUEST FAILED: ${error}`);
