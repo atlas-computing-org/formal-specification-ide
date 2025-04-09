@@ -6,3 +6,4 @@ const __dirname = path.dirname(__filename);
 
 export const DATA_DIR = path.join(__dirname, '../../data');
 export const SRC_DIR = path.join(__dirname, '../../src');
+export const ROOT_DIR = path.join(__dirname, '../../..');
