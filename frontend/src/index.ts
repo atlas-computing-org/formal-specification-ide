@@ -8,6 +8,8 @@ import { Annotations, AnnotationsWithText, Dataset, DatasetWithText, Direction, 
   TextMappingWithText, TextRange, TextRangeWithText, mergeAnnotations } from "@common/annotations.ts";
 import { ChatAboutAnnotationsRequest, ChatAboutAnnotationsResponse } from "@common/serverAPI/chatAboutAnnotationsAPI.ts";
 import { GenerateAnnotationsRequest, GenerateAnnotationsResponse } from "@common/serverAPI/generateAnnotationsAPI.ts";
+import { GetDatasetResponse } from "@common/serverAPI/getDatasetAPI.ts";
+import { GetDatasetNamesResponse } from "@common/serverAPI/getDatasetNamesAPI.ts";
 import { AI_ASSISTANT_WELCOME_MESSAGE } from './aiAssistantWelcomeMessage.ts';
 
 // ---------------------------------------------------------------------
@@ -109,14 +111,18 @@ function removeCachedText(annotations: AnnotationsWithText): Annotations {
 
 async function fetchRawData(datasetName: string): Promise<Dataset> {
   // Use the new API endpoint to fetch dataset
-  const response = await fetch(`${SERVER_URL}/getDataset/${datasetName}`);
-  if (!response.ok) {
+  const responseRaw = await fetch(`${SERVER_URL}/getDataset/${datasetName}`);
+  if (!responseRaw.ok) {
     throw new Error('Failed to fetch dataset');
   }
-  const data = await response.json();
-  HACK_pdfSrc = `${SERVER_URL}${data.pdfUrl}`;
-  HACK_fullText = data.fullText;
-  return { lhsText: data.lhsText, rhsText: data.rhsText, annotations: data.annotations as Annotations };
+  const response = await responseRaw.json() as GetDatasetResponse;
+  if ("error" in response) {
+    throw new Error(response.error);
+  }
+  const { lhsText, rhsText, annotations, fullText, pdfUrl } = response.data;
+  HACK_pdfSrc = `${SERVER_URL}${pdfUrl}`;
+  HACK_fullText = fullText;
+  return { lhsText, rhsText, annotations };
 }
 
 async function fetchData(folderName: string) {
@@ -811,9 +817,15 @@ async function loadAndRender(folderName: string) {
 
 // Main function to set up default and attach listeners
 async function main() {
-  const response = await fetch(`${SERVER_URL}/getDatasetNames`);
-  const data = await response.json();
-  const datasetNames: string[] = data.datasetNames;
+  const responseRaw = await fetch(`${SERVER_URL}/getDatasetNames`);
+  if (!responseRaw.ok) {
+    throw new Error('Failed to fetch dataset names');
+  }
+  const response = await responseRaw.json() as GetDatasetNamesResponse;
+  if ("error" in response) {
+    throw new Error(response.error);
+  }
+  const { datasetNames } = response.data;
 
   initializeStaticContent(datasetNames);
 

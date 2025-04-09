@@ -3,9 +3,10 @@ import { promises as fs } from 'fs';
 import { Logger } from '../Logger.ts';
 import { DATA_DIR } from '../util/fileUtils.ts';
 import { Counter } from '@common/util/Counter.ts';
+import { GetDatasetNamesResponse } from "@common/serverAPI/getDatasetNamesAPI.ts";
 
 export function getDatasetNamesHandler(requestCounter: Counter, logger: Logger) {
-  return async (req: Request, res: Response): Promise<void> => {
+  return async (req: Request, res: Response<GetDatasetNamesResponse>): Promise<void> => {
     const requestId = requestCounter.next();
     const requestLogger = logger.withMessagePrefix(`GET /getDatasetNames (${requestId}): `);
 
@@ -18,7 +19,7 @@ export function getDatasetNamesHandler(requestCounter: Counter, logger: Logger) 
         .map(entry => entry.name);
       const response = { datasetNames };
       requestLogger.debug(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
-      res.json(response);
+      res.json({ data: response });
     } catch (e) {
       const error = `Failed to read datasets directory. ${e}`;
       requestLogger.error(`REQUEST FAILED: ${error}`);

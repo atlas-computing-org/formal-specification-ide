@@ -4,9 +4,11 @@ import path from 'path';
 import { Logger } from '../Logger.ts';
 import { DATA_DIR } from '../util/fileUtils.ts';
 import { Counter } from '@common/util/Counter.ts';
+import { GetDatasetResponse } from "@common/serverAPI/getDatasetAPI.ts";
+import { Annotations } from '@common/annotations.ts';
 
 export function getDatasetHandler(requestCounter: Counter, logger: Logger) {
-  return async (req: Request, res: Response): Promise<void> => {
+  return async (req: Request, res: Response<GetDatasetResponse>): Promise<void> => {
     const datasetName = req.params.datasetName;
 
     const requestId = requestCounter.next();
@@ -28,7 +30,7 @@ export function getDatasetHandler(requestCounter: Counter, logger: Logger) {
         fs.readFile(path.join(datasetPath, 'pre-written.txt'), 'utf-8'),
         fs.readFile(path.join(datasetPath, 'annotations.json'), 'utf-8'),
       ]);
-      const annotations = JSON.parse(annotationsRaw);
+      const annotations = JSON.parse(annotationsRaw) as Annotations;
       const pdfUrl = `/data/${datasetName}/pdf.pdf`;
       const response = {
         lhsText: selectedText,
@@ -38,7 +40,7 @@ export function getDatasetHandler(requestCounter: Counter, logger: Logger) {
         pdfUrl,
       };
       requestLogger.debug(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
-      res.json(response);
+      res.json({ data: response });
     } catch (e) {
       const error = `Failed to read dataset files. ${e}`;
       requestLogger.error(`REQUEST FAILED: ${error}`);
