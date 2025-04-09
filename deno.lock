@@ -24,6 +24,7 @@
     "npm:tsx@^4.19.2": "4.19.3",
     "npm:typescript@^5.7.3": "5.8.2",
     "npm:vite@^6.0.7": "6.2.3_tsx@4.19.3",
+    "npm:winston-transport@^4.9.0": "4.9.0",
     "npm:winston@^3.17.0": "3.17.0"
   },
   "jsr": {
@@ -1704,6 +1705,7 @@
         "npm:tsx@^4.19.2",
         "npm:typescript@^5.7.3",
         "npm:vite@^6.0.7",
+        "npm:winston-transport@^4.9.0",
         "npm:winston@^3.17.0"
       ]
     }
