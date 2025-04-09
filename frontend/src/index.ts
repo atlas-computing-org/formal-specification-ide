@@ -6,8 +6,8 @@ import { LeftTabMode, RightTabMode, TabState } from "./TabState.ts";
 import { TextPartitionIndices } from "./TextPartitionIndices.ts";
 import { Annotations, AnnotationsWithText, Dataset, DatasetWithText, Direction, LabelType, TextLabelWithText,
   TextMappingWithText, TextRange, TextRangeWithText, mergeAnnotations } from "@common/annotations.ts";
-import { ChatAboutAnnotationsRequest } from "@common/serverAPI/chatAboutAnnotationsAPI.ts";
-import { GenerateAnnotationsRequest } from "@common/serverAPI/generateAnnotationsAPI.ts";
+import { ChatAboutAnnotationsRequest, ChatAboutAnnotationsResponse } from "@common/serverAPI/chatAboutAnnotationsAPI.ts";
+import { GenerateAnnotationsRequest, GenerateAnnotationsResponse } from "@common/serverAPI/generateAnnotationsAPI.ts";
 import { AI_ASSISTANT_WELCOME_MESSAGE } from './aiAssistantWelcomeMessage.ts';
 
 // ---------------------------------------------------------------------
@@ -529,7 +529,7 @@ async function generateAnnotations(lhsText: string, rhsText: string,
       currentAnnotations: currentAnnotationsNoCache,
       useDemoCache,
     };
-    const response = await fetch(`${SERVER_URL}/generate-annotations`, {
+    const responseRaw = await fetch(`${SERVER_URL}/generate-annotations`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -537,15 +537,18 @@ async function generateAnnotations(lhsText: string, rhsText: string,
       body: JSON.stringify(body),
     });
 
-    const data = await response.json();
-    console.log("Claude's response:", data);
+    const response = await responseRaw.json() as GenerateAnnotationsResponse;
+    console.log("Claude's response:", response);
 
-    if (data.error) {
-      throw new Error(data.error);
+    if ("error" in response) {
+      throw new Error(response.error);
     }
 
+    const newAnnotations = response.data;
+    const { rawModelOutput } = response.debugInfo;
+
     // Update in-memory annotations with the new annotations
-    const newAnnotations = data.response as Annotations;
+    // const newAnnotations = data.response as Annotations;
     const annotations = mergeAnnotations(currentAnnotationsNoCache, newAnnotations);
     const dataset = cacheDatasetText({ lhsText, rhsText, annotations });
     updateData(dataset);
@@ -594,14 +597,17 @@ async function sendChatMessage() {
       annotations: annotationsNoCache,
       reset: isNewChat,
     };
-    const response = await fetch(`${SERVER_URL}/chat-with-assistant`, {
+    const responseRaw = await fetch(`${SERVER_URL}/chat-with-assistant`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     });
     isNewChat = false;
-    const data = await response.json();
-    addChatMessage(data.response, "assistant");
+    const response = await responseRaw.json() as ChatAboutAnnotationsResponse;
+    if ("error" in response) {
+      throw new Error(response.error);
+    }
+    addChatMessage(response.data, "assistant");
   }
 }
 

@@ -2,13 +2,13 @@ import { Request, Response } from 'express';
 import { chatWithAssistant } from '../annotation/annotate.ts';
 import { Logger } from '../Logger.ts';
 import { Counter } from '@common/util/Counter.ts';
-import { ChatAboutAnnotationsRequest } from "@common/serverAPI/chatAboutAnnotationsAPI.ts";
+import { ChatAboutAnnotationsRequest, ChatAboutAnnotationsResponse } from "@common/serverAPI/chatAboutAnnotationsAPI.ts";
 import { v4 as uuidv4 } from 'uuid';
 
 var userUUID = uuidv4();
 
 export function chatAboutAnnotationsHandler(requestCounter: Counter, logger: Logger) {
-  return async (req: Request<{}, {}, ChatAboutAnnotationsRequest>, res: Response): Promise<void> => {
+  return async (req: Request<{}, {}, ChatAboutAnnotationsRequest>, res: Response<ChatAboutAnnotationsResponse>): Promise<void> => {
     const { userInput, lhsText, rhsText, annotations, reset } = req.body;
 
     const requestId = requestCounter.next();
@@ -53,7 +53,7 @@ export function chatAboutAnnotationsHandler(requestCounter: Counter, logger: Log
       const response = await chatWithAssistant(userUUID, userInput, lhsText, rhsText, annotations, reset, requestLogger);
       requestLogger.debug(`RESPONSE!: ${response}`);
       requestLogger.debug(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
-      res.json({ response });
+      res.json(response);
     } catch (e) {
       const error = `Error chatting with assistant. ${e}`;
       requestLogger.error(`REQUEST FAILED: ${error}`);
