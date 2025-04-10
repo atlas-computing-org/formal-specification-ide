@@ -1,0 +1,104 @@
+# 5. PREPROCESSING
+
+Preprocessing consists of three steps: padding the message, $M$ (Sec. 5.1), parsing the message into message blocks (Sec. 5.2), and setting the initial hash value, $H^{(0)}$ (Sec. 5.3).
+
+## 5.1 Padding the Message
+
+The purpose of this padding is to ensure that the padded message is a multiple of 512 or 1024 bits, depending on the algorithm. Padding can be inserted before hash computation begins on a message, or at any other time during the hash computation prior to processing the block(s) that will contain the padding.
+
+### 5.1.1 SHA-1, SHA-224 and SHA-256
+
+Suppose that the length of the message, $M$, is $\ell$ bits. Append the bit "1" to the end of the message, followed by $k$ zero bits, where $k$ is the smallest, non-negative solution to the equation $\ell+1+k \equiv 448 \bmod 512$. Then append the 64-bit block that is equal to the number $\ell$ expressed using a binary representation. For example, the (8-bit ASCII) message "abc" has length $8 \times 3=24$, so the message is padded with a one bit, then $448-(24+1)=423$ zero bits, and then the message length, to become the 512-bit padded message
+
+[IMAGE: Padded message representation]
+
+The length of the padded message should now be a multiple of 512 bits.
+
+## 5.2 Parsing the Message
+
+The message and its padding must be parsed into $N m$-bit blocks.
+
+### 5.2.1 SHA-1, SHA-224 and SHA-256
+
+For SHA-1, SHA-224 and SHA-256, the message and its padding are parsed into $N$ 512-bit blocks, $M^{(1)}, M^{(2)}, \ldots, M^{(N)}$. Since the 512 bits of the input block may be expressed as sixteen 32-bit words, the first 32 bits of message block $i$ are denoted $M_{0}^{(i)}$, the next 32 bits are $M_{1}^{(i)}$, and so on up to $M_{15}^{(i)}$.
+
+## 5.3 Setting the Initial Hash Value ($H^{(0)}$)
+
+Before hash computation begins for each of the secure hash algorithms, the initial hash value, $H^{(0)}$, must be set. The size and number of words in $H^{(0)}$ depends on the message digest size.
+
+### 5.3.1 SHA-1
+
+For SHA-1, the initial hash value, $H^{(0)}$, shall consist of the following five 32-bit words, in hex:
+
+$$
+\begin{aligned}
+H_{0}^{(0)} &= 67452301 \\
+H_{1}^{(0)} &= \text{efcdab89} \\
+H_{2}^{(0)} &= 98\mathrm{badcfe} \\
+H_{3}^{(0)} &= 10325476 \\
+H_{4}^{(0)} &= \mathrm{c}3\mathrm{d}2\mathrm{e}1\mathrm{f0}
+\end{aligned}
+$$
+
+# 6. SECURE HASH ALGORITHMS
+
+In the following sections, the hash algorithms are not described in ascending order of size. SHA-256 is described before SHA-224 because the specification for SHA-224 is identical to SHA-256, except that different initial hash values are used, and the final hash value is truncated to 224 bits for SHA-224. The same is true for SHA-512, SHA-384, SHA-512/224 and SHA-512/256, except that the final hash value is truncated to 224 bits for SHA-512/224, 256 bits for SHA$512/256$ or 384 bits for SHA-384.
+
+For each of the secure hash algorithms, there may exist alternate computation methods that yield identical results; one example is the alternative SHA-1 computation described in Sec. 6.1.3. Such alternate methods may be implemented in conformance to this standard.
+
+## 6.1 SHA-1
+
+SHA-1 may be used to hash a message, $M$, having a length of $\ell$ bits, where $0 \leq \ell < 2^{64}$. The algorithm uses 1) a message schedule of eighty 32-bit words, 2) five working variables of 32 bits each, and 3) a hash value of five 32-bit words. The final result of SHA-1 is a 160-bit message digest.
+
+The words of the message schedule are labeled $W_{0}, W_{1}, \ldots, W_{79}$. The five working variables are labeled $\boldsymbol{a}, \boldsymbol{b}, \boldsymbol{c}, \boldsymbol{d}$, and $\boldsymbol{e}$. The words of the hash value are labeled $H_{0}^{(i)}, H_{1}^{(i)}, \ldots, H_{4}^{(i)}$, which will hold the initial hash value, $H^{(0)}$, replaced by each successive intermediate hash value (after each message block is processed), $H^{(i)}$, and ending with the final hash value, $H^{(N)}$. SHA-1 also uses a single temporary word, $T$.
+
+### 6.1.1 SHA-1 Preprocessing
+
+1. Set the initial hash value, $H^{(0)}$, as specified in Sec. 5.3.1.
+2. The message is padded and parsed as specified in Section 5.
+
+### 6.1.2 SHA-1 Hash Computation
+
+The SHA-1 hash computation uses functions and constants previously defined in Sec. 4.1.1 and Sec. 4.2.1, respectively. Addition (+) is performed modulo $2^{32}$.
+
+Each message block, $M^{(1)}, M^{(2)}, \ldots, M^{(N)}$, is processed in order, using the following steps:
+
+For $i=1$ to $N$:
+{
+1. Prepare the message schedule, $\{W_{t}\}$:
+   $$W_{t}= \begin{cases}
+   M_{t}^{(i)} & 0 \leq t \leq 15 \\
+   ROTL^{1}(W_{t-3} \oplus W_{t-8} \oplus W_{t-14} \oplus W_{t-16}) & 16 \leq t \leq 79
+   \end{cases}$$
+2. Initialize the five working variables, $\boldsymbol{a}, \boldsymbol{b}, \boldsymbol{c}, \boldsymbol{d}$, and $\boldsymbol{e}$, with the $(i-1)^{st}$ hash value:
+   $$\begin{aligned}
+   a &= H_{0}^{(i-1)} \\
+   b &= H_{1}^{(i-1)} \\
+   c &= H_{2}^{(i-1)} \\
+   d &= H_{3}^{(i-1)} \\
+   e &= H_{4}^{(i-1)}
+   \end{aligned}$$
+3. For $t=0$ to 79:
+   {
+   $$\begin{aligned}
+   T &= ROTL^{5}(a) + f_{t}(b, c, d) + e + K_{t} + W_{t} \\
+   e &= d \\
+   d &= c \\
+   c &= ROTL^{30}(b) \\
+   b &= a \\
+   a &= T
+   \end{aligned}$$
+   }
+4. Compute the $i^{th}$ intermediate hash value $H^{(i)}$:
+   $$\begin{aligned}
+   H_{0}^{(i)} &= a + H_{0}^{(i-1)} \\
+   H_{1}^{(i)} &= b + H_{1}^{(i-1)} \\
+   H_{2}^{(i)} &= c + H_{2}^{(i-1)} \\
+   H_{3}^{(i)} &= d + H_{3}^{(i-1)} \\
+   H_{4}^{(i)} &= e + H_{4}^{(i-1)}
+   \end{aligned}$$
+}
+
+After repeating steps one through four a total of $N$ times (i.e., after processing $M^{(N)}$), the resulting 160-bit message digest of the message, $M$, is
+
+$$H_{0}^{(N)}||H_{1}^{(N)}||H_{2}^{(N)}||H_{3}^{(N)}||H_{4}^{(N)}$$
