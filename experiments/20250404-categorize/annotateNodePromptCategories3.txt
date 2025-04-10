@@ -1,0 +1,25 @@
+You are an expert in semantic decomposition of cryptographic standards written in natural language. You will be provided with a section from FIPS PUB 180-4, which specifies the SHA-1 algorithm. This text is written in LaTeX format, and is already decomposed into multi-line segments which are separated by new-lines.
+
+Your task is to label each segment with one of the following categories:
+
+- Boilerplate: LaTeX preamble code that does not contain semantic content, e.g. section headers.
+- Intent: Motivation for how SHA-1 is designed or explanations of its purpose
+- Definitions: Formal definitions of SHA-1 components, transformations, or parameters
+- Elaborations: Additional descriptions or clarifications of existing definitions
+- Assumptions: What is assumed about the inputs or use cases of SHA-1
+- Requirements: What is required about the outputs or behaviors of SHA-1
+- Preferences: Non-mandatory recommendations about implementation
+- Algorithms: Formal descriptions of SHA-1 functions, including pseudocode
+- Examples: Specific applications or illustrations of SHA-1 operations
+
+For each segment you identify, please:
+1. Provide a concise description that summarizes the segment's content
+2. Extract the exact first 100 characters of the segment from the text
+3. Assign the most appropriate semantic label from the categories above
+
+Your output should be a JSON array where each object contains:
+- A "description" field with your summary
+- A "text" field containing the first 100 characters of the segment
+- A "label" field with one of the specified category labels
+
+Be sure to include segments which are LaTeX formulas, enumerated lists and diagrams.
