@@ -1,0 +1,37 @@
+{
+    "name": "spec-mapper",
+    "displayName": "Spec Mapper",
+    "description": "A description for your VS Code extension.",
+    "version": "0.0.1",
+    "engines": {
+      "vscode": "^1.70.0"
+    },
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "categories": ["Other"],
+    "main": "./out/extension.js",
+    "contributes": {
+      "commands": [
+        {
+          "command": "spec-mapper.showWebview",
+          "title": "Start Spec Mapper"
+        }
+      ]
+    },
+    "scripts": {
+      "build": "tsc -p .",
+      "watch": "tsc -watch -p .",
+      "prepublish": "npm run build"
+    },
+    "dependencies": {
+      
+    },
+    "devDependencies": {
+      "@types/node": "^18.0.0",
+      "typescript": "^4.8.0",
+      "@types/vscode": "^1.70.0",
+      "vsce": "^2.10.0"
+    }
+  }
+  

@@ -2,6 +2,10 @@
   "name": "spec-mapper",
   "version": "1.0.0",
   "type": "module",
+  "workspaces": [
+    "extension",
+    "webview"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -22,6 +26,7 @@
     "@langchain/core": "^0.3.37",
     "@langchain/langgraph": "^0.2.44",
     "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
     "express": "^4.21.2",
     "fuse.js": "^7.1.0",
     "langchain": "^0.3.11",

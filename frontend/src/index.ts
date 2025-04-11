@@ -18,7 +18,8 @@ import { AI_ASSISTANT_WELCOME_MESSAGE } from './aiAssistantWelcomeMessage.ts';
 // ---------------------------------------------------------------------
 
 // The server URL
-const SERVER_URL = "http://localhost:3001";
+const SERVER_PORT = __PORTS__.BACKEND_PORT;
+const SERVER_URL = `http://localhost:${SERVER_PORT}`;
 
 const EMPTY_ANNOTATIONS: AnnotationsWithText = {
   mappings: [],
