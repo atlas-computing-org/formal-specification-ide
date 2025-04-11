@@ -1,10 +1,23 @@
 {
-	"extends": "../tsconfig.json",
-	"compilerOptions": {
-		"outDir": "out",
-		"sourceMap": true,
-		"strict": true,
-		"rootDir": "src"
-	},
-	"exclude": ["node_modules", ".vscode-test"]
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "CommonJS",
+        "moduleResolution": "node",
+        "rootDir": "src",
+        "outDir": "out",
+        "strict": true,
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true
+    },
+    "include": [
+        "global.d.ts",
+        "src/**/*.ts",
+        "src/**/*.html"
+    ],
+    "exclude": [
+        "node_modules",
+        ".vscode-test"
+    ]
 }

@@ -16,6 +16,14 @@
         {
           "command": "spec-mapper.showWebview",
           "title": "Start Spec Mapper"
+        },
+        {
+          "command": "spec-mapper.loadFileContents",
+          "title": "Load File Contents"
+        },
+        {
+          "command": "spec-mapper.sayHello",
+          "title": "Hello world"
         }
       ]
     },
@@ -25,7 +33,6 @@
       "prepublish": "npm run build"
     },
     "dependencies": {
-      
     },
     "devDependencies": {
       "@types/node": "^18.0.0",
