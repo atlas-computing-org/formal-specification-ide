@@ -5,7 +5,7 @@ import { START, END, MessagesAnnotation, StateGraph, MemorySaver, Annotation } f
 import { Annotations, LabelType, TextMapping, TextRange } from "@common/annotations.ts";
 import { SYSTEM_PROMPT, CHAT_PROMPT } from './prompt.ts';
 import { Logger } from '../Logger.ts';
-import { GenerateAnnotationsSuccessResponse } from '@common/serverAPI/generateAnnotationsAPI.ts';
+import { GenerateAnnotationsResponse } from '@common/serverAPI/generateAnnotationsAPI.ts';
 import { ChatAboutAnnotationsSuccessResponse } from '@common/serverAPI/chatAboutAnnotationsAPI.ts';
 
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
@@ -279,31 +279,35 @@ const readDemoCachedResponse = async (logger: Logger) => {
 }
 
 const annotateWithClaude = async (lhsText: string, rhsText: string, currentAnnotations: Annotations,
-    useDemoCache: boolean, logger: Logger): Promise<GenerateAnnotationsSuccessResponse>  => {
-
+    useDemoCache: boolean, logger: Logger): Promise<GenerateAnnotationsResponse>  => {
   const userPrompt = makeUserPrompt(lhsText, rhsText, currentAnnotations, logger);
 
   const rawModelOutput = useDemoCache ?
     await readDemoCachedResponse(logger) :
     await queryClaude(userPrompt, logger);
 
-  logger.debug(`Claude's response:\n${rawModelOutput}`);
+  try {
+    logger.debug(`Claude's response:\n${rawModelOutput}`);
 
-  const outputAnnotations = extractJSON(rawModelOutput, logger);
-  logger.info("Successfully parsed JSON annotations from Claude's response.");
-  logger.debug(`Parsed annotations:\n${JSON.stringify(outputAnnotations, null, 2)}`);
+    const outputAnnotations = extractJSON(rawModelOutput, logger);
+    logger.info("Successfully parsed JSON annotations from Claude's response.");
+    logger.debug(`Parsed annotations:\n${JSON.stringify(outputAnnotations, null, 2)}`);
 
-  validateJSONAnnotations(outputAnnotations);
-  logger.info("Validated JSON annotations.");
+    validateJSONAnnotations(outputAnnotations);
+    logger.info("Validated JSON annotations.");
 
-  const decodedAnnotations = decodeAnnotationsFromModelFormat(outputAnnotations, lhsText, rhsText, logger);
-  logger.info("Finished decoding annotations.");
+    const decodedAnnotations = decodeAnnotationsFromModelFormat(outputAnnotations, lhsText, rhsText, logger);
+    logger.info("Finished decoding annotations.");
 
-  return { data: decodedAnnotations, debugInfo: { rawModelOutput } };
+    return { data: decodedAnnotations, debugInfo: { rawModelOutput } };
+  } catch (e) {
+    const error = `Error generating annotations. ${e}`;
+    return { error, debugInfo: { rawModelOutput } };
+  }
 };
 
 const annotate = async (lhsText: string, rhsText: string, currentAnnotations: Annotations,
-    useDemoCache: boolean, logger: Logger): Promise<GenerateAnnotationsSuccessResponse> => {
+    useDemoCache: boolean, logger: Logger): Promise<GenerateAnnotationsResponse> => {
   return annotateWithClaude(lhsText, rhsText, currentAnnotations, useDemoCache, logger);
 }
 

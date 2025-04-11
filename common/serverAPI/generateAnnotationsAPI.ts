@@ -1,6 +1,6 @@
 import { Annotations, TextRange } from "@common/annotations.ts";
 import { DebugInfo } from "@common/DebugInfo.ts";
-import { ErrorResponse } from "./ErrorResponse.ts";
+import { ErrorResponseWithDebugInfo } from "./ErrorResponseWithDebugInfo.ts";
 
 export interface GenerateAnnotationsRequest {
   lhsText: string;
@@ -14,4 +14,4 @@ export interface GenerateAnnotationsSuccessResponse {
   debugInfo: DebugInfo;
 }
 
-export type GenerateAnnotationsResponse = GenerateAnnotationsSuccessResponse | ErrorResponse;
+export type GenerateAnnotationsResponse = GenerateAnnotationsSuccessResponse | ErrorResponseWithDebugInfo;

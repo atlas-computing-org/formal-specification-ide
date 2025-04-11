@@ -37,8 +37,14 @@ export function generateAnnotationsHandler(requestCounter: Counter, logger: Logg
 
     try {
       const response = await annotate(lhsText, rhsText, currentAnnotations, useDemoCache, requestLogger);
-      requestLogger.debug(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
-      res.json(response);
+      if ("error" in response) {
+        requestLogger.error(`REQUEST FAILED: ${response.error}`);
+        res.status(400).send(response);
+        return;
+      } else {
+        requestLogger.debug(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
+        res.json(response);
+      }
     } catch (e) {
       const error = `Error generating annotations. ${e}`;
       requestLogger.error(`REQUEST FAILED: ${error}`);
