@@ -1,0 +1,157 @@
+[
+    {
+      "description": "Section header for the preprocessing section",
+      "text": "# 5. PREPROCESSING",
+      "label": "Header"
+    },
+    {
+      "description": "Overview of the three preprocessing steps for the hash algorithm",
+      "text": "Preprocessing consists of three steps: padding the message, $M$ (Sec. 5.1), parsing the message into ",
+      "label": "Definitions"
+    },
+    {
+      "description": "Subsection header for padding the message",
+      "text": "## 5.1 Padding the Message",
+      "label": "Header"
+    },
+    {
+      "description": "Explanation of the purpose of padding in the hash algorithm",
+      "text": "The purpose of this padding is to ensure that the padded message is a multiple of 512 or 1024 bits, d",
+      "label": "Intent"
+    },
+    {
+      "description": "Subsubsection header for specific hash algorithms",
+      "text": "### 5.1.1 SHA-1, SHA-224 and SHA-256",
+      "label": "Header"
+    },
+    {
+      "description": "Detailed specification of the padding algorithm for SHA-1, SHA-224, and SHA-256",
+      "text": "Suppose that the length of the message, $M$, is $\\ell$ bits. Append the bit \"1\" to the end of the me",
+      "label": "Algorithms"
+    },
+    {
+      "description": "Reference to an image showing padded message representation",
+      "text": "[IMAGE: Padded message representation]",
+      "label": "Examples"
+    },
+    {
+      "description": "Requirement about the length of the padded message",
+      "text": "The length of the padded message should now be a multiple of 512 bits.",
+      "label": "Requirements"
+    },
+    {
+      "description": "Subsection header for parsing the message",
+      "text": "## 5.2 Parsing the Message",
+      "label": "Header"
+    },
+    {
+      "description": "General requirement for parsing the message into blocks",
+      "text": "The message and its padding must be parsed into $N m$-bit blocks.",
+      "label": "Requirements"
+    },
+    {
+      "description": "Subsubsection header for specific hash algorithms",
+      "text": "### 5.2.1 SHA-1, SHA-224 and SHA-256",
+      "label": "Header"
+    },
+    {
+      "description": "Detailed specification of the parsing algorithm for SHA-1, SHA-224, and SHA-256",
+      "text": "For SHA-1, SHA-224 and SHA-256, the message and its padding are parsed into $N$ 512-bit blocks, $M^{",
+      "label": "Algorithms"
+    },
+    {
+      "description": "Subsection header for setting the initial hash value",
+      "text": "## 5.3 Setting the Initial Hash Value ($H^{(0)}$)",
+      "label": "Header"
+    },
+    {
+      "description": "Explanation of the initial hash value requirement",
+      "text": "Before hash computation begins for each of the secure hash algorithms, the initial hash value, $H^{(0)",
+      "label": "Requirements"
+    },
+    {
+      "description": "Subsubsection header for SHA-1 initial hash value",
+      "text": "### 5.3.1 SHA-1",
+      "label": "Header"
+    },
+    {
+      "description": "Specification of the initial hash value for SHA-1",
+      "text": "For SHA-1, the initial hash value, $H^{(0)}$, shall consist of the following five 32-bit words, in he",
+      "label": "Definitions"
+    },
+    {
+      "description": "Mathematical representation of the initial hash values for SHA-1",
+      "text": "$$\n\\begin{aligned}\nH_{0}^{(0)} &= 67452301 \\\\\nH_{1}^{(0)} &= \\text{efcdab89} \\\\\nH_{2}^{(0)} &= 98",
+      "label": "Definitions"
+    },
+    {
+      "description": "Section header for secure hash algorithms",
+      "text": "# 6. SECURE HASH ALGORITHMS",
+      "label": "Header"
+    },
+    {
+      "description": "Explanation of the organization of the hash algorithm descriptions",
+      "text": "In the following sections, the hash algorithms are not described in ascending order of size. SHA-256 is",
+      "label": "Elaborations"
+    },
+    {
+      "description": "Statement about alternate computation methods that yield identical results",
+      "text": "For each of the secure hash algorithms, there may exist alternate computation methods that yield ident",
+      "label": "Preferences"
+    },
+    {
+      "description": "Subsection header for SHA-1",
+      "text": "## 6.1 SHA-1",
+      "label": "Header"
+    },
+    {
+      "description": "Overview of SHA-1 algorithm characteristics and components",
+      "text": "SHA-1 may be used to hash a message, $M$, having a length of $\\ell$ bits, where $0 \\leq \\ell < 2^{64}$",
+      "label": "Definitions"
+    },
+    {
+      "description": "Definition of the variables and components used in SHA-1",
+      "text": "The words of the message schedule are labeled $W_{0}, W_{1}, \\ldots, W_{79}$. The five working variabl",
+      "label": "Definitions"
+    },
+    {
+      "description": "Subsubsection header for SHA-1 preprocessing",
+      "text": "### 6.1.1 SHA-1 Preprocessing",
+      "label": "Header"
+    },
+    {
+      "description": "Steps for SHA-1 preprocessing",
+      "text": "1. Set the initial hash value, $H^{(0)}$, as specified in Sec. 5.3.1.\n2. The message is padded and pa",
+      "label": "Algorithms"
+    },
+    {
+      "description": "Subsubsection header for SHA-1 hash computation",
+      "text": "### 6.1.2 SHA-1 Hash Computation",
+      "label": "Header"
+    },
+    {
+      "description": "Reference to functions and constants used in SHA-1 hash computation",
+      "text": "The SHA-1 hash computation uses functions and constants previously defined in Sec. 4.1.1 and Sec. 4.2.",
+      "label": "Elaborations"
+    },
+    {
+      "description": "Introduction to the message block processing steps",
+      "text": "Each message block, $M^{(1)}, M^{(2)}, \\ldots, M^{(N)}$, is processed in order, using the following st",
+      "label": "Algorithms"
+    },
+    {
+      "description": "Detailed algorithm steps for SHA-1 hash computation",
+      "text": "For $i=1$ to $N$:\n{\n1. Prepare the message schedule, $\\{W_{t}\\}$:\n   $$W_{t}= \\begin{cases}\n   M_{t}^",
+      "label": "Algorithms"
+    },
+    {
+      "description": "Final step of the SHA-1 algorithm to produce the message digest",
+      "text": "After repeating steps one through four a total of $N$ times (i.e., after processing $M^{(N)}$), the re",
+      "label": "Algorithms"
+    },
+    {
+      "description": "Mathematical representation of the final message digest",
+      "text": "$$H_{0}^{(N)}||H_{1}^{(N)}||H_{2}^{(N)}||H_{3}^{(N)}||H_{4}^{(N)}$$\n",
+      "label": "Definitions"
+    }
+  ]
