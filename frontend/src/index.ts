@@ -54,6 +54,10 @@ let useDemoCache = false;
 
 let listenersToRemove: Array<() => void> = [];
 
+// Debug info
+let lastRawModelOutput: string = "";
+let allRawModelOutputs: string[] = [];
+
 // ---------------------------------------------------------------------
 // Data Loading
 // ---------------------------------------------------------------------
@@ -547,11 +551,21 @@ async function generateAnnotations(lhsText: string, rhsText: string,
     console.log("Claude's response:", response);
 
     if ("error" in response) {
+        // Add debug info if any
+      if (response.debugInfo) {
+        const { rawModelOutput } = response.debugInfo;
+        lastRawModelOutput = rawModelOutput;
+        allRawModelOutputs.push(rawModelOutput);
+      }
       throw new Error(response.error);
     }
 
     const newAnnotations = response.data;
     const { rawModelOutput } = response.debugInfo;
+
+    // Add debug info
+    lastRawModelOutput = rawModelOutput;
+    allRawModelOutputs.push(rawModelOutput);
 
     // Update in-memory annotations with the new annotations
     // const newAnnotations = data.response as Annotations;
@@ -777,6 +791,39 @@ function initializeMainStaticContent() {
   document.getElementById("tab-generated")!.addEventListener("click", () => selectRightPanelTab("generated"));
 }
 
+function initializeDebugInfoModal() {
+  const showDebugBtn = document.getElementById("show-debug-info")!;
+  const debugModal = document.getElementById("debug-info-modal")!;
+  const closeDebugBtn = document.getElementById("close-debug-modal")!;
+  const debugSelect = document.getElementById("debug-select") as HTMLSelectElement;
+  const debugContent = document.getElementById("debug-info-content")!;
+
+  function updateDebugInfoContent() {
+    if (debugSelect.value === "last") {
+      debugContent.textContent = lastRawModelOutput;
+    } else {
+      let content = "";
+      allRawModelOutputs.forEach((output, index) => {
+        content += `\n---- RAW MODEL OUTPUT: ${index + 1} ----\n${output}\n`;
+      });
+      debugContent.textContent = content;
+    }
+  }
+
+  showDebugBtn.addEventListener("click", () => {
+    updateDebugInfoContent();
+    debugModal.classList.add("show");
+    showDebugBtn.textContent = "Hide Debug Info";
+  });
+
+  closeDebugBtn.addEventListener("click", () => {
+    debugModal.classList.remove("show");
+    showDebugBtn.textContent = "Show Debug Info";
+  });
+
+  debugSelect.addEventListener("change", updateDebugInfoContent);
+}
+
 function initializeModals() {
   initializeChat();
 
@@ -796,6 +843,8 @@ function initializeModals() {
   comingSoonModal.addEventListener("click", () => {
     comingSoonModal.classList.remove("show");
   });
+
+  initializeDebugInfoModal();
 }
 
 // Initialize content that is not data-dependent
