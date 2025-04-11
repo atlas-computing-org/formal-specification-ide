@@ -24,13 +24,20 @@ export function getDatasetHandler(requestCounter: Counter, logger: Logger) {
     }
     const datasetPath = path.join(DATA_DIR, datasetName);
     try {
-      const [fullText, selectedText, preWritten, annotationsRaw] = await Promise.all([
+      const [fullText, selectedText, preWritten] = await Promise.all([
         fs.readFile(path.join(datasetPath, 'full-text.txt'), 'utf-8'),
         fs.readFile(path.join(datasetPath, 'selected-text.txt'), 'utf-8'),
         fs.readFile(path.join(datasetPath, 'pre-written.txt'), 'utf-8'),
-        fs.readFile(path.join(datasetPath, 'annotations.json'), 'utf-8'),
       ]);
-      const annotations = JSON.parse(annotationsRaw) as Annotations;
+
+      const files = await fs.readdir(datasetPath);
+      const annotationFilenames = files.filter(filename => /^annotations(\-.+)?\.json$/.test(filename));
+      const annotations: { [key: string]: Annotations } = {};
+      await Promise.all(annotationFilenames.map(async (filename) => {
+        const content = await fs.readFile(path.join(datasetPath, filename), 'utf-8');
+        const key = filename.replace(/\.json$/, '');
+        annotations[key] = JSON.parse(content) as Annotations;
+      }));
       const pdfUrl = `/data/${datasetName}/pdf.pdf`;
       const response = {
         lhsText: selectedText,

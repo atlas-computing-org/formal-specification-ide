@@ -24,10 +24,18 @@ export interface Annotations<T extends TextRange = TextRange> {
   rhsLabels: TextLabel<T>[];
 }
 
+export type AnnotationSets<T extends TextRange = TextRange> = { [key: string]: Annotations<T> };
+
 export interface Dataset<T extends TextRange = TextRange> {
   lhsText: string;
   rhsText: string;
   annotations: Annotations<T>;
+}
+
+export interface MultiAnnotationsDataset<T extends TextRange = TextRange> {
+  lhsText: string;
+  rhsText: string;
+  annotations: AnnotationSets<T>;
 }
 
 export type TextRangeWithText = TextRange & {

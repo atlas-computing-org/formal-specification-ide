@@ -4,8 +4,9 @@ import { AnnotationLookupImpl, AnnotationAndHighlightsLookup } from "./Annotatio
 import { AnnotationsSlice, AnnotationsSliceImpl } from "./AnnotationsSlice.ts";
 import { LeftTabMode, RightTabMode, TabState } from "./TabState.ts";
 import { TextPartitionIndices } from "./TextPartitionIndices.ts";
-import { Annotations, AnnotationsWithText, Dataset, DatasetWithText, Direction, LabelType, TextLabelWithText,
-  TextMappingWithText, TextRange, TextRangeWithText, mergeAnnotations } from "@common/annotations.ts";
+import { Annotations, AnnotationSets, AnnotationsWithText, Dataset, DatasetWithText, Direction, LabelType,
+  TextLabelWithText, MultiAnnotationsDataset, TextMappingWithText, TextRange, TextRangeWithText,
+  mergeAnnotations } from "@common/annotations.ts";
 import { ChatAboutAnnotationsRequest, ChatAboutAnnotationsResponse } from "@common/serverAPI/chatAboutAnnotationsAPI.ts";
 import { GenerateAnnotationsRequest, GenerateAnnotationsResponse } from "@common/serverAPI/generateAnnotationsAPI.ts";
 import { GetDatasetResponse } from "@common/serverAPI/getDatasetAPI.ts";
@@ -36,6 +37,9 @@ const INITIAL_TAB_STATE: TabState = {
   right: "pre-written",
 };
 
+// Developer-only features
+const DEFAULT_ANNOTATIONS_SET_NAME = "annotations";
+
 // ---------------------------------------------------------------------
 // App State
 // ---------------------------------------------------------------------
@@ -53,6 +57,10 @@ let isNewChat = true;
 let useDemoCache = false;
 
 let listenersToRemove: Array<() => void> = [];
+
+// Developer-only features
+let currentAnnotationSets: AnnotationSets = {};
+let selectedAnnotationsSetName = DEFAULT_ANNOTATIONS_SET_NAME;
 
 // Debug info
 let lastRawModelOutput: string = "";
@@ -113,7 +121,7 @@ function removeCachedText(annotations: AnnotationsWithText): Annotations {
   };
 }
 
-async function fetchRawData(datasetName: string): Promise<Dataset> {
+async function fetchRawData(datasetName: string): Promise<MultiAnnotationsDataset> {
   // Use the new API endpoint to fetch dataset
   const responseRaw = await fetch(`${SERVER_URL}/getDataset/${datasetName}`);
   if (!responseRaw.ok) {
@@ -127,11 +135,6 @@ async function fetchRawData(datasetName: string): Promise<Dataset> {
   HACK_pdfSrc = `${SERVER_URL}${pdfUrl}`;
   HACK_fullText = fullText;
   return { lhsText, rhsText, annotations };
-}
-
-async function fetchData(folderName: string) {
-  const dataset = await fetchRawData(folderName);
-  return cacheDatasetText(dataset);
 }
 
 // ---------------------------------------------------------------------
@@ -643,6 +646,31 @@ function resetChat() {
 }
 
 // ---------------------------------------------------------------------
+// Footer
+// ---------------------------------------------------------------------
+
+function updateAnnotationsSetDropdown() {
+  const selectDropdown = document.getElementById("annotations-set-selector") as HTMLSelectElement;
+  const selectDropdownContainer = document.getElementById("annotations-set-selector-container") as HTMLSelectElement;
+  const keys = Object.keys(currentAnnotationSets).sort();
+  selectDropdown.innerHTML = "";
+  keys.forEach(key => {
+    const option = document.createElement("option");
+    option.value = key;
+    option.textContent = key;
+    if (key === selectedAnnotationsSetName) {
+      option.selected = true;
+    }
+    selectDropdown.appendChild(option);
+  });
+  if (keys.length > 1) {
+    selectDropdownContainer.classList.remove("hidden");
+  } else {
+    selectDropdownContainer.classList.add("hidden");
+  }
+}
+
+// ---------------------------------------------------------------------
 // State Management
 // ---------------------------------------------------------------------
 
@@ -677,6 +705,18 @@ function updateHighlights(highlights: AnnotationsWithText) {
 
 function updateAnnotations(annotations: AnnotationsWithText) {
   updateData({ ...currentDataset, annotations });
+}
+
+function updateSelectedAnnotationsSet(annotationsSetName: string) {
+  selectedAnnotationsSetName = annotationsSetName;
+
+  const { lhsText, rhsText } = currentDataset;
+  const rawAnnotations = currentAnnotationSets[selectedAnnotationsSetName] || EMPTY_ANNOTATIONS;
+  const rawDataset = { lhsText, rhsText, annotations: rawAnnotations };
+
+  const dataset = cacheDatasetText(rawDataset);
+  updateAnnotationsSetDropdown();
+  updateData(dataset);
 }
 
 function updateData(dataset: DatasetWithText) {
@@ -779,7 +819,7 @@ function initializeDebugInfoModal() {
   const showDebugBtn = document.getElementById("show-debug-info")!;
   const debugModal = document.getElementById("debug-info-modal")!;
   const closeDebugBtn = document.getElementById("close-debug-modal")!;
-  const debugSelect = document.getElementById("debug-select") as HTMLSelectElement;
+  const debugSelect = document.getElementById("debug-selector") as HTMLSelectElement;
   const debugContent = document.getElementById("debug-info-content")!;
 
   function updateDebugInfoContent() {
@@ -863,9 +903,11 @@ function initializeStaticContent(datasetNames: string[]) {
 // Main Initialization
 // ---------------------------------------------------------------------
 
-async function loadAndRender(folderName: string) {
-  const dataset = await fetchData(folderName);
-  updateData(dataset);
+async function loadAndRender(datasetName: string) {
+  const { lhsText, rhsText, annotations } = await fetchRawData(datasetName);
+  currentDataset = { lhsText, rhsText, annotations: EMPTY_ANNOTATIONS };
+  currentAnnotationSets = annotations;
+  updateSelectedAnnotationsSet(DEFAULT_ANNOTATIONS_SET_NAME);
 }
 
 // Main function to set up default and attach listeners
@@ -885,12 +927,21 @@ async function main() {
   // Load default dataset on initial page load
   await loadAndRender(datasetNames[0]);
 
-  // Add an event listener to the dropdown
-  const selector = document.getElementById("data-selector");
-  if (selector) {
-    selector.addEventListener("change", async (e) => {
-      const folderName = (e.target as HTMLSelectElement).value;
-      await loadAndRender(folderName);
+  // Add an event listener to the dataset selector
+  const dataSelector = document.getElementById("data-selector");
+  if (dataSelector) {
+    dataSelector.addEventListener("change", async (e) => {
+      const datasetName = (e.target as HTMLSelectElement).value;
+      await loadAndRender(datasetName);
+    });
+  }
+
+  // Add an event listener to the annotations selector
+  const annotationsSelector = document.getElementById("annotations-set-selector");
+  if (annotationsSelector) {
+    annotationsSelector.addEventListener("change", async (e) => {
+      const annotationsSetName = (e.target as HTMLSelectElement).value;
+      updateSelectedAnnotationsSet(annotationsSetName);
     });
   }
 }

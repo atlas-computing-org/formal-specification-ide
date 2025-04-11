@@ -1,11 +1,11 @@
-import { Annotations } from "@common/annotations.ts";
+import { AnnotationSets } from "@common/annotations.ts";
 import { ErrorResponse } from "./ErrorResponse.ts";
 
 export interface GetDatasetSuccessResponse {
   data: {
     lhsText: string;
     rhsText: string;
-    annotations: Annotations;
+    annotations: AnnotationSets;
     fullText: string;
     pdfUrl: string;
   }

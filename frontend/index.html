@@ -71,10 +71,6 @@
       z-index: 10;
     }
 
-    #use-demo-cache {
-      margin-left: auto;
-    }
-
     /* Main content area */
     main {
       display: flex;
@@ -84,15 +80,26 @@
       padding-bottom: 60px; /* Give space for the fixed footer */
     }
 
-    #data-selector {
+    select {
       padding: 4px;
-      margin-left: 4px;
       margin-right: 8px;
+    }
+
+    select.with-label {
+      margin-left: 4px;
     }
 
     button {
       margin-right: 8px;
       padding: 4px;
+    }
+
+    #annotations-set-selector-container.hidden {
+      display: none;
+    }
+
+    #use-demo-cache {
+      margin-left: auto;
     }
 
     /***************************************************************************
@@ -462,25 +469,22 @@
     }
 
     #debug-info-modal select {
-      margin: 10px 0;
+      margin-top: 10px;
+      margin-bottom: 10px;
       padding: 5px;
     }
   </style>
 </head>
 <body>
   <header>
-    <!-- Data Selector -->
     <div id="data-selector-container">
       <label for="data-selector"><i class="fas fa-arrow-up-from-bracket"></i>Load Documentation:</label>
-      <select id="data-selector">
-        <!-- Options populated dynamically in TypeScript -->
-      </select>
+      <select id="data-selector" class="with-label"></select>
     </div>
     <button id="slice-text"><i class="fas fa-scissors"></i>Slice Documentation</button>
     <button id="autoformalize"><i class="fas fa-atom"></i>Autoformalize</button>
     <button id="generate-annotations"><i class="fas fa-file-pen"></i>Generate Annotations</button>
     <button id="ai-assistant"><i class="far fa-comments"></i>Chat with AI Assistant</button>
-
   </header>
 
   <main>
@@ -529,6 +533,10 @@
     <button id="highlight-all-annotations">Highlight All</button>
     <button id="hide-annotations-panel">Hide Annotations Panel</button>
     <button id="show-debug-info">Show Debug Info</button>
+    <div id="annotations-set-selector-container" class="hidden">
+      <label for="annotations-set-selector">Annotations Set:</label>
+      <select id="annotations-set-selector" class="with-label"></select>
+    </div>
     <button id="use-demo-cache">Use Cached Responses</button>
   </footer>
 
@@ -556,8 +564,8 @@
     <div class="modal-content">
       <span id="close-debug-modal" class="close-btn">&times;</span>
       <div>
-        <label for="debug-select">Debug Info:</label>
-        <select id="debug-select">
+        <label for="debug-selector">Debug Info:</label>
+        <select id="debug-selector" class="with-label">
           <option value="last" selected>Last Raw Model Output</option>
           <option value="all">All Raw Model Outputs</option>
           <option value="annotations">Current Annotations (JSON)</option>
