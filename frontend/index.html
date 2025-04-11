@@ -450,37 +450,20 @@
       padding: 20px;
     }
 
-    #debug-info-modal .modal-content #debug-info-content {
+    #debug-info-content.json {
+      white-space: pre;
+    }
+
+    #debug-info-content {
       max-height: 70vh;
+      margin-top: 10px;
       overflow-y: auto;
+      white-space: pre-wrap;
     }
 
     #debug-info-modal select {
       margin: 10px 0;
       padding: 5px;
-    }
-
-    /***************************************************************************
-     * JSON Data Export
-     **************************************************************************/
-
-    #json-annotations {
-      display: none;
-      position: fixed;
-      top: 100px; /* 40px + 60px (offset + header) */
-      bottom: 100px; /* 40px + 60px (offset + footer) */
-      left: 40px;
-      right: 40px;
-      padding: 20px;
-      overflow: auto;
-      white-space: pre;
-      background-color: #f8f8f8;
-      border-radius: 10px;
-      border: 1px solid black;
-    }
-    #json-annotations.show {
-      display: block;
-      z-index: 100; /* Above all content */
     }
   </style>
 </head>
@@ -540,15 +523,11 @@
         </div>
       </div>
     </div>
-
-    <!-- Serialized Annotation Data -->
-    <div id="json-annotations"></div>
   </main>
 
   <footer>
     <button id="highlight-all-annotations">Highlight All</button>
     <button id="hide-annotations-panel">Hide Annotations Panel</button>
-    <button id="show-json">Show JSON</button>
     <button id="show-debug-info">Show Debug Info</button>
     <button id="use-demo-cache">Use Cached Responses</button>
   </footer>
@@ -581,9 +560,10 @@
         <select id="debug-select">
           <option value="last" selected>Last Raw Model Output</option>
           <option value="all">All Raw Model Outputs</option>
+          <option value="annotations">Current Annotations (JSON)</option>
         </select>
       </div>
-      <div id="debug-info-content" style="white-space: pre-wrap; margin-top: 10px;"></div>
+      <div id="debug-info-content"></div>
     </div>
   </div>
 

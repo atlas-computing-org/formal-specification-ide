@@ -651,11 +651,6 @@ function removeEventListeners() {
   listenersToRemove = [];
 }
 
-// Print JSON annotations
-function renderJSONAnnotationsPanel(annotations: AnnotationsWithText) {
-  document.getElementById("json-annotations")!.innerHTML = JSON.stringify(annotations, null, 2);
-}
-
 function render(dataset: DatasetWithText, highlights: AnnotationsWithText, tabState: TabState) {
   // Remove dynamic event listeners before re-rendering dynamic content to avoid cycles.
   // Renders shouldn't trigger events that would cause re-renders.
@@ -664,7 +659,6 @@ function render(dataset: DatasetWithText, highlights: AnnotationsWithText, tabSt
 
   renderTextPanels(dataset, highlights, tabState);
   renderAnnotationPanels(dataset.annotations, highlights);
-  renderJSONAnnotationsPanel(dataset.annotations);
 }
 
 function highlightsDidChange(prevHighlights: AnnotationsWithText, newHighlights: AnnotationsWithText) {
@@ -760,16 +754,6 @@ function initializeFooter() {
       hideAnnotationsPanelButton.textContent = 'Hide Annotations Panel';
   });
 
-  // Toggle JSON annotations visibility on click
-  const showJSONButton = document.getElementById('show-json')!;
-  showJSONButton.addEventListener('click', () => {
-    const jsonAnnotationsElement = document.getElementById('json-annotations')!;
-    jsonAnnotationsElement.classList.toggle('show');
-    jsonAnnotationsElement.classList.contains('show') ?
-      showJSONButton.textContent = 'Hide JSON' :
-      showJSONButton.textContent = 'Show JSON';
-  });
-
   // Toggle demo cache usage
   const useDemoCacheButton = document.getElementById('use-demo-cache')!;
   useDemoCacheButton.addEventListener('click', () => {
@@ -799,14 +783,34 @@ function initializeDebugInfoModal() {
   const debugContent = document.getElementById("debug-info-content")!;
 
   function updateDebugInfoContent() {
-    if (debugSelect.value === "last") {
-      debugContent.textContent = lastRawModelOutput;
-    } else {
-      let content = "";
-      allRawModelOutputs.forEach((output, index) => {
-        content += `\n---- RAW MODEL OUTPUT: ${index + 1} ----\n${output}\n`;
-      });
-      debugContent.textContent = content;
+    // reset json class
+    debugContent.classList.remove("json");
+
+    switch (debugSelect.value) {
+      case "last":
+        debugContent.textContent = lastRawModelOutput;
+        break;
+
+      case "all":
+        let content = "";
+        let first = true;
+        allRawModelOutputs.forEach((output, index) => {
+          content += first ? "" : "\n\n\n\n\n\n";
+          first = false;
+          content += `---- RAW MODEL OUTPUT: ${index + 1} ----\n\n${output}`;
+        });
+        debugContent.textContent = content;
+        break;
+
+      case "annotations":
+        debugContent.textContent = JSON.stringify(currentDataset.annotations, null, 2);
+        debugContent.classList.add("json");
+        break;
+
+      default:
+        const errorMessage = `Unrecognized debug option ${debugSelect.value}`;
+        debugContent.textContent = errorMessage;
+        throw new Error(errorMessage);
     }
   }
 
