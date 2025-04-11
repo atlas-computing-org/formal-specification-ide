@@ -13,7 +13,6 @@ The block ciphers AES-128, AES-192, and AES-256 differ in three respects: 1) the
 For implementation issues relating to the key length, block size, and number of rounds, see Section 6.3.
 
 **Table 3. Key-Block-Round Combinations**
-
 | | Key length $Nk$ (in bits) | | Block size (in bits) | Number of rounds Nr |
 |---------|-----|-----|-----|-----|
 | AES-128 | 4 | 128 | 4 | 128 | 10 |
@@ -21,7 +20,6 @@ For implementation issues relating to the key length, block size, and number of 
 | AES-256 | 8 | 256 | 4 | 128 | 14 |
 
 The three inputs to CIPHER() are: 1) the data input in, which is a block represented as a linear array of 16 bytes; 2) the number of rounds Nr for the instance; and 3) the round keys. Thus,
-
 $$
 \begin{aligned}
 & \operatorname{AES}-128(\text{in}, \text{key})=\operatorname{CIPHER}(in, 10, \operatorname{KEYEXPANSION}(\text{key})) \\
@@ -37,7 +35,6 @@ The specifications of CIPHER(), KEYEXPANSION(), and INVCIPHER() are given in Sec
 ## 5.1 CIPHER()
 
 The rounds in the specification of CIPHER() are composed of the following four byte-oriented transformations on the state:
-
 * SubBytes() applies a substitution table (S-box) to each byte.
 * ShiftRows() shifts rows of the state array by different offsets.
 * MixColumns() mixes the data within each column of the state array.
@@ -76,19 +73,16 @@ SUBBYTES() is an invertible, non-linear transformation of the state in which a s
 Let $b$ denote an input byte to SBox(), and let $c$ denote the constant byte $\{01100011\}$. The output byte $b^{\prime}=\operatorname{SBOX}(b)$ is constructed by composing the following two transformations:
 
 1. Define an intermediate value $\tilde{b}$, as follows, where $b^{-1}$ is the multiplicative inverse of $b$, as described in Section 4.4:
-
 $$
 \tilde{b}= \begin{cases}\{00\} & \text{if } b=\{00\} \\ b^{-1} & \text{if } b \neq\{00\}\end{cases}
 $$
 
 2. Apply the following affine transformation of the bits of $\tilde{b}$ to produce the bits of $b^{\prime}$:
-
 $$
 b_{i}^{\prime}=\tilde{b}_{i} \oplus \tilde{b}_{(i+4) \bmod 8} \oplus \tilde{b}_{(i+5) \bmod 8} \oplus \tilde{b}_{(i+6) \bmod 8} \oplus \tilde{b}_{(i+7) \bmod 8} \oplus c_{i}
 $$
 
 The matrix form of Eq. (5.3) is given by Eq. (5.4) below:
-
 $$
 \left[\begin{array}{l}
 b_{0}^{\prime} \\
@@ -136,7 +130,6 @@ Figure 2 illustrates how SUBBYTES() transforms the state.
 The AES S-box is presented in hexadecimal form in Table 4. For example, if $s_{r, c}=\{53\}$, then the substitution value would be determined by the intersection of the row with index '5' and the column with index '3' in Table 4, so that $s_{r, c}^{\prime}=\{\mathrm{ed}\}$.
 
 **Table 4. SBox(): substitution values for the byte xy (in hexadecimal format)**
-
 |   |   | Y |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 |   |   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | a | b | c | d | e | f |
@@ -160,7 +153,6 @@ The AES S-box is presented in hexadecimal form in Table 4. For example, if $s_{r
 ### 5.1.2 ShiftRows()
 
 SHIFTROWS() is a transformation of the state in which the bytes in the last three rows of the state are cyclically shifted. The number of positions by which the bytes are shifted depends on the row index $r$, as follows:
-
 $$
 s_{r, c}^{\prime}=s_{r,(c+r) \bmod 4} \quad \text{for } 0 \leq r<4 \text{ and } 0 \leq c<4
 $$
@@ -172,13 +164,11 @@ SHIFTROWS() is illustrated in Figure 3. In that representation of the state, the
 ### 5.1.3 MixColumns()
 
 MixColumns() is a transformation of the state that multiplies each of the four columns of the state by a single fixed matrix, as described in Section 4.3, with its entries taken from the following word:
-
 $$
 [a_{0}, a_{1}, a_{2}, a_{3}]=[\{02\},\{01\},\{01\},\{03\}].
 $$
 
 Thus,
-
 $$
 \left[\begin{array}{l}
 s_{0, c}^{\prime} \\
@@ -199,7 +189,6 @@ s_{3, c}
 $$
 
 so that the individual output bytes are defined as follows:
-
 $$
 \begin{aligned}
 s_{0, c}^{\prime} & =(\{02\} \bullet s_{0, c}) \oplus (\{03\} \bullet s_{1, c}) \oplus s_{2, c} \oplus s_{3, c} \\
@@ -216,11 +205,9 @@ Figure 4 illustrates MixColumns().
 ### 5.1.4 ADDROUNDKEY()
 
 ADDROUNDKEY() is a transformation of the state in which a round key is combined with the state by applying the bitwise XOR operation. In particular, each round key consists of four words from the key schedule (described in Section 5.2), each of which is combined with a column of the state as follows:
-
 $$
 [s_{0, c}^{\prime}, s_{1, c}^{\prime}, s_{2, c}^{\prime}, s_{3, c}^{\prime}]=[s_{0, c}, s_{1, c}, s_{2, c}, s_{3, c}] \oplus [w_{(4 * \text{round}+c)}] \quad \text{for } 0 \leq c<4
 $$
-
 where round is a value in the range $0 \leq$ round $\leq Nr$, and $w[i]$ is the array of key schedule words described in Section 5.2. In the specification of CIPHER(), ADDROUNDKEY() is invoked $Nr+1$ times - once prior to the first application of the round function (see Alg. 1) and once within each of the $Nr$ rounds, when $1 \leq$ round $\leq Nr$.
 
 The action of this transformation is illustrated in Fig. 5, where $l=4*$ round. The byte address within words of the key schedule was described in Sec. 3.5.
@@ -266,13 +253,11 @@ INVCIPHER() is described in the pseudocode in Alg. 3, where the array $w$ denote
 ### 5.3.3 InvMixColumns()
 
 InvMixColumns() is the inverse of MixColumns(). In particular, InvMixColumns() multiplies each of the four columns of the state by a single fixed matrix, as described in Section 4.3, with its entries taken from the following word:
-
 $$
 [a_{0}, a_{1}, a_{2}, a_{3}]=[\{0\mathrm{e}\},\{09\},\{0\mathrm{d}\},\{0\mathrm{b}\}].
 $$
 
 Thus,
-
 $$
 \left[\begin{array}{c}
 s_{0, c}^{\prime} \\
@@ -293,7 +278,6 @@ s_{3, c}
 $$
 
 As a result of this matrix multiplication, the four bytes in a column are replaced by the following:
-
 $$
 \begin{aligned}
 s_{0, c}^{\prime} & =(\{0\mathrm{e}\} \bullet s_{0, c}) \oplus (\{0\mathrm{b}\} \bullet s_{1, c}) \oplus (\{0\mathrm{d}\} \bullet s_{2, c}) \oplus (\{09\} \bullet s_{3, c}) \\
