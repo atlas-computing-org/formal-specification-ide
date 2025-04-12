@@ -1,44 +1,60 @@
 {
-    "name": "spec-mapper",
-    "displayName": "Spec Mapper",
-    "description": "A description for your VS Code extension.",
-    "version": "0.0.1",
-    "engines": {
-      "vscode": "^1.70.0"
-    },
-    "activationEvents": [
-        "onStartupFinished"
-    ],
-    "categories": ["Other"],
-    "main": "./out/extension.js",
-    "contributes": {
-      "commands": [
-        {
-          "command": "spec-mapper.showWebview",
-          "title": "Start Spec Mapper"
-        },
+  "name": "spec-mapper",
+  "displayName": "Spec Mapper",
+  "description": "A description for your VS Code extension.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "menus": {
+      "editor/context": [
         {
           "command": "spec-mapper.loadFileContents",
-          "title": "Load File Contents"
+          "title": "Open Spec Mapper"
         },
         {
-          "command": "spec-mapper.sayHello",
-          "title": "Hello world"
+          "command": "spec-mapper.getContextForSelection",
+          "title": "Get Context for Selection"
         }
       ]
     },
-    "scripts": {
-      "build": "tsc -p .",
-      "watch": "tsc -watch -p .",
-      "prepublish": "npm run build"
-    },
-    "dependencies": {
-    },
-    "devDependencies": {
-      "@types/node": "^18.0.0",
-      "typescript": "^4.8.0",
-      "@types/vscode": "^1.70.0",
-      "vsce": "^2.10.0"
-    }
+    "commands": [
+      {
+        "command": "spec-mapper.showWebview",
+        "title": "Start Spec Mapper"
+      },
+      {
+        "command": "spec-mapper.loadFileContents",
+        "title": "Open current file in Spec Mapper"
+      },
+      {
+        "command": "spec-mapper.getContextForSelection",
+        "title": "Get Context for Selection"
+      },
+      {
+        "command": "spec-mapper.sayHello",
+        "title": "Say Hello"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsc -p .",
+    "watch": "tsc -watch -p .",
+    "prepublish": "npm run build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^4.8.0",
+    "@types/vscode": "^1.70.0",
+    "vsce": "^2.10.0"
   }
-  
+}

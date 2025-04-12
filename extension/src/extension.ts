@@ -7,6 +7,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(
         vscode.commands.registerCommand('spec-mapper.showWebview', () => {
             WebviewManager.createOrShow(context.extensionUri);
+            WebviewManager.currentPanel?.sendMessage({command: 'startUp'})
         })
     )
 
@@ -15,16 +16,32 @@ export function activate(context: vscode.ExtensionContext) {
             const editor = vscode.window.activeTextEditor;
             if (editor) {
                 const document = editor.document;
-                const text = document.getText();
 
-                vscode.window.showInformationMessage(`File contents (first 100 chars): ${text.substring(0, 100)}`);
+                WebviewManager.createOrShow(context.extensionUri);
+                setTimeout(() => {
+                    WebviewManager.currentPanel?.sendMessage({
+                        command: 'loadFile',
+                        body: {fileName: document.fileName}
+                    })
+                }, 1000) // hack until i figure out how to quque messages for startup
 
-                WebviewManager.currentPanel?.sendMessage({
-                    command: 'alert',
-                    body: "hi"
-                })
             } else {
                 vscode.window.showWarningMessage('No active text editor found');
+            }
+        })
+    )
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand('spec-mapper.getContextForSelection', () => {
+            const editor = vscode.window.activeTextEditor;
+            if (editor) {
+                const selection = editor.selection;
+                const fileName = editor.document.fileName;
+                const text = editor.document.getText(selection);
+                WebviewManager.currentPanel?.sendMessage({
+                    command: 'getContextForSelection',
+                    body: {fileName, selection, text}
+                })
             }
         })
     )

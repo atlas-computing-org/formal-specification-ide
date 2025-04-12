@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import {devLandingPage} from './dev.html';
 import path from 'path';
 import { handleMessages, Message } from './handleMessages';
+import { generateRandomString } from './utils';
 
 export class WebviewManager {
     public static currentPanel: WebviewManager | undefined;
@@ -43,7 +44,11 @@ export class WebviewManager {
     }
 
     public sendMessage(message: Message) {
-        this._panel.webview.postMessage({...message, origin: 'extension'});
+        this._panel.webview.postMessage({
+            ...message,
+            id: generateRandomString(),
+            origin: 'extension'
+        });
     }
 
     public dispose() {
