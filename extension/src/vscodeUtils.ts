@@ -16,7 +16,7 @@ export const openOrRevealDocument = async (filePath: string, column?: vscode.Vie
             return vscode.window.showTextDocument(openDocument, col);
         } else {
             const doc = await vscode.workspace.openTextDocument(filePath);
-            return vscode.window.showTextDocument(doc, col);
+            return vscode.window.showTextDocument(doc, {preview: false, viewColumn: col});
         }
     } catch (error) {
         vscode.window.showErrorMessage(`Failed to open file: ${error}`)

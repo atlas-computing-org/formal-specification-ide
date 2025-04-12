@@ -20,3 +20,11 @@ export const goToFile = (fileName: string) => {
 export const goToPosition = (fileName: string, position: Position) => {
     sendMessageToExtension('goToPosition', {fileName, position});
 }
+
+export const notifyVscode = (message: string, level: "info" | "warning" | "error" = "info") => {
+    sendMessageToExtension('notifyVscode', {message, level});
+}
+
+export const webViewIsLoaded = () => {
+    sendMessageToExtension('webViewIsLoaded', {});
+}

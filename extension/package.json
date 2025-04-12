@@ -17,12 +17,20 @@
     "menus": {
       "editor/context": [
         {
-          "command": "spec-mapper.loadFileContents",
-          "title": "Open Spec Mapper"
+          "command": "spec-mapper.getContextForSelection",
+          "when": "editorHasSelection",
+          "title": "spec-mapper: Load selected text"
         },
         {
-          "command": "spec-mapper.getContextForSelection",
-          "title": "Get Context for Selection"
+          "command": "spec-mapper.loadActiveFile",
+          "title": "spec-mapper: Load current file"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "spec-mapper.openAndLoadFile",
+          "when": "!explorerResourceIsFolder",
+          "title": "spec-mapper: Open and load file"
         }
       ]
     },
@@ -32,16 +40,16 @@
         "title": "Start Spec Mapper"
       },
       {
-        "command": "spec-mapper.loadFileContents",
+        "command": "spec-mapper.loadActiveFile",
         "title": "Open current file in Spec Mapper"
+      },
+      {
+        "command": "spec-mapper.openAndLoadFile",
+        "title": "Open and load file in Spec Mapper"
       },
       {
         "command": "spec-mapper.getContextForSelection",
         "title": "Get Context for Selection"
-      },
-      {
-        "command": "spec-mapper.sayHello",
-        "title": "Say Hello"
       }
     ]
   },

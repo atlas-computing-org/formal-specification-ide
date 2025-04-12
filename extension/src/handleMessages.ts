@@ -34,9 +34,27 @@ const clientSelectionToVscodeSelection = (selection: ClientSelection): vscode.Se
 }
 
 export const handleMessages = (message: Message) => {
-    vscode.window.showInformationMessage(`received message: ${JSON.stringify(message)}`);
+    // vscode.window.showInformationMessage(`received message: ${JSON.stringify(message)}`);
 
     switch (message.command) {
+        case 'notifyVscode':
+            const messageText = message.body.message as string;
+            const level = message.body.level as "info" | "error";
+            if (level === "info") {
+                vscode.window.showInformationMessage(messageText);
+            } else if (level === "error") {
+                vscode.window.showErrorMessage(messageText);
+            } else if (level === "warning") {
+                vscode.window.showWarningMessage(messageText);
+            } else {
+                vscode.window.showInformationMessage(messageText);
+            }
+            break;
+        
+        case 'webViewIsLoaded':
+            vscode.window.showInformationMessage("Web view is loaded");
+            break;
+
         case 'goToFile':
             const clientFile = message.body.fileName as string | undefined;
             if (clientFile) {

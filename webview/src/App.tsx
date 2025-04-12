@@ -1,14 +1,5 @@
-import { useEffect, useState } from "react";
-import { goToFile, goToPosition, goToSelection } from "./extensionTools";
-
-
-
-export type Message = {
-    command: string
-    id: string
-    origin: string
-    body?: any
-}
+import { goToFile, goToPosition, goToSelection, notifyVscode } from "./extensionTools";
+import { useMessages } from "./MessageContext";
 
 export type Position = {
     line: number
@@ -24,26 +15,10 @@ export type Selection = {
     fileName?: string
 }
 
-
-
 const App = () => {
-    const [messages, setMessages] = useState<Message[]>([]);
-
-    useEffect(() => {
-        window.addEventListener('message', (event) => {
-            setMessages(prev => [...prev, event.data as Message]);
-        });
-    }, []);
-
-    const seenIds = new Set<string>();
-    const messagesDeduplicated = messages
-        .filter((message) => {
-            if (seenIds.has(message.id)) return false;
-            seenIds.add(message.id);
-            return true;
-        });
+    const {messages} = useMessages()
     
-    const selections: Selection[] = messagesDeduplicated
+    const selections: Selection[] = messages
         .filter(m => m.body && m.body.selection)
         .map(m => ({...m.body.selection, text: m.body.text, fileName: m.body.fileName}));
 
@@ -51,9 +26,13 @@ const App = () => {
         <div>
             <h1>Spec Mapper</h1>
 
+            <button onClick={() => notifyVscode("Hello from the webview", "info")}>Notify VSCode</button>
+            <button onClick={() => notifyVscode("Be careful", "warning")}>Warn VSCode</button>
+            <button onClick={() => notifyVscode("oops", "error")}>Error VSCode</button>
+
             <h2>Commands</h2>
             <ul>
-                {messagesDeduplicated.map((message, index) => (
+                {messages.map((message, index) => (
                     <li key={index}>{message.command}</li>
                 ))}
             </ul>
@@ -77,7 +56,7 @@ const App = () => {
 
             <h2>Messages</h2>
             <ul>
-                {messagesDeduplicated.map((message, index) => (
+                {messages.map((message, index) => (
                     <li key={index}>{JSON.stringify(message)}</li>
                 ))}
             </ul>
