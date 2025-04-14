@@ -1,7 +1,8 @@
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import { AnnotationLookupImpl, AnnotationAndHighlightsLookup } from "./AnnotationLookup.ts";
-import { AnnotationsSlice, AnnotationsSliceImpl } from "./AnnotationsSlice.ts";
+import { AnnotationsScrollManager } from "./AnnotationsScrollManager.ts";
+import { AnnotationsSlice, AnnotationsSliceImpl, MatchableAnnotationsSlice, TextMappingSlice } from "./AnnotationsSlice.ts";
 import { LeftTabMode, RightTabMode, TabState } from "./TabState.ts";
 import { TextPartitionIndices } from "./TextPartitionIndices.ts";
 import { Annotations, AnnotationSets, AnnotationsWithText, Dataset, DatasetWithText, Direction, LabelType,
@@ -154,8 +155,47 @@ function getSeverity(annotations: AnnotationsSlice): LabelType {
   }
 }
 
+function getInnermostMappingAtIndex(annotations: AnnotationsSlice, index: number): TextMappingSlice | undefined {
+  let selectedMapping = undefined as TextMappingSlice | undefined;
+  let minLength = Infinity;
+  annotations.mappings.forEach(mapping => {
+    mapping.ranges.forEach((range: {start: number, end: number}) => {
+      if (range.start <= index && index < range.end) {
+        const length = range.end - range.start;
+        if (length < minLength) {
+          minLength = length;
+          selectedMapping = mapping;
+        }
+      }
+    });
+  });
+  return selectedMapping;
+}
+
+function onClickTextAnnotation(clickIndex: number, annotationLookup: AnnotationAndHighlightsLookup,
+    targetScrollManager: AnnotationsScrollManager) {
+  // There may be multiple annotations at the same index. For now, choose the mapping at this index (if any)
+  // with the smallest matching range.
+  const annotations = annotationLookup.annotations.getAnnotationsForIndex(clickIndex);
+  const selectedMapping = getInnermostMappingAtIndex(annotations, clickIndex);
+  if (selectedMapping === undefined) {
+    return;
+  }
+
+  const targetMapping = targetScrollManager.getMatchingMappingInTarget(selectedMapping);
+  if (targetMapping === undefined || !targetMapping.ranges.length) {
+    return;
+  }
+
+  // For now, choose the targetRange that appears earliest in the text
+  const targetRange = targetMapping.ranges.reduce((prev: any, curr: any) => (curr.start < prev.start ? curr : prev));
+
+  targetScrollManager.scrollTargetTextToRange(targetRange);
+}
+
 function renderTextSegment(startIdx: number, endIdx: number, textSegment: string,
-    annotationLookup: AnnotationAndHighlightsLookup, updateHighlightsForIndex: (index: number) => void): HTMLElement {
+    annotationLookup: AnnotationAndHighlightsLookup, updateHighlightsForIndex: (index: number) => void,
+    scrollManager: AnnotationsScrollManager): HTMLElement {
   const annotations = annotationLookup.annotations.getAnnotationsForIndex(startIdx);
   const highlights = annotationLookup.highlights.getAnnotationsForIndex(startIdx);
   const hasHighlights = highlights.mappings.length > 0 || highlights.labels.length > 0;
@@ -173,15 +213,18 @@ function renderTextSegment(startIdx: number, endIdx: number, textSegment: string
   if (hasAnnotations) {
     const mouseEnterListener = () => updateHighlightsForIndex(startIdx);
     const mouseLeaveListener = () => updateHighlightsIfChanged(EMPTY_ANNOTATIONS);
+    const clickListener = () => onClickTextAnnotation(startIdx, annotationLookup, scrollManager);
 
     // Register the event listeners
     span.addEventListener("mouseenter", mouseEnterListener);
     span.addEventListener("mouseleave", mouseLeaveListener);
+    span.addEventListener("click", clickListener);
 
     // Add cleanup functions for listeners to be removed later
     listenersToRemove.push(() => {
       span.removeEventListener('mouseenter', mouseEnterListener);
       span.removeEventListener('mouseleave', mouseLeaveListener);
+      span.removeEventListener('click', clickListener);
     });
   }
 
@@ -189,7 +232,8 @@ function renderTextSegment(startIdx: number, endIdx: number, textSegment: string
 }
 
 function renderPartitionedText(text: string, partitionIndices: TextPartitionIndices,
-    annotationLookup: AnnotationAndHighlightsLookup, updateHighlightsForIndex: (index: number) => void): DocumentFragment {
+    annotationLookup: AnnotationAndHighlightsLookup, updateHighlightsForIndex: (index: number) => void,
+    scrollManager: AnnotationsScrollManager): DocumentFragment {
   // Iterate through the sorted indices and partition the text
   const fragment = document.createDocumentFragment();
   let lastIndex = 0;
@@ -198,7 +242,7 @@ function renderPartitionedText(text: string, partitionIndices: TextPartitionIndi
       return; // Skip the first index (it's the starting point)
     }
     const segment = text.substring(lastIndex, index);
-    const span = renderTextSegment(lastIndex, index, segment, annotationLookup, updateHighlightsForIndex);
+    const span = renderTextSegment(lastIndex, index, segment, annotationLookup, updateHighlightsForIndex, scrollManager);
     fragment.appendChild(span);
     lastIndex = index;
   });
@@ -207,11 +251,11 @@ function renderPartitionedText(text: string, partitionIndices: TextPartitionIndi
 }
 
 function renderText(container: HTMLElement, text: string, annotations: AnnotationsSlice, highlights: AnnotationsSlice,
-    updateHighlightsForIndex: (index: number) => void) {
+    scrollManager: AnnotationsScrollManager, updateHighlightsForIndex: (index: number) => void) {
   const annotationLookup = new AnnotationAndHighlightsLookup(
     new AnnotationLookupImpl(annotations), new AnnotationLookupImpl(highlights));
   const partitionIndices = TextPartitionIndices.fromTextAndAnnotations(text, annotations);
-  const partitionedText = renderPartitionedText(text, partitionIndices, annotationLookup, updateHighlightsForIndex);
+  const partitionedText = renderPartitionedText(text, partitionIndices, annotationLookup, updateHighlightsForIndex, scrollManager);
 
   container.appendChild(partitionedText);
 }
@@ -278,7 +322,7 @@ function updateTabStateStyles(tabState: TabState) {
   document.getElementById(`tab-${tabState.right}`)!.classList.add("active");
 }
 
-function sliceAnnotations(annotations: AnnotationsWithText, direction: Direction): AnnotationsSlice {
+function sliceAnnotations(annotations: AnnotationsWithText, direction: Direction): MatchableAnnotationsSlice {
   return AnnotationsSliceImpl.fromAnnotations(annotations, direction);
 }
 
@@ -302,12 +346,17 @@ function renderTextPanels(dataset: DatasetWithText, highlights: AnnotationsWithT
 
     case "full-text":
       // TODO: Support annotations against the full-text document
-      renderText(lhsContainer, HACK_fullText, sliceAnnotations(EMPTY_ANNOTATIONS, "lhs"),
-        sliceAnnotations(EMPTY_ANNOTATIONS, "lhs"), _ => {});
+      const emptyAnnotations = sliceAnnotations(EMPTY_ANNOTATIONS, "lhs");
+      const emptyHighlights = sliceAnnotations(EMPTY_ANNOTATIONS, "lhs");
+      const emptyScrollManager = new AnnotationsScrollManager(emptyAnnotations, rhsContainer);
+      renderText(lhsContainer, HACK_fullText, emptyAnnotations, emptyHighlights, emptyScrollManager, _ => {});
       break;
 
     case "selected-text":
-      renderText(lhsContainer, lhsText, sliceAnnotations(annotations, "lhs"), sliceAnnotations(highlights, "lhs"),
+      const lhsAnnotations = sliceAnnotations(annotations, "lhs");
+      const lhsHighlights = sliceAnnotations(highlights, "lhs");
+      const lhsScrollManager = new AnnotationsScrollManager(lhsAnnotations, rhsContainer);
+      renderText(lhsContainer, lhsText, lhsAnnotations, lhsHighlights, lhsScrollManager,
         (index) => updateHighlightsForIndexAndDirection(annotations, index, "lhs"));
       break;
 
@@ -318,7 +367,10 @@ function renderTextPanels(dataset: DatasetWithText, highlights: AnnotationsWithT
   // Render the right-side panel
   switch (tabState.right) {
     case "pre-written":
-      renderText(rhsContainer, rhsText, sliceAnnotations(annotations, "rhs"), sliceAnnotations(highlights, "rhs"),
+      const rhsAnnotations = sliceAnnotations(annotations, "rhs");
+      const rhsHighlights = sliceAnnotations(highlights, "rhs");
+      const rhsScrollManager = new AnnotationsScrollManager(rhsAnnotations, lhsContainer);
+      renderText(rhsContainer, rhsText, rhsAnnotations, rhsHighlights, rhsScrollManager,
         (index) => updateHighlightsForIndexAndDirection(annotations, index, "rhs"));
       break;
 
