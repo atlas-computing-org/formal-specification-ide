@@ -297,6 +297,7 @@ function renderTextPanels(dataset: DatasetWithText, highlights: AnnotationsWithT
     case "full-text":
       // TODO: Support annotations against the full-text document
       renderText(lhsContainer, HACK_fullText, sliceAnnotations(EMPTY_ANNOTATIONS, "lhs"),
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         sliceAnnotations(EMPTY_ANNOTATIONS, "lhs"), _ => {});
       break;
 
@@ -350,7 +351,13 @@ function startEditing(cell: HTMLElement, item: TextMappingWithText | TextLabelWi
   });
 }
 
-function stopEditing(cell: HTMLElement, input: HTMLInputElement, item: TextMappingWithText | TextLabelWithText, index: number, originalText: string) {
+function stopEditing(cell: HTMLElement,
+  input: HTMLInputElement,
+  item: TextMappingWithText | TextLabelWithText,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  index: number,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  originalText: string) {
   const newValue = input.value;
   cell.textContent = newValue;
   input.remove();
@@ -717,7 +724,8 @@ function initializeFooter() {
   highlightAllButton.addEventListener('click', () => {
     const textPanelsDiv = document.getElementById('text-panels')!;
     textPanelsDiv.classList.toggle('highlight-all');
-    textPanelsDiv.classList.contains('highlight-all') ?
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const _newButtonText = textPanelsDiv.classList.contains('highlight-all') ?
       highlightAllButton.textContent = "Hide Highlights" :
       highlightAllButton.textContent = "Highlight All";
   });
@@ -727,7 +735,8 @@ function initializeFooter() {
   hideAnnotationsPanelButton.addEventListener('click', () => {
     const annotationsElement = document.getElementById('annotations')!;
     annotationsElement.classList.toggle('hide');
-    annotationsElement.classList.contains('hide') ?
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const _newButtonText = annotationsElement.classList.contains('hide') ?
       hideAnnotationsPanelButton.textContent = 'Show Annotations Panel' :
       hideAnnotationsPanelButton.textContent = 'Hide Annotations Panel';
   });
@@ -737,7 +746,8 @@ function initializeFooter() {
   showJSONButton.addEventListener('click', () => {
     const jsonAnnotationsElement = document.getElementById('json-annotations')!;
     jsonAnnotationsElement.classList.toggle('show');
-    jsonAnnotationsElement.classList.contains('show') ?
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const _newButtonText = jsonAnnotationsElement.classList.contains('show') ?
       showJSONButton.textContent = 'Hide JSON' :
       showJSONButton.textContent = 'Show JSON';
   });
@@ -746,7 +756,8 @@ function initializeFooter() {
   const useDemoCacheButton = document.getElementById('use-demo-cache')!;
   useDemoCacheButton.addEventListener('click', () => {
     useDemoCache = !useDemoCache;
-    useDemoCache ?
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const _newButtonText = useDemoCache ?
       useDemoCacheButton.textContent = 'Use Live Responses' :
       useDemoCacheButton.textContent = 'Use Cached Responses';
   });

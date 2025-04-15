@@ -4,6 +4,7 @@ import cors from 'cors';
 import { annotate, chatWithAssistant } from './annotation/annotate.ts';
 import { getLogger } from './Logger.ts';
 import { Counter } from '@common/util/Counter.ts';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Annotations } from "@common/annotations.ts";
 import { v4 as uuidv4 } from 'uuid';
 

@@ -17,7 +17,9 @@ const logLevels = {
 
 // Copied from winston.d.ts internal types
 interface LeveledLogMethod {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (message: string, ...meta: any[]): winston.Logger;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (message: any): winston.Logger;
   (infoObject: object): winston.Logger;
 }
