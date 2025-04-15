@@ -718,7 +718,7 @@ function initializeFooter() {
     const textPanelsDiv = document.getElementById('text-panels')!;
     textPanelsDiv.classList.toggle('highlight-all');
     textPanelsDiv.classList.contains('highlight-all') ?
-      highlightAllButton.textContent = "Unhighlight All" : 
+      highlightAllButton.textContent = "Hide Highlights" :
       highlightAllButton.textContent = "Highlight All";
   });
 
