@@ -7,7 +7,7 @@ import { Counter } from '@common/util/Counter.ts';
 import { Annotations } from "@common/annotations.ts";
 import { v4 as uuidv4 } from 'uuid';
 
-var userUUID = uuidv4();
+let userUUID = uuidv4();
 
 const PORT = 3001;
 const CLIENT_PORT = 3000;
