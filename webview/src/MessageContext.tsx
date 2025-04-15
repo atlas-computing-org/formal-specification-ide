@@ -1,5 +1,6 @@
 import {useEffect, useState, createContext, useContext} from "react"
-import { webViewIsLoaded } from "./extensionTools"
+import { notifyVscode, webViewIsLoaded } from "./extensionTools"
+import { generateRandomString } from "./utils"
 
 export type Message = {
     command: string
@@ -10,18 +11,29 @@ export type Message = {
 
 type MessagesContextType = {
     messages: Message[]
-    // useSubscription: (callback: (message: Message) => void) => void
+    addSubscriber: (callback: (message: Message) => void) => () => void
 }
 
-const MessagesContext = createContext<MessagesContextType>({messages: []});
+const MessagesContext = createContext<MessagesContextType>({
+    messages: [],
+    addSubscriber: () => () => {}
+});
 
 export const MessagesProvider = ({children}: {children: React.ReactNode}) => {
     const [messages, setMessages] = useState<Message[]>([]);
+    const [subscribers, setSubscribers] = useState<Record<string, (message: Message) => void>>({});
 
-    useEffect(() => {
-        // tell the extension that we're ready to receive messages
-        webViewIsLoaded()
-    }, []);
+    const addSubscriber = (callback: (message: Message) => void) => {
+        const id = generateRandomString()
+        setSubscribers(prev => ({...prev, [id]: callback}))
+        return () => {
+            setSubscribers(prev => {
+                const newSubscribers = {...prev}
+                delete newSubscribers[id]
+                return newSubscribers
+            })
+        }
+    }
 
     useEffect(() => {
         const handleMessage = (event: MessageEvent) => {
@@ -32,21 +44,41 @@ export const MessagesProvider = ({children}: {children: React.ReactNode}) => {
                 }
                 return [...prev, message]
             })
+            for (const callback of Object.values(subscribers)) {
+                try {
+                    callback(message)
+                } catch (error) {
+                    notifyVscode(JSON.stringify({error}, null, 2), "error")
+                }
+            }
         }
 
         window.addEventListener('message', handleMessage);
         return () => {
             window.removeEventListener('message', handleMessage)
         }
+    }, [subscribers])
+
+    useEffect(() => {
+        webViewIsLoaded()
     }, [])
 
     return (
-        <MessagesContext.Provider value={{messages}}>
+        <MessagesContext.Provider value={{messages, addSubscriber}}>
             {children}
         </MessagesContext.Provider>
     )
 }
 
-export const useMessages = () => {
-    return useContext(MessagesContext)
+export const useMessages = (onNewMessage?: (message: Message) => void) => {
+    const {messages, addSubscriber} = useContext(MessagesContext)
+
+    useEffect(() => {
+        if (onNewMessage) {
+            const unsubscribe = addSubscriber(onNewMessage)
+            return unsubscribe
+        }
+    }, [onNewMessage])
+
+    return { messages }
 }

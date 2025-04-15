@@ -1,5 +1,17 @@
 
-import { Selection, Position } from './App';
+export type Position = {
+    line: number
+    character: number
+}
+
+export type Selection = {
+    start: Position
+    end: Position
+    active: Position
+    anchor: Position
+    text?: string
+    fileName?: string
+}
 
 const sendMessageToExtension = (command: string, body: any) => {
     window.parent.postMessage({

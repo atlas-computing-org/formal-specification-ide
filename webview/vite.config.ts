@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import path from 'path';
 import fs from 'fs';
 import dotenv from 'dotenv';
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig(() => {
     const envPath = path.resolve(__dirname, '..', '.env.config');
@@ -11,6 +12,7 @@ export default defineConfig(() => {
     const webviewPort = process.env.WEBVIEW_PORT;
 
     return {
+        plugins: [tailwindcss()],
         server: {
             port: Number(webviewPort) || 3002
         },

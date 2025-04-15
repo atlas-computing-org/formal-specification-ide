@@ -22,34 +22,45 @@
           "title": "spec-mapper: Load selected text"
         },
         {
-          "command": "spec-mapper.loadActiveFile",
-          "title": "spec-mapper: Load current file"
+          "command": "spec-mapper.loadActiveFileAsDocumentation",
+          "title": "spec-mapper: Open in documentation viewer"
         }
       ],
       "explorer/context": [
         {
-          "command": "spec-mapper.openAndLoadFile",
-          "when": "!explorerResourceIsFolder",
-          "title": "spec-mapper: Open and load file"
+          "command": "spec-mapper.openAndLoadFileAsDocumentation",
+          "title": "spec-mapper: Open and load file in documentation viewer"
         }
       ]
     },
     "commands": [
       {
-        "command": "spec-mapper.showWebview",
-        "title": "Start Spec Mapper"
+        "command": "spec-mapper.openHomePage",
+        "title": "spec-mapper: Start"
       },
       {
-        "command": "spec-mapper.loadActiveFile",
-        "title": "Open current file in Spec Mapper"
+        "command": "spec-mapper.openHelpPage",
+        "title": "spec-mapper: Open Help Page"
+      },
+      {
+        "command": "spec-mapper.openDocumentationPage",
+        "title": "spec-mapper: Open Documentation Viewer"
+      },
+      {
+        "command": "spec-mapper.openSettingsPage",
+        "title": "spec-mapper: Open Settings Page"
+      },
+      {
+        "command": "spec-mapper.loadActiveFileAsDocumentation",
+        "title": "spec-mapper: Open active file in documentation viewer"
       },
       {
         "command": "spec-mapper.openAndLoadFile",
-        "title": "Open and load file in Spec Mapper"
+        "title": "spec-mapper: Open and load file"
       },
       {
         "command": "spec-mapper.getContextForSelection",
-        "title": "Get Context for Selection"
+        "title": "spec-mapper: Get Context for Selection"
       }
     ]
   },

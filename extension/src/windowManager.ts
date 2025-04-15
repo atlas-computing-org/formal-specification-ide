@@ -18,7 +18,7 @@ export class WebviewManager {
 
         const panel = vscode.window.createWebviewPanel(
             'spec-mapper-webview',
-            'Spec Mapper',
+            'spec-mapper',
             vscode.ViewColumn.Two,
             {
                 enableScripts: true,

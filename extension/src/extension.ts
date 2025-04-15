@@ -6,27 +6,72 @@ import { openOrRevealDocument } from "./vscodeUtils";
 
 export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(
-        vscode.commands.registerCommand('spec-mapper.showWebview', () => {
+        vscode.commands.registerCommand('spec-mapper.openHomePage', () => {
             WebviewManager.createOrShow(context.extensionUri);
-            WebviewManager.currentPanel?.sendMessage({command: 'startUp'})
+            WebviewManager.currentPanel?.sendMessage({command: 'navigate', body: {page: 'Home'}})
         })
     )
 
     context.subscriptions.push(
-        vscode.commands.registerCommand('spec-mapper.loadActiveFile', () => {
+        vscode.commands.registerCommand('spec-mapper.openHelpPage', () => {
+            WebviewManager.createOrShow(context.extensionUri);
+            WebviewManager.currentPanel?.sendMessage({command: 'navigate', body: {page: 'Help'}})
+        })
+    )
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand('spec-mapper.openDocumentationPage', () => {
+            WebviewManager.createOrShow(context.extensionUri);
+            WebviewManager.currentPanel?.sendMessage({command: 'navigate', body: {page: 'Documentation'}})
+        })
+    )
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand('spec-mapper.openSettingsPage', () => {
+            WebviewManager.createOrShow(context.extensionUri);
+            WebviewManager.currentPanel?.sendMessage({command: 'navigate', body: {page: 'Settings'}})
+        })
+    )
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand('spec-mapper.loadActiveFileAsDocumentation', () => {
             const editor = vscode.window.activeTextEditor;
             if (editor) {
                 const document = editor.document;
 
                 WebviewManager.createOrShow(context.extensionUri);
                 WebviewManager.currentPanel?.sendMessage({
+                    command: 'navigate',
+                    body: {page: 'Documentation'}
+                })
+                WebviewManager.currentPanel?.sendMessage({
                     command: 'loadFile',
-                    body: {fileName: document.fileName}
+                    body: {fileName: document.fileName, text: document.getText()}
                 })
 
             } else {
                 vscode.window.showWarningMessage('No active text editor found');
             }
+        })
+    )
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand('spec-mapper.openAndLoadFileAsDocumentation', async (uri: vscode.Uri) => {
+            if (!uri) {
+                vscode.window.showErrorMessage('No file selected');
+                return;
+            }
+
+            await openOrRevealDocument(uri.fsPath, vscode.ViewColumn.One);
+            WebviewManager.createOrShow(context.extensionUri);
+            WebviewManager.currentPanel?.sendMessage({
+                command: 'navigate',
+                body: {page: 'Documentation'}
+            })
+            WebviewManager.currentPanel?.sendMessage({
+                command: 'loadFile',
+                body: {fileName: uri.fsPath}
+            })
         })
     )
 
@@ -42,22 +87,6 @@ export function activate(context: vscode.ExtensionContext) {
                     body: {fileName, selection, text}
                 })
             }
-        })
-    )
-
-    context.subscriptions.push(
-        vscode.commands.registerCommand('spec-mapper.openAndLoadFile', async (uri: vscode.Uri) => {
-            if (!uri) {
-                vscode.window.showErrorMessage('No file selected');
-                return;
-            }
-
-            await openOrRevealDocument(uri.fsPath, vscode.ViewColumn.One);
-            WebviewManager.createOrShow(context.extensionUri);
-            WebviewManager.currentPanel?.sendMessage({
-                command: 'loadFile',
-                body: {fileName: uri.fsPath}
-            })
         })
     )
 }

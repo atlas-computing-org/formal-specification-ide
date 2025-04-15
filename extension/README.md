@@ -3,7 +3,7 @@ This is the code for the extension itself. The code for the embedded web app is 
 
 ## How to run this
 
-To run this, first start the dev server for the webview by going to /webview and running `npm run dev`. Then, you can open vscode debug mode with command+shift+D. Click "Run Extension" in the debug panel.
+To run this, you can open vscode debug mode with command+shift+D. Click "Run Extension" in the debug panel.
 
 This will open another vscode window in developer mode. In the new window, open the command panel with command+P. Then, type "> Start Spec Mapper" in the command panel to launch the extension.
 
@@ -11,7 +11,3 @@ If you change the code in /webview, that should immediately update the extension
 
 If this doesn't work
 - Make sure you have up to date /.vscode/launch.json and /.vscode/tasks.json
-
-## How to build this
-
-Unclear
