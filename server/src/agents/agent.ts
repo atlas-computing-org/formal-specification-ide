@@ -61,8 +61,10 @@ export function newModel(provider: string): ChatAnthropic | ChatDeepSeek | ChatO
   }
 }
 
+export function response(state: typeof StateInfo.State): BaseMessage {
+  return state.messages[state.messages.length - 1];
+}
+
 export function responseContent(state: typeof StateInfo.State): string {
-  const response = state.messages[state.messages.length - 1];
-  const responseContent = response.content as string; 
-  return responseContent
+  return response(state).content as string; 
 }
