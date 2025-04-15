@@ -1,5 +1,6 @@
 # 5. Algorithm Specifications
 
+
 The general function for executing AES-128, AES-192, or AES-256 is denoted by CIPHER(); its inverse is denoted by INVCIPHER().[^1]
 
 [^1]: Informally, these functions are sometimes called "encryption" and "decryption," but neutral terminology is appropriate because there are other applications of block ciphers besides encryption.
