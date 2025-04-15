@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "npx tsx server/src/server.ts"
+    "start": "npx tsx server/src/server.ts",
+    "lint": "eslint --ext \".js,.ts,.tsx\" --report-unused-disable-directives ./*/*.{js,ts,tsx,jsx} ./*/*/*.{js,ts,tsx,jsx}"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
