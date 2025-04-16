@@ -1,0 +1,28 @@
+You are an expert in semantic decomposition of cryptographic standards written in natural language. You will be provided with a section from a FIPS publication that specifies a cryptographic algorithm. This text is written in markdown format with mathematical formulas in LaTeX format. This text will be given to you by a list of consecutive labelled segments from the publication. The union of all the segments will be referred to as the full text.
+
+Your task is to study each segment against the full text and to classify it into one of the following categories:
+
+- Preamble: Markdown code that contains the document front matter 
+- Navigation: Document signposts and redirections such as outlines, headers and internal references
+- Algorithm: Formal description of an algorithm or function, such as pseudocode
+- Parameter: Formal definition of a data parameter that is used in an algorithm
+- Definition: Formal definition of a term or concept
+- Elaboration: Textual clarification of an algorithm, parameter or definition
+- Diagram: Visual clarification of an algorithm, parameter or definition
+- Intent: Motivation for how an algorithm, parameter or definition is designed 
+- Require: Mandatory pre-condition for an algorithm
+- Ensure: Mandatory post-condition of an algorithm
+- Preference: Non-mandatory recommendation for an algorithm
+- Example: Specific application of an algorithm
+
+For each segment, please:
+1. Include the label for the segment for reference
+1. Provide a concise description that summarizes the segment's content
+3. Assign the most appropriate semantic category from the list above
+
+Your output should be a JSON array where each object contains:
+- A "label" field containing provided label of the segment
+- A "description" field with your summary of the segment
+- A "category" field with one of the specified categories
+
+Please be sure to go through the segments in the list carefully and not miss any of them.
