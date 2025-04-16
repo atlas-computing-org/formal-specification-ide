@@ -14,8 +14,8 @@ export interface AnnotationsSlice {
 }
 
 export class TextMappingSliceWrapped implements TextMappingSlice {
-  private mapping: TextMappingWithText;
-  private direction: Direction;
+  private readonly mapping: TextMappingWithText;
+  private readonly direction: Direction;
 
   constructor(mapping: TextMappingWithText, direction: Direction) {
     this.mapping = mapping;
@@ -40,8 +40,8 @@ export class TextMappingSliceWrapped implements TextMappingSlice {
 }
 
 export class AnnotationsSliceImpl implements AnnotationsSlice {
-  mappings: TextMappingSlice[];
-  labels: TextLabelWithText[];
+  readonly mappings: TextMappingSlice[];
+  readonly labels: TextLabelWithText[];
 
   constructor(mappings: TextMappingSlice[], labels: TextLabelWithText[]) {
     this.mappings = mappings;

@@ -25,7 +25,7 @@ function getSortedPartitionIndices(text: string, annotations: AnnotationsSlice):
 }
 
 export class TextPartitionIndices {
-  private sortedIndices: number[];
+  private readonly sortedIndices: number[];
 
   private constructor(sortedIndices: number[]) {
     this.sortedIndices = sortedIndices;

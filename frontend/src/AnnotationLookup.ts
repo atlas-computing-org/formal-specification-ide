@@ -6,7 +6,7 @@ export interface AnnotationLookup {
 }
 
 export class AnnotationLookupImpl implements AnnotationLookup {
-  private annotations: AnnotationsSlice;
+  private readonly annotations: AnnotationsSlice;
 
   constructor(annotations: AnnotationsSlice) {
     this.annotations = annotations;
@@ -25,8 +25,8 @@ export class AnnotationLookupImpl implements AnnotationLookup {
 }
 
 export class AnnotationAndHighlightsLookup {
-  private _annotations: AnnotationLookup;
-  private _highlights: AnnotationLookup;
+  private readonly _annotations: AnnotationLookup;
+  private readonly _highlights: AnnotationLookup;
 
   constructor(annotations: AnnotationLookup, highlights: AnnotationLookup) {
     this._annotations = annotations;
