@@ -1,0 +1,79 @@
+{
+  "name": "spec-mapper",
+  "displayName": "Spec Mapper",
+  "description": "A description for your VS Code extension.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "menus": {
+      "editor/context": [
+        {
+          "command": "spec-mapper.getContextForSelection",
+          "when": "editorHasSelection",
+          "title": "spec-mapper: Load selected text"
+        },
+        {
+          "command": "spec-mapper.loadActiveFileAsDocumentation",
+          "title": "spec-mapper: Open in documentation viewer"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "spec-mapper.openAndLoadFileAsDocumentation",
+          "title": "spec-mapper: Open and load file in documentation viewer"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "spec-mapper.openHomePage",
+        "title": "spec-mapper: Start"
+      },
+      {
+        "command": "spec-mapper.openHelpPage",
+        "title": "spec-mapper: Open Help Page"
+      },
+      {
+        "command": "spec-mapper.openDocumentationPage",
+        "title": "spec-mapper: Open Documentation Viewer"
+      },
+      {
+        "command": "spec-mapper.openSettingsPage",
+        "title": "spec-mapper: Open Settings Page"
+      },
+      {
+        "command": "spec-mapper.loadActiveFileAsDocumentation",
+        "title": "spec-mapper: Open active file in documentation viewer"
+      },
+      {
+        "command": "spec-mapper.openAndLoadFile",
+        "title": "spec-mapper: Open and load file"
+      },
+      {
+        "command": "spec-mapper.getContextForSelection",
+        "title": "spec-mapper: Get Context for Selection"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsc -p .",
+    "watch": "tsc -watch -p .",
+    "prepublish": "npm run build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^4.8.0",
+    "@types/vscode": "^1.70.0",
+    "vsce": "^2.10.0"
+  }
+}

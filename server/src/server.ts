@@ -1,3 +1,4 @@
+import './loadEnv.ts';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import express, { Request, Response, NextFunction } from 'express';
@@ -9,8 +10,9 @@ import { getLogger } from './Logger.ts';
 import { DATA_DIR } from './util/fileUtils.ts';
 import { Counter } from '@common/util/Counter.ts';
 
-const PORT = 3001;
-const CLIENT_PORT = 3000;
+
+const PORT = Number(process.env.BACKEND_PORT);
+const CLIENT_PORT = Number(process.env.FRONTEND_PORT);
 const CLIENT_ORIGIN = `http://localhost:${CLIENT_PORT}`;
 
 const logger = getLogger();

@@ -1,5 +1,7 @@
 node_modules
 frontend/dist
 *.swp
-.vscode
 server/log
+.env
+.vscode/settings.json
+extension/out
