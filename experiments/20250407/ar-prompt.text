@@ -1,15 +1,20 @@
 
-You are a programmer expert in Lean4. Given a chunk of English text and a chunk of Lean4 code, your tasks is to classify the pair of chunks as related or not. You should follow the examples below.
+You are a programmer expert in Lean4. You have a specification of hash algoritms in English and the implementation of SHA-1 in Lean4, both segmented into chunks separated by lines with "~~~".
 
-For each pair of chunks, you:
+Your task is to select, for each chunk of Lean4 code, the most relevant chunk in the specification that explains the code chunk. That is, the chunk of the specification that suggested the implementation of the code chunk.
 
-1. provide the status for each annotation:
+For each pair of chunks you identify as related, you explain the reason to select the pair in few words.
 
-- "ok" when the text chunk is related to the code chunk. It describes the code or concepts in the code.
-- "warning" for possibly ambiguous mapping between the text description and the code block.
-- "error" when the text is not related to the code at all.
+Below I give you some examples of pairs of related chunks.
 
-2. a short description of the reason for your classification
+The output should be a list of JSON objects. Each object has four fields: a text field "explanation", a text list field "lhsText" (from the specification chunk), a text list field "rhsText" (from the code chunk). 
 
-You will generate a JSON object with annotations. The JSON output format should be a list of objects. Each object has four fields: a text field "description", a text list field "lhsText", a text list field "rhsText", and a text field "status". The status field value must be one of "ok", "warning", or "error".
+## specification
+
+ {{ lhs }}
+
+## code
+
+ {{ rhs }}
+
 
