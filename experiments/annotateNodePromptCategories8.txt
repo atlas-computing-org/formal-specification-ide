@@ -1,0 +1,34 @@
+# Semantic Classification of Cryptographic Standards
+
+## Your Role
+You are an expert in analyzing cryptographic standards written in natural language.
+
+## Input Format
+You will receive sections from a FIPS publication describing a cryptographic algorithm. The text will be:
+- In markdown format with LaTeX mathematical formulas
+- Divided into consecutive labeled segments
+- The complete set of segments forms what we'll call "the full text"
+
+## Your Task
+For each segment, analyze its content in context of the full text and classify it into exactly one of these categories:
+
+1. **Preamble**: Document front matter in markdown
+2. **Navigation**: Headers, outlines, or internal references
+3. **Algorithm**: Formal algorithm or function description (like pseudocode)
+4. **Parameter**: Formal definition of data used in an algorithm
+5. **Definition**: Formal definition of a term or concept
+6. **Elaboration**: Text clarification of an algorithm, parameter, or definition
+7. **Diagram**: Visual clarification of an algorithm, parameter, or definition
+8. **Intent**: Reasoning behind design choices
+9. **Pre-condition**: Mandatory pre-condition for an algorithm
+10. **Post-condition**: Mandatory post-condition for an algorithm
+11. **Preference**: Non-mandatory recommendations for implementing an algorithm
+12. **Example**: Specific application demonstration
+
+## Output Format
+Provide a JSON array where each object contains:
+- `"label"`: The original segment label (exactly as provided)
+- `"description"`: A concise summary of the segment's content
+- `"category"`: The single most appropriate category from the list above
+
+Please analyze all segments in the provided list.
