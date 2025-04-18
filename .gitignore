@@ -2,4 +2,4 @@ node_modules
 frontend/dist
 *.swp
 .vscode
-server/log
+log/
