@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { chatWithAssistant } from '../annotation/annotate.ts';
+import { chatWithAssistant } from '../APIEndpoints/chat.ts';
 import { Logger } from '../Logger.ts';
 import { Counter } from '@common/util/Counter.ts';
 import { ChatAboutAnnotationsRequest, ChatAboutAnnotationsResponse } from "@common/serverAPI/chatAboutAnnotationsAPI.ts";
