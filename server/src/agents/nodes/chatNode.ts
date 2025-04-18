@@ -1,3 +1,6 @@
+import { SystemMessage } from "@langchain/core/messages";
+import { StateInfo } from "../agent.ts";
+
 export const PROMPT = 
 `You are an expert in text comparison and annotation. Your goal is to assist the user in analyzing two pieces of text and suggest annotations that capture the significant relationships between them. The text on the left (LHS TEXT) and the right (RHS TEXT) may have corresponding words, phrases, or concepts that need to be highlighted. The annotations contain mappings between corresponding phrases/words in the LHS and RHS texts, including any potential relationships or synonyms. Each annotation also comes with a description such as "Greeting," "Noun," or other suitable labels based on the context of each text, and a status such as:
    - "default" for mappings that correctly preserve concepts.
@@ -78,3 +81,8 @@ Verification and Proofs:
 The texts and annotations are as follows.
 
 `;
+
+export const chatNode = (state: typeof StateInfo.State) => {
+  state.logger.info(`System Message:\n${PROMPT + state.systemData}`);
+  return { messages: [new SystemMessage(PROMPT + state.systemData)] };
+}

@@ -1,4 +1,9 @@
-### CHAIN-OF-THOUGHT ANALYSIS
+import { promises as fs } from 'node:fs';
+import { StateInfo } from "../agent.ts";
+import { AIMessage } from "@langchain/core/messages";
+
+const cachedResponse = 
+`### CHAIN-OF-THOUGHT ANALYSIS
 
 The LHS TEXT and RHS TEXT appear to be describing the same topic - the SHA-1 hash algorithm. The LHS TEXT provides a detailed description of the SHA-1 algorithm, including the preprocessing steps, the hash computation, and the final hash value. The RHS TEXT appears to be an implementation of the SHA-1 algorithm in the Lean programming language.
 
@@ -6,13 +11,13 @@ The key similarities and differences between the two texts are:
 
 1. **Preprocessing**: Both texts describe the preprocessing steps, including padding the message and parsing it into message blocks.
 2. **Hash Computation**: The LHS TEXT provides a step-by-step description of the hash computation, including the message schedule, the working variables, and the final hash value computation. The RHS TEXT also implements the main hash function, including the message schedule and the main loop.
-3. **Initial Hash Value**: Both texts specify the initial hash value, `H^(0)`, for the SHA-1 algorithm.
+3. **Initial Hash Value**: Both texts specify the initial hash value, \`H^(0)\`, for the SHA-1 algorithm.
 4. **Differences in Notation**: The LHS TEXT uses mathematical notation and equations, while the RHS TEXT uses Lean programming language constructs and functions.
-5. **Implementation Details**: The RHS TEXT provides additional implementation details, such as the `padMessage` and `chunkify` functions, which are not explicitly described in the LHS TEXT.
+5. **Implementation Details**: The RHS TEXT provides additional implementation details, such as the \`padMessage\` and \`chunkify\` functions, which are not explicitly described in the LHS TEXT.
 
 ### JSON ANNOTATIONS
 
-```json
+\`\`\`json
 [
   {
     "description": "Preprocessing",
@@ -112,8 +117,15 @@ The key similarities and differences between the two texts are:
     "status": "default"
   }
 ]
-```
+\`\`\`
 
 ### NOTES AND CONCERNS
 
 The LHS TEXT and RHS TEXT appear to be well-aligned and complementary. The LHS TEXT provides a detailed mathematical description of the SHA-1 algorithm, while the RHS TEXT provides a concrete implementation in the Lean programming language. The annotations capture the key similarities and differences between the two texts, and there are no major concerns.
+`;
+
+export const cacheNode = (state: typeof StateInfo.State) => {
+  state.logger.info("Using cached LLM response. This only works for the demo.");
+  // Update message history with cached response:
+  return { messages: [new AIMessage(cachedResponse)] };
+};
