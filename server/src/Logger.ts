@@ -1,5 +1,5 @@
 import winston from 'winston';
-import { promises as fs } from 'fs';
+import { promises as fs } from 'node:fs';
 import { getCurrentTimestampString } from '@common/util/timeUtils.ts';
 
 const LOGS_DIRECTORY = './server/log';
