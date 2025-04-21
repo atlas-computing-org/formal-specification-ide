@@ -1,25 +1,21 @@
-import React from 'react';
-import { PanelHeader } from './components/PanelHeader/PanelHeader.tsx';
-import { useDataset } from './hooks/useDataset.ts';
+import { Header } from './components/Header.tsx';
+import { Footer } from './components/Footer.tsx';
+import { MainContent } from './components/MainContent.tsx';
+import { ChatModal } from './components/ChatModal.tsx';
+import { ComingSoonModal } from './components/ComingSoonModal.tsx';
+import { DebugModal } from './components/DebugModal.tsx';
 
-export const App: React.FC = () => {
-  const { loading, error, loadDataset } = useDataset();
-
-  React.useEffect(() => {
-    loadDataset('default'); // Load default dataset on mount
-  }, []);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-
+function App() {
   return (
-    <div className="app">
-      <PanelHeader 
-        title="Natural Language Documentation"
-        tabs={["PDF", "Full Text", "Sliced Text"]}
-        activeTab="PDF"
-        onTabChange={(tab) => console.log('Tab changed:', tab)}
-      />
-    </div>
+    <>
+      <Header />
+      <MainContent />
+      <Footer />
+      <ChatModal />
+      <ComingSoonModal />
+      <DebugModal />
+    </>
   );
-}; 
+}
+
+export default App; 
