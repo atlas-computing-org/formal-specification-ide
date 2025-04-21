@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { datasetService } from '../services/datasetService.ts';
-import { GetDatasetResponse } from '@common/serverAPI/getDatasetAPI.ts';
 
 interface DatasetState {
   lhsText: string;

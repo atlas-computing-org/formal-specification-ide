@@ -3,7 +3,7 @@ import { PanelHeader } from './components/PanelHeader/PanelHeader.tsx';
 import { useDataset } from './hooks/useDataset.ts';
 
 export const App: React.FC = () => {
-  const { dataset, loading, error, loadDataset } = useDataset();
+  const { loading, error, loadDataset } = useDataset();
 
   React.useEffect(() => {
     loadDataset('default'); // Load default dataset on mount

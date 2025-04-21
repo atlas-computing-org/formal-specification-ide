@@ -193,7 +193,7 @@ function onClickTextAnnotation(clickIndex: number, annotationLookup: AnnotationA
   targetScrollManager.scrollTargetTextToRange(targetRange);
 }
 
-function renderTextSegment(startIdx: number, endIdx: number, textSegment: string,
+function renderTextSegment(startIdx: number, textSegment: string,
     annotationLookup: AnnotationAndHighlightsLookup, updateHighlightsForIndex: (index: number) => void,
     scrollManager: AnnotationsScrollManager): HTMLElement {
   const annotations = annotationLookup.annotations.getAnnotationsForIndex(startIdx);
@@ -242,7 +242,7 @@ function renderPartitionedText(text: string, partitionIndices: TextPartitionIndi
       return; // Skip the first index (it's the starting point)
     }
     const segment = text.substring(lastIndex, index);
-    const span = renderTextSegment(lastIndex, index, segment, annotationLookup, updateHighlightsForIndex, scrollManager);
+    const span = renderTextSegment(lastIndex, segment, annotationLookup, updateHighlightsForIndex, scrollManager);
     fragment.appendChild(span);
     lastIndex = index;
   });
@@ -387,7 +387,7 @@ function renderTextPanels(dataset: DatasetWithText, highlights: AnnotationsWithT
 // Annotation Panels
 // ---------------------------------------------------------------------
 
-function startEditing(cell: HTMLElement, item: TextMappingWithText | TextLabelWithText, index: number) {
+function startEditing(cell: HTMLElement, item: TextMappingWithText | TextLabelWithText) {
   const originalText = cell.textContent!;
   const input = document.createElement("input");
   input.type = "text";
@@ -398,17 +398,17 @@ function startEditing(cell: HTMLElement, item: TextMappingWithText | TextLabelWi
   cell.appendChild(input);
   input.focus();
 
-  input.addEventListener("blur", () => stopEditing(cell, input, item, index, originalText));
+  input.addEventListener("blur", () => stopEditing(cell, input, item));
   input.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-      stopEditing(cell, input, item, index, originalText);
+      stopEditing(cell, input, item);
     } else if (e.key === "Escape") {
       cancelEditing(cell, input, originalText);
     }
   });
 }
 
-function stopEditing(cell: HTMLElement, input: HTMLInputElement, item: TextMappingWithText | TextLabelWithText, index: number, originalText: string) {
+function stopEditing(cell: HTMLElement, input: HTMLInputElement, item: TextMappingWithText | TextLabelWithText) {
   const newValue = input.value;
   cell.textContent = newValue;
   input.remove();
@@ -448,7 +448,7 @@ function addEditCellListener() {
       }
 
       // Start editing the label
-      startEditing(target, item, index);
+      startEditing(target, item);
     }
   });
 }
