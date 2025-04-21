@@ -25,7 +25,6 @@ const initialState: AppState = {
   dataset: EMPTY_DATASET,
   highlights: EMPTY_ANNOTATIONS,
   tabState: INITIAL_TAB_STATE,
-  isNewChat: true,
   useDemoCache: false,
   currentAnnotationSets: {},
   selectedAnnotationsSetName: DEFAULT_ANNOTATIONS_SET_NAME,

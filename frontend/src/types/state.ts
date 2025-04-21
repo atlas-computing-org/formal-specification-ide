@@ -17,7 +17,6 @@ export interface AppState {
   fullText: string;
 
   tabState: TabState;
-  isNewChat: boolean;
   useDemoCache: boolean;
 
   // Developer-only features
