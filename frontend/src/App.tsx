@@ -9,6 +9,7 @@ import { useState } from 'react';
 
 function App() {
   const [isChatModalOpen, setIsChatModalOpen] = useState(false);
+  const [isDebugModalOpen, setIsDebugModalOpen] = useState(false);
 
   const handleOpenChat = () => {
     setIsChatModalOpen(true);
@@ -18,14 +19,22 @@ function App() {
     setIsChatModalOpen(false);
   };
 
+  const handleOpenDebug = () => {
+    setIsDebugModalOpen(true);
+  };
+
+  const handleCloseDebug = () => {
+    setIsDebugModalOpen(false);
+  };
+
   return (
     <AppProvider>
       <Header onOpenChat={handleOpenChat} />
       <MainContent />
-      <Footer />
+      <Footer onOpenDebug={handleOpenDebug} />
       <ChatModal isOpen={isChatModalOpen} onClose={handleCloseChat} />
       <ComingSoonModal />
-      <DebugModal />
+      <DebugModal isOpen={isDebugModalOpen} onClose={handleCloseDebug} />
     </AppProvider>
   );
 }
