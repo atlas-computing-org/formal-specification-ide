@@ -112,6 +112,7 @@ The key similarities and differences between the two texts are:
     "status": "default"
   }
 ]
+```
 
 ### NOTES AND CONCERNS
 
