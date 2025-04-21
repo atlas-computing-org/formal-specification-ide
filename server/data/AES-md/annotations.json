@@ -1,0 +1,633 @@
+{
+  "mappings": [
+    {
+      "description": "Converts hexadecimal strings to byte arrays and vice versa.",
+      "lhsRanges": [
+        {
+          "start": 31,
+          "end": 161
+        },
+        {
+          "start": 12255,
+          "end": 12273
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 0,
+          "end": 84
+        }
+      ]
+    },
+    {
+      "description": "AES namespace for Advanced Encryption Standard implementation.",
+      "lhsRanges": [
+        {
+          "start": 31,
+          "end": 161
+        },
+        {
+          "start": 966,
+          "end": 1560
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 86,
+          "end": 99
+        }
+      ]
+    },
+    {
+      "description": "Function checks if specific bit in byte is set.",
+      "lhsRanges": [
+        {
+          "start": 5364,
+          "end": 5652
+        },
+        {
+          "start": 5118,
+          "end": 5362
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 101,
+          "end": 164
+        }
+      ]
+    },
+    {
+      "description": "Finite field GF(2^8) multiplication operation implementation.",
+      "lhsRanges": [
+        {
+          "start": 5364,
+          "end": 5652
+        },
+        {
+          "start": 4909,
+          "end": 5116
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 166,
+          "end": 297
+        }
+      ]
+    },
+    {
+      "description": "Galois field multiplication function for AES encryption.",
+      "lhsRanges": [
+        {
+          "start": 5364,
+          "end": 5652
+        },
+        {
+          "start": 5118,
+          "end": 5362
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 299,
+          "end": 562
+        }
+      ]
+    },
+    {
+      "description": "S-box values for AES encryption from FIPS 197.",
+      "lhsRanges": [
+        {
+          "start": 6841,
+          "end": 8575
+        },
+        {
+          "start": 6565,
+          "end": 6839
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 564,
+          "end": 2201
+        }
+      ]
+    },
+    {
+      "description": "sBox has a size of 256.",
+      "lhsRanges": [
+        {
+          "start": 6565,
+          "end": 6839
+        },
+        {
+          "start": 4704,
+          "end": 4907
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2203,
+          "end": 2285
+        }
+      ]
+    },
+    {
+      "description": "Inverse S-box values array for cryptographic operations.",
+      "lhsRanges": [
+        {
+          "start": 6841,
+          "end": 8575
+        },
+        {
+          "start": 6565,
+          "end": 6839
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2287,
+          "end": 3935
+        }
+      ]
+    },
+    {
+      "description": "InvSBox has size 256.",
+      "lhsRanges": [
+        {
+          "start": 4704,
+          "end": 4907
+        },
+        {
+          "start": 6565,
+          "end": 6839
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3937,
+          "end": 4025
+        }
+      ]
+    },
+    {
+      "description": "Constants for AES key expansion.",
+      "lhsRanges": [
+        {
+          "start": 11592,
+          "end": 12171
+        },
+        {
+          "start": 3416,
+          "end": 3600
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4027,
+          "end": 4145
+        }
+      ]
+    },
+    {
+      "description": "Functions for key expansion, including word rotation.",
+      "lhsRanges": [
+        {
+          "start": 11592,
+          "end": 12171
+        },
+        {
+          "start": 12705,
+          "end": 12848
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4147,
+          "end": 4453
+        }
+      ]
+    },
+    {
+      "description": "Function maps each byte in array using sBox lookup.",
+      "lhsRanges": [
+        {
+          "start": 4704,
+          "end": 4907
+        },
+        {
+          "start": 4682,
+          "end": 4702
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4455,
+          "end": 4577
+        }
+      ]
+    },
+    {
+      "description": "Key expansion function using Array.extract for AES encryption.",
+      "lhsRanges": [
+        {
+          "start": 11592,
+          "end": 12171
+        },
+        {
+          "start": 16256,
+          "end": 17040
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4579,
+          "end": 4889
+        }
+      ]
+    },
+    {
+      "description": "Copy original key into first Nk words of expanded key.",
+      "lhsRanges": [
+        {
+          "start": 11592,
+          "end": 12171
+        },
+        {
+          "start": 16256,
+          "end": 17040
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4891,
+          "end": 5010
+        }
+      ]
+    },
+    {
+      "description": "AES key expansion algorithm for generating round keys.",
+      "lhsRanges": [
+        {
+          "start": 11592,
+          "end": 12171
+        },
+        {
+          "start": 16256,
+          "end": 17040
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5012,
+          "end": 5535
+        }
+      ]
+    },
+    {
+      "description": "Substitutes bytes using S-box lookup in AES algorithm.",
+      "lhsRanges": [
+        {
+          "start": 4704,
+          "end": 4907
+        },
+        {
+          "start": 4682,
+          "end": 4702
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5537,
+          "end": 5647
+        }
+      ]
+    },
+    {
+      "description": "Maps each byte in state array through inverse S-Box.",
+      "lhsRanges": [
+        {
+          "start": 4704,
+          "end": 4907
+        },
+        {
+          "start": 6466,
+          "end": 6523
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5649,
+          "end": 5753
+        }
+      ]
+    },
+    {
+      "description": "ShiftRows function rearranges elements in a 16-element array.",
+      "lhsRanges": [
+        {
+          "start": 8600,
+          "end": 8917
+        },
+        {
+          "start": 8577,
+          "end": 8598
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5755,
+          "end": 6118
+        }
+      ]
+    },
+    {
+      "description": "Function performs inverse row shifting for 16-element array.",
+      "lhsRanges": [
+        {
+          "start": 8600,
+          "end": 8917
+        },
+        {
+          "start": 8577,
+          "end": 8598
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 6120,
+          "end": 6476
+        }
+      ]
+    },
+    {
+      "description": "Function performs matrix multiplication for AES encryption.",
+      "lhsRanges": [
+        {
+          "start": 9221,
+          "end": 9243
+        },
+        {
+          "start": 10483,
+          "end": 10523
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 6478,
+          "end": 6988
+        }
+      ]
+    },
+    {
+      "description": "Function performs inverse column mixing in AES encryption.",
+      "lhsRanges": [
+        {
+          "start": 13140,
+          "end": 13165
+        },
+        {
+          "start": 9221,
+          "end": 9243
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 6990,
+          "end": 7506
+        }
+      ]
+    },
+    {
+      "description": "Function that mixes columns in AES encryption algorithm.",
+      "lhsRanges": [
+        {
+          "start": 9245,
+          "end": 9513
+        },
+        {
+          "start": 9221,
+          "end": 9243
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 7508,
+          "end": 7841
+        }
+      ]
+    },
+    {
+      "description": "Function performs inverse mix columns operation on AES state array.",
+      "lhsRanges": [
+        {
+          "start": 13167,
+          "end": 13490
+        },
+        {
+          "start": 13140,
+          "end": 13165
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 7843,
+          "end": 8185
+        }
+      ]
+    },
+    {
+      "description": "XOR operation between state and round key arrays.",
+      "lhsRanges": [
+        {
+          "start": 10550,
+          "end": 11389
+        },
+        {
+          "start": 10525,
+          "end": 10548
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 8187,
+          "end": 8316
+        }
+      ]
+    },
+    {
+      "description": "AES encryption cipher function with key scheduling and rounds.",
+      "lhsRanges": [
+        {
+          "start": 3654,
+          "end": 4267
+        },
+        {
+          "start": 2753,
+          "end": 3128
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 8318,
+          "end": 8941
+        }
+      ]
+    },
+    {
+      "description": "Inverse cipher function for AES decryption.",
+      "lhsRanges": [
+        {
+          "start": 12275,
+          "end": 12573
+        },
+        {
+          "start": 15441,
+          "end": 15700
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 8943,
+          "end": 9626
+        }
+      ]
+    },
+    {
+      "description": "AES-128 encryption function using key expansion and cipher operations.",
+      "lhsRanges": [
+        {
+          "start": 1937,
+          "end": 2525
+        },
+        {
+          "start": 31,
+          "end": 161
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 9628,
+          "end": 9822
+        }
+      ]
+    },
+    {
+      "description": "AES-192 encryption function using key expansion and cipher operations.",
+      "lhsRanges": [
+        {
+          "start": 1937,
+          "end": 2525
+        },
+        {
+          "start": 12173,
+          "end": 12253
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 9824,
+          "end": 10018
+        }
+      ]
+    },
+    {
+      "description": "AES-256 encryption function with key expansion and cipher operations.",
+      "lhsRanges": [
+        {
+          "start": 1937,
+          "end": 2525
+        },
+        {
+          "start": 31,
+          "end": 161
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 10020,
+          "end": 10214
+        }
+      ]
+    },
+    {
+      "description": "AES-128 decryption function using key expansion and inverse cipher.",
+      "lhsRanges": [
+        {
+          "start": 31,
+          "end": 161
+        },
+        {
+          "start": 1937,
+          "end": 2525
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 10216,
+          "end": 10416
+        }
+      ]
+    },
+    {
+      "description": "AES-192 decryption function using key expansion and inverse cipher.",
+      "lhsRanges": [
+        {
+          "start": 31,
+          "end": 161
+        },
+        {
+          "start": 15441,
+          "end": 15700
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 10418,
+          "end": 10618
+        }
+      ]
+    },
+    {
+      "description": "AES-256 decryption function using key expansion and inverse cipher.",
+      "lhsRanges": [
+        {
+          "start": 31,
+          "end": 161
+        },
+        {
+          "start": 15441,
+          "end": 15700
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 10620,
+          "end": 10820
+        }
+      ]
+    },
+    {
+      "description": "I need a text to summarize before I can provide a short description.",
+      "lhsRanges": [
+        {
+          "start": 31,
+          "end": 161
+        },
+        {
+          "start": 14942,
+          "end": 15439
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 10822,
+          "end": 10829
+        }
+      ]
+    }
+  ],
+  "lhsLabels": [],
+  "rhsLabels": []
+}
