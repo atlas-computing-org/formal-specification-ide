@@ -1,0 +1,253 @@
+{
+  "mappings": [
+    {
+      "description": "SHA1 implementation with ByteArray and Vector operations.",
+      "lhsRanges": [
+        {
+          "start": 3985,
+          "end": 4014
+        },
+        {
+          "start": 3116,
+          "end": 3128
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 0,
+          "end": 192
+        }
+      ]
+    },
+    {
+      "description": "Secure hash algorithm for cryptographic applications.",
+      "lhsRanges": [
+        {
+          "start": 3116,
+          "end": 3128
+        },
+        {
+          "start": 1977,
+          "end": 1992
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 194,
+          "end": 221
+        }
+      ]
+    },
+    {
+      "description": "Type alias defining Word as UInt32.",
+      "lhsRanges": [
+        {
+          "start": 3440,
+          "end": 3983
+        },
+        {
+          "start": 1380,
+          "end": 1726
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 223,
+          "end": 275
+        }
+      ]
+    },
+    {
+      "description": "SHA-1 algorithm's initial hash values for cryptographic operations.",
+      "lhsRanges": [
+        {
+          "start": 1994,
+          "end": 2317
+        },
+        {
+          "start": 1728,
+          "end": 1777
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 277,
+          "end": 435
+        }
+      ]
+    },
+    {
+      "description": "Constants for SHA-1 hash function iterations.",
+      "lhsRanges": [
+        {
+          "start": 4455,
+          "end": 5510
+        },
+        {
+          "start": 3440,
+          "end": 3983
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 437,
+          "end": 608
+        }
+      ]
+    },
+    {
+      "description": "Left rotation operation for 32-bit words using bitwise operations.",
+      "lhsRanges": [
+        {
+          "start": 3440,
+          "end": 3983
+        },
+        {
+          "start": 4150,
+          "end": 4182
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 610,
+          "end": 770
+        }
+      ]
+    },
+    {
+      "description": "Padding function for message hashing with bit length encoding.",
+      "lhsRanges": [
+        {
+          "start": 207,
+          "end": 233
+        },
+        {
+          "start": 584,
+          "end": 1133
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 772,
+          "end": 1317
+        }
+      ]
+    },
+    {
+      "description": "Function divides message into 64-byte chunks.",
+      "lhsRanges": [
+        {
+          "start": 1175,
+          "end": 1245
+        },
+        {
+          "start": 584,
+          "end": 1133
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1319,
+          "end": 1621
+        }
+      ]
+    },
+    {
+      "description": "Function converts byte array to 32-bit word using bitwise operations.",
+      "lhsRanges": [
+        {
+          "start": 1380,
+          "end": 1726
+        },
+        {
+          "start": 3440,
+          "end": 3983
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1623,
+          "end": 1771
+        }
+      ]
+    },
+    {
+      "description": "Hash function processes message through padding, chunking, and initial hash.",
+      "lhsRanges": [
+        {
+          "start": 4016,
+          "end": 4148
+        },
+        {
+          "start": 20,
+          "end": 205
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1773,
+          "end": 1936
+        }
+      ]
+    },
+    {
+      "description": "SHA-1 hash computation with message schedule and main loop.",
+      "lhsRanges": [
+        {
+          "start": 4455,
+          "end": 5510
+        },
+        {
+          "start": 3440,
+          "end": 3983
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1938,
+          "end": 2989
+        }
+      ]
+    },
+    {
+      "description": "Concatenates hash values into a ByteArray by folding and bit manipulation.",
+      "lhsRanges": [
+        {
+          "start": 4150,
+          "end": 4182
+        },
+        {
+          "start": 1994,
+          "end": 2317
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2991,
+          "end": 3306
+        }
+      ]
+    },
+    {
+      "description": "Cryptographic hash function that produces 160-bit hash values.",
+      "lhsRanges": [
+        {
+          "start": 1977,
+          "end": 1992
+        },
+        {
+          "start": 3116,
+          "end": 3128
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3308,
+          "end": 3316
+        }
+      ]
+    }
+  ],
+  "lhsLabels": [],
+  "rhsLabels": []
+}
