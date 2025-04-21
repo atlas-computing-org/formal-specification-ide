@@ -15,6 +15,9 @@ function AppContent() {
   const [isChatModalOpen, setIsChatModalOpen] = useState(false);
   const [isDebugModalOpen, setIsDebugModalOpen] = useState(false);
   const [isComingSoonModalOpen, setIsComingSoonModalOpen] = useState(false);
+  const [isHighlightsVisible, setIsHighlightsVisible] = useState(false);
+  const [isAnnotationsPanelVisible, setIsAnnotationsPanelVisible] = useState(true);
+  const [useCachedResponses, setUseCachedResponses] = useState(false);
 
   const handleOpenComingSoon = () => { setIsComingSoonModalOpen(true); };
   const handleCloseComingSoon = () => { setIsComingSoonModalOpen(false); };
@@ -27,6 +30,18 @@ function AppContent() {
   const handleOpenDebug = () => { setIsDebugModalOpen(true); };
   const handleCloseDebug = () => { setIsDebugModalOpen(false); };
 
+  const handleToggleHighlights = () => {
+    setIsHighlightsVisible(!isHighlightsVisible);
+  };
+
+  const handleToggleAnnotationsPanel = () => {
+    setIsAnnotationsPanelVisible(!isAnnotationsPanelVisible);
+  };
+
+  const handleToggleCachedResponses = () => {
+    setUseCachedResponses(!useCachedResponses);
+  };
+
   return (
     <>
       <Header
@@ -34,7 +49,15 @@ function AppContent() {
         onGenerateAnnotations={handleGenerateAnnotations}
         onShowChat={handleOpenChat} />
       <MainContent />
-      <Footer onOpenDebug={handleOpenDebug} />
+      <Footer 
+        onToggleHighlights={handleToggleHighlights}
+        onToggleAnnotationsPanel={handleToggleAnnotationsPanel}
+        onOpenDebug={handleOpenDebug}
+        onToggleCachedResponses={handleToggleCachedResponses}
+        isHighlightsVisible={isHighlightsVisible}
+        isAnnotationsPanelVisible={isAnnotationsPanelVisible}
+        useCachedResponses={useCachedResponses}
+      />
       <ChatModal isOpen={isChatModalOpen} onClose={handleCloseChat} />
       <ComingSoonModal isOpen={isComingSoonModalOpen} onClose={handleCloseComingSoon} />
       <DebugModal isOpen={isDebugModalOpen} onClose={handleCloseDebug} />
