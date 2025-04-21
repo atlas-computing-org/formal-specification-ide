@@ -1,30 +1,40 @@
 import React from 'react';
+import { useAppContext } from '../context/AppContext.tsx';
+import { TextPanel } from './TextPanel.tsx';
+import { LeftTabMode, RightTabMode } from '../types/state.ts';
 
 export const MainContent: React.FC = () => {
+  const { state, updateTabState } = useAppContext();
+  const { tabState } = state;
+
+  const leftTabs: LeftTabMode[] = ['pdf', 'full-text', 'selected-text'];
+  const rightTabs: RightTabMode[] = ['pre-written', 'generated'];
+
+  const handleLeftTabChange = (tab: LeftTabMode) => {
+    updateTabState({ ...tabState, left: tab });
+  };
+
+  const handleRightTabChange = (tab: RightTabMode) => {
+    updateTabState({ ...tabState, right: tab });
+  };
+
   return (
     <main>
       <div id="text-panels" className="highlight-all">
-        <div id="left-text" className="text-panel">
-          <div className="panel-header">
-            <div className="header">Natural Language Documentation:</div>
-            <div className="panel-tabs">
-              <button id="tab-pdf">PDF</button>
-              <button id="tab-full-text">Full Text</button>
-              <button id="tab-selected-text">Sliced Text</button>
-            </div>
-          </div>
-          <div className="text-panel-content" id="lhs-text-content"></div>
-        </div>
-        <div id="right-text" className="text-panel">
-          <div className="panel-header">
-            <div className="header">Mechanized Spec:</div>
-            <div className="panel-tabs">
-              <button id="tab-pre-written">Pre-Written Spec</button>
-              <button id="tab-generated">Generated Spec</button>
-            </div>
-          </div>
-          <div className="text-panel-content" id="rhs-text-content"></div>
-        </div>
+        <TextPanel
+          side="left"
+          title="Natural Language Documentation"
+          tabs={leftTabs}
+          activeTab={tabState.left}
+          onTabChange={handleLeftTabChange}
+        />
+        <TextPanel
+          side="right"
+          title="Mechanized Spec"
+          tabs={rightTabs}
+          activeTab={tabState.right}
+          onTabChange={handleRightTabChange}
+        />
       </div>
 
       <div id="annotations">
