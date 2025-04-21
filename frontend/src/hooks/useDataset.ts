@@ -1,26 +1,49 @@
 import { useState } from 'react';
+import { useAppContext } from '../context/AppContext.tsx';
 import { datasetService } from '../services/datasetService.ts';
+import { AnnotationsWithText, TextRange, Annotations, Dataset, TextRangeWithText } from '@common/annotations.ts';
 
-interface DatasetState {
-  lhsText: string;
-  rhsText: string;
-  annotations: any; // TODO: Define proper type
-  fullText: string;
-  pdfUrl: string;
+function cacheTextRangeText(ranges: TextRange[], text: string): TextRangeWithText[] {
+  return ranges.map(({start, end}) => ({
+    start,
+    end,
+    text: text.substring(start, end),
+  }));
 }
 
-const EMPTY_DATASET: DatasetState = {
-  lhsText: '',
-  rhsText: '',
-  annotations: {},
-  fullText: '',
-  pdfUrl: ''
-};
+function cacheDatasetText(dataset: Dataset): AnnotationsWithText {
+  const { annotations, lhsText, rhsText } = dataset;
+  return {
+    mappings: annotations.mappings.map(mapping => ({
+      ...mapping,
+      lhsRanges: cacheTextRangeText(mapping.lhsRanges, lhsText),
+      rhsRanges: cacheTextRangeText(mapping.rhsRanges, rhsText),
+    })),
+    lhsLabels: annotations.lhsLabels.map(label => ({
+      ...label,
+      ranges: cacheTextRangeText(label.ranges, lhsText),
+    })),
+    rhsLabels: annotations.rhsLabels.map(label => ({
+      ...label,
+      ranges: cacheTextRangeText(label.ranges, rhsText),
+    })),
+  };
+}
+
+function mergeAnnotations(first: AnnotationsWithText, second: AnnotationsWithText): AnnotationsWithText {
+  return {
+    mappings: first.mappings.concat(second.mappings),
+    lhsLabels: first.lhsLabels.concat(second.lhsLabels),
+    rhsLabels: first.rhsLabels.concat(second.rhsLabels),
+  };
+}
 
 export const useDataset = () => {
-  const [dataset, setDataset] = useState<DatasetState>(EMPTY_DATASET);
+  const { state, updateDataset } = useAppContext();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
+  const [generating, setGenerating] = useState(false);
+  const [generationError, setGenerationError] = useState<Error | null>(null);
 
   const loadDataset = async (name: string) => {
     try {
@@ -29,7 +52,15 @@ export const useDataset = () => {
       if ("error" in response) {
         throw new Error(response.error);
       }
-      setDataset(response.data);
+      // Get the default annotations set
+      const annotations = response.data.annotations['annotations'] as Annotations<TextRange>;
+      // Convert AnnotationSets to AnnotationsWithText
+      const { lhsText, rhsText } = response.data;
+      const annotationsWithText = cacheDatasetText({ lhsText, rhsText, annotations });
+      updateDataset({
+        ...response.data,
+        annotations: annotationsWithText,
+      });
     } catch (err) {
       setError(err as Error);
     } finally {
@@ -37,5 +68,44 @@ export const useDataset = () => {
     }
   };
 
-  return { dataset, loading, error, loadDataset };
-}; 
+  const generateAnnotations = async (useDemoCache: boolean) => {
+    try {
+      const { lhsText, rhsText, annotations } = state.dataset;
+
+      setGenerating(true);
+      setGenerationError(null);
+      const response = await datasetService.generateAnnotations({
+        lhsText,
+        rhsText,
+        currentAnnotations: annotations,
+        useDemoCache,
+      });
+      if ("error" in response) {
+        throw new Error(response.error);
+      }
+
+      const newAnnotations = cacheDatasetText({ lhsText, rhsText, annotations: response.data });
+      const mergedAnnotations = mergeAnnotations(annotations, newAnnotations);
+
+      // Update the dataset with the new annotations
+      updateDataset({
+        ...state.dataset,
+        annotations: mergedAnnotations,
+      });
+    } catch (err) {
+      setGenerationError(err as Error);
+    } finally {
+      setGenerating(false);
+    }
+  };
+
+  return {
+    dataset: state.dataset,
+    loading,
+    error,
+    loadDataset,
+    generating,
+    generationError,
+    generateAnnotations,
+  };
+};
