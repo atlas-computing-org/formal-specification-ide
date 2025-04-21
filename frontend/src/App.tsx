@@ -32,7 +32,7 @@ function AppContent() {
       <Header
         onShowComingSoon={handleOpenComingSoon}
         onGenerateAnnotations={handleGenerateAnnotations}
-        onOpenChat={handleOpenChat} />
+        onShowChat={handleOpenChat} />
       <MainContent />
       <Footer onOpenDebug={handleOpenDebug} />
       <ChatModal isOpen={isChatModalOpen} onClose={handleCloseChat} />

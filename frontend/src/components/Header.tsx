@@ -3,10 +3,10 @@ import React from 'react';
 interface HeaderProps {
   onShowComingSoon: () => void;
   onGenerateAnnotations: () => void;
-  onOpenChat: () => void;
+  onShowChat: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onOpenChat, onShowComingSoon, onGenerateAnnotations }) => {
+export const Header: React.FC<HeaderProps> = ({ onShowChat, onShowComingSoon, onGenerateAnnotations }) => {
   return (
     <header>
       <div id="data-selector-container">
@@ -16,7 +16,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenChat, onShowComingSoon, on
       <button onClick={onShowComingSoon}><i className="fas fa-scissors"></i>Slice Documentation</button>
       <button onClick={onShowComingSoon}><i className="fas fa-atom"></i>Autoformalize</button>
       <button onClick={onGenerateAnnotations}><i className="fas fa-file-pen"></i>Generate Annotations</button>
-      <button id="ai-assistant" onClick={onOpenChat}><i className="far fa-comments"></i>Chat with AI Assistant</button>
+      <button id="ai-assistant" onClick={onShowChat}><i className="far fa-comments"></i>Chat with AI Assistant</button>
     </header>
   );
 }; 
