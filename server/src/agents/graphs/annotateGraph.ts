@@ -29,4 +29,4 @@ const workflow = new StateGraph(StateInfo)
   .addEdge("decodeAnnotations", END);
 
 // Compile graph
-export const graph = workflow.compile();
+export const annotateGraph = workflow.compile();

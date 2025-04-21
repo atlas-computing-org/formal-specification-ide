@@ -26,4 +26,4 @@ const workflow = new StateGraph(StateInfo)
 const memory = new MemorySaver();
 
 // Compile graph
-export const graph = workflow.compile({ checkpointer: memory });
+export const chatGraph = workflow.compile({ checkpointer: memory });
