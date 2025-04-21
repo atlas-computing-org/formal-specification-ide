@@ -4,9 +4,14 @@
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
+    "noEmit": true,
+    "jsx": "react-jsx",
 
     // FIXME: allowImportingTsExtensions shouldn't be needed. Something is wrong
     // with path-based import configuration
