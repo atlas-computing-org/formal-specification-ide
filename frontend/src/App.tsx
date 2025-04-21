@@ -12,33 +12,20 @@ function App() {
   const [isDebugModalOpen, setIsDebugModalOpen] = useState(false);
   const [isComingSoonModalOpen, setIsComingSoonModalOpen] = useState(false);
 
-  const handleOpenChat = () => {
-    setIsChatModalOpen(true);
-  };
+  const handleOpenComingSoon = () => { setIsComingSoonModalOpen(true); };
+  const handleCloseComingSoon = () => { setIsComingSoonModalOpen(false); };
 
-  const handleCloseChat = () => {
-    setIsChatModalOpen(false);
-  };
+  const handleOpenChat = () => { setIsChatModalOpen(true); };
+  const handleCloseChat = () => { setIsChatModalOpen(false); };
 
-  const handleOpenDebug = () => {
-    setIsDebugModalOpen(true);
-  };
-
-  const handleCloseDebug = () => {
-    setIsDebugModalOpen(false);
-  };
-
-  const handleOpenComingSoon = () => {
-    setIsComingSoonModalOpen(true);
-  };
-
-  const handleCloseComingSoon = () => {
-    setIsComingSoonModalOpen(false);
-  };
+  const handleOpenDebug = () => { setIsDebugModalOpen(true); };
+  const handleCloseDebug = () => { setIsDebugModalOpen(false); };
 
   return (
     <AppProvider>
-      <Header onOpenChat={handleOpenChat} onShowComingSoon={handleOpenComingSoon} />
+      <Header
+        onShowComingSoon={handleOpenComingSoon}
+        onOpenChat={handleOpenChat} />
       <MainContent />
       <Footer onOpenDebug={handleOpenDebug} />
       <ChatModal isOpen={isChatModalOpen} onClose={handleCloseChat} />
