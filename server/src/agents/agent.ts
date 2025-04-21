@@ -60,3 +60,9 @@ export function newModel(provider: string): ChatAnthropic | ChatDeepSeek | ChatO
     throw new Error(`Unsupported provider: ${provider}`);
   }
 }
+
+export function responseContent(state: typeof StateInfo.State): string {
+  const response = state.messages[state.messages.length - 1];
+  const responseContent = response.content as string; 
+  return responseContent
+}
