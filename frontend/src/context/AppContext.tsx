@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import { AppState, TabState } from '../types/state.ts';
-import { AnnotationsWithText, DatasetWithText } from '@common/annotations.ts';
+import { AnnotationSets, AnnotationsWithText, DatasetWithText } from '@common/annotations.ts';
 
 const EMPTY_ANNOTATIONS: AnnotationsWithText = {
   mappings: [],
@@ -19,15 +19,12 @@ const INITIAL_TAB_STATE: TabState = {
   right: 'pre-written',
 };
 
-const DEFAULT_ANNOTATIONS_SET_NAME = 'annotations';
-
 const initialState: AppState = {
   dataset: EMPTY_DATASET,
   highlights: EMPTY_ANNOTATIONS,
   tabState: INITIAL_TAB_STATE,
   useDemoCache: false,
   currentAnnotationSets: {},
-  selectedAnnotationsSetName: DEFAULT_ANNOTATIONS_SET_NAME,
   lastRawModelOutput: '',
   allRawModelOutputs: [],
   pdfSrc: '',
@@ -40,7 +37,7 @@ interface AppContextType {
   updateDataset: (dataset: DatasetWithText) => void;
   updateHighlights: (highlights: AnnotationsWithText) => void;
   updateTabState: (tabState: TabState) => void;
-  updateSelectedAnnotationsSet: (name: string) => void;
+  updateAnnotationSets: (annotationSets: AnnotationSets) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -64,14 +61,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     updateState({ tabState });
   };
 
-  const updateSelectedAnnotationsSet = (name: string) => {
-    const { lhsText, rhsText } = state.dataset;
-    const rawAnnotations = state.currentAnnotationSets[name] || EMPTY_ANNOTATIONS;
-    const rawDataset = { lhsText, rhsText, annotations: rawAnnotations };
-    updateState({ 
-      selectedAnnotationsSetName: name,
-      dataset: rawDataset
-    });
+  const updateAnnotationSets = (annotationSets: AnnotationSets) => {
+    updateState({ currentAnnotationSets: annotationSets });
   };
 
   return (
@@ -81,7 +72,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       updateDataset,
       updateHighlights,
       updateTabState,
-      updateSelectedAnnotationsSet,
+      updateAnnotationSets,
     }}>
       {children}
     </AppContext.Provider>

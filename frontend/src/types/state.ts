@@ -1,4 +1,4 @@
-import { AnnotationsWithText, DatasetWithText } from '@common/annotations.ts';
+import { AnnotationSets, AnnotationsWithText, DatasetWithText } from '@common/annotations.ts';
 
 export type LeftTabMode = 'pdf' | 'full-text' | 'selected-text';
 export type RightTabMode = 'pre-written' | 'generated';
@@ -20,8 +20,7 @@ export interface AppState {
   useDemoCache: boolean;
 
   // Developer-only features
-  currentAnnotationSets: Record<string, AnnotationsWithText>;
-  selectedAnnotationsSetName: string;
+  currentAnnotationSets: AnnotationSets;
 
   // Debug info
   lastRawModelOutput: string;

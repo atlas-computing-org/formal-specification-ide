@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useAppContext } from '../context/AppContext.tsx';
 import { datasetService } from '../services/datasetService.ts';
-import { AnnotationsWithText, TextRange, Annotations, Dataset, TextRangeWithText } from '@common/annotations.ts';
+import { AnnotationsWithText, TextRange, Dataset, TextRangeWithText, EMPTY_ANNOTATIONS }
+  from '@common/annotations.ts';
 
 function cacheTextRangeText(ranges: TextRange[], text: string): TextRangeWithText[] {
   return ranges.map(({start, end}) => ({
@@ -39,7 +40,7 @@ function mergeAnnotations(first: AnnotationsWithText, second: AnnotationsWithTex
 }
 
 export const useDataset = () => {
-  const { state, updateDataset } = useAppContext();
+  const { state, updateDataset, updateAnnotationSets } = useAppContext();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const [generating, setGenerating] = useState(false);
@@ -53,7 +54,7 @@ export const useDataset = () => {
         throw new Error(response.error);
       }
       // Get the default annotations set
-      const annotations = response.data.annotations['annotations'] as Annotations<TextRange>;
+      const annotations = response.data.annotations['annotations'];
       // Convert AnnotationSets to AnnotationsWithText
       const { lhsText, rhsText } = response.data;
       const annotationsWithText = cacheDatasetText({ lhsText, rhsText, annotations });
@@ -61,6 +62,7 @@ export const useDataset = () => {
         ...response.data,
         annotations: annotationsWithText,
       });
+      updateAnnotationSets(response.data.annotations);
     } catch (err) {
       setError(err as Error);
     } finally {
@@ -99,6 +101,16 @@ export const useDataset = () => {
     }
   };
 
+  const useAnnotationsSet = (name: string) => {
+    const annotations = state.currentAnnotationSets[name] || EMPTY_ANNOTATIONS;
+    const { lhsText, rhsText } = state.dataset;
+    const annotationsWithText = cacheDatasetText({ lhsText, rhsText, annotations });
+    updateDataset({
+      ...state.dataset,
+      annotations: annotationsWithText,
+    });
+  };
+
   return {
     dataset: state.dataset,
     loading,
@@ -107,5 +119,6 @@ export const useDataset = () => {
     generating,
     generationError,
     generateAnnotations,
+    useAnnotationsSet,
   };
 };

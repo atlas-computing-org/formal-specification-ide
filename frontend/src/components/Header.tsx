@@ -1,17 +1,36 @@
 import React from 'react';
 
 interface HeaderProps {
+  datasetNames: string[];
+  currentDatasetName: string;
+  onDatasetChange: (name: string) => void;
   onShowComingSoon: () => void;
   onGenerateAnnotations: () => void;
   onShowChat: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onShowChat, onShowComingSoon, onGenerateAnnotations }) => {
+export const Header: React.FC<HeaderProps> = ({
+  datasetNames,
+  currentDatasetName,
+  onDatasetChange,
+  onShowChat,
+  onShowComingSoon,
+  onGenerateAnnotations,
+}) => {
   return (
     <header>
       <div id="data-selector-container">
         <label htmlFor="data-selector"><i className="fas fa-arrow-up-from-bracket"></i>Load Documentation:</label>
-        <select id="data-selector" className="with-label"></select>
+        <select 
+          id="data-selector" 
+          className="with-label"
+          value={currentDatasetName}
+          onChange={(e) => onDatasetChange(e.target.value)}
+        >
+          {datasetNames.map(name => (
+            <option key={name} value={name}>{name}</option>
+          ))}
+        </select>
       </div>
       <button onClick={onShowComingSoon}><i className="fas fa-scissors"></i>Slice Documentation</button>
       <button onClick={onShowComingSoon}><i className="fas fa-atom"></i>Autoformalize</button>

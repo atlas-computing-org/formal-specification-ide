@@ -24,7 +24,13 @@ export interface Annotations<T extends TextRange = TextRange> {
   rhsLabels: TextLabel<T>[];
 }
 
-export type AnnotationSets<T extends TextRange = TextRange> = { [key: string]: Annotations<T> };
+export const EMPTY_ANNOTATIONS: Annotations = {
+  mappings: [],
+  lhsLabels: [],
+  rhsLabels: [],
+};
+
+export type AnnotationSets<T extends TextRange = TextRange> = Record<string, Annotations<T>>;
 
 export interface Dataset<T extends TextRange = TextRange> {
   lhsText: string;
