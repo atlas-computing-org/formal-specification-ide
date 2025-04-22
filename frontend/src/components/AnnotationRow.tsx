@@ -11,6 +11,8 @@ interface AnnotationRowProps {
   onMouseEnter: () => void;
   onMouseLeave: () => void;
   onDescriptionChange: (newDescription: string) => void;
+  className?: string;
+  dataIndex?: number;
 }
 
 export const AnnotationRow: React.FC<AnnotationRowProps> = ({
@@ -19,6 +21,8 @@ export const AnnotationRow: React.FC<AnnotationRowProps> = ({
   onMouseEnter,
   onMouseLeave,
   onDescriptionChange,
+  className = '',
+  dataIndex,
 }) => {
   const [editingCell, setEditingCell] = useState<'first' | 'second' | null>(null);
   const [editValue, setEditValue] = useState(item.description);
@@ -84,13 +88,14 @@ export const AnnotationRow: React.FC<AnnotationRowProps> = ({
   };
 
   const labelType = getLabelType();
-  const className = `row ${isHighlighted ? 'highlight' : ''} ${labelType}`;
+  const rowClassName = `row ${className} ${labelType} ${isHighlighted ? 'highlight' : ''}`;
 
   return isTextMapping(item) ? (
     <div
-      className={className}
+      className={rowClassName}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      data-index={dataIndex}
     >
       {renderDescriptionCell('first')}
       {renderContent(item.lhsRanges)}
@@ -99,9 +104,10 @@ export const AnnotationRow: React.FC<AnnotationRowProps> = ({
     </div>
   ) : (
     <div
-      className={className}
+      className={rowClassName}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      data-index={dataIndex}
     >
       {renderDescriptionCell('first')}
       {renderContent(item.ranges)}

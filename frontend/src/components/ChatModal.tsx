@@ -34,8 +34,8 @@ export const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
     <div id="chat-modal" className={`modal ${isOpen ? 'show' : ''}`}>
       <div className="modal-content">
         <div id="chat-header">
-          <button onClick={onClose}>Hide AI Assistant</button>
-          <button onClick={resetChat}>Reset Chat</button>
+          <button id="hide-chat" onClick={onClose}>Hide AI Assistant</button>
+          <button id="reset-chat" onClick={resetChat}>Reset Chat</button>
         </div>
         <div id="chat-thread" ref={chatThreadRef}>
           {chatMessages.map((msg, i) => (
@@ -53,7 +53,7 @@ export const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
             onChange={(e) => setMessage(e.target.value)}
             onKeyDown={handleKeyDown}
           />
-          <button onClick={handleSendMessage}>Send</button>
+          <button id="send-message" onClick={handleSendMessage}>Send</button>
         </div>
       </div>
     </div>

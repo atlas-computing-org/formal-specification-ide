@@ -193,7 +193,11 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
         className={props.activeTab === tab ? 'active' : ''}
         onClick={onClick}
       >
-        {tab}
+        {tab === 'pdf' ? 'PDF' :
+         tab === 'full-text' ? 'Full Text' :
+         tab === 'selected-text' ? 'Sliced Text' :
+         tab === 'pre-written' ? 'Pre-Written Spec' :
+         tab === 'generated' ? 'Generated Spec' : tab}
       </button>
     );
   };

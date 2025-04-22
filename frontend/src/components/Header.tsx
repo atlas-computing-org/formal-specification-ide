@@ -32,9 +32,9 @@ export const Header: React.FC<HeaderProps> = ({
           ))}
         </select>
       </div>
-      <button onClick={onShowComingSoon}><i className="fas fa-scissors"></i>Slice Documentation</button>
-      <button onClick={onShowComingSoon}><i className="fas fa-atom"></i>Autoformalize</button>
-      <button onClick={onGenerateAnnotations}><i className="fas fa-file-pen"></i>Generate Annotations</button>
+      <button id="slice-text" onClick={onShowComingSoon}><i className="fas fa-scissors"></i>Slice Documentation</button>
+      <button id="autoformalize" onClick={onShowComingSoon}><i className="fas fa-atom"></i>Autoformalize</button>
+      <button id="generate-annotations" onClick={onGenerateAnnotations}><i className="fas fa-file-pen"></i>Generate Annotations</button>
       <button id="ai-assistant" onClick={onShowChat}><i className="far fa-comments"></i>Chat with AI Assistant</button>
     </header>
   );

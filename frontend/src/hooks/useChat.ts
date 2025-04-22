@@ -10,9 +10,11 @@ interface ChatMessage {
   sender: ChatUser;
 }
 
+const initialChatMessages: ChatMessage[] = [{ content: AI_ASSISTANT_WELCOME_MESSAGE, sender: "system" }];
+
 export const useChat = () => {
   const { state } = useAppContext();
-  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>(initialChatMessages);
   const [isNewChat, setIsNewChat] = useState(true);
   const [chatError, setChatError] = useState<Error | null>(null);
 
@@ -45,7 +47,7 @@ export const useChat = () => {
   };
 
   const resetChat = () => {
-    setChatMessages([{ content: AI_ASSISTANT_WELCOME_MESSAGE, sender: "system" }]);
+    setChatMessages(initialChatMessages);
     setIsNewChat(true);
     setChatError(null);
   };

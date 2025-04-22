@@ -19,7 +19,7 @@ function AppContent() {
   const [isChatModalOpen, setIsChatModalOpen] = useState(false);
   const [isDebugModalOpen, setIsDebugModalOpen] = useState(false);
   const [isComingSoonModalOpen, setIsComingSoonModalOpen] = useState(false);
-  const [isHighlightsVisible, setIsHighlightsVisible] = useState(false);
+  const [isHighlightsVisible, setIsHighlightsVisible] = useState(true);
   const [isAnnotationsPanelVisible, setIsAnnotationsPanelVisible] = useState(true);
   const [useCachedResponses, setUseCachedResponses] = useState(false);
   const [currentAnnotationSetName, setCurrentAnnotationSetName] = useState(DEFAULT_ANNOTATIONS_SET_NAME);
@@ -45,7 +45,7 @@ function AppContent() {
   const handleOpenComingSoon = () => { setIsComingSoonModalOpen(true); };
   const handleCloseComingSoon = () => { setIsComingSoonModalOpen(false); };
 
-  const handleGenerateAnnotations = async () => { await generateAnnotations(state.useDemoCache); };
+  const handleGenerateAnnotations = async () => { await generateAnnotations(useCachedResponses); };
 
   const handleOpenChat = () => { setIsChatModalOpen(true); };
   const handleCloseChat = () => { setIsChatModalOpen(false); };
@@ -82,7 +82,10 @@ function AppContent() {
         onGenerateAnnotations={handleGenerateAnnotations}
         onShowChat={handleOpenChat}
       />
-      <MainContent />
+      <MainContent 
+        isHighlightsVisible={isHighlightsVisible}
+        isAnnotationsPanelVisible={isAnnotationsPanelVisible}
+      />
       <Footer
         onToggleHighlights={handleToggleHighlights}
         onToggleAnnotationsPanel={handleToggleAnnotationsPanel}

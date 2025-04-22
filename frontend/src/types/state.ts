@@ -17,7 +17,6 @@ export interface AppState {
   fullText: string;
 
   tabState: TabState;
-  useDemoCache: boolean;
 
   // Developer-only features
   currentAnnotationSets: AnnotationSets;

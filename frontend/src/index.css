@@ -10,7 +10,7 @@
 }
 
 /* Full viewport height, no scrolling on body */
-html, body {
+html, body, #root {
   height: 100%;
   overflow: hidden;
   font-family: Arial, sans-serif;
@@ -179,10 +179,10 @@ button {
 .text-panel-content:last-child {
   border-bottom: none;
 }
-#lhs-text-content {
+#left-text .text-panel-content {
   white-space: pre-line;
 }
-#rhs-text-content {
+#right-text .text-panel-content {
   white-space: pre;
 }
 /* Underline warnings and errors */

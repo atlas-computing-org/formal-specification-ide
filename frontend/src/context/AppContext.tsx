@@ -23,7 +23,6 @@ const initialState: AppState = {
   dataset: EMPTY_DATASET,
   highlights: EMPTY_ANNOTATIONS,
   tabState: INITIAL_TAB_STATE,
-  useDemoCache: false,
   currentAnnotationSets: {},
   lastRawModelOutput: '',
   allRawModelOutputs: [],

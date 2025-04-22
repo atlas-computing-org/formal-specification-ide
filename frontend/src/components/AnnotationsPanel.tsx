@@ -3,7 +3,11 @@ import { useAppContext } from '../context/AppContext.tsx';
 import { AnnotationRow } from './AnnotationRow.tsx';
 import { AnnotationsWithText, TextMappingWithText, TextLabelWithText } from '@common/annotations.ts';
 
-export const AnnotationsPanel: React.FC = () => {
+interface AnnotationsPanelProps {
+  className?: string;
+}
+
+export const AnnotationsPanel: React.FC<AnnotationsPanelProps> = ({ className = '' }) => {
   const { state, updateDataset, updateHighlights } = useAppContext();
   const { dataset, highlights } = state;
 
@@ -73,6 +77,8 @@ export const AnnotationsPanel: React.FC = () => {
           onMouseEnter={() => handleMouseEnter(mapping)}
           onMouseLeave={handleMouseLeave}
           onDescriptionChange={(newDescription) => handleDescriptionChange(mapping, newDescription)}
+          className="mapping"
+          dataIndex={index}
         />
       ))}
     </div>
@@ -89,6 +95,8 @@ export const AnnotationsPanel: React.FC = () => {
           onMouseEnter={() => handleMouseEnter(label)}
           onMouseLeave={handleMouseLeave}
           onDescriptionChange={(newDescription) => handleDescriptionChange(label, newDescription)}
+          className="lhs-label"
+          dataIndex={index}
         />
       ))}
     </div>
@@ -105,13 +113,15 @@ export const AnnotationsPanel: React.FC = () => {
           onMouseEnter={() => handleMouseEnter(label)}
           onMouseLeave={handleMouseLeave}
           onDescriptionChange={(newDescription) => handleDescriptionChange(label, newDescription)}
+          className="rhs-label"
+          dataIndex={index}
         />
       ))}
     </div>
   ), [dataset.annotations.rhsLabels, highlights.rhsLabels, handleMouseEnter, handleMouseLeave, handleDescriptionChange]);
 
   return (
-    <div id="annotations">
+    <div id="annotations" className={className}>
       {mappingsPanel}
       <div id="label-panels">
         {lhsLabelsPanel}

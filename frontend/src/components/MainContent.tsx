@@ -4,7 +4,12 @@ import { TextPanel } from './TextPanel.tsx';
 import { LeftTabMode, RightTabMode } from '../types/state.ts';
 import { AnnotationsPanel } from './AnnotationsPanel.tsx';
 
-export const MainContent: React.FC = () => {
+interface MainContentProps {
+  isHighlightsVisible: boolean;
+  isAnnotationsPanelVisible: boolean;
+}
+
+export const MainContent: React.FC<MainContentProps> = ({ isHighlightsVisible, isAnnotationsPanelVisible }) => {
   const { state, updateTabState } = useAppContext();
   const { tabState } = state;
 
@@ -21,7 +26,7 @@ export const MainContent: React.FC = () => {
 
   return (
     <main>
-      <div id="text-panels" className="highlight-all">
+      <div id="text-panels" className={isHighlightsVisible ? 'highlight-all' : ''}>
         <TextPanel
           side="left"
           title="Natural Language Documentation"
@@ -38,7 +43,7 @@ export const MainContent: React.FC = () => {
         />
       </div>
 
-      <AnnotationsPanel />
+      <AnnotationsPanel className={isAnnotationsPanelVisible ? '' : 'hide'} />
     </main>
   );
 }; 
