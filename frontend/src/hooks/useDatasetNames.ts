@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { datasetService } from '../services/datasetService.ts';
+import { api } from '../services/api.ts';
 
 export const useDatasetNames = () => {
   const [datasetNames, setDatasetNames] = useState<string[]>([]);
@@ -9,7 +9,7 @@ export const useDatasetNames = () => {
   const loadDatasetNames = async () => {
     try {
       setLoading(true);
-      const response = await datasetService.getDatasetNames();
+      const response = await api.getDatasetNames();
       if ("error" in response) {
         throw new Error(response.error);
       }

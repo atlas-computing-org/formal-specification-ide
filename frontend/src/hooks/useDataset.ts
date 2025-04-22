@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppContext } from '../context/AppContext.tsx';
-import { datasetService } from '../services/datasetService.ts';
+import { api } from '../services/api.ts';
 import { AnnotationsWithText, TextRange, Dataset, TextRangeWithText, EMPTY_ANNOTATIONS }
   from '@common/annotations.ts';
 
@@ -49,7 +49,7 @@ export const useDataset = () => {
   const loadDataset = async (name: string) => {
     try {
       setLoading(true);
-      const response = await datasetService.getDataset(name);
+      const response = await api.getDataset(name);
       if ("error" in response) {
         throw new Error(response.error);
       }
@@ -76,7 +76,7 @@ export const useDataset = () => {
 
       setGenerating(true);
       setGenerationError(null);
-      const response = await datasetService.generateAnnotations({
+      const response = await api.generateAnnotations({
         lhsText,
         rhsText,
         currentAnnotations: annotations,

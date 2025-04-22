@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppContext } from '../context/AppContext.tsx';
-import { datasetService } from '../services/datasetService.ts';
+import { api } from '../services/api.ts';
 import { AI_ASSISTANT_WELCOME_MESSAGE } from '../aiAssistantWelcomeMessage.ts';
 
 type ChatUser = "user" | "assistant" | "system";
@@ -20,7 +20,7 @@ export const useChat = () => {
     try {
       const { annotations, lhsText, rhsText } = state.dataset;
       setChatError(null);
-      const response = await datasetService.chatAboutAnnotations({
+      const response = await api.chatAboutAnnotations({
         userInput: message,
         lhsText,
         rhsText,
