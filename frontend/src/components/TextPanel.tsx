@@ -175,7 +175,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
             </div>
           );
         case 'generated':
-          return <div className="text-panel-content">Generated content will appear here</div>;
+          return <div className="text-panel-content"></div>;
         default:
           return null;
       }
