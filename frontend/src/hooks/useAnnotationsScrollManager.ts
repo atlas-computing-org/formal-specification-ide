@@ -1,10 +1,10 @@
-import { useCallback, useRef } from 'react';
+import { useCallback } from 'react';
 import { MatchableAnnotationsSlice, TextMappingSlice } from '../AnnotationsSlice.ts';
 import { TextRangeWithText } from '@common/annotations.ts';
 
 export function useAnnotationsScrollManager(
   annotations: MatchableAnnotationsSlice,
-  targetRef: React.RefObject<HTMLElement>
+  targetRef: React.RefObject<HTMLDivElement | null>
 ) {
   const getMatchingMappingInTarget = useCallback((sourceMapping: TextMappingSlice): TextMappingSlice | undefined => {
     return annotations.getMatchingMappingInOppositeText(sourceMapping);
