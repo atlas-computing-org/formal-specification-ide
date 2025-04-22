@@ -2,7 +2,6 @@ import React, { useCallback, useMemo } from 'react';
 import { useAppContext } from '../context/AppContext.tsx';
 import { AnnotationRow } from './AnnotationRow.tsx';
 import { AnnotationsWithText, TextMappingWithText, TextLabelWithText } from '@common/annotations.ts';
-import { useAnnotationsSlice } from '../hooks/useAnnotationsSlice.js';
 
 export const AnnotationsPanel: React.FC = () => {
   const { state, updateDataset, updateHighlights } = useAppContext();

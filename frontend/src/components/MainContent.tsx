@@ -2,6 +2,7 @@ import React from 'react';
 import { useAppContext } from '../context/AppContext.tsx';
 import { TextPanel } from './TextPanel.tsx';
 import { LeftTabMode, RightTabMode } from '../types/state.ts';
+import { AnnotationsPanel } from './AnnotationsPanel.tsx';
 
 export const MainContent: React.FC = () => {
   const { state, updateTabState } = useAppContext();
@@ -37,19 +38,7 @@ export const MainContent: React.FC = () => {
         />
       </div>
 
-      <div id="annotations">
-        <div id="mappings-panel">
-          <div className="header">Mappings</div>
-        </div>
-        <div id="label-panels">
-          <div id="lhs-labels-panel">
-            <div className="header">Left-Side Labels</div>
-          </div>
-          <div id="rhs-labels-panel">
-            <div className="header">Right-Side Labels</div>
-          </div>
-        </div>
-      </div>
+      <AnnotationsPanel />
     </main>
   );
 }; 
