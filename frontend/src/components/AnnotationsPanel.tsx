@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useAppContext } from '../context/AppContext.tsx';
 import { AnnotationRow } from './AnnotationRow.tsx';
 import { AnnotationsWithText, TextMappingWithText, TextLabelWithText } from '@common/annotations.ts';
+import { useAnnotationsSlice } from '../hooks/useAnnotationsSlice.js';
 
 export const AnnotationsPanel: React.FC = () => {
   const { state, updateDataset, updateHighlights } = useAppContext();
   const { dataset, highlights } = state;
 
-  const handleDescriptionChange = (item: TextMappingWithText | TextLabelWithText, newDescription: string) => {
+  const handleDescriptionChange = useCallback((item: TextMappingWithText | TextLabelWithText, newDescription: string) => {
     // Update the item's description
     item.description = newDescription;
     
@@ -29,9 +30,9 @@ export const AnnotationsPanel: React.FC = () => {
       ...dataset,
       annotations: newAnnotations,
     });
-  };
+  }, [dataset, updateDataset]);
 
-  const handleMouseEnter = (item: TextMappingWithText | TextLabelWithText) => {
+  const handleMouseEnter = useCallback((item: TextMappingWithText | TextLabelWithText) => {
     let newHighlights: AnnotationsWithText;
     
     if ('lhsRanges' in item) {
@@ -51,58 +52,71 @@ export const AnnotationsPanel: React.FC = () => {
     }
 
     updateHighlights(newHighlights);
-  };
+  }, [dataset.annotations, updateHighlights]);
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     updateHighlights({
       mappings: [],
       lhsLabels: [],
       rhsLabels: [],
     });
-  };
+  }, [updateHighlights]);
+
+  // Memoize the panel sections to prevent unnecessary re-renders
+  const mappingsPanel = useMemo(() => (
+    <div id="mappings-panel">
+      <div className="header">Mappings</div>
+      {dataset.annotations.mappings.map((mapping, index) => (
+        <AnnotationRow
+          key={index}
+          item={mapping}
+          isHighlighted={highlights.mappings.includes(mapping)}
+          onMouseEnter={() => handleMouseEnter(mapping)}
+          onMouseLeave={handleMouseLeave}
+          onDescriptionChange={(newDescription) => handleDescriptionChange(mapping, newDescription)}
+        />
+      ))}
+    </div>
+  ), [dataset.annotations.mappings, highlights.mappings, handleMouseEnter, handleMouseLeave, handleDescriptionChange]);
+
+  const lhsLabelsPanel = useMemo(() => (
+    <div id="lhs-labels-panel">
+      <div className="header">Left-Side Labels</div>
+      {dataset.annotations.lhsLabels.map((label, index) => (
+        <AnnotationRow
+          key={index}
+          item={label}
+          isHighlighted={highlights.lhsLabels.includes(label)}
+          onMouseEnter={() => handleMouseEnter(label)}
+          onMouseLeave={handleMouseLeave}
+          onDescriptionChange={(newDescription) => handleDescriptionChange(label, newDescription)}
+        />
+      ))}
+    </div>
+  ), [dataset.annotations.lhsLabels, highlights.lhsLabels, handleMouseEnter, handleMouseLeave, handleDescriptionChange]);
+
+  const rhsLabelsPanel = useMemo(() => (
+    <div id="rhs-labels-panel">
+      <div className="header">Right-Side Labels</div>
+      {dataset.annotations.rhsLabels.map((label, index) => (
+        <AnnotationRow
+          key={index}
+          item={label}
+          isHighlighted={highlights.rhsLabels.includes(label)}
+          onMouseEnter={() => handleMouseEnter(label)}
+          onMouseLeave={handleMouseLeave}
+          onDescriptionChange={(newDescription) => handleDescriptionChange(label, newDescription)}
+        />
+      ))}
+    </div>
+  ), [dataset.annotations.rhsLabels, highlights.rhsLabels, handleMouseEnter, handleMouseLeave, handleDescriptionChange]);
 
   return (
     <div id="annotations">
-      <div id="mappings-panel">
-        <div className="header">Mappings</div>
-        {dataset.annotations.mappings.map((mapping, index) => (
-          <AnnotationRow
-            key={index}
-            item={mapping}
-            isHighlighted={highlights.mappings.includes(mapping)}
-            onMouseEnter={() => handleMouseEnter(mapping)}
-            onMouseLeave={handleMouseLeave}
-            onDescriptionChange={(newDescription) => handleDescriptionChange(mapping, newDescription)}
-          />
-        ))}
-      </div>
+      {mappingsPanel}
       <div id="label-panels">
-        <div id="lhs-labels-panel">
-          <div className="header">Left-Side Labels</div>
-          {dataset.annotations.lhsLabels.map((label, index) => (
-            <AnnotationRow
-              key={index}
-              item={label}
-              isHighlighted={highlights.lhsLabels.includes(label)}
-              onMouseEnter={() => handleMouseEnter(label)}
-              onMouseLeave={handleMouseLeave}
-              onDescriptionChange={(newDescription) => handleDescriptionChange(label, newDescription)}
-            />
-          ))}
-        </div>
-        <div id="rhs-labels-panel">
-          <div className="header">Right-Side Labels</div>
-          {dataset.annotations.rhsLabels.map((label, index) => (
-            <AnnotationRow
-              key={index}
-              item={label}
-              isHighlighted={highlights.rhsLabels.includes(label)}
-              onMouseEnter={() => handleMouseEnter(label)}
-              onMouseLeave={handleMouseLeave}
-              onDescriptionChange={(newDescription) => handleDescriptionChange(label, newDescription)}
-            />
-          ))}
-        </div>
+        {lhsLabelsPanel}
+        {rhsLabelsPanel}
       </div>
     </div>
   );
