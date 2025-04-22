@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useCallback } from 'react';
 import { useAppContext } from '../context/AppContext.tsx';
 import { LeftTabMode, RightTabMode } from '../types/state.ts';
-import { Direction } from '@common/annotations.ts';
+import { Direction, AnnotationsWithText, TextRangeWithText } from '@common/annotations.ts';
 import { TextSegment } from './TextSegment.tsx';
 import { useAnnotationLookup } from '../hooks/useAnnotationLookup.js';
 import { useAnnotationsScrollManager } from '../hooks/useAnnotationsScrollManager.js';
@@ -31,7 +31,7 @@ function isLeftTextPanelProps(props: TextPanelProps): props is LeftTextPanelProp
 type TextPanelProps = LeftTextPanelProps | RightTextPanelProps;
 
 export const TextPanel: React.FC<TextPanelProps> = (props) => {
-  const { state } = useAppContext();
+  const { state, updateHighlights } = useAppContext();
   const { dataset, highlights } = state;
   const isLeftPanel = isLeftTextPanelProps(props);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -45,17 +45,67 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
   const textPartitioning = useTextPartitioning(text, annotations);
   const scrollManager = useAnnotationsScrollManager(annotations, contentRef);
 
-  const handleMouseEnter = (index: number) => {
-    const annotationsAtIndex = annotationLookup.getAnnotationsForIndex(index);
-    const highlightsAtIndex = highlightsLookup.getAnnotationsForIndex(index);
-    // TODO: Update highlights in AppContext
-  };
+  const getMatchingRangesForIndex = useCallback((ranges: TextRangeWithText[], index: number): TextRangeWithText[] => {
+    return ranges.filter(range => range.start <= index && index < range.end);
+  }, []);
 
-  const handleMouseLeave = () => {
-    // TODO: Clear highlights in AppContext
-  };
+  const isInnerMostRange = useCallback((
+    targetRanges: TextRangeWithText[],
+    index: number,
+    matchingRanges: TextRangeWithText[]
+  ): boolean => {
+    const rangesAreIdentical = (a: TextRangeWithText, b: TextRangeWithText): boolean =>
+      a.start === b.start && a.end === b.end;
+    const rangeIsStrictSuperset = (a: TextRangeWithText, b: TextRangeWithText): boolean =>
+      a.start <= b.start && b.end <= a.end && !rangesAreIdentical(a, b);
 
-  const handleClick = (index: number) => {
+    // A range is inner-most if it is not a strict superset of any other matching range
+    return targetRanges
+      .filter(range => range.start <= index && index < range.end)
+      .filter(range => !matchingRanges.some(other => rangeIsStrictSuperset(range, other)))
+      .length > 0;
+  }, []);
+
+  const handleMouseEnter = useCallback((index: number) => {
+    // Get all matching ranges for mappings and labels
+    const matchingMappingRanges = annotations.mappings.flatMap(
+      mapping => getMatchingRangesForIndex(mapping.ranges, index)
+    );
+    const matchingLabelRanges = annotations.labels.flatMap(
+      label => getMatchingRangesForIndex(label.ranges, index)
+    );
+
+    // Filter for inner-most mappings and labels
+    const innerMatchingMappings = annotations.mappings.filter(mapping =>
+      isInnerMostRange(mapping.ranges, index, matchingMappingRanges)
+    );
+    const innerMatchingLabels = annotations.labels.filter(label =>
+      isInnerMostRange(label.ranges, index, matchingLabelRanges)
+    );
+
+    // Create a new highlights object with the inner-most annotations
+    const newHighlights: AnnotationsWithText = {
+      mappings: innerMatchingMappings.map(mapping => ({
+        ...mapping,
+        lhsRanges: direction === 'lhs' ? mapping.ranges : [],
+        rhsRanges: direction === 'rhs' ? mapping.ranges : [],
+      })),
+      lhsLabels: direction === 'lhs' ? innerMatchingLabels : [],
+      rhsLabels: direction === 'rhs' ? innerMatchingLabels : [],
+    };
+
+    updateHighlights(newHighlights);
+  }, [annotations, direction, getMatchingRangesForIndex, isInnerMostRange, updateHighlights]);
+
+  const handleMouseLeave = useCallback(() => {
+    updateHighlights({
+      mappings: [],
+      lhsLabels: [],
+      rhsLabels: [],
+    });
+  }, [updateHighlights]);
+
+  const handleClick = useCallback((index: number) => {
     const annotationsAtIndex = annotationLookup.getAnnotationsForIndex(index);
     const selectedMapping = annotationsAtIndex.mappings.find(mapping => 
       mapping.ranges.some(range => range.start <= index && index < range.end)
@@ -69,7 +119,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
         scrollManager.scrollTargetTextToRange(targetRange);
       }
     }
-  };
+  }, [annotationLookup, scrollManager]);
 
   const renderContent = () => {
     if (isLeftPanel) {
