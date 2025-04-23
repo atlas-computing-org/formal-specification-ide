@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { TextPanel } from './TextPanel.tsx';
 import { LeftTabMode, RightTabMode } from '../types/state.ts';
 import { AnnotationsPanel } from './AnnotationsPanel.tsx';
@@ -19,6 +19,8 @@ export const MainContent: React.FC<MainContentProps> = ({
 }) => {
   const [leftTab, setLeftTab] = useState<LeftTabMode>(INITIAL_LEFT_TAB_STATE);
   const [rightTab, setRightTab] = useState<RightTabMode>(INITIAL_RIGHT_TAB_STATE);
+  const leftContentRef = useRef<HTMLDivElement | null>(null);
+  const rightContentRef = useRef<HTMLDivElement | null>(null);
 
   const handleLeftTabChange = (tab: LeftTabMode) => { setLeftTab(tab); };
   const handleRightTabChange = (tab: RightTabMode) => { setRightTab(tab); };
@@ -36,6 +38,8 @@ export const MainContent: React.FC<MainContentProps> = ({
           activeTab={leftTab}
           onTabChange={handleLeftTabChange}
           pdfSrc={pdfSrc}
+          contentRef={leftContentRef}
+          oppositeContentRef={rightContentRef}
         />
         <TextPanel
           side="right"
@@ -43,6 +47,8 @@ export const MainContent: React.FC<MainContentProps> = ({
           tabs={rightTabs}
           activeTab={rightTab}
           onTabChange={handleRightTabChange}
+          contentRef={rightContentRef}
+          oppositeContentRef={leftContentRef}
         />
       </div>
 
