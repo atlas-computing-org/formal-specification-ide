@@ -3,11 +3,6 @@ import { AnnotationSets, AnnotationsWithText, DatasetWithText } from '@common/an
 export type LeftTabMode = 'pdf' | 'full-text' | 'selected-text';
 export type RightTabMode = 'pre-written' | 'generated';
 
-export interface TabState {
-  left: LeftTabMode;
-  right: RightTabMode;
-}
-
 export interface AppState {
   dataset: DatasetWithText;
   highlights: AnnotationsWithText;
@@ -15,8 +10,6 @@ export interface AppState {
   // FIXME these are hacks
   pdfSrc: string;
   fullText: string;
-
-  tabState: TabState;
 
   // Developer-only features
   currentAnnotationSets: AnnotationSets;

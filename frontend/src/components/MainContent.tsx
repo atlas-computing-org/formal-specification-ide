@@ -1,8 +1,10 @@
-import React from 'react';
-import { useAppContext } from '../context/AppContext.tsx';
+import React, { useState } from 'react';
 import { TextPanel } from './TextPanel.tsx';
 import { LeftTabMode, RightTabMode } from '../types/state.ts';
 import { AnnotationsPanel } from './AnnotationsPanel.tsx';
+
+const INITIAL_LEFT_TAB_STATE: LeftTabMode = 'selected-text';
+const INITIAL_RIGHT_TAB_STATE: RightTabMode = 'pre-written';
 
 interface MainContentProps {
   isHighlightsVisible: boolean;
@@ -10,19 +12,14 @@ interface MainContentProps {
 }
 
 export const MainContent: React.FC<MainContentProps> = ({ isHighlightsVisible, isAnnotationsPanelVisible }) => {
-  const { state, updateTabState } = useAppContext();
-  const { tabState } = state;
+  const [leftTab, setLeftTab] = useState<LeftTabMode>(INITIAL_LEFT_TAB_STATE);
+  const [rightTab, setRightTab] = useState<RightTabMode>(INITIAL_RIGHT_TAB_STATE);
+
+  const handleLeftTabChange = (tab: LeftTabMode) => { setLeftTab(tab); };
+  const handleRightTabChange = (tab: RightTabMode) => { setRightTab(tab); };
 
   const leftTabs: LeftTabMode[] = ['pdf', 'full-text', 'selected-text'];
   const rightTabs: RightTabMode[] = ['pre-written', 'generated'];
-
-  const handleLeftTabChange = (tab: LeftTabMode) => {
-    updateTabState({ ...tabState, left: tab });
-  };
-
-  const handleRightTabChange = (tab: RightTabMode) => {
-    updateTabState({ ...tabState, right: tab });
-  };
 
   return (
     <main>
@@ -31,14 +28,14 @@ export const MainContent: React.FC<MainContentProps> = ({ isHighlightsVisible, i
           side="left"
           title="Natural Language Documentation"
           tabs={leftTabs}
-          activeTab={tabState.left}
+          activeTab={leftTab}
           onTabChange={handleLeftTabChange}
         />
         <TextPanel
           side="right"
           title="Mechanized Spec"
           tabs={rightTabs}
-          activeTab={tabState.right}
+          activeTab={rightTab}
           onTabChange={handleRightTabChange}
         />
       </div>

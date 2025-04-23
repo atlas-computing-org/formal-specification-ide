@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { AppState, TabState } from '../types/state.ts';
+import { AppState } from '../types/state.ts';
 import { AnnotationSets, AnnotationsWithText, DatasetWithText } from '@common/annotations.ts';
 
 const EMPTY_ANNOTATIONS: AnnotationsWithText = {
@@ -14,15 +14,9 @@ const EMPTY_DATASET: DatasetWithText = {
   annotations: EMPTY_ANNOTATIONS,
 };
 
-const INITIAL_TAB_STATE: TabState = {
-  left: 'selected-text',
-  right: 'pre-written',
-};
-
 const initialState: AppState = {
   dataset: EMPTY_DATASET,
   highlights: EMPTY_ANNOTATIONS,
-  tabState: INITIAL_TAB_STATE,
   currentAnnotationSets: {},
   lastRawModelOutput: '',
   allRawModelOutputs: [],
@@ -35,7 +29,6 @@ interface AppContextType {
   updateState: (newState: Partial<AppState>) => void;
   updateDataset: (dataset: DatasetWithText) => void;
   updateHighlights: (highlights: AnnotationsWithText) => void;
-  updateTabState: (tabState: TabState) => void;
   updateAnnotationSets: (annotationSets: AnnotationSets) => void;
 }
 
@@ -56,10 +49,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     updateState({ highlights });
   };
 
-  const updateTabState = (tabState: TabState) => {
-    updateState({ tabState });
-  };
-
   const updateAnnotationSets = (annotationSets: AnnotationSets) => {
     updateState({ currentAnnotationSets: annotationSets });
   };
@@ -70,7 +59,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       updateState,
       updateDataset,
       updateHighlights,
-      updateTabState,
       updateAnnotationSets,
     }}>
       {children}
