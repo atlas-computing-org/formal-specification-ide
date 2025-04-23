@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppContext } from '../context/AppContext.tsx';
-import { api } from '../services/api.ts';
+import { api, SERVER_BASE_URL } from '../services/api.ts';
 import { AnnotationsWithText, TextRange, Dataset, TextRangeWithText, EMPTY_ANNOTATIONS }
   from '@common/annotations.ts';
 
@@ -40,7 +40,7 @@ function mergeAnnotations(first: AnnotationsWithText, second: AnnotationsWithTex
 }
 
 export const useDataset = () => {
-  const { state, updateDataset, updateAnnotationSets } = useAppContext();
+  const { state, updateDataset, updateAnnotationSets, updateState } = useAppContext();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const [generating, setGenerating] = useState(false);
@@ -56,13 +56,18 @@ export const useDataset = () => {
       // Get the default annotations set
       const annotations = response.data.annotations['annotations'];
       // Convert AnnotationSets to AnnotationsWithText
-      const { lhsText, rhsText } = response.data;
+      const { lhsText, rhsText, fullText, pdfUrl } = response.data;
       const annotationsWithText = cacheDatasetText({ lhsText, rhsText, annotations });
       updateDataset({
         ...response.data,
         annotations: annotationsWithText,
       });
       updateAnnotationSets(response.data.annotations);
+      // Update pdfSrc and fullText
+      updateState({
+        pdfSrc: `${SERVER_BASE_URL}${pdfUrl}`,
+        fullText,
+      });
     } catch (err) {
       setError(err as Error);
     } finally {

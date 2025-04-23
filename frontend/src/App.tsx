@@ -85,6 +85,7 @@ function AppContent() {
       <MainContent 
         isHighlightsVisible={isHighlightsVisible}
         isAnnotationsPanelVisible={isAnnotationsPanelVisible}
+        pdfSrc={state.pdfSrc}
       />
       <Footer
         onToggleHighlights={handleToggleHighlights}

@@ -18,6 +18,7 @@ interface TextPanelPropsBase<T extends LeftTabMode | RightTabMode> {
 
 interface LeftTextPanelProps extends TextPanelPropsBase<LeftTabMode> {
   side: 'left';
+  pdfSrc: string;
 }
 
 interface RightTextPanelProps extends TextPanelPropsBase<RightTabMode> {
@@ -128,7 +129,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
           return (
             <iframe
               id="pdf-frame"
-              src={state.pdfSrc}
+              src={props.pdfSrc}
               width="100%"
               height="100%"
             />

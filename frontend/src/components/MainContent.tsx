@@ -9,9 +9,14 @@ const INITIAL_RIGHT_TAB_STATE: RightTabMode = 'pre-written';
 interface MainContentProps {
   isHighlightsVisible: boolean;
   isAnnotationsPanelVisible: boolean;
+  pdfSrc: string;
 }
 
-export const MainContent: React.FC<MainContentProps> = ({ isHighlightsVisible, isAnnotationsPanelVisible }) => {
+export const MainContent: React.FC<MainContentProps> = ({
+  isHighlightsVisible,
+  isAnnotationsPanelVisible,
+  pdfSrc
+}) => {
   const [leftTab, setLeftTab] = useState<LeftTabMode>(INITIAL_LEFT_TAB_STATE);
   const [rightTab, setRightTab] = useState<RightTabMode>(INITIAL_RIGHT_TAB_STATE);
 
@@ -30,6 +35,7 @@ export const MainContent: React.FC<MainContentProps> = ({ isHighlightsVisible, i
           tabs={leftTabs}
           activeTab={leftTab}
           onTabChange={handleLeftTabChange}
+          pdfSrc={pdfSrc}
         />
         <TextPanel
           side="right"
@@ -43,4 +49,4 @@ export const MainContent: React.FC<MainContentProps> = ({ isHighlightsVisible, i
       <AnnotationsPanel className={isAnnotationsPanelVisible ? '' : 'hide'} />
     </main>
   );
-}; 
+};
