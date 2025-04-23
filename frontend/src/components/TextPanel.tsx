@@ -8,6 +8,43 @@ import { useAnnotationsScrollManager } from '../hooks/useAnnotationsScrollManage
 import { useTextPartitioning } from '../hooks/useTextPartitioning.js';
 import { useAnnotationsSlice } from '../hooks/useAnnotationsSlice.js';
 
+function getMatchingRangesForIndex(ranges: TextRangeWithText[], index: number): TextRangeWithText[] {
+  return ranges.filter(range => range.start <= index && index < range.end);
+}
+
+function isInnerMostRange(targetRanges: TextRangeWithText[], index: number, matchingRanges: TextRangeWithText[]): boolean {
+  const rangesAreIdentical = (a: TextRangeWithText, b: TextRangeWithText): boolean =>
+    a.start === b.start && a.end === b.end;
+  const rangeIsStrictSuperset = (a: TextRangeWithText, b: TextRangeWithText): boolean =>
+    a.start <= b.start && b.end <= a.end && !rangesAreIdentical(a, b);
+
+  // A range is inner-most if it is not a strict superset of any other matching range
+  return targetRanges
+    .filter(range => range.start <= index && index < range.end) // performance optimization: filter by index first
+    .filter(range => !matchingRanges.some(other => rangeIsStrictSuperset(range, other)))
+    .length > 0;
+}
+
+// Filter to the inner-most annotations at the given index
+function filterAnnotationsForIndex(annotations: AnnotationsWithText, index: number, direction: Direction): AnnotationsWithText {
+  const matchingMappingRanges = annotations.mappings.flatMap(
+    mapping => getMatchingRangesForIndex(mapping[`${direction}Ranges`], index));
+  const innerMatchingMappings = annotations.mappings.filter(
+    mapping => isInnerMostRange(mapping[`${direction}Ranges`], index, matchingMappingRanges));
+
+  const matchingLabelRanges = annotations[`${direction}Labels`].flatMap(
+    label => getMatchingRangesForIndex(label.ranges, index));
+  const innerMatchingLabels = annotations[`${direction}Labels`].filter(
+    label => isInnerMostRange(label.ranges, index, matchingLabelRanges));
+
+
+  return {
+    mappings: innerMatchingMappings,
+    lhsLabels: direction === "lhs" ? innerMatchingLabels : [],
+    rhsLabels: direction === "rhs" ? innerMatchingLabels : [],
+  };
+}
+
 interface TextPanelPropsBase<T extends LeftTabMode | RightTabMode> {
   side: 'left' | 'right';
   title: string;
@@ -46,57 +83,10 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
   const textPartitioning = useTextPartitioning(text, annotations);
   const scrollManager = useAnnotationsScrollManager(annotations, contentRef);
 
-  const getMatchingRangesForIndex = useCallback((ranges: TextRangeWithText[], index: number): TextRangeWithText[] => {
-    return ranges.filter(range => range.start <= index && index < range.end);
-  }, []);
-
-  const isInnerMostRange = useCallback((
-    targetRanges: TextRangeWithText[],
-    index: number,
-    matchingRanges: TextRangeWithText[]
-  ): boolean => {
-    const rangesAreIdentical = (a: TextRangeWithText, b: TextRangeWithText): boolean =>
-      a.start === b.start && a.end === b.end;
-    const rangeIsStrictSuperset = (a: TextRangeWithText, b: TextRangeWithText): boolean =>
-      a.start <= b.start && b.end <= a.end && !rangesAreIdentical(a, b);
-
-    // A range is inner-most if it is not a strict superset of any other matching range
-    return targetRanges
-      .filter(range => range.start <= index && index < range.end)
-      .filter(range => !matchingRanges.some(other => rangeIsStrictSuperset(range, other)))
-      .length > 0;
-  }, []);
-
   const handleMouseEnter = useCallback((index: number) => {
-    // Get all matching ranges for mappings and labels
-    const matchingMappingRanges = annotations.mappings.flatMap(
-      mapping => getMatchingRangesForIndex(mapping.ranges, index)
-    );
-    const matchingLabelRanges = annotations.labels.flatMap(
-      label => getMatchingRangesForIndex(label.ranges, index)
-    );
-
-    // Filter for inner-most mappings and labels
-    const innerMatchingMappings = annotations.mappings.filter(mapping =>
-      isInnerMostRange(mapping.ranges, index, matchingMappingRanges)
-    );
-    const innerMatchingLabels = annotations.labels.filter(label =>
-      isInnerMostRange(label.ranges, index, matchingLabelRanges)
-    );
-
-    // Create a new highlights object with the inner-most annotations
-    const newHighlights: AnnotationsWithText = {
-      mappings: innerMatchingMappings.map(mapping => ({
-        ...mapping,
-        lhsRanges: direction === 'lhs' ? mapping.ranges : [],
-        rhsRanges: direction === 'rhs' ? mapping.ranges : [],
-      })),
-      lhsLabels: direction === 'lhs' ? innerMatchingLabels : [],
-      rhsLabels: direction === 'rhs' ? innerMatchingLabels : [],
-    };
-
-    updateHighlights(newHighlights);
-  }, [annotations, direction, getMatchingRangesForIndex, isInnerMostRange, updateHighlights]);
+    const filteredAnnotations = filterAnnotationsForIndex(dataset.annotations, index, direction);
+    updateHighlights(filteredAnnotations);
+  }, [dataset.annotations, direction, updateHighlights]);
 
   const handleMouseLeave = useCallback(() => {
     updateHighlights({
