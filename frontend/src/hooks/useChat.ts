@@ -22,6 +22,12 @@ export const useChat = () => {
     try {
       const { annotations, lhsText, rhsText } = state.dataset;
       setChatError(null);
+      setIsNewChat(false);
+      setChatMessages(prev => [
+        ...prev,
+        { content: message, sender: "user" },
+      ]);
+
       const response = await api.chatAboutAnnotations({
         userInput: message,
         lhsText,
@@ -33,14 +39,10 @@ export const useChat = () => {
         throw new Error(response.error);
       }
 
-      // Add user message and assistant response to chat history
       setChatMessages(prev => [
         ...prev,
-        { content: message, sender: "user" },
         { content: response.data, sender: "assistant" },
       ]);
-
-      setIsNewChat(false);
     } catch (err) {
       setChatError(err as Error);
     }

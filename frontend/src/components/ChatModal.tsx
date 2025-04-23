@@ -19,8 +19,8 @@ export const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
 
   const handleSendMessage = async () => {
     if (message.trim()) {
-      await sendChatMessage(message);
       setMessage('');
+      await sendChatMessage(message);
     }
   };
 
