@@ -87,6 +87,15 @@ export const useDataset = () => {
         currentAnnotations: annotations,
         useDemoCache,
       });
+
+      // Update raw model output
+      if (response.debugInfo?.rawModelOutput) {
+        updateState({
+          lastRawModelOutput: response.debugInfo.rawModelOutput,
+          allRawModelOutputs: [...state.allRawModelOutputs, response.debugInfo.rawModelOutput],
+        });
+      }
+
       if ("error" in response) {
         throw new Error(response.error);
       }
