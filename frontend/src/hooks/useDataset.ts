@@ -87,6 +87,7 @@ export const useDataset = () => {
         currentAnnotations: annotations,
         useDemoCache,
       });
+      console.log("Server's response:", response);
 
       // Update raw model output
       if (response.debugInfo?.rawModelOutput) {
@@ -110,6 +111,7 @@ export const useDataset = () => {
       });
     } catch (err) {
       setGenerationError(err as Error);
+      console.error("Error generating annotations:", err);
     } finally {
       setGenerating(false);
     }

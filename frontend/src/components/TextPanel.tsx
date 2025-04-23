@@ -143,6 +143,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
             />
           );
         case 'full-text':
+          // TODO: Support annotations against the full-text document
           return <div className="text-panel-content" ref={contentRef}>{state.fullText}</div>;
         case 'selected-text':
           return (
@@ -184,6 +185,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
             </div>
           );
         case 'generated':
+          // TODO: Support generated mode
           return <div className="text-panel-content" ref={contentRef}></div>;
         default:
           return null;
