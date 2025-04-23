@@ -2,6 +2,7 @@ import React from 'react';
 import { AnnotationsSlice } from '../AnnotationsSlice.ts';
 import { useAnnotationSeverity } from '../hooks/useAnnotationSeverity.ts';
 
+// Type definitions
 interface TextSegmentProps {
   startIndex: number;
   text: string;
@@ -12,6 +13,7 @@ interface TextSegmentProps {
   onClick: (index: number) => void;
 }
 
+// Component
 export const TextSegment: React.FC<TextSegmentProps> = ({
   startIndex,
   text,
@@ -21,19 +23,22 @@ export const TextSegment: React.FC<TextSegmentProps> = ({
   onMouseLeave,
   onClick,
 }) => {
+  // Hooks
   const annotationSeverity = useAnnotationSeverity(annotations);
   const highlightSeverity = useAnnotationSeverity(highlights);
   
+  // Derived values
   const hasHighlights = highlights.mappings.length > 0 || highlights.labels.length > 0;
   const hasAnnotations = annotations.mappings.length > 0 || annotations.labels.length > 0;
-
   const highlightClass = hasHighlights ? `highlight-${highlightSeverity}` : "";
   const annotationClass = hasAnnotations ? annotationSeverity : "";
 
+  // Event handlers
   const handleClick = () => onClick(startIndex);
   const handleMouseEnter = () => onMouseEnter(startIndex);
   const handleMouseLeave = () => onMouseLeave();
 
+  // Main render
   return (
     <span
       className={`${highlightClass} ${annotationClass}`}

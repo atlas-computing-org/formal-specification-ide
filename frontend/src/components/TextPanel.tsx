@@ -9,6 +9,7 @@ import { AnnotationsSlice, TextMappingSlice } from '../AnnotationsSlice.ts';
 import { LeftTabMode, RightTabMode } from '../types/state.ts';
 import { TextSegment } from './TextSegment.tsx';
 
+// Helper functions
 function getInnermostMappingAtIndex(annotations: AnnotationsSlice, index: number): TextMappingSlice | undefined {
   let selectedMapping = undefined as TextMappingSlice | undefined;
   let minLength = Infinity;
@@ -63,6 +64,7 @@ function filterAnnotationsForIndex(annotations: AnnotationsWithText, index: numb
   };
 }
 
+// Type definitions
 interface TextPanelPropsBase<T extends LeftTabMode | RightTabMode> {
   side: 'left' | 'right';
   title: string;
@@ -88,7 +90,9 @@ function isLeftTextPanelProps(props: TextPanelProps): props is LeftTextPanelProp
 
 type TextPanelProps = LeftTextPanelProps | RightTextPanelProps;
 
+// Component
 export const TextPanel: React.FC<TextPanelProps> = (props) => {
+  // State and hooks
   const { state, updateHighlights } = useAppContext();
   const { dataset, highlights } = state;
   const isLeftPanel = isLeftTextPanelProps(props);
@@ -103,6 +107,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
   const textPartitioning = useTextPartitioning(text, annotations);
   const scrollManager = useAnnotationsScrollManager(annotations, oppositeContentRef);
 
+  // Event handlers
   const handleMouseEnter = useCallback((index: number) => {
     const filteredAnnotations = filterAnnotationsForIndex(dataset.annotations, index, direction);
     updateHighlights(filteredAnnotations);
@@ -130,6 +135,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
     }
   }, [annotationLookup, scrollManager]);
 
+  // Render functions
   const renderContent = () => {
     if (isLeftPanel) {
       switch (props.activeTab) {
@@ -213,6 +219,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
     );
   };
 
+  // Main render
   return (
     <div id={isLeftPanel ? 'left-text' : 'right-text'} className="text-panel">
       <div className="panel-header">

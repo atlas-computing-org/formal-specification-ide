@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import { useAppContext } from '../context/AppContext.tsx';
 
+// Type definitions
 interface DebugModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+// Component
 export const DebugModal: React.FC<DebugModalProps> = ({ isOpen, onClose }) => {
+  // State and hooks
   const { state } = useAppContext();
   const [selectedOption, setSelectedOption] = useState<'last' | 'all' | 'annotations'>('last');
 
+  // Derived values
   const getDebugContent = () => {
     switch (selectedOption) {
       case 'last':
@@ -25,6 +29,7 @@ export const DebugModal: React.FC<DebugModalProps> = ({ isOpen, onClose }) => {
     }
   };
 
+  // Main render
   return (
     <div id="debug-info-modal" className={`modal ${isOpen ? 'show' : ''}`}>
       <div className="modal-content">

@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Type definitions
 interface HeaderProps {
   datasetNames: string[];
   currentDatasetName: string;
@@ -9,6 +10,7 @@ interface HeaderProps {
   onShowChat: () => void;
 }
 
+// Component
 export const Header: React.FC<HeaderProps> = ({
   datasetNames,
   currentDatasetName,
@@ -17,6 +19,7 @@ export const Header: React.FC<HeaderProps> = ({
   onShowComingSoon,
   onGenerateAnnotations,
 }) => {
+  // Main render
   return (
     <header>
       <div id="data-selector-container">

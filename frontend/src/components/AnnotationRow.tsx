@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { TextMappingWithText, TextLabelWithText, TextRangeWithText } from '@common/annotations.ts';
 
+// Helper functions
 function isTextMapping(item: TextMappingWithText | TextLabelWithText): item is TextMappingWithText {
   return 'lhsRanges' in item;
 }
 
+// Type definitions
 interface AnnotationRowProps {
   item: TextMappingWithText | TextLabelWithText;
   isHighlighted: boolean;
@@ -15,6 +17,7 @@ interface AnnotationRowProps {
   dataIndex?: number;
 }
 
+// Component
 export const AnnotationRow: React.FC<AnnotationRowProps> = ({
   item,
   isHighlighted,
@@ -24,9 +27,11 @@ export const AnnotationRow: React.FC<AnnotationRowProps> = ({
   className = '',
   dataIndex,
 }) => {
+  // State and hooks
   const [editingCell, setEditingCell] = useState<'first' | 'second' | null>(null);
   const [editValue, setEditValue] = useState(item.description);
 
+  // Event handlers
   const handleDoubleClick = (cell: 'first' | 'second') => {
     setEditingCell(cell);
   };
@@ -45,12 +50,14 @@ export const AnnotationRow: React.FC<AnnotationRowProps> = ({
     }
   };
 
+  // Derived values
   const getLabelType = () => {
     if (item.isError) return 'error';
     if (item.isWarning) return 'warning';
     return 'default';
   };
 
+  // Render functions
   const renderContent = (ranges: TextRangeWithText[]) => {
     return (
       <div className="cell content">
@@ -90,6 +97,7 @@ export const AnnotationRow: React.FC<AnnotationRowProps> = ({
   const labelType = getLabelType();
   const rowClassName = `row ${className} ${labelType} ${isHighlighted ? 'highlight' : ''}`;
 
+  // Main render
   return isTextMapping(item) ? (
     <div
       className={rowClassName}

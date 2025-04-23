@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Type definitions
 interface FooterProps {
   onToggleHighlights: () => void;
   onToggleAnnotationsPanel: () => void;
@@ -13,6 +14,7 @@ interface FooterProps {
   useCachedResponses: boolean;
 }
 
+// Component
 export const Footer: React.FC<FooterProps> = ({
   onToggleHighlights,
   onToggleAnnotationsPanel,
@@ -25,8 +27,10 @@ export const Footer: React.FC<FooterProps> = ({
   onAnnotationSetChange,
   useCachedResponses,
 }) => {
+  // Derived values
   const hasMultipleSets = annotationSetNames.length > 1;
 
+  // Main render
   return (
     <footer>
       <button id="highlight-all-annotations" onClick={onToggleHighlights}>

@@ -1,22 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useChat } from '../hooks/useChat.ts';
 
+// Type definitions
 interface ChatModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+// Component
 export const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
+  // State and hooks
   const [message, setMessage] = useState('');
   const chatThreadRef = useRef<HTMLDivElement>(null);
   const { chatMessages, sendChatMessage, resetChat } = useChat();
 
+  // Effects
   useEffect(() => {
     if (chatThreadRef.current) {
       chatThreadRef.current.scrollTop = chatThreadRef.current.scrollHeight;
     }
   }, [chatMessages]);
 
+  // Event handlers
   const handleSendMessage = async () => {
     if (message.trim()) {
       setMessage('');
@@ -30,6 +35,7 @@ export const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
     }
   };
 
+  // Main render
   return (
     <div id="chat-modal" className={`modal ${isOpen ? 'show' : ''}`}>
       <div className="modal-content">
