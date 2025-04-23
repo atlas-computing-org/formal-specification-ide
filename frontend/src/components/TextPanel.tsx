@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
-import { useAppContext } from '../context/AppContext.tsx';
-import { LeftTabMode, RightTabMode } from '../types/state.ts';
 import { Direction, AnnotationsWithText, TextRangeWithText } from '@common/annotations.ts';
-import { TextSegment } from './TextSegment.tsx';
-import { useAnnotationLookup } from '../hooks/useAnnotationLookup.js';
-import { useAnnotationsScrollManager } from '../hooks/useAnnotationsScrollManager.js';
-import { useTextPartitioning } from '../hooks/useTextPartitioning.js';
-import { useAnnotationsSlice } from '../hooks/useAnnotationsSlice.js';
+import { useAppContext } from '../context/AppContext.tsx';
+import { useAnnotationLookup } from '../hooks/useAnnotationLookup.ts';
+import { useAnnotationsScrollManager } from '../hooks/useAnnotationsScrollManager.ts';
+import { useAnnotationsSlice } from '../hooks/useAnnotationsSlice.ts';
+import { useTextPartitioning } from '../hooks/useTextPartitioning.ts';
 import { AnnotationsSlice, TextMappingSlice } from '../AnnotationsSlice.ts';
+import { LeftTabMode, RightTabMode } from '../types/state.ts';
+import { TextSegment } from './TextSegment.tsx';
 
 function getInnermostMappingAtIndex(annotations: AnnotationsSlice, index: number): TextMappingSlice | undefined {
   let selectedMapping = undefined as TextMappingSlice | undefined;

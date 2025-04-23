@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
+import { AnnotationsWithText, TextMappingWithText, TextLabelWithText } from '@common/annotations.ts';
 import { useAppContext } from '../context/AppContext.tsx';
 import { AnnotationRow } from './AnnotationRow.tsx';
-import { AnnotationsWithText, TextMappingWithText, TextLabelWithText } from '@common/annotations.ts';
 
 interface AnnotationsPanelProps {
   className?: string;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { AnnotationsSlice } from '../AnnotationsSlice.ts';
-import { useAnnotationSeverity } from '../hooks/useAnnotationSeverity.js';
+import { useAnnotationSeverity } from '../hooks/useAnnotationSeverity.ts';
 
 interface TextSegmentProps {
   startIndex: number;

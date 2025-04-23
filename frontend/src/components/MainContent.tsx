@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { TextPanel } from './TextPanel.tsx';
 import { LeftTabMode, RightTabMode } from '../types/state.ts';
+import { TextPanel } from './TextPanel.tsx';
 import { AnnotationsPanel } from './AnnotationsPanel.tsx';
 
 const INITIAL_LEFT_TAB_STATE: LeftTabMode = 'selected-text';
