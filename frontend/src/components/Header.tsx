@@ -19,6 +19,11 @@ export const Header: React.FC<HeaderProps> = ({
   onShowComingSoon,
   onGenerateAnnotations,
 }) => {
+  // Event handlers
+  const handleDatasetChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    onDatasetChange(e.target.value);
+  };
+
   // Main render
   return (
     <header>
@@ -28,7 +33,7 @@ export const Header: React.FC<HeaderProps> = ({
           id="data-selector" 
           className="with-label"
           value={currentDatasetName}
-          onChange={(e) => onDatasetChange(e.target.value)}
+          onChange={handleDatasetChange}
         >
           {datasetNames.map(name => (
             <option key={name} value={name}>{name}</option>

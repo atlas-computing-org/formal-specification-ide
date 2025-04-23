@@ -35,6 +35,10 @@ export const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
     }
   };
 
+  const handleMessageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setMessage(e.target.value);
+  };
+
   // Main render
   return (
     <div id="chat-modal" className={`modal ${isOpen ? 'show' : ''}`}>
@@ -56,7 +60,7 @@ export const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
             id="chat-input"
             placeholder="Type a message..."
             value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={handleMessageChange}
             onKeyDown={handleKeyDown}
           />
           <button id="send-message" onClick={handleSendMessage}>Send</button>

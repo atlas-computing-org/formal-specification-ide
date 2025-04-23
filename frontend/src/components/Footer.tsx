@@ -27,6 +27,11 @@ export const Footer: React.FC<FooterProps> = ({
   onAnnotationSetChange,
   useCachedResponses,
 }) => {
+  // Event handlers
+  const handleAnnotationSetChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    onAnnotationSetChange(e.target.value);
+  };
+
   // Derived values
   const hasMultipleSets = annotationSetNames.length > 1;
 
@@ -46,7 +51,7 @@ export const Footer: React.FC<FooterProps> = ({
           id="annotations-set-selector" 
           className="with-label"
           value={currentAnnotationSetName}
-          onChange={(e) => onAnnotationSetChange(e.target.value)}
+          onChange={handleAnnotationSetChange}
         >
           {annotationSetNames.map(name => (
             <option key={name} value={name}>{name}</option>

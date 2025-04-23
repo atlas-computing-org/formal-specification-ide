@@ -200,7 +200,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
   };
 
   const renderTabButton = (tab: LeftTabMode | RightTabMode) => {
-    const onClick = isLeftPanel ?
+    const handleTabClick = isLeftPanel ?
       () => props.onTabChange(tab as LeftTabMode) :
       () => props.onTabChange(tab as RightTabMode);
     return (
@@ -208,7 +208,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
         key={tab}
         id={`tab-${tab}`}
         className={props.activeTab === tab ? 'active' : ''}
-        onClick={onClick}
+        onClick={handleTabClick}
       >
         {tab === 'pdf' ? 'PDF' :
          tab === 'full-text' ? 'Full Text' :

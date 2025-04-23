@@ -13,6 +13,11 @@ export const DebugModal: React.FC<DebugModalProps> = ({ isOpen, onClose }) => {
   const { state } = useAppContext();
   const [selectedOption, setSelectedOption] = useState<'last' | 'all' | 'annotations'>('last');
 
+  // Event handlers
+  const handleOptionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedOption(e.target.value as 'last' | 'all' | 'annotations');
+  };
+
   // Derived values
   const getDebugContent = () => {
     switch (selectedOption) {
@@ -40,7 +45,7 @@ export const DebugModal: React.FC<DebugModalProps> = ({ isOpen, onClose }) => {
             id="debug-selector"
             className="with-label"
             value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value as 'last' | 'all' | 'annotations')}
+            onChange={handleOptionChange}
           >
             <option value="last">Last Raw Model Output</option>
             <option value="all">All Raw Model Outputs</option>
