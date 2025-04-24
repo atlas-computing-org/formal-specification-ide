@@ -12,7 +12,7 @@ export const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
   // State and hooks
   const [message, setMessage] = useState('');
   const chatThreadRef = useRef<HTMLDivElement>(null);
-  const { chatMessages, sendChatMessage, resetChat } = useChat();
+  const { chatMessages, sendChatMessage, resetChat, isLoading } = useChat();
 
   // Effects
   useEffect(() => {
@@ -53,6 +53,15 @@ export const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
               {msg.content}
             </div>
           ))}
+          {isLoading && (
+            <div className="chat-message assistant loading">
+              <div className="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          )}
         </div>
         <div id="chat-compose-bar">
           <input
@@ -62,8 +71,9 @@ export const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
             value={message}
             onChange={handleMessageChange}
             onKeyDown={handleKeyDown}
+            disabled={isLoading}
           />
-          <button id="send-message" onClick={handleSendMessage}>Send</button>
+          <button id="send-message" onClick={handleSendMessage} disabled={isLoading}>Send</button>
         </div>
       </div>
     </div>

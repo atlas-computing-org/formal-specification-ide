@@ -17,6 +17,7 @@ export const useChat = () => {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>(initialChatMessages);
   const [isNewChat, setIsNewChat] = useState(true);
   const [chatError, setChatError] = useState<Error | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const sendChatMessage = async (message: string) => {
     try {
@@ -28,6 +29,7 @@ export const useChat = () => {
         { content: message, sender: "user" },
       ]);
 
+      setIsLoading(true);
       const response = await api.chatAboutAnnotations({
         userInput: message,
         lhsText,
@@ -45,6 +47,8 @@ export const useChat = () => {
       ]);
     } catch (err) {
       setChatError(err as Error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -59,5 +63,6 @@ export const useChat = () => {
     chatError,
     sendChatMessage,
     resetChat,
+    isLoading,
   };
 };
