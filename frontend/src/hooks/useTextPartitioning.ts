@@ -1,5 +1,6 @@
-import { AnnotationsSlice } from "./AnnotationsSlice.ts";
-import { TextRange } from "@common/annotations.ts";
+import { useMemo } from 'react';
+import { AnnotationsSlice } from '../hooks/useAnnotationsSlice.ts';
+import { TextRange } from '@common/annotations.ts';
 
 function findUniqueIndices(mappingRanges: TextRange[], labelRanges: TextRange[]): Set<number> {
   const indices = new Set<number>();
@@ -24,18 +25,25 @@ function getSortedPartitionIndices(text: string, annotations: AnnotationsSlice):
   return sortedIndices;
 }
 
-export class TextPartitionIndices {
-  private readonly sortedIndices: number[];
-
-  private constructor(sortedIndices: number[]) {
-    this.sortedIndices = sortedIndices;
-  }
-
-  static fromTextAndAnnotations(text: string, annotations: AnnotationsSlice): TextPartitionIndices {
-    return new TextPartitionIndices(getSortedPartitionIndices(text, annotations));
-  }
-
-  getSortedIndices(): number[] {
-    return this.sortedIndices;
-  }
-}
+export function useTextPartitioning(text: string, annotations: AnnotationsSlice) {
+  return useMemo(() => {
+    const sortedIndices = getSortedPartitionIndices(text, annotations);
+    
+    return {
+      getSortedIndices: () => sortedIndices,
+      getPartitions: () => {
+        const partitions: { start: number; end: number; text: string }[] = [];
+        for (let i = 0; i < sortedIndices.length - 1; i++) {
+          const start = sortedIndices[i];
+          const end = sortedIndices[i + 1];
+          partitions.push({
+            start,
+            end,
+            text: text.substring(start, end)
+          });
+        }
+        return partitions;
+      }
+    };
+  }, [text, annotations]);
+} 
