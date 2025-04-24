@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAppContext } from '../context/AppContext.tsx';
 import { api } from '../services/api.ts';
-import { AI_ASSISTANT_WELCOME_MESSAGE } from '../aiAssistantWelcomeMessage.ts';
+import { AI_ASSISTANT_WELCOME_MESSAGE } from '../content/aiAssistantWelcomeMessage.ts';
 
 type ChatUser = "user" | "assistant" | "system";
 
