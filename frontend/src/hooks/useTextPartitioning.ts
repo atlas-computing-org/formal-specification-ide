@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { AnnotationsSlice } from '../AnnotationsSlice.ts';
+import { AnnotationsSlice } from '../hooks/useAnnotationsSlice.ts';
 import { TextRange } from '@common/annotations.ts';
 
 function findUniqueIndices(mappingRanges: TextRange[], labelRanges: TextRange[]): Set<number> {

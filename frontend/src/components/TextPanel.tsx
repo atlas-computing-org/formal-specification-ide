@@ -3,9 +3,8 @@ import { Direction, AnnotationsWithText, TextRangeWithText } from '@common/annot
 import { useAppContext } from '../context/AppContext.tsx';
 import { useAnnotationLookup } from '../hooks/useAnnotationLookup.ts';
 import { useAnnotationsScrollManager } from '../hooks/useAnnotationsScrollManager.ts';
-import { useAnnotationsSlice } from '../hooks/useAnnotationsSlice.ts';
+import { AnnotationsSlice, TextMappingSlice, useAnnotationsSlice } from '../hooks/useAnnotationsSlice.ts';
 import { useTextPartitioning } from '../hooks/useTextPartitioning.ts';
-import { AnnotationsSlice, TextMappingSlice } from '../AnnotationsSlice.ts';
 import { LeftTabMode, RightTabMode } from '../types/state.ts';
 import { TextSegment } from './TextSegment.tsx';
 

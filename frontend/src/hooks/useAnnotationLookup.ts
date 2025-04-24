@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { TextRangeWithText } from '@common/annotations.ts';
-import { AnnotationsSlice } from '../AnnotationsSlice.ts';
+import { AnnotationsSlice } from '../hooks/useAnnotationsSlice.ts';
 
 export interface AnnotationLookup {
   getAnnotationsForIndex(index: number): AnnotationsSlice;

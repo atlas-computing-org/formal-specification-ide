@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { MatchableAnnotationsSlice, TextMappingSlice } from '../AnnotationsSlice.ts';
+import { MatchableAnnotationsSlice, TextMappingSlice } from '../hooks/useAnnotationsSlice.ts';
 import { TextRangeWithText } from '@common/annotations.ts';
 
 export function useAnnotationsScrollManager(

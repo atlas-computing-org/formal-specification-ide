@@ -1,6 +1,21 @@
 import { useMemo } from 'react';
-import { AnnotationsWithText, Direction, TextLabelWithText, TextMappingWithText, TextRangeWithText } from '@common/annotations.ts';
-import { AnnotationsSlice, MatchableAnnotationsSlice, TextMappingSlice } from '../AnnotationsSlice.ts';
+import { AnnotationsWithText, Direction, TextMappingWithText, TextLabelWithText, TextRangeWithText } from '@common/annotations.ts';
+
+export interface TextMappingSlice {
+  description: string;
+  ranges: TextRangeWithText[];
+  isWarning?: boolean;
+  isError?: boolean;
+}
+
+export interface AnnotationsSlice {
+  mappings: TextMappingSlice[];
+  labels: TextLabelWithText[];
+}
+
+export interface MatchableAnnotationsSlice extends AnnotationsSlice {
+  getMatchingMappingInOppositeText(sourceMapping: TextMappingSlice): TextMappingSlice | undefined;
+}
 
 class TextMappingSliceWrapped implements TextMappingSlice {
   readonly description: string;
