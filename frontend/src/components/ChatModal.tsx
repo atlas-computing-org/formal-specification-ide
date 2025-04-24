@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useChat } from '../hooks/useChat.ts';
 
 // Type definitions
@@ -22,22 +22,22 @@ export const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
   }, [chatMessages]);
 
   // Event handlers
-  const handleSendMessage = async () => {
+  const handleSendMessage = useCallback(async () => {
     if (message.trim()) {
       setMessage('');
       await sendChatMessage(message);
     }
-  };
+  }, [message, sendChatMessage]);
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       handleSendMessage();
     }
-  };
+  }, [handleSendMessage]);
 
-  const handleMessageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMessageChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setMessage(e.target.value);
-  };
+  }, []);
 
   // Main render
   return (

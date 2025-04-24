@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 // Type definitions
 interface FooterProps {
@@ -28,12 +28,12 @@ export const Footer: React.FC<FooterProps> = ({
   useCachedResponses,
 }) => {
   // Event handlers
-  const handleAnnotationSetChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleAnnotationSetChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
     onAnnotationSetChange(e.target.value);
-  };
+  }, [onAnnotationSetChange]);
 
   // Derived values
-  const hasMultipleSets = annotationSetNames.length > 1;
+  const hasMultipleSets = useMemo(() => annotationSetNames.length > 1, [annotationSetNames]);
 
   // Main render
   return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 // Type definitions
 interface HeaderProps {
@@ -20,9 +20,9 @@ export const Header: React.FC<HeaderProps> = ({
   onGenerateAnnotations,
 }) => {
   // Event handlers
-  const handleDatasetChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleDatasetChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
     onDatasetChange(e.target.value);
-  };
+  }, [onDatasetChange]);
 
   // Main render
   return (

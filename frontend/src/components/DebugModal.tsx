@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { useAppContext } from '../context/AppContext.tsx';
 
 // Type definitions
@@ -14,12 +14,12 @@ export const DebugModal: React.FC<DebugModalProps> = ({ isOpen, onClose }) => {
   const [selectedOption, setSelectedOption] = useState<'last' | 'all' | 'annotations'>('last');
 
   // Event handlers
-  const handleOptionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleOptionChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedOption(e.target.value as 'last' | 'all' | 'annotations');
-  };
+  }, []);
 
   // Derived values
-  const getDebugContent = () => {
+  const debugContent = useMemo(() => {
     switch (selectedOption) {
       case 'last':
         return state.lastRawModelOutput;
@@ -32,7 +32,7 @@ export const DebugModal: React.FC<DebugModalProps> = ({ isOpen, onClose }) => {
       default:
         return '';
     }
-  };
+  }, [selectedOption, state.lastRawModelOutput, state.allRawModelOutputs, state.dataset.annotations]);
 
   // Main render
   return (
@@ -53,7 +53,7 @@ export const DebugModal: React.FC<DebugModalProps> = ({ isOpen, onClose }) => {
           </select>
         </div>
         <div id="debug-info-content" className={selectedOption === 'annotations' ? 'json' : ''}>
-          {getDebugContent()}
+          {debugContent}
         </div>
       </div>
     </div>

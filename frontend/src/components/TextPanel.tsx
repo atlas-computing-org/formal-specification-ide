@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { Direction, AnnotationsWithText, TextRangeWithText } from '@common/annotations.ts';
 import { useAppContext } from '../context/AppContext.tsx';
 import { useAnnotationLookup } from '../hooks/useAnnotationLookup.ts';
@@ -136,7 +136,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
   }, [annotationLookup, scrollManager]);
 
   // Render functions
-  const renderContent = () => {
+  const renderContent = useMemo(() => {
     if (isLeftPanel) {
       switch (props.activeTab) {
         case 'pdf':
@@ -197,9 +197,20 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
           return null;
       }
     }
-  };
+  }, [
+    isLeftPanel,
+    props.activeTab,
+    contentRef,
+    state.fullText,
+    textPartitioning,
+    annotationLookup,
+    highlightsLookup,
+    handleMouseEnter,
+    handleMouseLeave,
+    handleClick
+  ]);
 
-  const renderTabButton = (tab: LeftTabMode | RightTabMode) => {
+  const renderTabButton = useCallback((tab: LeftTabMode | RightTabMode) => {
     const handleTabClick = isLeftPanel ?
       () => props.onTabChange(tab as LeftTabMode) :
       () => props.onTabChange(tab as RightTabMode);
@@ -217,7 +228,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
          tab === 'generated' ? 'Generated Spec' : tab}
       </button>
     );
-  };
+  }, [isLeftPanel, props.activeTab, props.onTabChange]);
 
   // Main render
   return (
@@ -228,7 +239,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
           {props.tabs.map(renderTabButton)}
         </div>
       </div>
-      {renderContent()}
+      {renderContent}
     </div>
   );
 }; 

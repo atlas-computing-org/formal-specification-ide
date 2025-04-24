@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback, useMemo } from 'react';
 import { LeftTabMode, RightTabMode } from '../types/state.ts';
 import { TextPanel } from './TextPanel.tsx';
 import { AnnotationsPanel } from './AnnotationsPanel.tsx';
@@ -27,12 +27,17 @@ export const MainContent: React.FC<MainContentProps> = ({
   const rightContentRef = useRef<HTMLDivElement | null>(null);
 
   // Event handlers
-  const handleLeftTabChange = (tab: LeftTabMode) => { setLeftTab(tab); };
-  const handleRightTabChange = (tab: RightTabMode) => { setRightTab(tab); };
+  const handleLeftTabChange = useCallback((tab: LeftTabMode) => {
+    setLeftTab(tab);
+  }, []);
+
+  const handleRightTabChange = useCallback((tab: RightTabMode) => {
+    setRightTab(tab);
+  }, []);
 
   // Derived values
-  const leftTabs: LeftTabMode[] = ['pdf', 'full-text', 'selected-text'];
-  const rightTabs: RightTabMode[] = ['pre-written', 'generated'];
+  const leftTabs = useMemo(() => ['pdf', 'full-text', 'selected-text'] as LeftTabMode[], []);
+  const rightTabs = useMemo(() => ['pre-written', 'generated'] as RightTabMode[], []);
 
   // Main render
   return (
