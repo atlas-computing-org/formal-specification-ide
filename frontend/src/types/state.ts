@@ -6,8 +6,6 @@ export type RightTabMode = 'pre-written' | 'generated';
 export interface AppState {
   dataset: DatasetWithText;
   highlights: AnnotationsWithText;
-
-  // FIXME these are hacks
   pdfSrc: string;
   fullText: string;
 
