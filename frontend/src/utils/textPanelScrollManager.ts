@@ -34,12 +34,15 @@ export function scrollToTextRange(targetRange: TextRangeWithText, scrollWindow: 
     const offset = Math.max(0, targetOffsetTop - SCROLL_PADDING);
     scrollWindow.scrollTo({ top: offset, behavior: "smooth" });
   } else if (targetBottom > containerBottom - SCROLL_PADDING) {
-    // When the target is below the visible area: Scroll to put the target near the bottom,
-    // but keep the target from overflowing the top
+    // When the target is below the visible area: First try to scroll to put the target near the bottom
     let offset = targetOffsetBottom - scrollWindow.clientHeight + SCROLL_PADDING;
-    if (offset < targetOffsetTop - SCROLL_PADDING) {
+
+    // If scrolling to the bottom would make the start of the span go above the viewport,
+    // fall back to scrolling to the top instead
+    if (offset > targetOffsetTop - SCROLL_PADDING) {
       offset = targetOffsetTop - SCROLL_PADDING;
     }
+
     scrollWindow.scrollTo({ top: offset, behavior: "smooth" });
   }
 } 
