@@ -1,6 +1,5 @@
 import React, { useState, useRef, useCallback, useMemo } from 'react';
-import { LeftTabMode, RightTabMode } from '../types/state.ts';
-import { TextPanel } from './TextPanel.tsx';
+import { TextPanel, LeftTabMode, RightTabMode } from './TextPanel.tsx';
 import { AnnotationsPanel } from './AnnotationsPanel.tsx';
 import { scrollToTextRange } from '../utils/textPanelScrollManager.ts';
 import { TextMappingSlice } from '../hooks/useAnnotationsSlice.ts';

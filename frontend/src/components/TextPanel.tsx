@@ -4,7 +4,6 @@ import { useAppContext } from '../context/AppContext.tsx';
 import { useAnnotationLookup } from '../hooks/useAnnotationLookup.ts';
 import { AnnotationsSlice, TextMappingSlice, useAnnotationsSlice } from '../hooks/useAnnotationsSlice.ts';
 import { useTextPartitioning } from '../hooks/useTextPartitioning.ts';
-import { LeftTabMode, RightTabMode } from '../types/state.ts';
 import { TextSegment } from './TextSegment.tsx';
 
 // Helper functions
@@ -63,6 +62,9 @@ function filterAnnotationsForIndex(annotations: AnnotationsWithText, index: numb
 }
 
 // Type definitions
+export type LeftTabMode = 'pdf' | 'full-text' | 'selected-text';
+export type RightTabMode = 'pre-written' | 'generated';
+
 interface TextPanelPropsBase<T extends LeftTabMode | RightTabMode> {
   side: 'left' | 'right';
   title: string;
