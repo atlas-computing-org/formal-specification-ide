@@ -1,8 +1,10 @@
 import winston from 'winston';
-import { promises as fs } from 'fs';
+import Transport from 'winston-transport';
+import { promises as fs } from 'node:fs';
 import { getCurrentTimestampString } from '@common/util/timeUtils.ts';
 
 const LOGS_DIRECTORY = './server/log';
+const LOGS_DIRECTORY_NOTEBOOK= './log';
 const initializationTime = getCurrentTimestampString();
 
 // Customize log levels
@@ -41,33 +43,6 @@ const logFormat = winston.format.combine(
     return `[${timestamp}] ${level}: ${message}`;
   })
 );
-
-// Create raw Winston logger
-function createRawLogger() {
-  return winston.createLogger({
-    levels: logLevels,
-    format: logFormat,
-    transports: [
-      // Console logging
-      new winston.transports.Console({
-        format: winston.format.combine(winston.format.colorize(), logFormat),
-        level: 'info',
-      }),
-
-      // File logging
-      new winston.transports.File({
-        filename: `${LOGS_DIRECTORY}/server_${initializationTime}.log`,
-        level: 'info',
-      }),
-
-      // File logging
-      new winston.transports.File({
-        filename: `${LOGS_DIRECTORY}/serverDebug_${initializationTime}.log`,
-        level: 'debug',
-      }),
-    ],
-  }) as RawLogger;
-}
 
 export interface Logger {
   fatal(message: string): void;
@@ -118,17 +93,113 @@ class LoggerWithPrefix implements Logger {
 }
 
 class DefaultLogger implements Logger {
-  private static readonly instance = new DefaultLogger();
+  private static logger: DefaultLogger | null = null;
   private readonly logger: RawLogger;
 
   private constructor() {
-    this.logger = createRawLogger();
+    this.logger = winston.createLogger({
+      levels: logLevels,
+      format: logFormat,
+      transports: [
+        // Console logging
+        new winston.transports.Console({
+          format: winston.format.combine(winston.format.colorize(), logFormat),
+          level: 'info',
+        }),
+  
+        // File logging
+        new winston.transports.File({
+          filename: `${LOGS_DIRECTORY}/server_${initializationTime}.log`,
+          level: 'info',
+        }),
+  
+        // File logging
+        new winston.transports.File({
+          filename: `${LOGS_DIRECTORY}/serverDebug_${initializationTime}.log`,
+          level: 'debug',
+        }),
+      ],
+    }) as RawLogger;
   }
 
   static getLogger(): Logger {
-    return DefaultLogger.instance;
+    if (DefaultLogger.logger === null) {
+      DefaultLogger.logger = new DefaultLogger();
+    }
+    return DefaultLogger.logger;
+  }
+  
+  fatal(message: string) {
+    this.logger.fatal(message);
   }
 
+  error(message: string) {
+    this.logger.error(message);
+  }
+
+  warn(message: string) {
+    this.logger.warn(message);
+  }
+
+  info(message: string) {
+    this.logger.info(message);
+  }
+
+  debug(message: string) {
+    this.logger.debug(message);
+  }
+
+  trace(message: string) {
+    this.logger.trace(message);
+  }
+
+  withMessagePrefix(prefix: string): Logger {
+    return new LoggerWithPrefix(this, prefix);
+  }
+}
+
+// Custom notebook transport
+class NotebookTransport extends Transport {
+  constructor(opts) {
+    super(opts);
+  }
+  override log(info, callback) {
+    console.log(info.message);
+    callback();
+  }
+};
+
+class NotebookLogger implements Logger {
+  private static logger: NotebookLogger | null = null;
+  private readonly logger: RawLogger;
+
+  private constructor() {
+    this.logger = winston.createLogger({
+      levels: logLevels,
+      format: logFormat,
+      transports: [ 
+        new NotebookTransport({
+          level: 'info'
+        }),
+        new winston.transports.File({
+          filename: `${LOGS_DIRECTORY_NOTEBOOK}/server_${initializationTime}.log`,
+          level: 'info',
+        }),
+        new winston.transports.File({
+          filename: `${LOGS_DIRECTORY_NOTEBOOK}/serverDebug_${initializationTime}.log`,
+          level: 'debug',
+        }),
+      ],
+    }) as RawLogger;
+  }
+
+  static getNotebookLogger(): Logger {
+    if (NotebookLogger.logger === null) {
+      NotebookLogger.logger = new NotebookLogger();
+    }
+    return NotebookLogger.logger;
+  }
+  
   fatal(message: string) {
     this.logger.fatal(message);
   }
@@ -167,3 +238,4 @@ export async function writeCustomLogFile(message: string, filePrefix: string) {
 }
 
 export const {getLogger} = DefaultLogger;
+export const {getNotebookLogger} = NotebookLogger;
