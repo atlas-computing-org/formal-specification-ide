@@ -5,7 +5,8 @@ import { scrollToTextRange } from '../utils/textPanelScrollManager.ts';
 import { TextMappingSlice } from '../utils/AnnotationsSlice.ts';
 import { useAppContext } from '../context/AppContext.tsx';
 import { getMatchingMappingInOppositeText } from '../utils/annotationMatcher.ts';
-import { Direction } from '@common/annotations.ts';
+import { Direction, TextMappingWithText, TextLabelWithText, TextRangeWithText } from '@common/annotations.ts';
+import { MappingClickHandler, LabelClickHandler } from './AnnotationRow.tsx';
 
 // Constants
 const INITIAL_LEFT_TAB_STATE: LeftTabMode = 'selected-text';
@@ -27,6 +28,34 @@ export const MainContent: React.FC<MainContentProps> = (props) => {
   const rightContentRef = useRef<HTMLDivElement | null>(null);
   const [leftTabMode, setLeftTabMode] = useState<LeftTabMode>(INITIAL_LEFT_TAB_STATE);
   const [rightTabMode, setRightTabMode] = useState<RightTabMode>(INITIAL_RIGHT_TAB_STATE);
+
+  const handleMappingClick: MappingClickHandler = useCallback(({ mapping, clickedRange }) => {
+    if (clickedRange) {
+      // If a specific range was clicked, scroll to that range
+      const contentRef = clickedRange.direction === 'lhs' ? leftContentRef : rightContentRef;
+      if (contentRef.current) {
+        scrollToTextRange(clickedRange.range, contentRef.current);
+      }
+    } else {
+      // If the row was clicked, scroll to the first range in each panel
+      if (mapping.lhsRanges.length > 0 && leftContentRef.current) {
+        scrollToTextRange(mapping.lhsRanges[0], leftContentRef.current);
+      }
+      if (mapping.rhsRanges.length > 0 && rightContentRef.current) {
+        scrollToTextRange(mapping.rhsRanges[0], rightContentRef.current);
+      }
+    }
+  }, []);
+
+  const handleLabelClick: LabelClickHandler = useCallback(({ label, clickedRange, direction }) => {
+    const contentRef = direction === 'lhs' ? leftContentRef : rightContentRef;
+    if (contentRef.current) {
+      const rangeToScroll = clickedRange || label.ranges[0];
+      if (rangeToScroll) {
+        scrollToTextRange(rangeToScroll, contentRef.current);
+      }
+    }
+  }, []);
 
   const handleTextMappingClick = useCallback((sourceMapping: TextMappingSlice, sourceDirection: Direction, contentRef: React.RefObject<HTMLDivElement>) => {
     const targetMapping = getMatchingMappingInOppositeText(dataset.annotations, sourceMapping, sourceDirection);
@@ -77,7 +106,12 @@ export const MainContent: React.FC<MainContentProps> = (props) => {
         />
       </div>
 
-      {props.isAnnotationsPanelVisible && <AnnotationsPanel />}
+      {props.isAnnotationsPanelVisible && (
+        <AnnotationsPanel 
+          onMappingClick={handleMappingClick}
+          onLabelClick={handleLabelClick}
+        />
+      )}
     </main>
   );
 };

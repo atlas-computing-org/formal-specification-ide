@@ -1,13 +1,19 @@
 import React, { useCallback, useMemo } from 'react';
-import { AnnotationsWithText, TextMappingWithText, TextLabelWithText } from '@common/annotations.ts';
+import { AnnotationsWithText, TextMappingWithText, TextLabelWithText, TextRangeWithText, Direction } from '@common/annotations.ts';
 import { useAppContext } from '../context/AppContext.tsx';
-import { AnnotationRow } from './AnnotationRow.tsx';
+import { AnnotationRow, MappingClickHandler, LabelClickHandler } from './AnnotationRow.tsx';
 
 interface AnnotationsPanelProps {
   className?: string;
+  onMappingClick: MappingClickHandler;
+  onLabelClick: LabelClickHandler;
 }
 
-export const AnnotationsPanel: React.FC<AnnotationsPanelProps> = ({ className = '' }) => {
+export const AnnotationsPanel: React.FC<AnnotationsPanelProps> = ({ 
+  className = '',
+  onMappingClick,
+  onLabelClick,
+}) => {
   const { state, updateDataset, updateHighlights } = useAppContext();
   const { dataset, highlights } = state;
 
@@ -77,12 +83,13 @@ export const AnnotationsPanel: React.FC<AnnotationsPanelProps> = ({ className = 
           onMouseEnter={() => handleMouseEnter(mapping)}
           onMouseLeave={handleMouseLeave}
           onDescriptionChange={(newDescription) => handleDescriptionChange(mapping, newDescription)}
+          onClick={onMappingClick}
           className="mapping"
           dataIndex={index}
         />
       ))}
     </div>
-  ), [dataset.annotations.mappings, highlights.mappings, handleMouseEnter, handleMouseLeave, handleDescriptionChange]);
+  ), [dataset.annotations.mappings, highlights.mappings, handleMouseEnter, handleMouseLeave, handleDescriptionChange, onMappingClick]);
 
   const lhsLabelsPanel = useMemo(() => (
     <div id="lhs-labels-panel">
@@ -95,12 +102,14 @@ export const AnnotationsPanel: React.FC<AnnotationsPanelProps> = ({ className = 
           onMouseEnter={() => handleMouseEnter(label)}
           onMouseLeave={handleMouseLeave}
           onDescriptionChange={(newDescription) => handleDescriptionChange(label, newDescription)}
+          onClick={onLabelClick}
+          direction="lhs"
           className="lhs-label"
           dataIndex={index}
         />
       ))}
     </div>
-  ), [dataset.annotations.lhsLabels, highlights.lhsLabels, handleMouseEnter, handleMouseLeave, handleDescriptionChange]);
+  ), [dataset.annotations.lhsLabels, highlights.lhsLabels, handleMouseEnter, handleMouseLeave, handleDescriptionChange, onLabelClick]);
 
   const rhsLabelsPanel = useMemo(() => (
     <div id="rhs-labels-panel">
@@ -113,12 +122,14 @@ export const AnnotationsPanel: React.FC<AnnotationsPanelProps> = ({ className = 
           onMouseEnter={() => handleMouseEnter(label)}
           onMouseLeave={handleMouseLeave}
           onDescriptionChange={(newDescription) => handleDescriptionChange(label, newDescription)}
+          onClick={onLabelClick}
+          direction="rhs"
           className="rhs-label"
           dataIndex={index}
         />
       ))}
     </div>
-  ), [dataset.annotations.rhsLabels, highlights.rhsLabels, handleMouseEnter, handleMouseLeave, handleDescriptionChange]);
+  ), [dataset.annotations.rhsLabels, highlights.rhsLabels, handleMouseEnter, handleMouseLeave, handleDescriptionChange, onLabelClick]);
 
   return (
     <div id="annotations" className={className}>
