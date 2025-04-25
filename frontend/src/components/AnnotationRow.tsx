@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TextMappingWithText, TextLabelWithText, TextRangeWithText, Direction } from '@common/annotations.ts';
+import { useDoubleClickDisambiguator } from '../hooks/useDoubleClickDisambiguator.ts';
 
 // Type definitions
 export type MappingClickHandler = (params: {
@@ -54,9 +55,10 @@ export const AnnotationRow: React.FC<AnnotationRowProps> = (props) => {
   // State and hooks
   const [editingCell, setEditingCell] = useState<'first' | 'second' | null>(null);
   const [editValue, setEditValue] = useState(item.description);
+  const { handleClick, handleDoubleClick } = useDoubleClickDisambiguator();
 
   // Event handlers
-  const handleDoubleClick = (cell: 'first' | 'second') => {
+  const handleDoubleClickCell = (cell: 'first' | 'second') => {
     setEditingCell(cell);
   };
 
@@ -114,7 +116,7 @@ export const AnnotationRow: React.FC<AnnotationRowProps> = (props) => {
     return (
       <div
         className="cell description"
-        onDoubleClick={() => handleDoubleClick(cell)}
+        onDoubleClick={() => handleDoubleClick(() => handleDoubleClickCell(cell))}
       >
         {isEditing ? (
           <input
@@ -143,7 +145,7 @@ export const AnnotationRow: React.FC<AnnotationRowProps> = (props) => {
         className={rowClassName}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
-        onClick={() => onClick({ mapping: item })}
+        onClick={() => handleClick(() => onClick({ mapping: item }))}
         data-index={dataIndex}
       >
         {renderDescriptionCell('first')}
@@ -159,7 +161,7 @@ export const AnnotationRow: React.FC<AnnotationRowProps> = (props) => {
         className={rowClassName}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
-        onClick={() => onClick({ label: item, direction })}
+        onClick={() => handleClick(() => onClick({ label: item, direction }))}
         data-index={dataIndex}
       >
         {renderDescriptionCell('first')}
