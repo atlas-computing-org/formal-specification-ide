@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback, useMemo } from 'react';
 import { TextPanel, LeftTabMode, RightTabMode } from './TextPanel.tsx';
 import { AnnotationsPanel } from './AnnotationsPanel.tsx';
 import { scrollToTextRange } from '../utils/textPanelScrollManager.ts';
-import { TextMappingSlice } from '../hooks/useAnnotationsSlice.ts';
+import { TextMappingSlice } from '../utils/AnnotationsSlice.ts';
 import { useAppContext } from '../context/AppContext.tsx';
 import { getMatchingMappingInOppositeText } from '../utils/annotationMatcher.ts';
 import { Direction } from '@common/annotations.ts';

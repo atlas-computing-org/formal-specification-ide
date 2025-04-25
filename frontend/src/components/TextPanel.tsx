@@ -2,9 +2,9 @@ import React, { useCallback, useMemo } from 'react';
 import { Direction, AnnotationsWithText, TextRangeWithText } from '@common/annotations.ts';
 import { useAppContext } from '../context/AppContext.tsx';
 import { useAnnotationLookup } from '../hooks/useAnnotationLookup.ts';
-import { AnnotationsSlice, TextMappingSlice, useAnnotationsSlice } from '../hooks/useAnnotationsSlice.ts';
 import { useTextPartitioning } from '../hooks/useTextPartitioning.ts';
 import { TextSegment } from './TextSegment.tsx';
+import { AnnotationsSlice, TextMappingSlice, AnnotationsSliceWrapped } from '../utils/AnnotationsSlice.ts';
 
 // Helper functions
 function getInnermostMappingAtIndex(annotations: AnnotationsSlice, index: number): TextMappingSlice | undefined {
@@ -97,6 +97,10 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
   const { dataset, highlights } = state;
   const isLeftPanel = isLeftTextPanelProps(props);
   const { contentRef, onClickTextMapping } = props;
+
+  const useAnnotationsSlice = useCallback((annotations: AnnotationsWithText, direction: Direction): AnnotationsSlice => {
+    return new AnnotationsSliceWrapped(annotations, direction);
+  }, []);
 
   const direction: Direction = isLeftPanel ? 'lhs' : 'rhs';
   const text = isLeftPanel ? dataset.lhsText : dataset.rhsText;

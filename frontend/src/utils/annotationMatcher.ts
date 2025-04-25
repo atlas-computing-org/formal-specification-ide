@@ -1,5 +1,5 @@
 import { AnnotationsWithText, Direction, TextMappingWithText, TextRangeWithText } from '@common/annotations.ts';
-import { TextMappingSlice, TextMappingSliceWrapped } from '../hooks/useAnnotationsSlice.ts';
+import { TextMappingSlice, TextMappingSliceWrapped } from '../utils/AnnotationsSlice.ts';
 
 const rangesAreIdentical = (range1: TextRangeWithText[], range2: TextRangeWithText[]): boolean => {
   if (range1.length !== range2.length) return false;

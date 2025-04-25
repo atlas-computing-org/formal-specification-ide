@@ -1,5 +1,4 @@
-import { useMemo } from 'react';
-import { AnnotationsWithText, Direction, TextMappingWithText, TextLabelWithText, TextRangeWithText } from '@common/annotations.ts';
+import { Direction, AnnotationsWithText, TextMappingWithText, TextLabelWithText, TextRangeWithText } from '@common/annotations.ts';
 
 export interface TextMappingSlice {
   description: string;
@@ -27,14 +26,12 @@ export class TextMappingSliceWrapped implements TextMappingSlice {
   }
 }
 
-export function useAnnotationsSlice(
-  annotations: AnnotationsWithText,
-  direction: Direction
-): AnnotationsSlice {
-  return useMemo(() => {
-    return {
-      mappings: annotations.mappings.map(mapping => new TextMappingSliceWrapped(mapping, direction)),
-      labels: direction === "lhs" ? annotations.lhsLabels : annotations.rhsLabels,
-    };
-  }, [annotations, direction]);
-} 
+export class AnnotationsSliceWrapped implements AnnotationsSlice {
+  readonly mappings: TextMappingSlice[];
+  readonly labels: TextLabelWithText[];
+
+  constructor(annotations: AnnotationsWithText, direction: Direction) {
+    this.mappings = annotations.mappings.map(mapping => new TextMappingSliceWrapped(mapping, direction));
+    this.labels = direction === "lhs" ? annotations.lhsLabels : annotations.rhsLabels;
+  }
+}

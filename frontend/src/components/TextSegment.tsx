@@ -1,5 +1,5 @@
 import React from 'react';
-import { AnnotationsSlice } from '../hooks/useAnnotationsSlice.ts';
+import { AnnotationsSlice } from '../utils/AnnotationsSlice.ts';
 import { useAnnotationSeverity } from '../hooks/useAnnotationSeverity.ts';
 
 // Type definitions
