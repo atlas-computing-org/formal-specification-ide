@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { Logger } from '../Logger.ts';
-import { DATA_DIR } from '../util/fileUtils.ts';
+import { SERVER_DATA_DIR } from '../util/fileUtils.ts';
 import { Counter } from '@common/util/Counter.ts';
 import { GetDatasetResponse } from "@common/serverAPI/getDatasetAPI.ts";
 import { Annotations } from '@common/annotations.ts';
@@ -22,7 +22,7 @@ export function getDatasetHandler(requestCounter: Counter, logger: Logger) {
       res.status(400).json({ error });
       return;
     }
-    const datasetPath = path.join(DATA_DIR, datasetName);
+    const datasetPath = path.join(SERVER_DATA_DIR, datasetName);
     try {
       const [fullText, selectedText, preWritten] = await Promise.all([
         fs.readFile(path.join(datasetPath, 'full-text.txt'), 'utf-8'),

@@ -21,8 +21,10 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
     "@langchain/anthropic": "^0.3.11",
-    "@langchain/core": "^0.3.37",
+    "@langchain/core": "^0.3.43",
+    "@langchain/deepseek": "^0.0.1",
     "@langchain/langgraph": "^0.2.44",
+    "@langchain/openai": "^0.5.0",
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "fuse.js": "^7.1.0",

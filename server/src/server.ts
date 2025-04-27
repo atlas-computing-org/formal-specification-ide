@@ -6,7 +6,7 @@ import { generateAnnotationsHandler } from './endpoints/generateAnnotations.ts';
 import { getDatasetNamesHandler } from './endpoints/getDatasetNames.ts';
 import { getDatasetHandler } from './endpoints/getDataset.ts';
 import { getLogger } from './Logger.ts';
-import { DATA_DIR } from './util/fileUtils.ts';
+import { SERVER_DATA_DIR } from './util/fileUtils.ts';
 import { Counter } from '@common/util/Counter.ts';
 
 const PORT = 3001;
@@ -26,7 +26,7 @@ app.use(cors({
 }));
 
 // Serve static files from the data directory
-app.use('/data', express.static(DATA_DIR));
+app.use('/data', express.static(SERVER_DATA_DIR));
 
 // Middleware to parse JSON
 app.use(bodyParser.json({limit: '1mb'}));
