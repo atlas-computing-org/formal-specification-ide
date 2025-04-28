@@ -24,6 +24,14 @@ export function useAnnotationMode(): UseAnnotationModeResult {
         return;
       }
 
+      // Don't handle keyboard shortcuts if user is interacting with a select element
+      //
+      // NOTE: Determining whether a select list is open is not straightforward. Select
+      // list elements should be blurred when they are closed to minimize issues.
+      if (e.target instanceof HTMLSelectElement && e.target === document.activeElement) {
+        return;
+      }
+
       switch (e.key.toLowerCase()) {
         case 'a':
           setIsAnnotationMode(true);

@@ -25,6 +25,9 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   // Event handlers
   const handleDatasetChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    // Blur the select element to prevent it from picking up hotkey keypresses
+    e.target.blur();
+
     onDatasetChange(e.target.value);
   }, [onDatasetChange]);
 
