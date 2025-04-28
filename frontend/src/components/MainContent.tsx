@@ -17,6 +17,7 @@ interface MainContentProps {
   isHighlightsVisible: boolean;
   isAnnotationsPanelVisible: boolean;
   pdfSrc: string;
+  selectedRanges: {lhs: TextRangeWithText[], rhs: TextRangeWithText[]};
   isAnnotationMode: boolean;
   onTextSelection: (direction: Direction, range: TextRange) => void;
 }
@@ -98,6 +99,7 @@ export const MainContent: React.FC<MainContentProps> = (props) => {
           onClickTextMapping={handleLeftTextMappingClick}
           isAnnotationMode={props.isAnnotationMode}
           onTextSelection={props.onTextSelection}
+          selectedRanges={props.selectedRanges.lhs}
         />
         <TextPanel
           side="right"
@@ -109,6 +111,7 @@ export const MainContent: React.FC<MainContentProps> = (props) => {
           onClickTextMapping={handleRightTextMappingClick}
           isAnnotationMode={props.isAnnotationMode}
           onTextSelection={props.onTextSelection}
+          selectedRanges={props.selectedRanges.rhs}
         />
       </div>
 

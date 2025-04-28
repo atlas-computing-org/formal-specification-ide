@@ -19,6 +19,7 @@ function AppContent() {
   const { generateAnnotations, useAnnotationsSet, loadDataset, loading: datasetLoading } = useDataset();
   const {
     isAnnotationMode,
+    selectedRanges,
     handleTextSelection,
     handleSetAnnotationMode,
     handleAddAnnotation,
@@ -117,6 +118,7 @@ function AppContent() {
         isHighlightsVisible={isHighlightsVisible}
         isAnnotationsPanelVisible={isAnnotationsPanelVisible}
         pdfSrc={state.pdfSrc}
+        selectedRanges={selectedRanges}
         isAnnotationMode={isAnnotationMode}
         onTextSelection={handleTextSelection}
       />

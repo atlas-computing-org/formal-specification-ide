@@ -211,6 +211,9 @@ button {
 .text-panel-content > .highlight-error {
   background-color: #ff000026;
 }
+.text-panel-content > .selected-text {
+  background-color: #00bbff55;
+}
 /* Highlight all anotations */
 #text-panels.highlight-all .text-panel-content > .default {
   background-color: #44444426;
@@ -230,6 +233,9 @@ button {
 }
 #text-panels.highlight-all .text-panel-content > .highlight-error {
   background-color: #ff000055;
+}
+#text-panels.highlight-all .text-panel-content > .selected-text {
+  background-color: #00bbff55;
 }
 
 /***************************************************************************

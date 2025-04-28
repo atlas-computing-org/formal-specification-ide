@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
 import { AnnotationsSlice } from '../utils/AnnotationsSlice.ts';
-import { TextRange } from '@common/annotations.ts';
+import { TextRange, TextRangeWithText } from '@common/annotations.ts';
 
-function findUniqueIndices(mappingRanges: TextRange[], labelRanges: TextRange[]): Set<number> {
+function findUniqueIndices(mappingRanges: TextRange[], labelRanges: TextRange[], selectedRanges: TextRangeWithText[]): Set<number> {
   const indices = new Set<number>();
 
   // Add all start and end indices from mappings and labels
-  [...mappingRanges, ...labelRanges].forEach(range => {
+  [...mappingRanges, ...labelRanges, ...selectedRanges].forEach(range => {
     indices.add(range.start);
     indices.add(range.end);
   });
@@ -14,20 +14,20 @@ function findUniqueIndices(mappingRanges: TextRange[], labelRanges: TextRange[])
   return indices;
 }
 
-function getSortedPartitionIndices(text: string, annotations: AnnotationsSlice): number[] {
+function getSortedPartitionIndices(text: string, annotations: AnnotationsSlice, selectedRanges: TextRangeWithText[]): number[] {
   // Get all indices that mark an annotation transition. Include start and end of text.
   const mappingRanges = annotations.mappings.flatMap(mapping => mapping.ranges);
   const labelRanges = annotations.labels.flatMap(label => label.ranges);
-  const indices = findUniqueIndices(mappingRanges, labelRanges)
+  const indices = findUniqueIndices(mappingRanges, labelRanges, selectedRanges)
     .add(0)
     .add(text.length);
   const sortedIndices = Array.from(indices).sort((a, b) => a - b);
   return sortedIndices;
 }
 
-export function useTextPartitioning(text: string, annotations: AnnotationsSlice) {
+export function useTextPartitioning(text: string, annotations: AnnotationsSlice, selectedRanges: TextRangeWithText[]) {
   return useMemo(() => {
-    const sortedIndices = getSortedPartitionIndices(text, annotations);
+    const sortedIndices = getSortedPartitionIndices(text, annotations, selectedRanges);
     
     return {
       getSortedIndices: () => sortedIndices,
@@ -45,5 +45,5 @@ export function useTextPartitioning(text: string, annotations: AnnotationsSlice)
         return partitions;
       }
     };
-  }, [text, annotations]);
+  }, [text, annotations, selectedRanges]);
 } 

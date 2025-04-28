@@ -74,6 +74,7 @@ interface TextPanelPropsBase<T extends LeftTabMode | RightTabMode> {
   onClickTextMapping: (mapping: TextMappingSlice) => void;
   isAnnotationMode: boolean;
   onTextSelection: (direction: Direction, range: TextRange) => void;
+  selectedRanges: TextRangeWithText[];
 }
 
 interface LeftTextPanelProps extends TextPanelPropsBase<LeftTabMode> {
@@ -97,7 +98,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
   const { state, updateHighlights } = useAppContext();
   const { dataset, highlights } = state;
   const isLeftPanel = isLeftTextPanelProps(props);
-  const { contentRef, onClickTextMapping, isAnnotationMode, onTextSelection } = props;
+  const { contentRef, onClickTextMapping, isAnnotationMode, onTextSelection, selectedRanges } = props;
 
   const useAnnotationsSlice = useCallback((annotations: AnnotationsWithText, direction: Direction): AnnotationsSlice => {
     return new AnnotationsSliceWrapped(annotations, direction);
@@ -109,7 +110,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
   const highlightsSlice = useAnnotationsSlice(highlights, direction);
   const annotationLookup = useAnnotationLookup(annotations);
   const highlightsLookup = useAnnotationLookup(highlightsSlice);
-  const textPartitioning = useTextPartitioning(text, annotations);
+  const textPartitioning = useTextPartitioning(text, annotations, selectedRanges);
 
   // Event handlers
   const handleMouseEnter = useCallback((index: number) => {
@@ -143,12 +144,15 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
 
       const newRange: TextRange = {
         start: startIndex,
-        end: endIndex,
+        end: endIndex
       };
 
       onTextSelection(direction, newRange);
+
+      // Clear the browser's text selection
+      selection.removeAllRanges();
     }
-  }, [isAnnotationMode, onTextSelection, direction]);
+  }, [isAnnotationMode, onTextSelection, direction, getFullTextOffset]);
 
   const handleClick = useCallback((index: number) => {
     // Don't treat text selection as a click
@@ -182,8 +186,8 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
           return <div className="text-panel-content" ref={contentRef}>{state.fullText}</div>;
         case 'selected-text':
           return (
-            <div
-              className="text-panel-content"
+            <div 
+              className="text-panel-content" 
               ref={contentRef}
               onMouseUp={handleMouseUp}
             >
@@ -194,6 +198,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
                   text={partition.text}
                   annotations={annotationLookup.getAnnotationsForIndex(partition.start)}
                   highlights={highlightsLookup.getAnnotationsForIndex(partition.start)}
+                  selectedRanges={selectedRanges}
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                   onClick={handleClick}
@@ -208,8 +213,8 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
       switch (props.activeTab) {
         case 'pre-written':
           return (
-            <div
-              className="text-panel-content"
+            <div 
+              className="text-panel-content" 
               ref={contentRef}
               onMouseUp={handleMouseUp}
             >
@@ -220,6 +225,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
                   text={partition.text}
                   annotations={annotationLookup.getAnnotationsForIndex(partition.start)}
                   highlights={highlightsLookup.getAnnotationsForIndex(partition.start)}
+                  selectedRanges={selectedRanges}
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                   onClick={handleClick}
@@ -245,7 +251,8 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
     handleMouseEnter,
     handleMouseLeave,
     handleMouseUp,
-    handleClick
+    handleClick,
+    selectedRanges
   ]);
 
   const renderTabButton = useCallback((tab: LeftTabMode | RightTabMode) => {
