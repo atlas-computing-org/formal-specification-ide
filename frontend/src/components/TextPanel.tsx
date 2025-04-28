@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import { Direction, AnnotationsWithText, TextRangeWithText } from '@common/annotations.ts';
+import { Direction, AnnotationsWithText, TextRangeWithText, TextRange } from '@common/annotations.ts';
 import { useAppContext } from '../context/AppContext.tsx';
 import { useAnnotationLookup } from '../hooks/useAnnotationLookup.ts';
 import { useTextPartitioning } from '../hooks/useTextPartitioning.ts';
@@ -53,7 +53,6 @@ function filterAnnotationsForIndex(annotations: AnnotationsWithText, index: numb
   const innerMatchingLabels = annotations[`${direction}Labels`].filter(
     label => isInnerMostRange(label.ranges, index, matchingLabelRanges));
 
-
   return {
     mappings: innerMatchingMappings,
     lhsLabels: direction === "lhs" ? innerMatchingLabels : [],
@@ -73,6 +72,8 @@ interface TextPanelPropsBase<T extends LeftTabMode | RightTabMode> {
   onTabChange: (tab: T) => void;
   contentRef: React.RefObject<HTMLDivElement>;
   onClickTextMapping: (mapping: TextMappingSlice) => void;
+  isAnnotationMode: boolean;
+  onTextSelection: (direction: Direction, range: TextRange) => void;
 }
 
 interface LeftTextPanelProps extends TextPanelPropsBase<LeftTabMode> {
@@ -96,7 +97,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
   const { state, updateHighlights } = useAppContext();
   const { dataset, highlights } = state;
   const isLeftPanel = isLeftTextPanelProps(props);
-  const { contentRef, onClickTextMapping } = props;
+  const { contentRef, onClickTextMapping, isAnnotationMode, onTextSelection } = props;
 
   const useAnnotationsSlice = useCallback((annotations: AnnotationsWithText, direction: Direction): AnnotationsSlice => {
     return new AnnotationsSliceWrapped(annotations, direction);
@@ -124,7 +125,38 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
     });
   }, [updateHighlights]);
 
+  const getFullTextOffset = useCallback((container: Node, offset: number) => {
+    const containerStartIndex = parseInt(container.parentElement?.getAttribute('data-start-index') || '0');
+    return containerStartIndex + offset;
+  }, []);
+
+  const handleMouseUp = useCallback((e: React.MouseEvent) => {
+    if (isAnnotationMode) {
+      const selection = window.getSelection();
+      if (!selection || selection.isCollapsed) {
+        return;
+      }
+
+      const range = selection.getRangeAt(0);
+      const startIndex = getFullTextOffset(range.startContainer, range.startOffset);
+      const endIndex = getFullTextOffset(range.endContainer, range.endOffset);
+
+      const newRange: TextRange = {
+        start: startIndex,
+        end: endIndex,
+      };
+
+      onTextSelection(direction, newRange);
+    }
+  }, [isAnnotationMode, onTextSelection, direction]);
+
   const handleClick = useCallback((index: number) => {
+    // Don't treat text selection as a click
+    const selection = window.getSelection();
+    if (selection && !selection.isCollapsed) {
+      return;
+    }
+
     const annotationsAtIndex = annotationLookup.getAnnotationsForIndex(index);
     const selectedMapping = getInnermostMappingAtIndex(annotationsAtIndex, index);
     if (selectedMapping) {
@@ -150,7 +182,11 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
           return <div className="text-panel-content" ref={contentRef}>{state.fullText}</div>;
         case 'selected-text':
           return (
-            <div className="text-panel-content" ref={contentRef}>
+            <div
+              className="text-panel-content"
+              ref={contentRef}
+              onMouseUp={handleMouseUp}
+            >
               {textPartitioning.getPartitions().map((partition, index) => (
                 <TextSegment
                   key={index}
@@ -172,7 +208,11 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
       switch (props.activeTab) {
         case 'pre-written':
           return (
-            <div className="text-panel-content" ref={contentRef}>
+            <div
+              className="text-panel-content"
+              ref={contentRef}
+              onMouseUp={handleMouseUp}
+            >
               {textPartitioning.getPartitions().map((partition, index) => (
                 <TextSegment
                   key={index}
@@ -204,6 +244,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
     highlightsLookup,
     handleMouseEnter,
     handleMouseLeave,
+    handleMouseUp,
     handleClick
   ]);
 
@@ -239,4 +280,4 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
       {renderContent}
     </div>
   );
-}; 
+};

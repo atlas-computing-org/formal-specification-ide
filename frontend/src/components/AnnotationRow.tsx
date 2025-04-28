@@ -128,7 +128,7 @@ export const AnnotationRow: React.FC<AnnotationRowProps> = (props) => {
             autoFocus
           />
         ) : (
-          item.description
+          item.description || "[no description]"
         )}
       </div>
     );

@@ -8,6 +8,7 @@ import { DebugModal } from './components/DebugModal.tsx';
 import { useState, useEffect } from 'react';
 import { useDataset } from './hooks/useDataset.ts';
 import { useDatasetNames } from './hooks/useDatasetNames.ts';
+import { useAnnotationMode } from './hooks/useAnnotationMode.ts';
 
 const DEFAULT_ANNOTATIONS_SET_NAME = 'annotations';
 
@@ -15,6 +16,11 @@ function AppContent() {
   const { state } = useAppContext();
   const { datasetNames, loadDatasetNames, loading: datasetNamesLoading } = useDatasetNames();
   const { generateAnnotations, useAnnotationsSet, loadDataset, loading: datasetLoading } = useDataset();
+  const {
+    isAnnotationMode,
+    handleTextSelection,
+    toggleAnnotationMode
+  } = useAnnotationMode();
 
   const [isChatModalOpen, setIsChatModalOpen] = useState(false);
   const [isDebugModalOpen, setIsDebugModalOpen] = useState(false);
@@ -81,11 +87,15 @@ function AppContent() {
         onShowComingSoon={handleOpenComingSoon}
         onGenerateAnnotations={handleGenerateAnnotations}
         onShowChat={handleOpenChat}
+        isAnnotationMode={isAnnotationMode}
+        onToggleAnnotationMode={toggleAnnotationMode}
       />
       <MainContent 
         isHighlightsVisible={isHighlightsVisible}
         isAnnotationsPanelVisible={isAnnotationsPanelVisible}
         pdfSrc={state.pdfSrc}
+        isAnnotationMode={isAnnotationMode}
+        onTextSelection={handleTextSelection}
       />
       <Footer
         onToggleHighlights={handleToggleHighlights}

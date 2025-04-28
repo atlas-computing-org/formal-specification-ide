@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import { AnnotationsWithText, TextMappingWithText, TextLabelWithText, TextRangeWithText, Direction } from '@common/annotations.ts';
+import { AnnotationsWithText, TextMappingWithText, TextLabelWithText } from '@common/annotations.ts';
 import { useAppContext } from '../context/AppContext.tsx';
 import { AnnotationRow, MappingClickHandler, LabelClickHandler } from './AnnotationRow.tsx';
 
