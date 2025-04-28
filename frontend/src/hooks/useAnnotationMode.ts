@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { Direction, TextRangeWithText, TextRange } from '@common/annotations.ts';
 import { useAppContext } from '../context/AppContext.tsx';
 
@@ -8,7 +8,7 @@ interface UseAnnotationModeResult {
   handleTextSelection: (direction: Direction, newRange: TextRange) => void;
   handleAddAnnotation: () => void;
   handleCancelAnnotation: () => void;
-  toggleAnnotationMode: () => void;
+  handleSetAnnotationMode: (isAnnotationMode: boolean) => void;
 }
 
 export function useAnnotationMode(): UseAnnotationModeResult {
@@ -16,42 +16,18 @@ export function useAnnotationMode(): UseAnnotationModeResult {
   const [isAnnotationMode, setIsAnnotationMode] = useState(false);
   const [selectedRanges, setSelectedRanges] = useState<{lhs: TextRangeWithText[], rhs: TextRangeWithText[]}>({lhs: [], rhs: []});
 
-  // Keyboard event handler for annotation mode
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Don't handle keyboard shortcuts if user is typing in an input
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
-        return;
-      }
+  const clearAnnotationMode = useCallback(() => {
+    setSelectedRanges({lhs: [], rhs: []});
+    setIsAnnotationMode(false);
+  }, []);
 
-      // Don't handle keyboard shortcuts if user is interacting with a select element
-      //
-      // NOTE: Determining whether a select list is open is not straightforward. Select
-      // list elements should be blurred when they are closed to minimize issues.
-      if (e.target instanceof HTMLSelectElement && e.target === document.activeElement) {
-        return;
-      }
-
-      switch (e.key.toLowerCase()) {
-        case 'a':
-          setIsAnnotationMode(true);
-          break;
-        case 'enter':
-          if (isAnnotationMode && (selectedRanges.lhs.length > 0 || selectedRanges.rhs.length > 0)) {
-            handleAddAnnotation();
-          }
-          break;
-        case 'escape':
-          if (isAnnotationMode) {
-            handleCancelAnnotation();
-          }
-          break;
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isAnnotationMode, selectedRanges]);
+  const handleSetAnnotationMode = useCallback((isAnnotationMode: boolean) => {
+    if (isAnnotationMode) {
+      setIsAnnotationMode(true);
+    } else {
+      clearAnnotationMode();
+    }
+  }, [clearAnnotationMode, setIsAnnotationMode]);
 
   const handleTextSelection = useCallback((direction: Direction, newRange: TextRange) => {
     if (!isAnnotationMode) return;
@@ -72,7 +48,10 @@ export function useAnnotationMode(): UseAnnotationModeResult {
   }, [isAnnotationMode, state.dataset.lhsText, state.dataset.rhsText]);
 
   const handleAddAnnotation = useCallback(() => {
-    if (selectedRanges.lhs.length === 0 && selectedRanges.rhs.length === 0) return;
+    if (selectedRanges.lhs.length === 0 && selectedRanges.rhs.length === 0) {
+      clearAnnotationMode();
+      return;
+    }
 
     const newAnnotations = { ...state.dataset.annotations };
 
@@ -104,23 +83,12 @@ export function useAnnotationMode(): UseAnnotationModeResult {
       annotations: newAnnotations
     });
 
-    // Reset selection and exit annotation mode
-    setSelectedRanges({lhs: [], rhs: []});
-    setIsAnnotationMode(false);
-  }, [state.dataset, selectedRanges, updateDataset]);
+    clearAnnotationMode();
+  }, [state.dataset, selectedRanges, updateDataset, clearAnnotationMode]);
 
   const handleCancelAnnotation = useCallback(() => {
-    setSelectedRanges({lhs: [], rhs: []});
-    setIsAnnotationMode(false);
-  }, []);
-
-  const toggleAnnotationMode = useCallback(() => {
-    if (isAnnotationMode) {
-      handleCancelAnnotation();
-    } else {
-      setIsAnnotationMode(true);
-    }
-  }, [isAnnotationMode, handleCancelAnnotation]);
+    clearAnnotationMode();
+  }, [clearAnnotationMode]);
 
   return {
     isAnnotationMode,
@@ -128,6 +96,6 @@ export function useAnnotationMode(): UseAnnotationModeResult {
     handleTextSelection,
     handleAddAnnotation,
     handleCancelAnnotation,
-    toggleAnnotationMode
+    handleSetAnnotationMode,
   };
 }
