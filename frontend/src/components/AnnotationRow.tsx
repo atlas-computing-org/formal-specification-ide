@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
-import { TextMappingWithText, TextLabelWithText, TextRangeWithText } from '@common/annotations.ts';
-
-// Helper functions
-function isTextMapping(item: TextMappingWithText | TextLabelWithText): item is TextMappingWithText {
-  return 'lhsRanges' in item;
-}
+import { TextMappingWithText, TextLabelWithText, TextRangeWithText, Direction } from '@common/annotations.ts';
+import { useDoubleClickDisambiguator } from '../hooks/useDoubleClickDisambiguator.ts';
 
 // Type definitions
-interface AnnotationRowProps {
-  item: TextMappingWithText | TextLabelWithText;
+export type MappingClickHandler = (params: {
+  mapping: TextMappingWithText;
+  clickedRange?: {
+    range: TextRangeWithText;
+    direction: Direction;
+  };
+}) => void;
+
+export type LabelClickHandler = (params: {
+  label: TextLabelWithText;
+  clickedRange?: TextRangeWithText;
+  direction: Direction;
+}) => void;
+
+interface AnnotationRowBaseProps {
   isHighlighted: boolean;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
@@ -17,22 +26,39 @@ interface AnnotationRowProps {
   dataIndex?: number;
 }
 
+interface MappingRowProps extends AnnotationRowBaseProps {
+  item: TextMappingWithText;
+  onClick: MappingClickHandler;
+}
+
+interface LabelRowProps extends AnnotationRowBaseProps {
+  item: TextLabelWithText;
+  onClick: LabelClickHandler;
+  direction: Direction;
+}
+
+type AnnotationRowProps = MappingRowProps | LabelRowProps;
+
+function isTextMapping(item: TextMappingWithText | TextLabelWithText): item is TextMappingWithText {
+  return 'lhsRanges' in item;
+}
+
+function isMappingRowProps(props: AnnotationRowProps): props is MappingRowProps {
+  return isTextMapping(props.item);
+}
+
 // Component
-export const AnnotationRow: React.FC<AnnotationRowProps> = ({
-  item,
-  isHighlighted,
-  onMouseEnter,
-  onMouseLeave,
-  onDescriptionChange,
-  className = '',
-  dataIndex,
-}) => {
+export const AnnotationRow: React.FC<AnnotationRowProps> = (props) => {
+  const isMappingRow = isMappingRowProps(props);
+  const { item, onMouseEnter, onMouseLeave, onDescriptionChange, isHighlighted, className, dataIndex } = props;
+
   // State and hooks
   const [editingCell, setEditingCell] = useState<'first' | 'second' | null>(null);
   const [editValue, setEditValue] = useState(item.description);
+  const { handleClick, handleDoubleClick } = useDoubleClickDisambiguator();
 
   // Event handlers
-  const handleDoubleClick = (cell: 'first' | 'second') => {
+  const handleDoubleClickCell = (cell: 'first' | 'second') => {
     setEditingCell(cell);
   };
 
@@ -62,7 +88,21 @@ export const AnnotationRow: React.FC<AnnotationRowProps> = ({
     return (
       <div className="cell content">
         {ranges.map((range, index) => (
-          <div key={index} className="range">
+          <div
+            key={index}
+            className="range"
+            onClick={(e) => {
+              e.stopPropagation();
+              if (isMappingRow) {
+                const { item, onClick } = props;
+                const direction = item.lhsRanges.includes(range) ? 'lhs' : 'rhs';
+                onClick({ mapping: item, clickedRange: { range, direction } });
+              } else {
+                const { item, onClick, direction } = props;
+                onClick({ label: item, clickedRange: range, direction });
+              }
+            }}
+          >
             <span className="index">{range.start}-{range.end}: </span>
             <span className="text">{range.text}</span>
           </div>
@@ -74,9 +114,9 @@ export const AnnotationRow: React.FC<AnnotationRowProps> = ({
   const renderDescriptionCell = (cell: 'first' | 'second') => {
     const isEditing = editingCell === cell;
     return (
-      <div 
-        className="cell description" 
-        onDoubleClick={() => handleDoubleClick(cell)}
+      <div
+        className="cell description"
+        onDoubleClick={() => handleDoubleClick(() => handleDoubleClickCell(cell))}
       >
         {isEditing ? (
           <input
@@ -98,27 +138,35 @@ export const AnnotationRow: React.FC<AnnotationRowProps> = ({
   const rowClassName = `row ${className} ${labelType} ${isHighlighted ? 'highlight' : ''}`;
 
   // Main render
-  return isTextMapping(item) ? (
-    <div
-      className={rowClassName}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      data-index={dataIndex}
-    >
-      {renderDescriptionCell('first')}
-      {renderContent(item.lhsRanges)}
-      {renderDescriptionCell('second')}
-      {renderContent(item.rhsRanges)}
-    </div>
-  ) : (
-    <div
-      className={rowClassName}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      data-index={dataIndex}
-    >
-      {renderDescriptionCell('first')}
-      {renderContent(item.ranges)}
-    </div>
-  );
-}; 
+  if (isMappingRow) {
+    const { item, onClick } = props;
+    return (
+      <div
+        className={rowClassName}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        onClick={() => handleClick(() => onClick({ mapping: item }))}
+        data-index={dataIndex}
+      >
+        {renderDescriptionCell('first')}
+        {renderContent(item.lhsRanges)}
+        {renderDescriptionCell('second')}
+        {renderContent(item.rhsRanges)}
+      </div>
+    );
+  } else {
+    const { item, onClick, direction } = props;
+    return (
+      <div
+        className={rowClassName}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        onClick={() => handleClick(() => onClick({ label: item, direction }))}
+        data-index={dataIndex}
+      >
+        {renderDescriptionCell('first')}
+        {renderContent(item.ranges)}
+      </div>
+    );
+  }
+};

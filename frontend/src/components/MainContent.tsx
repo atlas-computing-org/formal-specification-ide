@@ -1,7 +1,12 @@
 import React, { useState, useRef, useCallback, useMemo } from 'react';
-import { LeftTabMode, RightTabMode } from '../types/state.ts';
-import { TextPanel } from './TextPanel.tsx';
+import { TextPanel, LeftTabMode, RightTabMode } from './TextPanel.tsx';
 import { AnnotationsPanel } from './AnnotationsPanel.tsx';
+import { scrollToTextRange } from '../utils/textPanelScrollManager.ts';
+import { TextMappingSlice } from '../utils/AnnotationsSlice.ts';
+import { useAppContext } from '../context/AppContext.tsx';
+import { getMatchingMappingInOppositeText } from '../utils/annotationMatcher.ts';
+import { Direction, TextMappingWithText, TextLabelWithText, TextRangeWithText } from '@common/annotations.ts';
+import { MappingClickHandler, LabelClickHandler } from './AnnotationRow.tsx';
 
 // Constants
 const INITIAL_LEFT_TAB_STATE: LeftTabMode = 'selected-text';
@@ -15,25 +20,62 @@ interface MainContentProps {
 }
 
 // Component
-export const MainContent: React.FC<MainContentProps> = ({
-  isHighlightsVisible,
-  isAnnotationsPanelVisible,
-  pdfSrc
-}) => {
-  // State and hooks
-  const [leftTab, setLeftTab] = useState<LeftTabMode>(INITIAL_LEFT_TAB_STATE);
-  const [rightTab, setRightTab] = useState<RightTabMode>(INITIAL_RIGHT_TAB_STATE);
+export const MainContent: React.FC<MainContentProps> = (props) => {
+  const { state } = useAppContext();
+  const { dataset } = state;
+
   const leftContentRef = useRef<HTMLDivElement | null>(null);
   const rightContentRef = useRef<HTMLDivElement | null>(null);
+  const [leftTabMode, setLeftTabMode] = useState<LeftTabMode>(INITIAL_LEFT_TAB_STATE);
+  const [rightTabMode, setRightTabMode] = useState<RightTabMode>(INITIAL_RIGHT_TAB_STATE);
 
-  // Event handlers
-  const handleLeftTabChange = useCallback((tab: LeftTabMode) => {
-    setLeftTab(tab);
+  const handleMappingClick: MappingClickHandler = useCallback(({ mapping, clickedRange }) => {
+    if (clickedRange) {
+      // If a specific range was clicked, scroll to that range
+      const contentRef = clickedRange.direction === 'lhs' ? leftContentRef : rightContentRef;
+      if (contentRef.current) {
+        scrollToTextRange(clickedRange.range, contentRef.current);
+      }
+    } else {
+      // If the row was clicked, scroll to the first range in each panel
+      if (mapping.lhsRanges.length > 0 && leftContentRef.current) {
+        scrollToTextRange(mapping.lhsRanges[0], leftContentRef.current);
+      }
+      if (mapping.rhsRanges.length > 0 && rightContentRef.current) {
+        scrollToTextRange(mapping.rhsRanges[0], rightContentRef.current);
+      }
+    }
   }, []);
 
-  const handleRightTabChange = useCallback((tab: RightTabMode) => {
-    setRightTab(tab);
+  const handleLabelClick: LabelClickHandler = useCallback(({ label, clickedRange, direction }) => {
+    const contentRef = direction === 'lhs' ? leftContentRef : rightContentRef;
+    if (contentRef.current) {
+      const rangeToScroll = clickedRange || label.ranges[0];
+      if (rangeToScroll) {
+        scrollToTextRange(rangeToScroll, contentRef.current);
+      }
+    }
   }, []);
+
+  const handleTextMappingClick = useCallback((sourceMapping: TextMappingSlice, sourceDirection: Direction, contentRef: React.RefObject<HTMLDivElement>) => {
+    const targetMapping = getMatchingMappingInOppositeText(dataset.annotations, sourceMapping, sourceDirection);
+    if (targetMapping?.ranges.length) {
+      const targetRange = targetMapping.ranges.reduce((prev, curr) => 
+        curr.start < prev.start ? curr : prev
+      );
+      if (contentRef.current) {
+        scrollToTextRange(targetRange, contentRef.current);
+      }
+    }
+  }, [dataset.annotations]);
+
+  const handleLeftTextMappingClick = useCallback((mapping: TextMappingSlice) => {
+    handleTextMappingClick(mapping, "lhs", rightContentRef);
+  }, [handleTextMappingClick]);
+
+  const handleRightTextMappingClick = useCallback((mapping: TextMappingSlice) => {
+    handleTextMappingClick(mapping, "rhs", leftContentRef);
+  }, [handleTextMappingClick]);
 
   // Derived values
   const leftTabs = useMemo(() => ['pdf', 'full-text', 'selected-text'] as LeftTabMode[], []);
@@ -42,29 +84,34 @@ export const MainContent: React.FC<MainContentProps> = ({
   // Main render
   return (
     <main>
-      <div id="text-panels" className={isHighlightsVisible ? 'highlight-all' : ''}>
+      <div id="text-panels" className={props.isHighlightsVisible ? 'highlight-all' : ''}>
         <TextPanel
           side="left"
           title="Natural Language Documentation"
           tabs={leftTabs}
-          activeTab={leftTab}
-          onTabChange={handleLeftTabChange}
-          pdfSrc={pdfSrc}
+          activeTab={leftTabMode}
+          onTabChange={setLeftTabMode}
+          pdfSrc={props.pdfSrc}
           contentRef={leftContentRef}
-          oppositeContentRef={rightContentRef}
+          onClickTextMapping={handleLeftTextMappingClick}
         />
         <TextPanel
           side="right"
           title="Mechanized Spec"
           tabs={rightTabs}
-          activeTab={rightTab}
-          onTabChange={handleRightTabChange}
+          activeTab={rightTabMode}
+          onTabChange={setRightTabMode}
           contentRef={rightContentRef}
-          oppositeContentRef={leftContentRef}
+          onClickTextMapping={handleRightTextMappingClick}
         />
       </div>
 
-      <AnnotationsPanel className={isAnnotationsPanelVisible ? '' : 'hide'} />
+      {props.isAnnotationsPanelVisible && (
+        <AnnotationsPanel 
+          onMappingClick={handleMappingClick}
+          onLabelClick={handleLabelClick}
+        />
+      )}
     </main>
   );
 };

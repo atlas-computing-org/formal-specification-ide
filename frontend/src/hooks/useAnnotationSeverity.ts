@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { AnnotationsSlice } from '../hooks/useAnnotationsSlice.ts';
+import { AnnotationsSlice } from '../utils/AnnotationsSlice.ts';
 import { LabelType } from '@common/annotations.ts';
 
 export function useAnnotationSeverity(annotations: AnnotationsSlice): LabelType {

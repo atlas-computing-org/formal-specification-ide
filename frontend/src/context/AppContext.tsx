@@ -1,6 +1,19 @@
 import React, { createContext, useContext, useState } from 'react';
-import { AppState } from '../types/state.ts';
 import { AnnotationSets, AnnotationsWithText, DatasetWithText } from '@common/annotations.ts';
+
+interface AppState {
+  dataset: DatasetWithText;
+  highlights: AnnotationsWithText;
+  pdfSrc: string;
+  fullText: string;
+
+  // Developer-only features
+  currentAnnotationSets: AnnotationSets;
+
+  // Debug info
+  lastRawModelOutput: string;
+  allRawModelOutputs: string[];
+}
 
 const EMPTY_ANNOTATIONS: AnnotationsWithText = {
   mappings: [],
@@ -72,4 +85,4 @@ export const useAppContext = () => {
     throw new Error('useAppContext must be used within an AppProvider');
   }
   return context;
-}; 
+};

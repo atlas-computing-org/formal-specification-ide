@@ -2,11 +2,9 @@ import React, { useCallback, useMemo } from 'react';
 import { Direction, AnnotationsWithText, TextRangeWithText } from '@common/annotations.ts';
 import { useAppContext } from '../context/AppContext.tsx';
 import { useAnnotationLookup } from '../hooks/useAnnotationLookup.ts';
-import { useAnnotationsScrollManager } from '../hooks/useAnnotationsScrollManager.ts';
-import { AnnotationsSlice, TextMappingSlice, useAnnotationsSlice } from '../hooks/useAnnotationsSlice.ts';
 import { useTextPartitioning } from '../hooks/useTextPartitioning.ts';
-import { LeftTabMode, RightTabMode } from '../types/state.ts';
 import { TextSegment } from './TextSegment.tsx';
+import { AnnotationsSlice, TextMappingSlice, AnnotationsSliceWrapped } from '../utils/AnnotationsSlice.ts';
 
 // Helper functions
 function getInnermostMappingAtIndex(annotations: AnnotationsSlice, index: number): TextMappingSlice | undefined {
@@ -64,14 +62,17 @@ function filterAnnotationsForIndex(annotations: AnnotationsWithText, index: numb
 }
 
 // Type definitions
+export type LeftTabMode = 'pdf' | 'full-text' | 'selected-text';
+export type RightTabMode = 'pre-written' | 'generated';
+
 interface TextPanelPropsBase<T extends LeftTabMode | RightTabMode> {
   side: 'left' | 'right';
   title: string;
   tabs: T[];
   activeTab: T;
   onTabChange: (tab: T) => void;
-  contentRef: React.RefObject<HTMLDivElement | null>;
-  oppositeContentRef: React.RefObject<HTMLDivElement | null>;
+  contentRef: React.RefObject<HTMLDivElement>;
+  onClickTextMapping: (mapping: TextMappingSlice) => void;
 }
 
 interface LeftTextPanelProps extends TextPanelPropsBase<LeftTabMode> {
@@ -95,7 +96,11 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
   const { state, updateHighlights } = useAppContext();
   const { dataset, highlights } = state;
   const isLeftPanel = isLeftTextPanelProps(props);
-  const { contentRef, oppositeContentRef } = props;
+  const { contentRef, onClickTextMapping } = props;
+
+  const useAnnotationsSlice = useCallback((annotations: AnnotationsWithText, direction: Direction): AnnotationsSlice => {
+    return new AnnotationsSliceWrapped(annotations, direction);
+  }, []);
 
   const direction: Direction = isLeftPanel ? 'lhs' : 'rhs';
   const text = isLeftPanel ? dataset.lhsText : dataset.rhsText;
@@ -104,7 +109,6 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
   const annotationLookup = useAnnotationLookup(annotations);
   const highlightsLookup = useAnnotationLookup(highlightsSlice);
   const textPartitioning = useTextPartitioning(text, annotations);
-  const scrollManager = useAnnotationsScrollManager(annotations, oppositeContentRef);
 
   // Event handlers
   const handleMouseEnter = useCallback((index: number) => {
@@ -124,15 +128,9 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
     const annotationsAtIndex = annotationLookup.getAnnotationsForIndex(index);
     const selectedMapping = getInnermostMappingAtIndex(annotationsAtIndex, index);
     if (selectedMapping) {
-      const targetMapping = scrollManager.getMatchingMappingInTarget(selectedMapping);
-      if (targetMapping?.ranges.length) {
-        const targetRange = targetMapping.ranges.reduce((prev, curr) => 
-          curr.start < prev.start ? curr : prev
-        );
-        scrollManager.scrollTargetTextToRange(targetRange);
-      }
+      onClickTextMapping(selectedMapping);
     }
-  }, [annotationLookup, scrollManager]);
+  }, [annotationLookup, onClickTextMapping]);
 
   // Render functions
   const renderContent = useMemo(() => {
