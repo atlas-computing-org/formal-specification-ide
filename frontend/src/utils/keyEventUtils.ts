@@ -1,5 +1,11 @@
 type KeyHandler = (e: KeyboardEvent) => void;
 
+export const keyCodes = Object.freeze({
+  A: 'a',
+  ENTER: 'Enter',
+  ESCAPE: 'Escape',
+});
+
 interface ApplicationLevelHotkeysOptions {
   onEnterAnnotationMode: () => void;
   onAddAnnotation: () => void;
@@ -29,16 +35,16 @@ export function handleApplicationLevelHotkeys(options: ApplicationLevelHotkeysOp
 
     } else {
       // Application hotkey handlers
-      switch (e.key.toUpperCase()) {
-        case 'A':
+      switch (e.key) {
+        case keyCodes.A:
           options.onEnterAnnotationMode();
           break;
-        case 'ENTER':
+        case keyCodes.ENTER:
           if (options.isAnnotationMode) {
             options.onAddAnnotation();
           }
           break;
-        case 'ESCAPE':
+        case keyCodes.ESCAPE:
           if (options.isAnnotationMode) {
             options.onCancelAnnotation();
           }
