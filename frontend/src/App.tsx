@@ -9,7 +9,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useDataset } from './hooks/useDataset.ts';
 import { useDatasetNames } from './hooks/useDatasetNames.ts';
 import { useAnnotationMode } from './hooks/useAnnotationMode.ts';
-import { handleApplicationLevelHotkeys } from './utils/keyboardShortcuts.ts';
+import { handleApplicationLevelHotkeys } from './utils/keyEventUtils.ts';
 
 const DEFAULT_ANNOTATIONS_SET_NAME = 'annotations';
 
