@@ -211,6 +211,9 @@ button {
 .text-panel-content > .highlight-error {
   background-color: #ff000026;
 }
+.text-panel-content > .selected-text {
+  background-color: #00bbff55;
+}
 /* Highlight all anotations */
 #text-panels.highlight-all .text-panel-content > .default {
   background-color: #44444426;
@@ -230,6 +233,9 @@ button {
 }
 #text-panels.highlight-all .text-panel-content > .highlight-error {
   background-color: #ff000055;
+}
+#text-panels.highlight-all .text-panel-content > .selected-text {
+  background-color: #00bbff55;
 }
 
 /***************************************************************************
@@ -517,4 +523,35 @@ button {
   50% {
     transform: translateY(-4px);
   }
+}
+
+.annotation-controls {
+  position: fixed;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.annotation-controls button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.annotation-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.annotation-controls button:hover:not(:disabled) {
+  background-color: #f0f0f0;
 } 

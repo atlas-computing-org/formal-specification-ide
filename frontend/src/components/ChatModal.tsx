@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useChat } from '../hooks/useChat.ts';
+import { keyCodes } from '../utils/keyEventUtils.ts';
 
 // Type definitions
 interface ChatModalProps {
@@ -30,7 +31,7 @@ export const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
   }, [message, sendChatMessage]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === keyCodes.ENTER) {
       handleSendMessage();
     }
   }, [handleSendMessage]);

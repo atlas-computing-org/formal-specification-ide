@@ -5,9 +5,11 @@ import { MainContent } from './components/MainContent.tsx';
 import { ChatModal } from './components/ChatModal.tsx';
 import { ComingSoonModal } from './components/ComingSoonModal.tsx';
 import { DebugModal } from './components/DebugModal.tsx';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useDataset } from './hooks/useDataset.ts';
 import { useDatasetNames } from './hooks/useDatasetNames.ts';
+import { useAnnotationMode } from './hooks/useAnnotationMode.ts';
+import { handleApplicationLevelHotkeys } from './utils/keyEventUtils.ts';
 
 const DEFAULT_ANNOTATIONS_SET_NAME = 'annotations';
 
@@ -15,6 +17,14 @@ function AppContent() {
   const { state } = useAppContext();
   const { datasetNames, loadDatasetNames, loading: datasetNamesLoading } = useDatasetNames();
   const { generateAnnotations, useAnnotationsSet, loadDataset, loading: datasetLoading } = useDataset();
+  const {
+    isAnnotationMode,
+    selectedRanges,
+    handleTextSelection,
+    handleSetAnnotationMode,
+    handleAddAnnotation,
+    handleCancelAnnotation,
+  } = useAnnotationMode();
 
   const [isChatModalOpen, setIsChatModalOpen] = useState(false);
   const [isDebugModalOpen, setIsDebugModalOpen] = useState(false);
@@ -24,18 +34,6 @@ function AppContent() {
   const [useCachedResponses, setUseCachedResponses] = useState(false);
   const [currentAnnotationSetName, setCurrentAnnotationSetName] = useState(DEFAULT_ANNOTATIONS_SET_NAME);
   const [currentDatasetName, setCurrentDatasetName] = useState('');
-
-  useEffect(() => {
-    const loadDatasetNamesAndDataset = async () => {
-      if (datasetNames.length === 0) {
-        await loadDatasetNames();
-      } else if (!currentDatasetName) {
-        setCurrentDatasetName(datasetNames[0]);
-        await loadDataset(datasetNames[0]);
-      }
-    };
-    loadDatasetNamesAndDataset();
-  }, [datasetNames, currentDatasetName]);
 
   const handleDatasetChange = async (name: string) => {
     setCurrentDatasetName(name);
@@ -72,6 +70,38 @@ function AppContent() {
     setUseCachedResponses(!useCachedResponses);
   };
 
+  const isModalOpen = useMemo(() => {
+    return isChatModalOpen || isDebugModalOpen || isComingSoonModalOpen;
+  }, [isChatModalOpen, isDebugModalOpen, isComingSoonModalOpen]);
+
+  // Load dataset names and dataset on mount
+  useEffect(() => {
+    const loadDatasetNamesAndDataset = async () => {
+      if (datasetNames.length === 0) {
+        // Load dataset names on mount
+        await loadDatasetNames();
+      } else if (!currentDatasetName) {
+        setCurrentDatasetName(datasetNames[0]);
+        await loadDataset(datasetNames[0]);
+      }
+    };
+    loadDatasetNamesAndDataset();
+  }, [datasetNames, currentDatasetName]);
+
+  // Handle application-level hotkeys
+  useEffect(() => {
+    const handleKeyDown = handleApplicationLevelHotkeys({
+      onEnterAnnotationMode: () => handleSetAnnotationMode(true),
+      onAddAnnotation: handleAddAnnotation,
+      onCancelAnnotation: handleCancelAnnotation,
+      isAnnotationMode,
+      isModalOpen,
+    });
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isAnnotationMode, isModalOpen, handleAddAnnotation, handleCancelAnnotation, handleSetAnnotationMode]);
+
   return (
     <>
       <Header
@@ -80,12 +110,17 @@ function AppContent() {
         onDatasetChange={handleDatasetChange}
         onShowComingSoon={handleOpenComingSoon}
         onGenerateAnnotations={handleGenerateAnnotations}
+        onSetAnnotationMode={handleSetAnnotationMode}
         onShowChat={handleOpenChat}
+        isAnnotationMode={isAnnotationMode}
       />
       <MainContent 
         isHighlightsVisible={isHighlightsVisible}
         isAnnotationsPanelVisible={isAnnotationsPanelVisible}
         pdfSrc={state.pdfSrc}
+        selectedRanges={selectedRanges}
+        isAnnotationMode={isAnnotationMode}
+        onTextSelection={handleTextSelection}
       />
       <Footer
         onToggleHighlights={handleToggleHighlights}

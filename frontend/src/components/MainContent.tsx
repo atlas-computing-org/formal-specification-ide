@@ -1,11 +1,11 @@
-import React, { useState, useRef, useCallback, useMemo } from 'react';
+import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react';
 import { TextPanel, LeftTabMode, RightTabMode } from './TextPanel.tsx';
 import { AnnotationsPanel } from './AnnotationsPanel.tsx';
 import { scrollToTextRange } from '../utils/textPanelScrollManager.ts';
 import { TextMappingSlice } from '../utils/AnnotationsSlice.ts';
 import { useAppContext } from '../context/AppContext.tsx';
 import { getMatchingMappingInOppositeText } from '../utils/annotationMatcher.ts';
-import { Direction, TextMappingWithText, TextLabelWithText, TextRangeWithText } from '@common/annotations.ts';
+import { Direction, TextMappingWithText, TextLabelWithText, TextRangeWithText, TextRange } from '@common/annotations.ts';
 import { MappingClickHandler, LabelClickHandler } from './AnnotationRow.tsx';
 
 // Constants
@@ -17,6 +17,9 @@ interface MainContentProps {
   isHighlightsVisible: boolean;
   isAnnotationsPanelVisible: boolean;
   pdfSrc: string;
+  selectedRanges: {lhs: TextRangeWithText[], rhs: TextRangeWithText[]};
+  isAnnotationMode: boolean;
+  onTextSelection: (direction: Direction, range: TextRange) => void;
 }
 
 // Component
@@ -94,6 +97,9 @@ export const MainContent: React.FC<MainContentProps> = (props) => {
           pdfSrc={props.pdfSrc}
           contentRef={leftContentRef}
           onClickTextMapping={handleLeftTextMappingClick}
+          isAnnotationMode={props.isAnnotationMode}
+          onTextSelection={props.onTextSelection}
+          selectedRanges={props.selectedRanges.lhs}
         />
         <TextPanel
           side="right"
@@ -103,6 +109,9 @@ export const MainContent: React.FC<MainContentProps> = (props) => {
           onTabChange={setRightTabMode}
           contentRef={rightContentRef}
           onClickTextMapping={handleRightTextMappingClick}
+          isAnnotationMode={props.isAnnotationMode}
+          onTextSelection={props.onTextSelection}
+          selectedRanges={props.selectedRanges.rhs}
         />
       </div>
 

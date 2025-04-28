@@ -8,6 +8,8 @@ interface HeaderProps {
   onShowComingSoon: () => void;
   onGenerateAnnotations: () => void;
   onShowChat: () => void;
+  isAnnotationMode: boolean;
+  onSetAnnotationMode: (isAnnotationMode: boolean) => void;
 }
 
 // Component
@@ -15,14 +17,23 @@ export const Header: React.FC<HeaderProps> = ({
   datasetNames,
   currentDatasetName,
   onDatasetChange,
-  onShowChat,
   onShowComingSoon,
   onGenerateAnnotations,
+  onSetAnnotationMode,
+  onShowChat,
+  isAnnotationMode,
 }) => {
   // Event handlers
   const handleDatasetChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    // Blur the select element to prevent it from picking up hotkey keypresses
+    e.target.blur();
+
     onDatasetChange(e.target.value);
   }, [onDatasetChange]);
+
+  const handleToggleAnnotationMode = useCallback(() => {
+    onSetAnnotationMode(!isAnnotationMode);
+  }, [isAnnotationMode, onSetAnnotationMode]);
 
   // Main render
   return (
@@ -43,6 +54,9 @@ export const Header: React.FC<HeaderProps> = ({
       <button id="slice-text" onClick={onShowComingSoon}><i className="fas fa-scissors"></i>Slice Documentation</button>
       <button id="autoformalize" onClick={onShowComingSoon}><i className="fas fa-atom"></i>Autoformalize</button>
       <button id="generate-annotations" onClick={onGenerateAnnotations}><i className="fas fa-file-pen"></i>Generate Annotations</button>
+      <button id="manually-annotate" onClick={handleToggleAnnotationMode}>
+        <i className="fas fa-pencil"></i>{isAnnotationMode ? 'Cancel Annotation' : 'Annotate'}
+      </button>
       <button id="ai-assistant" onClick={onShowChat}><i className="far fa-comments"></i>Chat with AI Assistant</button>
     </header>
   );

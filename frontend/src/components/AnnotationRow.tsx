@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TextMappingWithText, TextLabelWithText, TextRangeWithText, Direction } from '@common/annotations.ts';
 import { useDoubleClickDisambiguator } from '../hooks/useDoubleClickDisambiguator.ts';
+import { keyCodes } from '../utils/keyEventUtils.ts';
 
 // Type definitions
 export type MappingClickHandler = (params: {
@@ -68,9 +69,9 @@ export const AnnotationRow: React.FC<AnnotationRowProps> = (props) => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === keyCodes.ENTER) {
       handleBlur();
-    } else if (e.key === 'Escape') {
+    } else if (e.key === keyCodes.ESCAPE) {
       setEditingCell(null);
       setEditValue(item.description);
     }
@@ -128,7 +129,7 @@ export const AnnotationRow: React.FC<AnnotationRowProps> = (props) => {
             autoFocus
           />
         ) : (
-          item.description
+          item.description || "[no description]"
         )}
       </div>
     );
