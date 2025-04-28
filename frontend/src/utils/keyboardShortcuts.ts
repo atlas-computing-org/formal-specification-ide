@@ -23,21 +23,27 @@ export function handleApplicationLevelHotkeys(options: ApplicationLevelHotkeysOp
       return;
     }
 
-    // Application hotkey handlers
-    switch (e.key.toUpperCase()) {
-      case 'A':
-        options.onEnterAnnotationMode();
-        break;
-      case 'ENTER':
-        if (options.isAnnotationMode) {
-          options.onAddAnnotation();
-        }
-        break;
-      case 'ESCAPE':
-        if (options.isAnnotationMode) {
-          options.onCancelAnnotation();
-        }
-        break;
+    if (options.isModalOpen) {
+      // For now, there are no hotkeys for modal windows
+      return;
+
+    } else {
+      // Application hotkey handlers
+      switch (e.key.toUpperCase()) {
+        case 'A':
+          options.onEnterAnnotationMode();
+          break;
+        case 'ENTER':
+          if (options.isAnnotationMode) {
+            options.onAddAnnotation();
+          }
+          break;
+        case 'ESCAPE':
+          if (options.isAnnotationMode) {
+            options.onCancelAnnotation();
+          }
+          break;
+      }
     }
   };
 } 
