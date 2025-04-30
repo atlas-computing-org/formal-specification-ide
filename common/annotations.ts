@@ -3,9 +3,12 @@ export type TextRange = {
   end: number;
 };
 
+export type CategoryType = "Preamble" | "Navigation" | "Algorithm" | "Parameter" | "Definition" | "Elaboration" | "Diagram" | "Intent" | "Pre-condition" | "Post-condition" | "Preference" | "Example";
+
 export type TextLabel<T extends TextRange = TextRange> = {
   description: string;
   ranges: T[];
+  category?: CategoryType;
   isWarning?: boolean;
   isError?: boolean;
 };
