@@ -1,5 +1,7 @@
 import { START, END, StateGraph, MemorySaver } from "@langchain/langgraph";
-import { StateInfo } from '../agent.ts';
+import { Annotations } from "@common/annotations.ts";
+import { Logger } from "../../Logger.ts";
+import { StateInfo, responseContent } from '../agent.ts';
 import { chatNode } from "../nodes/chatNode.ts";
 import { encodeAnnotationsNode } from "../nodes/encodeAnnotationsNode.ts";
 import { modelNode } from "../nodes/modelNode.ts";
@@ -27,3 +29,9 @@ const memory = new MemorySaver();
 
 // Compile graph
 export const chatGraph = workflow.compile({ checkpointer: memory });
+
+export async function chatGraphInvoke(userInput: string, lhsText: string, rhsText: string, annotations: Annotations, reset: boolean, logger: Logger, userUUID: string): Promise<string> {
+  const config = { configurable: { thread_id: userUUID } };
+  const output = await chatGraph.invoke({ userInput, lhsText, rhsText, currentAnnotations: annotations, resetChat: reset, logger }, config);
+  return responseContent(output);
+}
