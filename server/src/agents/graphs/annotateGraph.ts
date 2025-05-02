@@ -1,5 +1,7 @@
 import { START, END, StateGraph } from "@langchain/langgraph";
-import { StateInfo } from '../agent.ts';
+import { Annotations } from "@common/annotations.ts";
+import { Logger } from "../../Logger.ts";
+import { StateInfo, responseContent } from '../agent.ts';
 import { annotateNode } from "../nodes/annotateNode.ts";
 import { encodeAnnotationsNode } from "../nodes/encodeAnnotationsNode.ts";
 import { decodeAnnotationsNode } from "../nodes/decodeAnnotationsNode.ts";
@@ -30,3 +32,9 @@ const workflow = new StateGraph(StateInfo)
 
 // Compile graph
 export const annotateGraph = workflow.compile();
+
+export async function annotateGraphInvoke(lhsText: string, rhsText: string, annotations: Annotations, useDemoCache: boolean, logger: Logger, userUUID: string) {
+  const config = { configurable: { thread_id: userUUID } };
+  const output = await annotateGraph.invoke({ lhsText, rhsText, currentAnnotations: annotations, useDemoCache, logger }, config);
+  return { decodedAnnotations: output.decodedAnnotations, rawModelOutput: responseContent(output) };
+}

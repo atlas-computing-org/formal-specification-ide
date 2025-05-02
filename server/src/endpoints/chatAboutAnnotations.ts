@@ -1,12 +1,11 @@
 import { Request, Response } from 'express';
-import { chatGraph } from "../agents/graphs/chatGraph.ts";
-import { responseContent } from "../agents/agent.ts";
+import { chatGraphInvoke } from "../agents/graphs/chatGraph.ts";
 import { Logger } from '../Logger.ts';
 import { Counter } from '@common/util/Counter.ts';
 import { ChatAboutAnnotationsRequest, ChatAboutAnnotationsResponse, ChatAboutAnnotationsSuccessResponse } from "@common/serverAPI/chatAboutAnnotationsAPI.ts";
 import { v4 as uuidv4 } from 'uuid';
 
-var userUUID = uuidv4();
+let userUUID: string = uuidv4();
 
 export function chatAboutAnnotationsHandler(requestCounter: Counter, logger: Logger) {
   return async (req: Request<{}, {}, ChatAboutAnnotationsRequest>, res: Response<ChatAboutAnnotationsResponse>): Promise<void> => {
@@ -51,9 +50,8 @@ export function chatAboutAnnotationsHandler(requestCounter: Counter, logger: Log
     }
 
     try {
-      const config = { configurable: { thread_id: userUUID } };
-      const output = await chatGraph.invoke({ userInput, lhsText, rhsText, currentAnnotations: annotations, resetChat: reset, logger }, config);
-      const response : ChatAboutAnnotationsSuccessResponse = { data: responseContent(output) };
+      const output = await chatGraphInvoke(userInput, lhsText, rhsText, annotations, reset, logger, userUUID);
+      const response : ChatAboutAnnotationsSuccessResponse = { data: output };
       requestLogger.debug(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
       res.json(response);
     } catch (e) {
