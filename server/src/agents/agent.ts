@@ -6,6 +6,7 @@ import { BaseMessage } from "@langchain/core/messages";
 import { Annotation, messagesStateReducer } from "@langchain/langgraph";
 import { Logger } from "../Logger.ts";
 import { Annotations } from "@common/annotations.ts";
+import { DebugInfo } from "@common/DebugInfo.ts";
 
 export const MODEL_PROVIDERS = ["Anthopic", "OpenAI", "DeepSeek"];
 
@@ -25,6 +26,15 @@ export const StateInfo = Annotation.Root({
   }),
   logger: Annotation<Logger>,
 });
+
+export class GraphError extends Error {
+  debugInfo: DebugInfo;
+
+  constructor(message: string, { debugInfo }: { debugInfo: DebugInfo }) {
+      super(message);
+      this.debugInfo = debugInfo;
+  }
+}
 
 export function newModel(provider: string): ChatAnthropic | ChatDeepSeek | ChatOpenAI {
   if (provider === "Anthropic") {
