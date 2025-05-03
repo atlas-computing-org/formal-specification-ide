@@ -43,6 +43,7 @@ export function generateAnnotationsHandler(requestCounter: Counter, logger: Logg
       const response : GenerateAnnotationsSuccessResponse = { data: output.decodedAnnotations, debugInfo: { rawModelOutput: output.rawModelOutput }};
       requestLogger.debug(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
       res.json(response);
+      
     } catch (e) {
       const error = `Error generating annotations. ${e}`;
       requestLogger.error(`REQUEST FAILED: ${error}`);
