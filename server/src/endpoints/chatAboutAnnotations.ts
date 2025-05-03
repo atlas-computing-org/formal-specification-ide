@@ -2,6 +2,8 @@ import { Request, Response } from 'express';
 import { chatGraphInvoke } from "../agents/graphs/chatGraph.ts";
 import { Logger } from '../Logger.ts';
 import { Counter } from '@common/util/Counter.ts';
+import { ErrorResponseWithDebugInfo } from '@common/serverAPI/ErrorResponseWithDebugInfo.ts';
+import { GraphError } from "../agents/agent.ts";
 import { ChatAboutAnnotationsRequest, ChatAboutAnnotationsResponse, ChatAboutAnnotationsSuccessResponse } from "@common/serverAPI/chatAboutAnnotationsAPI.ts";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -54,10 +56,18 @@ export function chatAboutAnnotationsHandler(requestCounter: Counter, logger: Log
       const response : ChatAboutAnnotationsSuccessResponse = { data: output };
       requestLogger.debug(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
       res.json(response);
+
     } catch (e) {
-      const error = `Error chatting with assistant. ${e}`;
-      requestLogger.error(`REQUEST FAILED: ${error}`);
-      res.status(400).send({ error });
+      if (e instanceof GraphError) {
+        const error = `Error chatting with assistant. ${e.message}`;
+        const errorResponse : ErrorResponseWithDebugInfo = { error, debugInfo: e.debugInfo};
+        requestLogger.error(`REQUEST FAILED: ${error}`);
+        res.status(400).send(errorResponse);
+      } else {
+        const error = `Error chatting with assistant. ${e}`;
+        requestLogger.error(`REQUEST FAILED: ${error}`);
+        res.status(400).send({ error });
+      }
     }
   }
 }
