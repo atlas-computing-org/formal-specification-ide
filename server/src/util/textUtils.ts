@@ -1,4 +1,4 @@
-import { Document } from "@langchain/core/documents.js";
+import { Document } from "langchain/document";
 
 /**
  * Splits text into blocks separated by at least two newlines

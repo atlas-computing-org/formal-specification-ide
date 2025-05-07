@@ -1,5 +1,6 @@
 import { StateInfo } from "../agent.ts";
 import { splitText } from "../../util/textUtils.ts";
+import { Document } from "langchain/document";
 
 export const splitTextNode = (state: typeof StateInfo.State) => {
   try {

@@ -1,4 +1,4 @@
-import { newModel, StateInfo, GraphError } from "../agent.ts";
+import { newModel, StateInfo } from "../agent.ts";
 
 const llm = newModel("Anthropic");
 
