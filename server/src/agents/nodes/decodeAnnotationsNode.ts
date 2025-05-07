@@ -3,7 +3,7 @@ import { decodeAnnotationsFromModelFormat, validateJSONAnnotations } from "../an
 
 export const decodeAnnotationsNode = (state: typeof StateInfo.State) => {
   try {
-    validateJSONAnnotations(state.outputAnnotations);
+    validateJSONAnnotations(state.outputJSON);
     state.logger.info("Validated JSON annotations.");
   } catch (e) {
     const errorMsg = `Error validating annotations. ${e}`;
@@ -12,9 +12,9 @@ export const decodeAnnotationsNode = (state: typeof StateInfo.State) => {
   }
 
   try {
-    const decodedAnnotations = decodeAnnotationsFromModelFormat(state.outputAnnotations, state.lhsText, state.rhsText, state.logger);
+    const newAnnotations = decodeAnnotationsFromModelFormat(state.outputJSON, state.lhsText, state.rhsText, state.logger);
     state.logger.info("Finished decoding annotations.");
-    return { decodedAnnotations: decodedAnnotations};
+    return { newAnnotations };
 
   } catch (e) {
     const errorMsg = `Error decoding annotations. ${e}`;

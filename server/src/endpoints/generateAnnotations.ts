@@ -40,7 +40,7 @@ export function generateAnnotationsHandler(requestCounter: Counter, logger: Logg
 
     try {
       const output = await annotateGraphInvoke(lhsText, rhsText, currentAnnotations, useDemoCache, logger, userUUID);
-      const response : GenerateAnnotationsSuccessResponse = { data: output.decodedAnnotations, debugInfo: { rawModelOutput: output.rawModelOutput }};
+      const response : GenerateAnnotationsSuccessResponse = { data: output.newAnnotations, debugInfo: { rawModelOutput: output.rawModelOutput }};
       requestLogger.debug(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
       res.json(response);
       

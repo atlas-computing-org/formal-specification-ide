@@ -3,8 +3,8 @@ import { makeSystemData } from "../annotation.ts";
 
 export const encodeAnnotationsNode = (state: typeof StateInfo.State) => {
   try {
-    const systemData = makeSystemData(state.lhsText, state.rhsText, state.currentAnnotations, state.logger);
-    return { systemData: systemData };
+    const systemData = makeSystemData(state.lhsText, state.rhsText, state.oldAnnotations, state.logger);
+    return { systemData };
 
   } catch (e) {
     const errorMsg = `Error encoding annotations. ${e}`;

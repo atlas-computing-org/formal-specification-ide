@@ -9,7 +9,7 @@ import { userNode } from "../nodes/userNode.ts";
 
 // Add conditional edge for resetting chat
 const resetChoice = (state: typeof StateInfo.State) => {
-  return state.resetChat ? "encodeAnnotations" : "user";
+  return state.chatReset ? "encodeAnnotations" : "user";
 }
 
 // Define a new graph
@@ -30,8 +30,8 @@ const memory = new MemorySaver();
 // Compile graph
 export const chatGraph = workflow.compile({ checkpointer: memory });
 
-export async function chatGraphInvoke(userInput: string, lhsText: string, rhsText: string, annotations: Annotations, reset: boolean, logger: Logger, userUUID: string): Promise<string> {
+export async function chatGraphInvoke(userInput: string, lhsText: string, rhsText: string, oldAnnotations: Annotations, chatReset: boolean, logger: Logger, userUUID: string): Promise<string> {
   const config = { configurable: { thread_id: userUUID } };
-  const output = await chatGraph.invoke({ userInput, lhsText, rhsText, currentAnnotations: annotations, resetChat: reset, logger }, config);
+  const output = await chatGraph.invoke({ userInput, lhsText, rhsText, oldAnnotations, chatReset, logger }, config);
   return responseContent(output);
 }
