@@ -11,7 +11,7 @@ import { extractJSONNode } from "../nodes/extractJSONNode.ts";
 
 // Add conditional edge for cached response
 const cacheChoice = (state: typeof StateInfo.State) => {
-  return state.useDemoCache ? "cache" : "encodeAnnotations";
+  return state.cacheUseDemo ? "cache" : "encodeAnnotations";
 }
 
 // Define a new graph
@@ -33,8 +33,8 @@ const workflow = new StateGraph(StateInfo)
 // Compile graph
 export const annotateGraph = workflow.compile();
 
-export async function annotateGraphInvoke(lhsText: string, rhsText: string, annotations: Annotations, useDemoCache: boolean, logger: Logger, userUUID: string) {
+export async function annotateGraphInvoke(lhsText: string, rhsText: string, oldAnnotations: Annotations, cacheUseDemo: boolean, logger: Logger, userUUID: string) {
   const config = { configurable: { thread_id: userUUID } };
-  const output = await annotateGraph.invoke({ lhsText, rhsText, currentAnnotations: annotations, useDemoCache, logger }, config);
-  return { decodedAnnotations: output.decodedAnnotations, rawModelOutput: responseContent(output) };
+  const output = await annotateGraph.invoke({ lhsText, rhsText, oldAnnotations, cacheUseDemo, logger }, config);
+  return { newAnnotations: output.newAnnotations, rawModelOutput: responseContent(output) };
 }

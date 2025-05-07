@@ -24,7 +24,7 @@ export const blockMappingsNode = async (state: typeof StateInfo.State) => {
     state.logger.info(`Finding mapping for selected text in vector database...`);
     const mappings = [];
 
-    if (state.blockMappingsSelectionSide === "lhs") {
+    if (state.blockMappingsQuerySide === "lhs") {
       for (const block of state.lhsBlocks) {
         const mapping = await blockMapping(block, state.vectorStore);
         mappings.push({ description: mapping.description, lhsRanges: mapping.fromRanges, rhsRanges: mapping.toRanges })
@@ -36,8 +36,8 @@ export const blockMappingsNode = async (state: typeof StateInfo.State) => {
       }
     }
 
-    const decodedAnnotations = { mappings, lhsLabels: [], rhsLabels: [] };
-    return { decodedAnnotations };
+    const newAnnotations = { mappings, lhsLabels: [], rhsLabels: [] };
+    return { newAnnotations };
 
   } catch (e) {
     const errorMsg = `Error finding mapping for selected text in vector database. ${e}`;

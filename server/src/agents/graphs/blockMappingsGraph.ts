@@ -36,20 +36,20 @@ export async function blockMappingsGraphInvoke(lhsText: string, rhsText: string,
   if (selectionSide === "rhs") {
     const rhsBlocks = selectionToBlocks(rhsText, selection);
     const output = await blockMappingsGraph.invoke({ lhsText, rhsText, rhsBlocks, 
-      blockMappingsSelectionSide: selectionSide, 
+      blockMappingsQuerySide: selectionSide, 
       splitTextLHS: true, 
       storeBlocksLHS: true, 
       summarizeBlocksRHS: true, 
       logger }, config);
-    return output.decodedAnnotations;
+    return output.newAnnotations;
   } else {
     const lhsBlocks = selectionToBlocks(lhsText, selection);
     const output = await blockMappingsGraph.invoke({ lhsText, rhsText, lhsBlocks, 
-      blockMappingsSelectionSide: selectionSide, 
+      blockMappingsQuerySide: selectionSide, 
       splitTextRHS: true, 
       storeBlocksRHS: true, 
       summarizeBlocksLHS: true, 
       logger }, config);
-    return output.decodedAnnotations;
+    return output.newAnnotations;
   }
 }
