@@ -3,10 +3,7 @@ import { useAppContext } from '../context/AppContext.tsx';
 import { Annotations, TextRange, AnnotationsWithText } from '@common/annotations.ts';
 
 // Type definitions
-interface DebugModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
+interface DebugInfoProps {}
 
 // Helper function to convert AnnotationsWithText to Annotations<TextRange>
 function stripTextFromAnnotations(annotations: AnnotationsWithText): Annotations<TextRange> {
@@ -34,7 +31,7 @@ function stripTextFromAnnotations(annotations: AnnotationsWithText): Annotations
 }
 
 // Component
-export const DebugModal: React.FC<DebugModalProps> = ({ isOpen, onClose }) => {
+export const DebugInfo: React.FC<DebugInfoProps> = () => {
   // State and hooks
   const { state } = useAppContext();
   const [selectedOption, setSelectedOption] = useState<'last' | 'all' | 'annotations' | 'annotations-no-text'>('last');
@@ -62,29 +59,25 @@ export const DebugModal: React.FC<DebugModalProps> = ({ isOpen, onClose }) => {
     }
   }, [selectedOption, state.lastRawModelOutput, state.allRawModelOutputs, state.dataset.annotations]);
 
-  // Main render
   return (
-    <div id="debug-info-modal" className={`modal ${isOpen ? 'show' : ''}`}>
-      <div className="modal-content">
-        <span className="close-btn" onClick={onClose}>&times;</span>
-        <div>
-          <label htmlFor="debug-selector">Debug Info:</label>
-          <select
-            id="debug-selector"
-            className="with-label"
-            value={selectedOption}
-            onChange={handleOptionChange}
-          >
-            <option value="last">Last Raw Model Output</option>
-            <option value="all">All Raw Model Outputs</option>
-            <option value="annotations-no-text">Current Annotations (JSON)</option>
-            <option value="annotations">Current Annotations with Text (JSON)</option>
-          </select>
-        </div>
-        <div id="debug-info-content" className={selectedOption.startsWith('annotations') ? 'json' : ''}>
-          {debugContent}
-        </div>
+    <>
+      <div id="debug-info-header">
+        <label htmlFor="debug-selector">Debug Info:</label>
+        <select
+          id="debug-selector"
+          className="with-label"
+          value={selectedOption}
+          onChange={handleOptionChange}
+        >
+          <option value="last">Last Raw Model Output</option>
+          <option value="all">All Raw Model Outputs</option>
+          <option value="annotations-no-text">Current Annotations (JSON)</option>
+          <option value="annotations">Current Annotations with Text (JSON)</option>
+        </select>
       </div>
-    </div>
+      <div id="debug-info-content" className={selectedOption.startsWith('annotations') ? 'json' : ''}>
+        {debugContent}
+      </div>
+    </>
   );
 }; 
