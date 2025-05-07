@@ -4,22 +4,38 @@ import { ChatOpenAI } from "@langchain/openai";
 import { ChatDeepSeek } from "@langchain/deepseek";
 import { BaseMessage } from "@langchain/core/messages";
 import { Annotation, messagesStateReducer } from "@langchain/langgraph";
+import { Document } from "@langchain/core/documents.js";
 import { Logger } from "../Logger.ts";
-import { Annotations } from "@common/annotations.ts";
+import { Annotations, Direction } from "@common/annotations.ts";
 import { DebugInfo } from "@common/DebugInfo.ts";
+import { MemoryVectorStore } from "langchain/vectorstores/memory";
+import { OpenAIEmbeddings } from "@langchain/openai";
 
 export const MODEL_PROVIDERS = ["Anthopic", "OpenAI", "DeepSeek"];
 
 export const StateInfo = Annotation.Root({
   lhsText: Annotation<string>,
   rhsText: Annotation<string>,
-  currentAnnotations: Annotation<Annotations>,
-  resetChat: Annotation<boolean>,
-  useDemoCache: Annotation<boolean>,
+  lhsBlocks: Annotation<Document[]>,
+  rhsBlocks: Annotation<Document[]>,
+  splitTextLHS: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
+  splitTextRHS: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
+  summarizeBlocksLHS: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
+  summarizeBlocksRHS: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
+  storeBlocksLHS: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
+  storeBlocksRHS: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
+  blockMappingsSelectionSide: Annotation<Direction>,
+  resetChat: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
+  useDemoCache: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
   systemData: Annotation<string>,
   userInput: Annotation<string>,
+  currentAnnotations: Annotation<Annotations>,
   outputAnnotations: Annotation<any>,
   decodedAnnotations: Annotation<Annotations>,
+  vectorStore: Annotation<MemoryVectorStore>({
+    value: (_prev, next) => next,
+    default: () => new MemoryVectorStore(new OpenAIEmbeddings({ model: "text-embedding-3-large" })),
+  }),
   messages: Annotation<BaseMessage[]>({
     reducer: messagesStateReducer,
     default: () => [],
