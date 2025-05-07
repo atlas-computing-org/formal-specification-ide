@@ -1,7 +1,6 @@
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { ChatPromptTemplate, MessagesPlaceholder } from "@langchain/core/prompts";
-import { AIMessageChunk } from "@langchain/core";
-import { Document } from "@langchain/core/documents.js";
+import { Document } from "langchain/document";
 import { StateInfo } from "../agent.ts";
 import { newModel } from '../agent.ts';
 
@@ -17,7 +16,7 @@ const chain = prompt.pipe(llm);
 // Helper function to process a single block
 const processBlock = async (block: Document): Promise<Document> => {
   // summarize a given text block into a short description
-  const output: AIMessageChunk = await chain.invoke({ messages: [
+  const output = await chain.invoke({ messages: [
     new SystemMessage(promptText),
     new HumanMessage(block.pageContent)
   ]});

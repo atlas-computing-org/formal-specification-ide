@@ -1,4 +1,5 @@
 import { START, END, StateGraph } from "@langchain/langgraph";
+import { Document } from "langchain/document";
 import { Logger } from "../../Logger.ts";
 import { StateInfo } from '../agent.ts';
 import { splitTextNode } from "../nodes/splitTextNode.ts";

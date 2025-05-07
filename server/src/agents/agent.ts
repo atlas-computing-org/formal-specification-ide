@@ -4,7 +4,7 @@ import { ChatOpenAI } from "@langchain/openai";
 import { ChatDeepSeek } from "@langchain/deepseek";
 import { BaseMessage } from "@langchain/core/messages";
 import { Annotation, messagesStateReducer } from "@langchain/langgraph";
-import { Document } from "@langchain/core/documents.js";
+import { Document } from "langchain/document";
 import { Logger } from "../Logger.ts";
 import { Annotations, Direction } from "@common/annotations.ts";
 import { DebugInfo } from "@common/DebugInfo.ts";

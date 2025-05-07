@@ -1,5 +1,5 @@
 import { StateInfo } from "../agent.ts";
-import { Document } from "@langchain/core/documents.js";
+import { Document } from "langchain/document";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
 import { TextRange } from "@common/annotations.ts";
 const numMatches = 2;
