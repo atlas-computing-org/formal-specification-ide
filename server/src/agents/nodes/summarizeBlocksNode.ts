@@ -6,7 +6,7 @@ import { newModel } from '../agent.ts';
 
 // Based on Anthropic's rate limit of 32,000 tokens a minute
 // Each request takes 5 seconds and 250 tokens, which is 3000 tokens per minute
-const concurrencyLimit = 10;
+const concurrencyLimit = 5;
 
 const prompt = ChatPromptTemplate.fromMessages([ new MessagesPlaceholder("messages") ]);
 const promptText = "Summarize the following text into a short description in less than 10 words. The description should be a single sentence that captures the main idea of the text. The text may contain multiple paragraphs, but the description should be concise and to the point. The description should not include any specific details or examples from the text. The description should be in English and should not include any special characters or formatting.";
