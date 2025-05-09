@@ -1,0 +1,296 @@
+{
+  "mappings": [],
+  "lhsLabels": [
+    {
+      "description": "Section header for the preprocessing section",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 0,
+          "end": 18
+        }
+      ]
+    },
+    {
+      "description": "Overview of the three preprocessing steps: padding the message, parsing the message, and setting the initial hash value",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 20,
+          "end": 205
+        }
+      ]
+    },
+    {
+      "description": "Subsection header for padding the message",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 207,
+          "end": 233
+        }
+      ]
+    },
+    {
+      "description": "Explanation of the purpose of padding to ensure the message is a multiple of 512 or 1024 bits",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 235,
+          "end": 544
+        }
+      ]
+    },
+    {
+      "description": "Subsubsection header for SHA-1, SHA-224 and SHA-256 padding",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 546,
+          "end": 582
+        }
+      ]
+    },
+    {
+      "description": "Detailed algorithm for padding messages in SHA-1, SHA-224 and SHA-256, including the formula for calculating padding bits and an example",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 584,
+          "end": 1133
+        }
+      ]
+    },
+    {
+      "description": "Reference to an image showing padded message representation",
+      "category": "Diagram",
+      "ranges": [
+        {
+          "start": 1135,
+          "end": 1173
+        }
+      ]
+    },
+    {
+      "description": "Post-condition that the padded message length must be a multiple of 512 bits",
+      "category": "Ensure",
+      "ranges": [
+        {
+          "start": 1175,
+          "end": 1245
+        }
+      ]
+    },
+    {
+      "description": "Subsection header for parsing the message",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 1247,
+          "end": 1273
+        }
+      ]
+    },
+    {
+      "description": "Brief statement that the message and padding must be parsed into m-bit blocks",
+      "category": "Require",
+      "ranges": [
+        {
+          "start": 1275,
+          "end": 1340
+        }
+      ]
+    },
+    {
+      "description": "Subsubsection header for SHA-1, SHA-224 and SHA-256 parsing",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 1342,
+          "end": 1378
+        }
+      ]
+    },
+    {
+      "description": "Specification of how messages are parsed into 512-bit blocks for SHA-1, SHA-224 and SHA-256, and how these blocks are represented as 32-bit words",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 1380,
+          "end": 1726
+        }
+      ]
+    },
+    {
+      "description": "Subsection header for setting the initial hash value",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 1728,
+          "end": 1777
+        }
+      ]
+    },
+    {
+      "description": "Explanation that an initial hash value must be set before hash computation begins",
+      "category": "Require",
+      "ranges": [
+        {
+          "start": 1779,
+          "end": 1975
+        }
+      ]
+    },
+    {
+      "description": "Subsubsection header for SHA-1 initial hash value",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 1977,
+          "end": 1992
+        }
+      ]
+    },
+    {
+      "description": "Specification of the five 32-bit words that constitute the initial hash value for SHA-1, given in hexadecimal",
+      "category": "Parameter",
+      "ranges": [
+        {
+          "start": 1994,
+          "end": 2317
+        }
+      ]
+    },
+    {
+      "description": "Section header for secure hash algorithms",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 2319,
+          "end": 2346
+        }
+      ]
+    },
+    {
+      "description": "Explanation of why algorithms are not presented in ascending order of size, noting relationships between SHA-256/SHA-224 and SHA-512/SHA-384/SHA-512/224/SHA-512/256",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 2348,
+          "end": 2848
+        }
+      ]
+    },
+    {
+      "description": "Statement that alternate computation methods yielding identical results are acceptable implementations",
+      "category": "Preference",
+      "ranges": [
+        {
+          "start": 2850,
+          "end": 3114
+        }
+      ]
+    },
+    {
+      "description": "Subsection header for SHA-1",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 3116,
+          "end": 3128
+        }
+      ]
+    },
+    {
+      "description": "Overview of SHA-1 algorithm, including input constraints, components used, and output size",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 3130,
+          "end": 3438
+        }
+      ]
+    },
+    {
+      "description": "Definition of the variables and notation used in the SHA-1 algorithm, including message schedule words, working variables, hash value words, and temporary word",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 3440,
+          "end": 3983
+        }
+      ]
+    },
+    {
+      "description": "Subsubsection header for SHA-1 preprocessing",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 3985,
+          "end": 4014
+        }
+      ]
+    },
+    {
+      "description": "Two-step process for SHA-1 preprocessing: setting initial hash value and padding/parsing the message",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 4016,
+          "end": 4148
+        }
+      ]
+    },
+    {
+      "description": "Subsubsection header for SHA-1 hash computation",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 4150,
+          "end": 4182
+        }
+      ]
+    },
+    {
+      "description": "Reference to previously defined functions and constants used in SHA-1, and specification that addition is performed modulo 2^32",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 4184,
+          "end": 4345
+        }
+      ]
+    },
+    {
+      "description": "Introduction to the message block processing steps for SHA-1",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 4347,
+          "end": 4453
+        }
+      ]
+    },
+    {
+      "description": "Detailed algorithm for SHA-1 hash computation, including message schedule preparation, working variable initialization, the main processing loop, and intermediate hash value computation",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 4455,
+          "end": 5510
+        }
+      ]
+    },
+    {
+      "description": "Final step of SHA-1 algorithm showing how the 160-bit message digest is formed from the final hash value",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 5512,
+          "end": 5736
+        }
+      ]
+    }
+  ],
+  "rhsLabels": []
+}
