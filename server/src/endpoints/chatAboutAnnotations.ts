@@ -7,11 +7,9 @@ import { GraphError } from "../agents/agent.ts";
 import { ChatAboutAnnotationsRequest, ChatAboutAnnotationsResponse, ChatAboutAnnotationsSuccessResponse } from "@common/serverAPI/chatAboutAnnotationsAPI.ts";
 import { v4 as uuidv4 } from 'uuid';
 
-let userUUID: string = uuidv4();
-
 export function chatAboutAnnotationsHandler(requestCounter: Counter, logger: Logger) {
   return async (req: Request<{}, {}, ChatAboutAnnotationsRequest>, res: Response<ChatAboutAnnotationsResponse>): Promise<void> => {
-    const { userInput, lhsText, rhsText, annotations, reset } = req.body;
+    const { userInput, lhsText, rhsText, annotations, sessionId } = req.body;
 
     const requestId = requestCounter.next();
     const requestLogger = logger.withMessagePrefix(`POST /chat-with-assistant (${requestId}): `);
@@ -47,27 +45,19 @@ export function chatAboutAnnotationsHandler(requestCounter: Counter, logger: Log
       return;
     }
 
-    if (reset) {
-      userUUID = uuidv4();
-    }
-
     try {
-      const output = await chatGraphInvoke(userInput, lhsText, rhsText, annotations, reset, logger, userUUID);
-      const response : ChatAboutAnnotationsSuccessResponse = { data: output };
-      requestLogger.debug(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
-      res.json(response);
-
-    } catch (e) {
-      if (e instanceof GraphError) {
-        const error = `Error chatting with assistant. ${e.message}`;
-        const errorResponse : ErrorResponseWithDebugInfo = { error, debugInfo: e.debugInfo};
-        requestLogger.error(`REQUEST FAILED: ${error}`);
-        res.status(400).send(errorResponse);
+      const response: ChatAboutAnnotationsResponse = await chatGraphInvoke(userInput, lhsText, rhsText, annotations, sessionId, logger);
+      if ("error" in response) {
+        requestLogger.error(`REQUEST FAILED: ${response.error}`);
+        res.status(400).send(response);
       } else {
-        const error = `Error chatting with assistant. ${e}`;
-        requestLogger.error(`REQUEST FAILED: ${error}`);
-        res.status(400).send({ error });
+        requestLogger.debug(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
+        res.json(response);
       }
+    } catch (e) {
+      const error = `Error chatting with assistant. ${e}`;
+      requestLogger.error(`REQUEST FAILED: ${error}`);
+      res.status(400).send({ error });
     }
   }
 }
