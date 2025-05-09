@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useAppContext } from '../context/AppContext.tsx';
 import { api } from '../services/api.ts';
 import { AI_ASSISTANT_WELCOME_MESSAGE } from '../content/aiAssistantWelcomeMessage.ts';
+import { v4 as uuidv4 } from 'uuid';
 
 type ChatUser = "user" | "assistant" | "system";
 
@@ -18,6 +19,7 @@ export const useChat = () => {
   const [isNewChat, setIsNewChat] = useState(true);
   const [chatError, setChatError] = useState<Error | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [sessionId, setSessionId] = useState<string>(uuidv4());
 
   const sendChatMessage = async (message: string) => {
     try {
@@ -29,13 +31,17 @@ export const useChat = () => {
         { content: message, sender: "user" },
       ]);
 
+      if (isNewChat) {
+        setSessionId(uuidv4());
+      }
+
       setIsLoading(true);
       const response = await api.chatAboutAnnotations({
         userInput: message,
         lhsText,
         rhsText,
         annotations,
-        reset: isNewChat,
+        sessionId,
       });
       if ("error" in response) {
         throw new Error(response.error);
