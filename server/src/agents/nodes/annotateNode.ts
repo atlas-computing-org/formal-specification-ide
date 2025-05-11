@@ -1,4 +1,4 @@
-import { promises as fs } from 'node:fs';
+import { promises as fs } from 'fs';
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { SERVER_SRC_DIR } from '../../util/fileUtils.ts';
 import { StateInfo } from "../agent.ts";

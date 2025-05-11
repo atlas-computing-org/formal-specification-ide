@@ -1,6 +1,6 @@
 import winston from 'winston';
 import Transport from 'winston-transport';
-import { promises as fs } from 'node:fs';
+import { promises as fs } from 'fs';
 import { getCurrentTimestampString } from '@common/util/timeUtils.ts';
 
 const LOGS_DIRECTORY = './server/log';
