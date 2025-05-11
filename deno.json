@@ -1,6 +1,10 @@
 {
   "imports": {
-    "@common/": "./common/"
+    "@common/": "./common/",
+    "fs": "node:fs",
+    "process": "node:process",
+    "path": "node:path",
+    "url": "node:url"
   },
   "compilerOptions": {
     "strict": true
