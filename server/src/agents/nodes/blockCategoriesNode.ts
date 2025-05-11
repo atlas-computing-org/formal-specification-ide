@@ -1,4 +1,4 @@
-import { promises as fs, readFileSync } from 'node:fs';
+import { promises as fs, readFileSync } from 'fs';
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { Document } from "langchain/document";
 import { JsonOutputParser } from "@langchain/core/output_parsers";

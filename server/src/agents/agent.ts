@@ -1,4 +1,4 @@
-import process from "node:process";
+import process from "process";
 import { ChatAnthropic } from '@langchain/anthropic';
 import { ChatOpenAI } from "@langchain/openai";
 import { ChatDeepSeek } from "@langchain/deepseek";
