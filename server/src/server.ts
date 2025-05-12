@@ -8,6 +8,7 @@ import { getDatasetHandler } from './endpoints/getDataset.ts';
 import { getLogger } from './Logger.ts';
 import { SERVER_DATA_DIR } from './util/fileUtils.ts';
 import { Counter } from '@common/util/Counter.ts';
+import { handleRequest, RequestHandler } from './endpoints/endpointUtils.ts';
 
 const PORT = 3001;
 const CLIENT_PORT = 3000;
@@ -31,11 +32,25 @@ app.use('/data', express.static(SERVER_DATA_DIR));
 // Middleware to parse JSON
 app.use(bodyParser.json({limit: '1mb'}));
 
-// Routes
-app.post('/generate-annotations', generateAnnotationsHandler(requestCounter, logger));
-app.post('/chat-with-assistant', chatAboutAnnotationsHandler(requestCounter, logger));
-app.get('/getDatasetNames', getDatasetNamesHandler(requestCounter, logger));
-app.get('/getDataset/:datasetName', getDatasetHandler(requestCounter, logger));
+// GET routes
+const getRoutes: Record<string, RequestHandler<any, any>> = {
+  '/getDatasetNames': getDatasetNamesHandler,
+  '/getDataset/:datasetName': getDatasetHandler,
+};
+
+// POST routes
+const postRoutes: Record<string, RequestHandler<any, any>> = {
+  '/generate-annotations': generateAnnotationsHandler,
+  '/chat-with-assistant': chatAboutAnnotationsHandler,
+};
+
+// Register routes
+Object.entries(getRoutes).forEach(([path, handler]) => {
+  app.get(path, handleRequest(handler, `GET ${path}`, requestCounter, logger));
+});
+Object.entries(postRoutes).forEach(([path, handler]) => {
+  app.post(path, handleRequest(handler, `POST ${path}`, requestCounter, logger));
+});
 
 // Serve static files (including your frontend)
 app.use(express.static('public'));
