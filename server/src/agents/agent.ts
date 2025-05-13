@@ -26,7 +26,6 @@ export const StateInfo = Annotation.Root({
   storeBlocksRHS: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
   blockMappingsQuerySide: Annotation<Direction>,
   blockCategoriesQuerySide: Annotation<Direction>,
-  chatReset: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
   cacheUseDemo: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
   systemData: Annotation<string>,
   userInput: Annotation<string>,
