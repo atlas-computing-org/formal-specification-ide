@@ -1,0 +1,282 @@
+{
+  "mappings": [
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 20,
+          "end": 0
+        },
+        {
+          "start": 20,
+          "end": 205
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1773,
+          "end": 3306
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 235,
+          "end": 544
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 772,
+          "end": 1317
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 4016,
+          "end": 4148
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1773,
+          "end": 3306
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 584,
+          "end": 1133
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 772,
+          "end": 1317
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "theorem (not stated)",
+      "lhsRanges": [
+        {
+          "start": 1175,
+          "end": 1245
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 772,
+          "end": 1317
+        }
+      ],
+      "isWarning": true,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 1275,
+          "end": 1340
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1319,
+          "end": 1621
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 1380,
+          "end": 1726
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1319,
+          "end": 1621
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 1779,
+          "end": 1975
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1773,
+          "end": 3306
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 1994,
+          "end": 2317
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 277,
+          "end": 435
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 3130,
+          "end": 3438
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1773,
+          "end": 3306
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 3440,
+          "end": 3983
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1773,
+          "end": 3306
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 4347,
+          "end": 4453
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1773,
+          "end": 3306
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 4455,
+          "end": 5510
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1773,
+          "end": 3306
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 5512,
+          "end": 5736
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1773,
+          "end": 3306
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    }
+  ],
+  "lhsLabels": [
+    {
+      "description": "Preamble",
+      "ranges": [
+        {
+          "start": 2348,
+          "end": 2848
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "Preamble",
+      "ranges": [
+        {
+          "start": 2850,
+          "end": 3114
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "Missing",
+      "ranges": [
+        {
+          "start": 4184,
+          "end": 4345
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    }
+  ],
+  "rhsLabels": []
+}
