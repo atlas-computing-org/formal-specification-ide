@@ -33,10 +33,9 @@ const workflow = new StateGraph(StateInfo)
 // Compile graph
 export const annotateGraph = workflow.compile();
 
-export async function annotateGraphInvoke(lhsText: string, rhsText: string, oldAnnotations: Annotations, cacheUseDemo: boolean, logger: Logger, userUUID: string) {
+export async function annotateGraphInvoke(lhsText: string, rhsText: string, oldAnnotations: Annotations, cacheUseDemo: boolean, logger: Logger) {
   try {
-    const config = { configurable: { thread_id: userUUID } };
-    const output = await annotateGraph.invoke({ lhsText, rhsText, oldAnnotations, cacheUseDemo, logger }, config);
+    const output = await annotateGraph.invoke({ lhsText, rhsText, oldAnnotations, cacheUseDemo, logger });
     return { data: output.newAnnotations, debugInfo: { rawModelOutput: responseContent(output) }};
   } catch (e) {
     if (e instanceof GraphError) {

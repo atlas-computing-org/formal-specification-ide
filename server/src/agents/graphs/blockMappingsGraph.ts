@@ -32,8 +32,7 @@ const selectionToBlocks = (text: string, selection: TextRange[]): Document[] => 
   );
 };
 
-export async function blockMappingsGraphInvoke(lhsText: string, rhsText: string, selection: TextRange[], selectionSide: Direction, logger: Logger, userUUID: string) {
-  const config = { configurable: { thread_id: userUUID } };
+export async function blockMappingsGraphInvoke(lhsText: string, rhsText: string, selection: TextRange[], selectionSide: Direction, logger: Logger) {
   if (selectionSide === "rhs") {
     const rhsBlocks = selectionToBlocks(rhsText, selection);
     const output = await blockMappingsGraph.invoke({ lhsText, rhsText, rhsBlocks, 
@@ -41,7 +40,7 @@ export async function blockMappingsGraphInvoke(lhsText: string, rhsText: string,
       splitTextLHS: true, 
       storeBlocksLHS: true, 
       summarizeBlocksRHS: true, 
-      logger }, config);
+      logger });
     return output.newAnnotations;
   } else {
     const lhsBlocks = selectionToBlocks(lhsText, selection);
@@ -50,7 +49,7 @@ export async function blockMappingsGraphInvoke(lhsText: string, rhsText: string,
       splitTextRHS: true, 
       storeBlocksRHS: true, 
       summarizeBlocksLHS: true, 
-      logger }, config);
+      logger });
     return output.newAnnotations;
   }
 }
