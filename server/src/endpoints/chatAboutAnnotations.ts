@@ -5,7 +5,6 @@ import { Counter } from '@common/util/Counter.ts';
 import { ErrorResponseWithDebugInfo } from '@common/serverAPI/ErrorResponseWithDebugInfo.ts';
 import { GraphError } from "../agents/agent.ts";
 import { ChatAboutAnnotationsRequest, ChatAboutAnnotationsResponse, ChatAboutAnnotationsSuccessResponse } from "@common/serverAPI/chatAboutAnnotationsAPI.ts";
-import { v4 as uuidv4 } from 'uuid';
 
 export function chatAboutAnnotationsHandler(requestCounter: Counter, logger: Logger) {
   return async (req: Request<{}, {}, ChatAboutAnnotationsRequest>, res: Response<ChatAboutAnnotationsResponse>): Promise<void> => {

@@ -19,21 +19,20 @@ const workflow = new StateGraph(StateInfo)
 // Compile graph
 export const blockCategoriesGraph = workflow.compile();
 
-export async function blockCategoriesGraphInvoke(lhsText: string, rhsText: string, blockCategoriesQuerySide: Direction, logger: Logger, userUUID: string) {
-  const config = { configurable: { thread_id: userUUID } };
+export async function blockCategoriesGraphInvoke(lhsText: string, rhsText: string, blockCategoriesQuerySide: Direction, logger: Logger) {
   if (blockCategoriesQuerySide === "rhs") {
     const output = await blockCategoriesGraph.invoke({ lhsText, rhsText, 
       blockCategoriesQuerySide,
       splitTextRHS: true, 
       summarizeBlocksRHS: true, 
-      logger }, config);
+      logger });
     return output.newAnnotations;
   } else {
     const output = await blockCategoriesGraph.invoke({ lhsText, rhsText, 
       blockCategoriesQuerySide,
       splitTextLHS: true, 
       summarizeBlocksLHS: true, 
-      logger }, config);
+      logger });
     return output.newAnnotations;
   }
 }

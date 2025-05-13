@@ -3,9 +3,6 @@ import { annotateGraphInvoke } from "../agents/graphs/annotateGraph.ts";
 import { Logger } from '../Logger.ts';
 import { Counter } from '@common/util/Counter.ts';
 import { GenerateAnnotationsRequest, GenerateAnnotationsResponse, GenerateAnnotationsSuccessResponse } from "@common/serverAPI/generateAnnotationsAPI.ts";
-import { v4 as uuidv4 } from 'uuid';
-
-const userUUID = uuidv4();
 
 export function generateAnnotationsHandler(requestCounter: Counter, logger: Logger) {
   return async (req: Request<{}, {}, GenerateAnnotationsRequest>, res: Response<GenerateAnnotationsResponse>): Promise<void> => {
@@ -39,7 +36,7 @@ export function generateAnnotationsHandler(requestCounter: Counter, logger: Logg
     }
 
     try {
-      const response : GenerateAnnotationsResponse = await annotateGraphInvoke(lhsText, rhsText, currentAnnotations, useDemoCache, logger, userUUID);
+      const response : GenerateAnnotationsResponse = await annotateGraphInvoke(lhsText, rhsText, currentAnnotations, useDemoCache, logger);
       if ("error" in response) {
         requestLogger.error(`REQUEST FAILED: ${response.error}`);
         res.status(400).send(response);
