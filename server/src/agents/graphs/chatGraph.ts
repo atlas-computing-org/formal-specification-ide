@@ -44,8 +44,7 @@ export async function chatGraphInvoke(userInput: string, lhsText: string, rhsTex
   try {
     const config = { configurable: { thread_id: sessionId } };
     const rawOutput = await chatGraph.invoke({ userInput, lhsText, rhsText, oldAnnotations, chatReset, logger }, config);
-    const output = responseContent(rawOutput);
-    return { data: output };
+    return { data: responseContent(rawOutput) };
   } catch (e) {
     if (e instanceof GraphError) {
       const error = `Error chatting with assistant. ${e.message}`;
