@@ -2,9 +2,7 @@ import { Request, Response } from 'express';
 import { chatGraphInvoke } from "../agents/graphs/chatGraph.ts";
 import { Logger } from '../Logger.ts';
 import { Counter } from '@common/util/Counter.ts';
-import { ErrorResponseWithDebugInfo } from '@common/serverAPI/ErrorResponseWithDebugInfo.ts';
-import { GraphError } from "../agents/agent.ts";
-import { ChatAboutAnnotationsRequest, ChatAboutAnnotationsResponse, ChatAboutAnnotationsSuccessResponse } from "@common/serverAPI/chatAboutAnnotationsAPI.ts";
+import { ChatAboutAnnotationsRequest, ChatAboutAnnotationsResponse } from "@common/serverAPI/chatAboutAnnotationsAPI.ts";
 
 export function chatAboutAnnotationsHandler(requestCounter: Counter, logger: Logger) {
   return async (req: Request<{}, {}, ChatAboutAnnotationsRequest>, res: Response<ChatAboutAnnotationsResponse>): Promise<void> => {

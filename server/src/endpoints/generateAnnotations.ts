@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { annotateGraphInvoke } from "../agents/graphs/annotateGraph.ts";
 import { Logger } from '../Logger.ts';
 import { Counter } from '@common/util/Counter.ts';
-import { GenerateAnnotationsRequest, GenerateAnnotationsResponse, GenerateAnnotationsSuccessResponse } from "@common/serverAPI/generateAnnotationsAPI.ts";
+import { GenerateAnnotationsRequest, GenerateAnnotationsResponse } from "@common/serverAPI/generateAnnotationsAPI.ts";
 
 export function generateAnnotationsHandler(requestCounter: Counter, logger: Logger) {
   return async (req: Request<{}, {}, GenerateAnnotationsRequest>, res: Response<GenerateAnnotationsResponse>): Promise<void> => {
