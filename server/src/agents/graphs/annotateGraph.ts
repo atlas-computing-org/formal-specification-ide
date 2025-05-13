@@ -1,7 +1,7 @@
 import { START, END, StateGraph } from "@langchain/langgraph";
 import { Annotations } from "@common/annotations.ts";
 import { Logger } from "../../Logger.ts";
-import { StateInfo, responseContent } from '../agent.ts';
+import { GraphError, StateInfo, responseContent } from '../agent.ts';
 import { annotateNode } from "../nodes/annotateNode.ts";
 import { encodeAnnotationsNode } from "../nodes/encodeAnnotationsNode.ts";
 import { decodeAnnotationsNode } from "../nodes/decodeAnnotationsNode.ts";
@@ -34,7 +34,17 @@ const workflow = new StateGraph(StateInfo)
 export const annotateGraph = workflow.compile();
 
 export async function annotateGraphInvoke(lhsText: string, rhsText: string, oldAnnotations: Annotations, cacheUseDemo: boolean, logger: Logger, userUUID: string) {
-  const config = { configurable: { thread_id: userUUID } };
-  const output = await annotateGraph.invoke({ lhsText, rhsText, oldAnnotations, cacheUseDemo, logger }, config);
-  return { newAnnotations: output.newAnnotations, rawModelOutput: responseContent(output) };
+  try {
+    const config = { configurable: { thread_id: userUUID } };
+    const output = await annotateGraph.invoke({ lhsText, rhsText, oldAnnotations, cacheUseDemo, logger }, config);
+    return { data: output.newAnnotations, debugInfo: { rawModelOutput: responseContent(output) }};
+  } catch (e) {
+    if (e instanceof GraphError) {
+      const error = `Error generating annotations. ${e.message}`;
+      return { error, debugInfo: e.debugInfo };
+    } else {
+      const error = `Error generating annotations. ${e}`;
+      return { error };
+    }
+  }
 }
