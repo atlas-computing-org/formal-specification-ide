@@ -39,11 +39,15 @@ export function generateAnnotationsHandler(requestCounter: Counter, logger: Logg
     }
 
     try {
-      const output = await annotateGraphInvoke(lhsText, rhsText, currentAnnotations, useDemoCache, logger, userUUID);
-      const response : GenerateAnnotationsSuccessResponse = { data: output.newAnnotations, debugInfo: { rawModelOutput: output.rawModelOutput }};
-      requestLogger.debug(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
-      res.json(response);
-      
+      const response : GenerateAnnotationsResponse = await annotateGraphInvoke(lhsText, rhsText, currentAnnotations, useDemoCache, logger, userUUID);
+      if ("error" in response) {
+        requestLogger.error(`REQUEST FAILED: ${response.error}`);
+        res.status(400).send(response);
+      } else {
+        requestLogger.debug(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
+        res.json(response);
+      }
+
     } catch (e) {
       const error = `Error generating annotations. ${e}`;
       requestLogger.error(`REQUEST FAILED: ${error}`);
