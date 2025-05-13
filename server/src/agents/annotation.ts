@@ -1,7 +1,5 @@
 import Fuse from 'fuse.js';
 import { Annotations, LabelType, TextMapping, TextRange } from "@common/annotations.ts";
-import { GenerateAnnotationsResponse } from '@common/serverAPI/generateAnnotationsAPI.ts';
-import { ChatAboutAnnotationsSuccessResponse } from '@common/serverAPI/chatAboutAnnotationsAPI.ts';
 import { Logger } from "../Logger.ts";
 
 type ModelAnnotation = {
