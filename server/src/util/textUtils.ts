@@ -1,12 +1,11 @@
 import { Document } from "langchain/document";
 
 /**
- * Splits text into blocks separated by at least two newlines
- * with optional whitespace in between. Each block includes its
- * (inclusive) start and (exclusive) end indices in the original text.
+ * Splits text into blocks by separators which satisfy some given regex.
+ * Default separator consists of two newlines with optional whitespace in between. 
+ * Each block includes its (incl) start and (excl) end indices in the original text.
  */
-export function splitText(text: string): Document[] {
-  const separatorRegex = /\n\s*\n+/g;
+export function splitTextBySeparatorRegex(text: string, separatorRegex = /\n\s*\n+/g): Document[] {
   const blocks: Document[] = [];
   
   let lastIndex = 0;
