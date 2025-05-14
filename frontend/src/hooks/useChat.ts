@@ -16,7 +16,6 @@ const initialChatMessages: ChatMessage[] = [{ content: AI_ASSISTANT_WELCOME_MESS
 export const useChat = () => {
   const { state } = useAppContext();
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>(initialChatMessages);
-  const [isNewChat, setIsNewChat] = useState(true);
   const [chatError, setChatError] = useState<Error | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId, setSessionId] = useState<string>(uuidv4());
@@ -25,15 +24,10 @@ export const useChat = () => {
     try {
       const { annotations, lhsText, rhsText } = state.dataset;
       setChatError(null);
-      setIsNewChat(false);
       setChatMessages(prev => [
         ...prev,
         { content: message, sender: "user" },
       ]);
-
-      if (isNewChat) {
-        setSessionId(uuidv4());
-      }
 
       setIsLoading(true);
       const response = await api.chatAboutAnnotations({
@@ -60,8 +54,8 @@ export const useChat = () => {
 
   const resetChat = () => {
     setChatMessages(initialChatMessages);
-    setIsNewChat(true);
     setChatError(null);
+    setSessionId(uuidv4());
   };
 
   return {
