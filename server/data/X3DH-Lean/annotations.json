@@ -1,0 +1,415 @@
+{
+  "mappings": [
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 4834,
+          "end": 4932
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4874,
+          "end": 4968
+        },
+        {
+          "start": 6407,
+          "end": 6444
+        },
+        {
+          "start": 6622,
+          "end": 6645
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 4933,
+          "end": 4987
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 6667,
+          "end": 6691
+        },
+        {
+          "start": 6481,
+          "end": 6505
+        },
+        {
+          "start": 5800,
+          "end": 5883
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 5061,
+          "end": 5376
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2987,
+          "end": 3240
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 6202,
+          "end": 6531
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5099,
+          "end": 5131
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 6738,
+          "end": 6820
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5247
+        },
+        {
+          "start": 5752,
+          "end": 5797
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 6821,
+          "end": 6895
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5248,
+          "end": 5295
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 6897,
+          "end": 7234
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3507,
+          "end": 3924
+        },
+        {
+          "start": 5301,
+          "end": 5372
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "error - by keeping the public and private keys together, the code does not model deleting the ephemeral key as soon as it is done being used",
+      "lhsRanges": [
+        {
+          "start": 7456,
+          "end": 7537
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4619,
+          "end": 4635
+        },
+        {
+          "start": 5687,
+          "end": 5731
+        }
+      ],
+      "isWarning": false,
+      "isError": true
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 7538,
+          "end": 7694
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5373,
+          "end": 5498
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 7838,
+          "end": 8224
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4587,
+          "end": 4871
+        },
+        {
+          "start": 5676,
+          "end": 5731
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 8024,
+          "end": 8224
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4245,
+          "end": 4358
+        },
+        {
+          "start": 5599,
+          "end": 5640
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "missing KDF",
+      "lhsRanges": [
+        {
+          "start": 7038,
+          "end": 7041
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3921,
+          "end": 3924
+        }
+      ],
+      "isWarning": false,
+      "isError": true
+    },
+    {
+      "description": "missing KDF",
+      "lhsRanges": [
+        {
+          "start": 7201,
+          "end": 7204
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3871,
+          "end": 3906
+        }
+      ],
+      "isWarning": false,
+      "isError": true
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 8750,
+          "end": 8820
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5939,
+          "end": 5994
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 8821,
+          "end": 8966
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 6040,
+          "end": 6059
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 8968,
+          "end": 9097
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5996,
+          "end": 6060
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 9099,
+          "end": 9218
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 6062,
+          "end": 6168
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    },
+    {
+      "description": "",
+      "lhsRanges": [
+        {
+          "start": 9219,
+          "end": 9380
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 6170,
+          "end": 6269
+        }
+      ],
+      "isWarning": false,
+      "isError": false
+    }
+  ],
+  "lhsLabels": [
+    {
+      "description": "not modeled - server is not explicitly modeled",
+      "ranges": [
+        {
+          "start": 4775,
+          "end": 4833
+        }
+      ],
+      "isWarning": false,
+      "isError": true
+    },
+    {
+      "description": "not modeled - iterative message sending is not modeled",
+      "ranges": [
+        {
+          "start": 5378,
+          "end": 6162
+        }
+      ],
+      "isWarning": true,
+      "isError": false
+    },
+    {
+      "description": "not modeled - the one-time prekey lifecycle is not modeled",
+      "ranges": [
+        {
+          "start": 6533,
+          "end": 6736
+        }
+      ],
+      "isWarning": true,
+      "isError": false
+    },
+    {
+      "description": "unused",
+      "ranges": [
+        {
+          "start": 7696,
+          "end": 7836
+        }
+      ],
+      "isWarning": true,
+      "isError": false
+    },
+    {
+      "description": "not modeled - iterative message sending is not modeled",
+      "ranges": [
+        {
+          "start": 8226,
+          "end": 8668
+        }
+      ],
+      "isWarning": true,
+      "isError": false
+    },
+    {
+      "description": "not modeled - iterative message sending is not modeled",
+      "ranges": [
+        {
+          "start": 9382,
+          "end": 9712
+        }
+      ],
+      "isWarning": true,
+      "isError": false
+    }
+  ],
+  "rhsLabels": []
+}
