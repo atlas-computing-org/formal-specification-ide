@@ -183,6 +183,7 @@ button {
   white-space: pre-line;
 }
 #right-text .text-panel-content {
+  font-family: monospace;
   white-space: pre;
 }
 /* Underline warnings and errors */
@@ -473,6 +474,7 @@ button {
 }
 
 #debug-info-content.json {
+  font-family: monospace;
   white-space: pre;
 }
 
