@@ -1,0 +1,19 @@
+# X3DH-Lean Dataset
+
+## Dataset Sources
+
+For each source, please attribute the source, include an URL when one exists, and make it clear when content was generated.
+
+**Natural Language Documentation:** TODO
+**Mechanized Spec:** TODO
+**Annotations:** TODO
+
+## Data Modeling and Quality
+
+Note modeling assumptions and coverage limitations.
+
+Note any data quality considerations. For instance, note if the code does not compile or if deliberate errors have been introduced. Note what confidence you have in its correctness.
+
+## Additional Notes
+
+If there are other notes that inform our research or aid demos, include those here.
