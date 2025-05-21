@@ -1,0 +1,16 @@
+{
+  "imports": {
+    "@common/": "./common/"
+  },
+  "compilerOptions": {
+    "strict": true
+  },
+  "nodeModulesDir": "auto",
+  "unstable": [
+    "bare-node-builtins",
+    "byonm",
+    "sloppy-imports",
+    "unsafe-proto"
+  ]
+}
+
