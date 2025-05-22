@@ -2,9 +2,10 @@ import { AppProvider, useAppContext } from './context/AppContext.tsx';
 import { Header } from './components/Header.tsx';
 import { Footer } from './components/Footer.tsx';
 import { MainContent } from './components/MainContent.tsx';
-import { ChatModal } from './components/ChatModal.tsx';
-import { ComingSoonModal } from './components/ComingSoonModal.tsx';
-import { DebugModal } from './components/DebugModal.tsx';
+import { ChatAssistant } from './components/ChatAssistant.tsx';
+import { ComingSoon } from './components/ComingSoon.tsx';
+import { DebugInfo } from './components/DebugInfo.tsx';
+import { Modal } from './components/Modal.tsx';
 import { useState, useEffect, useMemo } from 'react';
 import { useDataset } from './hooks/useDataset.ts';
 import { useDatasetNames } from './hooks/useDatasetNames.ts';
@@ -12,6 +13,14 @@ import { useAnnotationMode } from './hooks/useAnnotationMode.ts';
 import { handleApplicationLevelHotkeys } from './utils/keyEventUtils.ts';
 
 const DEFAULT_ANNOTATIONS_SET_NAME = 'annotations';
+
+// Modal state enum
+enum ModalState {
+  CLOSED = 'CLOSED',
+  DEBUG = 'DEBUG',
+  CHAT = 'CHAT',
+  COMING_SOON = 'COMING_SOON',
+}
 
 function AppContent() {
   const { state } = useAppContext();
@@ -26,9 +35,7 @@ function AppContent() {
     handleCancelAnnotation,
   } = useAnnotationMode();
 
-  const [isChatModalOpen, setIsChatModalOpen] = useState(false);
-  const [isDebugModalOpen, setIsDebugModalOpen] = useState(false);
-  const [isComingSoonModalOpen, setIsComingSoonModalOpen] = useState(false);
+  const [modalState, setModalState] = useState<ModalState>(ModalState.CLOSED);
   const [isHighlightsVisible, setIsHighlightsVisible] = useState(true);
   const [isAnnotationsPanelVisible, setIsAnnotationsPanelVisible] = useState(true);
   const [useCachedResponses, setUseCachedResponses] = useState(false);
@@ -40,16 +47,12 @@ function AppContent() {
     await loadDataset(name);
   };
 
-  const handleOpenComingSoon = () => { setIsComingSoonModalOpen(true); };
-  const handleCloseComingSoon = () => { setIsComingSoonModalOpen(false); };
-
   const handleGenerateAnnotations = async () => { await generateAnnotations(useCachedResponses); };
 
-  const handleOpenChat = () => { setIsChatModalOpen(true); };
-  const handleCloseChat = () => { setIsChatModalOpen(false); };
-
-  const handleOpenDebug = () => { setIsDebugModalOpen(true); };
-  const handleCloseDebug = () => { setIsDebugModalOpen(false); };
+  const handleCloseModal = () => { setModalState(ModalState.CLOSED); };
+  const handleOpenComingSoonModal = () => { setModalState(ModalState.COMING_SOON); };
+  const handleOpenChatModal = () => { setModalState(ModalState.CHAT); };
+  const handleOpenDebugModal = () => { setModalState(ModalState.DEBUG); };
 
   const handleToggleHighlights = () => {
     setIsHighlightsVisible(!isHighlightsVisible);
@@ -71,8 +74,8 @@ function AppContent() {
   };
 
   const isModalOpen = useMemo(() => {
-    return isChatModalOpen || isDebugModalOpen || isComingSoonModalOpen;
-  }, [isChatModalOpen, isDebugModalOpen, isComingSoonModalOpen]);
+    return modalState !== ModalState.CLOSED;
+  }, [modalState]);
 
   // Load dataset names and dataset on mount
   useEffect(() => {
@@ -102,16 +105,44 @@ function AppContent() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isAnnotationMode, isModalOpen, handleAddAnnotation, handleCancelAnnotation, handleSetAnnotationMode]);
 
+  // Render modal content based on state
+  const renderModalContent = () => {
+    switch (modalState) {
+      case ModalState.CHAT:
+        return <ChatAssistant />;
+      case ModalState.DEBUG:
+        return <DebugInfo />;
+      case ModalState.COMING_SOON:
+        return <ComingSoon />;
+      default:
+        return null;
+    }
+  };
+
+  // Get modal content class name based on state
+  const getModalStateClassName = () => {
+    switch (modalState) {
+      case ModalState.CHAT:
+        return 'chat-assistant';
+      case ModalState.DEBUG:
+        return 'debug-info';
+      case ModalState.COMING_SOON:
+        return 'coming-soon';
+      default:
+        return '';
+    }
+  };
+
   return (
     <>
       <Header
         datasetNames={datasetNames}
         currentDatasetName={currentDatasetName}
         onDatasetChange={handleDatasetChange}
-        onShowComingSoon={handleOpenComingSoon}
+        onShowComingSoon={handleOpenComingSoonModal}
         onGenerateAnnotations={handleGenerateAnnotations}
         onSetAnnotationMode={handleSetAnnotationMode}
-        onShowChat={handleOpenChat}
+        onShowChat={handleOpenChatModal}
         isAnnotationMode={isAnnotationMode}
       />
       <MainContent 
@@ -125,7 +156,7 @@ function AppContent() {
       <Footer
         onToggleHighlights={handleToggleHighlights}
         onToggleAnnotationsPanel={handleToggleAnnotationsPanel}
-        onOpenDebug={handleOpenDebug}
+        onOpenDebug={handleOpenDebugModal}
         onToggleCachedResponses={handleToggleCachedResponses}
         isHighlightsVisible={isHighlightsVisible}
         isAnnotationsPanelVisible={isAnnotationsPanelVisible}
@@ -134,9 +165,13 @@ function AppContent() {
         annotationSetNames={annotationSetNames}
         onAnnotationSetChange={handleAnnotationSetChange}
       />
-      <ChatModal isOpen={isChatModalOpen} onClose={handleCloseChat} />
-      <ComingSoonModal isOpen={isComingSoonModalOpen} onClose={handleCloseComingSoon} />
-      <DebugModal isOpen={isDebugModalOpen} onClose={handleCloseDebug} />
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        className={getModalStateClassName()}
+      >
+        {renderModalContent()}
+      </Modal>
     </>
   );
 }
