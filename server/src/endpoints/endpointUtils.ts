@@ -20,7 +20,7 @@ export interface RequestHandler<Q, R> {
   (req: Request<{}, {}, Q>, requestLogger: Logger): Promise<R>;
 }
 
-export function handleRequest<Q, R>(requestHandler: RequestHandler<Q, R | ErrorResponse>, messagePrefix: string, requestCounter: Counter, logger: Logger) {
+export function handleRequest<Q, R>(requestHandler: RequestHandler<Q, R | ErrorResponse | void>, messagePrefix: string, requestCounter: Counter, logger: Logger) {
   return async (req: Request<{}, {}, Q>, res: Response<R | ErrorResponse>): Promise<void> => {
     const requestId = requestCounter.next();
     const requestLogger = logger.withMessagePrefix(`${messagePrefix} (${requestId}): `);
@@ -29,7 +29,10 @@ export function handleRequest<Q, R>(requestHandler: RequestHandler<Q, R | ErrorR
 
     try {
       const response = await requestHandler(req, requestLogger);
-      if (isErrorResponse(response)) {
+      if (response === undefined) {
+        requestLogger.debug("EMPTY RESPONSE");
+        res.status(200).send();
+      } else if (isErrorResponse(response)) {
         requestLogger.error(`REQUEST FAILED: ${response.error}`);
         res.status(400).send(response);
       } else {

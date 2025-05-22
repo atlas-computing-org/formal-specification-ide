@@ -5,12 +5,15 @@ import { MainContent } from './components/MainContent.tsx';
 import { ChatAssistant } from './components/ChatAssistant.tsx';
 import { ComingSoon } from './components/ComingSoon.tsx';
 import { DebugInfo } from './components/DebugInfo.tsx';
+import { SaveAsDialogue } from './components/SaveAsDialogue.tsx';
 import { Modal } from './components/Modal.tsx';
 import { useState, useEffect, useMemo } from 'react';
 import { useDataset } from './hooks/useDataset.ts';
 import { useDatasetNames } from './hooks/useDatasetNames.ts';
 import { useAnnotationMode } from './hooks/useAnnotationMode.ts';
 import { handleApplicationLevelHotkeys } from './utils/keyEventUtils.ts';
+import { api } from './services/api.ts';
+import { stripDatasetCache } from './utils/annotationCachingUtils.ts';
 
 const DEFAULT_ANNOTATIONS_SET_NAME = 'annotations';
 
@@ -20,6 +23,7 @@ enum ModalState {
   DEBUG = 'DEBUG',
   CHAT = 'CHAT',
   COMING_SOON = 'COMING_SOON',
+  SAVE_AS = 'SAVE_AS',
 }
 
 function AppContent() {
@@ -41,6 +45,7 @@ function AppContent() {
   const [useCachedResponses, setUseCachedResponses] = useState(false);
   const [currentAnnotationSetName, setCurrentAnnotationSetName] = useState(DEFAULT_ANNOTATIONS_SET_NAME);
   const [currentDatasetName, setCurrentDatasetName] = useState('');
+  const [saveError, setSaveError] = useState<string | undefined>();
 
   const handleDatasetChange = async (name: string) => {
     setCurrentDatasetName(name);
@@ -53,6 +58,10 @@ function AppContent() {
   const handleOpenComingSoonModal = () => { setModalState(ModalState.COMING_SOON); };
   const handleOpenChatModal = () => { setModalState(ModalState.CHAT); };
   const handleOpenDebugModal = () => { setModalState(ModalState.DEBUG); };
+  const handleOpenSaveAsModal = () => {
+    setSaveError(undefined);
+    setModalState(ModalState.SAVE_AS);
+  };
 
   const handleToggleHighlights = () => {
     setIsHighlightsVisible(!isHighlightsVisible);
@@ -71,6 +80,20 @@ function AppContent() {
 
   const handleToggleCachedResponses = () => {
     setUseCachedResponses(!useCachedResponses);
+  };
+
+  const handleSaveAs = async (datasetName: string, annotationsName: string) => {
+    try {
+      const dataset = stripDatasetCache(state.dataset);
+      await api.saveDataset({
+        dataset,
+        datasetName,
+        annotationsName,
+      });
+      handleCloseModal();
+    } catch (error) {
+      setSaveError(error instanceof Error ? error.message : 'Failed to save annotations');
+    }
   };
 
   const isModalOpen = useMemo(() => {
@@ -114,6 +137,15 @@ function AppContent() {
         return <DebugInfo />;
       case ModalState.COMING_SOON:
         return <ComingSoon />;
+      case ModalState.SAVE_AS:
+        return (
+          <SaveAsDialogue
+            currentDatasetName={currentDatasetName}
+            onSave={handleSaveAs}
+            onCancel={handleCloseModal}
+            error={saveError}
+          />
+        );
       default:
         return null;
     }
@@ -128,6 +160,8 @@ function AppContent() {
         return 'debug-info';
       case ModalState.COMING_SOON:
         return 'coming-soon';
+      case ModalState.SAVE_AS:
+        return 'save-as';
       default:
         return '';
     }
@@ -158,6 +192,7 @@ function AppContent() {
         onToggleAnnotationsPanel={handleToggleAnnotationsPanel}
         onOpenDebug={handleOpenDebugModal}
         onToggleCachedResponses={handleToggleCachedResponses}
+        onOpenSaveAs={handleOpenSaveAsModal}
         isHighlightsVisible={isHighlightsVisible}
         isAnnotationsPanelVisible={isAnnotationsPanelVisible}
         useCachedResponses={useCachedResponses}

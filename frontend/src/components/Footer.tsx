@@ -6,6 +6,7 @@ interface FooterProps {
   onToggleAnnotationsPanel: () => void;
   onOpenDebug: () => void;
   onToggleCachedResponses: () => void;
+  onOpenSaveAs: () => void;
   isHighlightsVisible: boolean;
   isAnnotationsPanelVisible: boolean;
   currentAnnotationSetName: string;
@@ -20,6 +21,7 @@ export const Footer: React.FC<FooterProps> = ({
   onToggleAnnotationsPanel,
   onOpenDebug,
   onToggleCachedResponses,
+  onOpenSaveAs,
   isHighlightsVisible,
   isAnnotationsPanelVisible,
   currentAnnotationSetName,
@@ -44,6 +46,7 @@ export const Footer: React.FC<FooterProps> = ({
       <button id="hide-annotations-panel" onClick={onToggleAnnotationsPanel}>
         {isAnnotationsPanelVisible ? "Hide Annotations Panel" : "Show Annotations Panel"}
       </button>
+      <button id="save-button" onClick={onOpenSaveAs}>Save</button>
       <button id="show-debug-info" onClick={onOpenDebug}>Show Debug Info</button>
       <div id="annotations-set-selector-container" className={hasMultipleSets ? '' : 'hidden'}>
         <label htmlFor="annotations-set-selector">Annotations Set:</label>

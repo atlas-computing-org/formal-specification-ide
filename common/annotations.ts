@@ -41,12 +41,6 @@ export interface Dataset<T extends TextRange = TextRange> {
   annotations: Annotations<T>;
 }
 
-export interface MultiAnnotationsDataset<T extends TextRange = TextRange> {
-  lhsText: string;
-  rhsText: string;
-  annotations: AnnotationSets<T>;
-}
-
 export type TextRangeWithText = TextRange & {
   text: string;
 };

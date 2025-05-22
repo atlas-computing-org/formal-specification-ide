@@ -16,6 +16,10 @@ html, body, #root {
   font-family: Arial, sans-serif;
 }
 
+button, select {
+  cursor: pointer;
+}
+
 /***************************************************************************
  * Common
  **************************************************************************/
@@ -474,4 +478,49 @@ button {
   50% {
     transform: translateY(-4px);
   }
+}
+
+/***************************************************************************
+ * Save-As Dialogue
+ **************************************************************************/
+
+.modal-content.save-as {
+  width: 400px;
+}
+
+.save-as-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.save-as-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.save-as-form label {
+  font-weight: bold;
+}
+
+.save-as-form input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.save-as-form .button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.save-as-form .error-message {
+  color: #ff0000;
+  background-color: #ff000011;
+  padding: 8px;
+  border-radius: 4px;
+  margin-bottom: 16px;
 }
