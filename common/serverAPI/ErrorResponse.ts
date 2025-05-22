@@ -6,5 +6,5 @@ export interface ErrorResponse {
 }
 
 export function isErrorResponse(response: any): response is ErrorResponse {
-  return "error" in response;
+  return !!response && "error" in response;
 }

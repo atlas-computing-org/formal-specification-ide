@@ -5,6 +5,7 @@ import { chatAboutAnnotationsHandler } from './endpoints/chatAboutAnnotations.ts
 import { generateAnnotationsHandler } from './endpoints/generateAnnotations.ts';
 import { getDatasetNamesHandler } from './endpoints/getDatasetNames.ts';
 import { getDatasetHandler } from './endpoints/getDataset.ts';
+import { saveDatasetHandler } from './endpoints/saveDataset.ts';
 import { getLogger } from './Logger.ts';
 import { SERVER_DATA_DIR } from './util/fileUtils.ts';
 import { Counter } from '@common/util/Counter.ts';
@@ -42,6 +43,7 @@ const getRoutes: Record<string, RequestHandler<any, any>> = {
 const postRoutes: Record<string, RequestHandler<any, any>> = {
   '/generate-annotations': generateAnnotationsHandler,
   '/chat-with-assistant': chatAboutAnnotationsHandler,
+  '/save-dataset': saveDatasetHandler,
 };
 
 // Register routes
@@ -70,3 +72,5 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 app.listen(PORT, () => {
   logger.info(`Server running at http://localhost:${PORT}`);
 });
+
+

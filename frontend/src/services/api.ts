@@ -4,13 +4,23 @@ import { GenerateAnnotationsRequest, GenerateAnnotationsResponse }
   from '@common/serverAPI/generateAnnotationsAPI.ts';
 import { ChatAboutAnnotationsRequest, ChatAboutAnnotationsResponse }
   from '@common/serverAPI/chatAboutAnnotationsAPI.ts';
+import { SaveDatasetRequest, SaveDatasetResponse }
+  from '@common/serverAPI/saveDatasetAPI.ts';
+import { ErrorResponse } from '@common/serverAPI/ErrorResponse.ts';
 
 export const SERVER_BASE_URL = "http://localhost:3001";
 
 const httpClient = {
   get: async <R>(endpoint: string): Promise<R> => {
     const response = await fetch(`${SERVER_BASE_URL}${endpoint}`);
-    if (!response.ok) throw new Error('API request failed');
+    if (!response.ok) {
+      let error = 'API request failed';
+      try {
+        const errorData = await response.json() as ErrorResponse;
+        error = errorData.error;
+      } catch (e) {}
+      throw new Error(error);
+    }
     return response.json();
   },
   post: async <Q, R>(endpoint: string, data: Q): Promise<R> => {
@@ -19,7 +29,17 @@ const httpClient = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     });
-    if (!response.ok) throw new Error('API request failed');
+    if (!response.ok) {
+      let error = 'API request failed';
+      try {
+        const errorData = await response.json() as ErrorResponse;
+        error = errorData.error;
+      } catch (e) {}
+      throw new Error(error);
+    }
+    if (response.status === 204 || response.headers.get('content-length') === '0') {
+      return undefined as R;
+    }
     return response.json();
   }
 };
@@ -36,4 +56,7 @@ export const api = {
 
   chatAboutAnnotations: (request: ChatAboutAnnotationsRequest) =>
     httpClient.post<ChatAboutAnnotationsRequest, ChatAboutAnnotationsResponse>('/chat-with-assistant', request),
+
+  saveDataset: (request: SaveDatasetRequest) =>
+    httpClient.post<SaveDatasetRequest, SaveDatasetResponse>('/save-dataset', request),
 }; 
