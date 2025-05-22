@@ -1,60 +1,18 @@
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { chatGraphInvoke } from "../agents/graphs/chatGraph.ts";
 import { Logger } from '../Logger.ts';
-import { Counter } from '@common/util/Counter.ts';
 import { ChatAboutAnnotationsRequest, ChatAboutAnnotationsResponse } from "@common/serverAPI/chatAboutAnnotationsAPI.ts";
+import { validateRequest } from "./endpointUtils.ts";
 
-export function chatAboutAnnotationsHandler(requestCounter: Counter, logger: Logger) {
-  return async (req: Request<{}, {}, ChatAboutAnnotationsRequest>, res: Response<ChatAboutAnnotationsResponse>): Promise<void> => {
-    const { userInput, lhsText, rhsText, annotations, sessionId } = req.body;
+export const chatAboutAnnotationsHandler = async (req: Request<{}, {}, ChatAboutAnnotationsRequest>, requestLogger: Logger): Promise<ChatAboutAnnotationsResponse> => {
+  const { userInput, lhsText, rhsText, annotations, sessionId } = req.body;
 
-    const requestId = requestCounter.next();
-    const requestLogger = logger.withMessagePrefix(`POST /chat-with-assistant (${requestId}): `);
+  requestLogger.debug(`Request body: ${JSON.stringify(req.body, null, 2)}`);
 
-    requestLogger.info("REQUEST RECEIVED.");
-    requestLogger.debug(`Request body: ${JSON.stringify(req.body, null, 2)}`);
+  validateRequest(userInput, "userInput is required.");
+  validateRequest(lhsText, "lhsText is required.");
+  validateRequest(rhsText, "rhsText is required.");
+  validateRequest(annotations, "annotations is required.");
 
-    if (!userInput) {
-      const error = "userInput is required.";
-      requestLogger.error(`INVALID REQUEST: ${error}`);
-      res.status(400).send({ error });
-      return;
-    }
-
-    if (!lhsText) {
-      const error = "lhsText is required.";
-      requestLogger.error(`INVALID REQUEST: ${error}`);
-      res.status(400).send({ error });
-      return;
-    }
-
-    if (!rhsText) {
-      const error = "rhsText is required.";
-      requestLogger.error(`INVALID REQUEST: ${error}`);
-      res.status(400).send({ error });
-      return;
-    }
-
-    if (!annotations) {
-      const error = "annotations is required.";
-      requestLogger.error(`INVALID REQUEST: ${error}`);
-      res.status(400).send({ error });
-      return;
-    }
-
-    try {
-      const response: ChatAboutAnnotationsResponse = await chatGraphInvoke(userInput, lhsText, rhsText, annotations, sessionId, logger);
-      if ("error" in response) {
-        requestLogger.error(`REQUEST FAILED: ${response.error}`);
-        res.status(400).send(response);
-      } else {
-        requestLogger.debug(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
-        res.json(response);
-      }
-    } catch (e) {
-      const error = `Error chatting with assistant. ${e}`;
-      requestLogger.error(`REQUEST FAILED: ${error}`);
-      res.status(400).send({ error });
-    }
-  }
+  return await chatGraphInvoke(userInput, lhsText, rhsText, annotations, sessionId, requestLogger);
 }

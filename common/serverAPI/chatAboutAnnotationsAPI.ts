@@ -1,5 +1,5 @@
 import { Annotations, TextRange } from "@common/annotations.ts";
-import { ErrorResponseWithDebugInfo } from "./ErrorResponseWithDebugInfo.ts";
+import { ErrorResponse } from "./ErrorResponse.ts";
 
 export interface ChatAboutAnnotationsRequest {
   userInput: string;
@@ -13,4 +13,4 @@ export interface ChatAboutAnnotationsSuccessResponse {
   data: string;
 }
 
-export type ChatAboutAnnotationsResponse = ChatAboutAnnotationsSuccessResponse | ErrorResponseWithDebugInfo;
+export type ChatAboutAnnotationsResponse = ChatAboutAnnotationsSuccessResponse | ErrorResponse;

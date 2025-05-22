@@ -1,54 +1,17 @@
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { annotateGraphInvoke } from "../agents/graphs/annotateGraph.ts";
 import { Logger } from '../Logger.ts';
-import { Counter } from '@common/util/Counter.ts';
-import { GenerateAnnotationsRequest, GenerateAnnotationsResponse } from "@common/serverAPI/generateAnnotationsAPI.ts";
+import { GenerateAnnotationsRequest, GenerateAnnotationsResponse  } from "@common/serverAPI/generateAnnotationsAPI.ts";
+import { validateRequest } from "./endpointUtils.ts";
 
-export function generateAnnotationsHandler(requestCounter: Counter, logger: Logger) {
-  return async (req: Request<{}, {}, GenerateAnnotationsRequest>, res: Response<GenerateAnnotationsResponse>): Promise<void> => {
-    const { lhsText, rhsText, currentAnnotations, useDemoCache } = req.body;
+export const generateAnnotationsHandler = async (req: Request<{}, {}, GenerateAnnotationsRequest>, requestLogger: Logger): Promise<GenerateAnnotationsResponse> => {
+  const { lhsText, rhsText, currentAnnotations, useDemoCache } = req.body;
 
-    const requestId = requestCounter.next();
-    const requestLogger = logger.withMessagePrefix(`POST /generate-annotations (${requestId}): `);
+  requestLogger.debug(`Request body: ${JSON.stringify(req.body, null, 2)}`);
 
-    requestLogger.info("REQUEST RECEIVED.");
-    requestLogger.debug(`Request body: ${JSON.stringify(req.body, null, 2)}`);
+  validateRequest(lhsText, "lhsText is required.");
+  validateRequest(rhsText, "rhsText is required.");
+  validateRequest(currentAnnotations, "currentAnnotations is required.");
 
-    if (!lhsText) {
-      const error = "lhsText is required.";
-      requestLogger.error(`INVALID REQUEST: ${error}`);
-      res.status(400).send({ error });
-      return;
-    }
-
-    if (!rhsText) {
-      const error = "rhsText is required.";
-      requestLogger.error(`INVALID REQUEST: ${error}`);
-      res.status(400).send({ error });
-      return;
-    }
-
-    if (!currentAnnotations) {
-      const error = "currentAnnotations is required.";
-      requestLogger.error(`INVALID REQUEST: ${error}`);
-      res.status(400).send({ error });
-      return;
-    }
-
-    try {
-      const response : GenerateAnnotationsResponse = await annotateGraphInvoke(lhsText, rhsText, currentAnnotations, useDemoCache, logger);
-      if ("error" in response) {
-        requestLogger.error(`REQUEST FAILED: ${response.error}`);
-        res.status(400).send(response);
-      } else {
-        requestLogger.debug(`RESPONSE: ${JSON.stringify(response, null, 2)}`);
-        res.json(response);
-      }
-
-    } catch (e) {
-      const error = `Error generating annotations. ${e}`;
-      requestLogger.error(`REQUEST FAILED: ${error}`);
-      res.status(400).send({ error });
-    }
-  }
+  return await annotateGraphInvoke(lhsText, rhsText, currentAnnotations, useDemoCache, requestLogger);
 }
