@@ -1,7 +1,5 @@
 import Fuse from 'fuse.js';
 import { Annotations, LabelType, TextMapping, TextRange } from "@common/annotations.ts";
-import { GenerateAnnotationsResponse } from '@common/serverAPI/generateAnnotationsAPI.ts';
-import { ChatAboutAnnotationsSuccessResponse } from '@common/serverAPI/chatAboutAnnotationsAPI.ts';
 import { Logger } from "../Logger.ts";
 
 type ModelAnnotation = {
@@ -134,8 +132,8 @@ export const decodeAnnotationsFromModelFormat = (modelAnnotations: ModelAnnotati
   return splitMergedAnnotations(indexedAnnotations);
 }
 
-export const encodeAnnotationsInModelFormat = (currentAnnotations: Annotations, lhsText: string, rhsText: string, logger: Logger): ModelAnnotation[] => {
-  const indexedAnnotations = mergeAnnotations(currentAnnotations);
+export const encodeAnnotationsInModelFormat = (annotations: Annotations, lhsText: string, rhsText: string, logger: Logger): ModelAnnotation[] => {
+  const indexedAnnotations = mergeAnnotations(annotations);
   return indexedAnnotations.map(a => encodeModelAnnotation(a, lhsText, rhsText, logger));
 }
 
@@ -175,8 +173,8 @@ export const validateJSONAnnotations = (annotations: any) => {
   });
 };
 
-export const makeSystemData = (lhsText: string, rhsText: string, currentAnnotations: Annotations, logger: Logger): string => {
-  const encodedAnnotations = encodeAnnotationsInModelFormat(currentAnnotations, lhsText, rhsText, logger);
+export const makeSystemData = (lhsText: string, rhsText: string, annotations: Annotations, logger: Logger): string => {
+  const encodedAnnotations = encodeAnnotationsInModelFormat(annotations, lhsText, rhsText, logger);
 
   const userPrompt =
 `### LHS TEXT

@@ -1,0 +1,21 @@
+{
+  "imports": {
+    "@common/": "./common/",
+    "fs": "node:fs",
+    "process": "node:process",
+    "path": "node:path",
+    "url": "node:url",
+    "express": "npm:express"
+  },
+  "compilerOptions": {
+    "strict": true
+  },
+  "nodeModulesDir": "auto",
+  "unstable": [
+    "bare-node-builtins",
+    "byonm",
+    "sloppy-imports",
+    "unsafe-proto"
+  ]
+}
+
