@@ -72,7 +72,7 @@ const decodeModelAnnotation = (annotation: ModelAnnotation, lhsText: string, rhs
           baseAnnotation;
 };
 
-const encodeModelAnnotation = (annotation: MergedAnnotation, lhsText: string, rhsText: string, logger: Logger): ModelAnnotation => {
+const encodeModelAnnotation = (annotation: MergedAnnotation, lhsText: string, rhsText: string, _logger: Logger): ModelAnnotation => {
   const { description, lhsRanges, rhsRanges, isError, isWarning } = annotation;
 
   // Function to extract the text from the given ranges

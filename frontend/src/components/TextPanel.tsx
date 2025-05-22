@@ -131,7 +131,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
     return containerStartIndex + offset;
   }, []);
 
-  const handleMouseUp = useCallback((e: React.MouseEvent) => {
+  const handleMouseUp = useCallback((_e: React.MouseEvent) => {
     if (isAnnotationMode) {
       const selection = window.getSelection();
       if (!selection || selection.isCollapsed) {

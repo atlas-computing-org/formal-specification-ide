@@ -28,8 +28,8 @@ enum ModalState {
 
 function AppContent() {
   const { state } = useAppContext();
-  const { datasetNames, loadDatasetNames, loading: datasetNamesLoading } = useDatasetNames();
-  const { generateAnnotations, useAnnotationsSet, loadDataset, loading: datasetLoading } = useDataset();
+  const { datasetNames, loadDatasetNames, loading: _datasetNamesLoading } = useDatasetNames();
+  const { generateAnnotations, useAnnotationsSet, loadDataset, loading: _datasetLoading } = useDataset();
   const {
     isAnnotationMode,
     selectedRanges,
