@@ -1,5 +1,5 @@
 import winston from 'winston';
-import Transport from 'winston-transport';
+import Transport, { TransportStreamOptions } from 'winston-transport';
 import { promises as fs } from 'fs';
 import { getCurrentTimestampString } from '@common/util/timeUtils.ts';
 
@@ -160,10 +160,10 @@ class DefaultLogger implements Logger {
 
 // Custom notebook transport
 class NotebookTransport extends Transport {
-  constructor(opts) {
+  constructor(opts: TransportStreamOptions) {
     super(opts);
   }
-  override log(info, callback) {
+  override log(info: any, callback: () => void) {
     console.log(info.message);
     callback();
   }

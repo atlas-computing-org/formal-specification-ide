@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "type-check": "tsc --noEmit",
+    "dev-skip-checks": "vite",
+    "dev": "npm run type-check && npm run dev-skip-checks",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "npx tsx server/src/server.ts"
+    "start-skip-checks": "npx tsx server/src/server.ts",
+    "start": "npm run type-check && npm run start-skip-checks"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",

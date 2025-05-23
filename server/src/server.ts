@@ -58,7 +58,7 @@ Object.entries(postRoutes).forEach(([path, handler]) => {
 app.use(express.static('public'));
 
 // Error handling middleware
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   if (err.type === 'entity.too.large') {
     logger.error(`Payload too large error: ${err.message}`);
     res.status(413).json({ error: "Payload too large" });
