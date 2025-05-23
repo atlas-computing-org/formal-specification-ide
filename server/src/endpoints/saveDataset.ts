@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { SaveDatasetRequest } from '@common/serverAPI/saveDatasetAPI.ts';
+import { SaveDatasetRequest, SaveDatasetSuccessResponse } from '@common/serverAPI/saveDatasetAPI.ts';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import { Logger } from '../Logger.ts';
@@ -22,7 +22,7 @@ const validateDatasetDirectoryExists = async (datasetDir: string, errorMessage: 
   }
 }
 
-export const saveDatasetHandler = async (req: Request<{}, {}, SaveDatasetRequest>, requestLogger: Logger): Promise<void> => {
+export const saveDatasetHandler = async (req: Request<{}, {}, SaveDatasetRequest>, requestLogger: Logger): Promise<SaveDatasetSuccessResponse> => {
     const { dataset, datasetName, annotationsName } = req.body;
 
     requestLogger.debug(`Request body: ${JSON.stringify(req.body, null, 2)}`);
@@ -38,6 +38,7 @@ export const saveDatasetHandler = async (req: Request<{}, {}, SaveDatasetRequest
       // Save only the annotations for now
       const annotationsPath = path.join(datasetDir, `${formatAnnotationsName(annotationsName)}.json`);
       await fs.writeFile(annotationsPath, JSON.stringify(dataset.annotations, null, 2));
+      return { data: {} };
 
     } catch (error) {
       const errorMessage = `Failed to save annotations: ${error instanceof Error ? error.message : String(error)}`;

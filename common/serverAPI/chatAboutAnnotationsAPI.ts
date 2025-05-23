@@ -1,5 +1,6 @@
 import { Annotations, TextRange } from "@common/annotations.ts";
 import { ErrorResponse } from "./ErrorResponse.ts";
+import { SuccessResponse } from "./SuccessResponse.ts";
 
 export interface ChatAboutAnnotationsRequest {
   userInput: string;
@@ -9,8 +10,6 @@ export interface ChatAboutAnnotationsRequest {
   sessionId: string;
 }
 
-export interface ChatAboutAnnotationsSuccessResponse {
-  data: string;
-}
+export type ChatAboutAnnotationsSuccessResponse = SuccessResponse<string>;
 
 export type ChatAboutAnnotationsResponse = ChatAboutAnnotationsSuccessResponse | ErrorResponse;

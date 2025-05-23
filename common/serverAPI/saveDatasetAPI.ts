@@ -1,5 +1,6 @@
 import { Dataset } from "@common/annotations.ts";
 import { ErrorResponse } from "./ErrorResponse.ts";
+import { SuccessResponse } from "./SuccessResponse.ts";
 
 export interface SaveDatasetRequest {
   dataset: Dataset;
@@ -7,4 +8,6 @@ export interface SaveDatasetRequest {
   annotationsName: string;
 }
 
-export type SaveDatasetResponse = undefined | ErrorResponse; 
+export type SaveDatasetSuccessResponse = SuccessResponse<{}>;
+
+export type SaveDatasetResponse = SaveDatasetSuccessResponse | ErrorResponse; 
