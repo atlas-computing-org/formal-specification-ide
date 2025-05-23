@@ -7,6 +7,7 @@ interface HeaderProps {
   onDatasetChange: (name: string) => void;
   onShowComingSoon: () => void;
   onGenerateAnnotations: () => void;
+  onGenerateCategoryLabels: () => void;
   onShowChat: () => void;
   isAnnotationMode: boolean;
   onSetAnnotationMode: (isAnnotationMode: boolean) => void;
@@ -19,6 +20,7 @@ export const Header: React.FC<HeaderProps> = ({
   onDatasetChange,
   onShowComingSoon,
   onGenerateAnnotations,
+  onGenerateCategoryLabels,
   onSetAnnotationMode,
   onShowChat,
   isAnnotationMode,
@@ -54,6 +56,7 @@ export const Header: React.FC<HeaderProps> = ({
       <button id="slice-text" onClick={onShowComingSoon}><i className="fas fa-scissors"></i>Slice Documentation</button>
       <button id="autoformalize" onClick={onShowComingSoon}><i className="fas fa-atom"></i>Autoformalize</button>
       <button id="generate-annotations" onClick={onGenerateAnnotations}><i className="fas fa-file-pen"></i>Generate Annotations</button>
+      <button id="generate-category-labels" onClick={onGenerateCategoryLabels}><i className="fas fa-tags"></i>Categorize</button>
       <button id="manually-annotate" onClick={handleToggleAnnotationMode}>
         <i className="fas fa-pencil"></i>{isAnnotationMode ? 'Cancel Annotation' : 'Annotate'}
       </button>

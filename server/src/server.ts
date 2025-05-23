@@ -3,6 +3,7 @@ import cors from 'cors';
 import express, { Request, Response, NextFunction } from 'express';
 import { chatAboutAnnotationsHandler } from './endpoints/chatAboutAnnotations.ts';
 import { generateAnnotationsHandler } from './endpoints/generateAnnotations.ts';
+import { generateCategoryLabelsHandler } from './endpoints/generateCategoryLabels.ts';
 import { getDatasetNamesHandler } from './endpoints/getDatasetNames.ts';
 import { getDatasetHandler } from './endpoints/getDataset.ts';
 import { saveDatasetHandler } from './endpoints/saveDataset.ts';
@@ -42,6 +43,7 @@ const getRoutes: Record<string, RequestHandler<any, any>> = {
 // POST routes
 const postRoutes: Record<string, RequestHandler<any, any>> = {
   '/generate-annotations': generateAnnotationsHandler,
+  '/generate-category-labels': generateCategoryLabelsHandler,
   '/chat-with-assistant': chatAboutAnnotationsHandler,
   '/save-dataset': saveDatasetHandler,
 };

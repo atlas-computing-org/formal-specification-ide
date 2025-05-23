@@ -29,7 +29,7 @@ enum ModalState {
 function AppContent() {
   const { state } = useAppContext();
   const { datasetNames, loadDatasetNames, loading: _datasetNamesLoading } = useDatasetNames();
-  const { generateAnnotations, useAnnotationsSet, loadDataset, loading: _datasetLoading } = useDataset();
+  const { generateAnnotations, generateCategoryLabels, useAnnotationsSet, loadDataset, loading: _datasetLoading } = useDataset();
   const {
     isAnnotationMode,
     selectedRanges,
@@ -53,6 +53,7 @@ function AppContent() {
   };
 
   const handleGenerateAnnotations = async () => { await generateAnnotations(useCachedResponses); };
+  const handleGenerateCategoryLabels = async () => { await generateCategoryLabels(); };
 
   const handleCloseModal = () => { setModalState(ModalState.CLOSED); };
   const handleOpenComingSoonModal = () => { setModalState(ModalState.COMING_SOON); };
@@ -175,6 +176,7 @@ function AppContent() {
         onDatasetChange={handleDatasetChange}
         onShowComingSoon={handleOpenComingSoonModal}
         onGenerateAnnotations={handleGenerateAnnotations}
+        onGenerateCategoryLabels={handleGenerateCategoryLabels}
         onSetAnnotationMode={handleSetAnnotationMode}
         onShowChat={handleOpenChatModal}
         isAnnotationMode={isAnnotationMode}
