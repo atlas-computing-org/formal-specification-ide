@@ -7,7 +7,7 @@ import { Annotation, messagesStateReducer } from "@langchain/langgraph";
 import { Document } from "langchain/document";
 import { Logger } from "../Logger.ts";
 import { Annotations, Direction } from "@common/annotations.ts";
-import { DebugInfo } from "@common/DebugInfo.ts";
+import { DebugInfo } from "@common/serverAPI/DebugInfo.ts";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
 import { OpenAIEmbeddings } from "@langchain/openai";
 

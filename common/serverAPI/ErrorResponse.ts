@@ -1,4 +1,4 @@
-import { DebugInfo } from "@common/DebugInfo.ts";
+import { DebugInfo } from "@common/serverAPI/DebugInfo.ts";
 
 export interface ErrorResponse {
   error: string;
