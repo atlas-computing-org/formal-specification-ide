@@ -7,6 +7,7 @@ import { storeBlocksNode } from "../nodes/storeBlocksNode.ts";
 import { blockMappingsNode } from "../nodes/blockMappingsNode.ts";
 import { summarizeBlocksNode } from "../nodes/summarizeBlocksNode.ts";
 import { Direction, TextRange } from "@common/annotations.ts";
+import { splitTextBySeparatorRegex } from "../../util/textUtils.ts";
 
 // Define a new graph
 const workflow = new StateGraph(StateInfo)
@@ -34,7 +35,7 @@ const selectionToBlocks = (text: string, selection: TextRange[]): Document[] => 
 
 export async function blockMappingsGraphInvoke(lhsText: string, rhsText: string, selection: TextRange[], selectionSide: Direction, logger: Logger) {
   if (selectionSide === "rhs") {
-    const rhsBlocks = selectionToBlocks(rhsText, selection);
+    const rhsBlocks = selection.length > 0 ? selectionToBlocks(rhsText, selection) : splitTextBySeparatorRegex(rhsText);
     const output = await blockMappingsGraph.invoke({ lhsText, rhsText, rhsBlocks, 
       blockMappingsQuerySide: selectionSide, 
       splitTextLHS: true, 
@@ -43,7 +44,7 @@ export async function blockMappingsGraphInvoke(lhsText: string, rhsText: string,
       logger });
     return output.newAnnotations;
   } else {
-    const lhsBlocks = selectionToBlocks(lhsText, selection);
+    const lhsBlocks = selection.length > 0 ? selectionToBlocks(lhsText, selection) : splitTextBySeparatorRegex(lhsText);
     const output = await blockMappingsGraph.invoke({ lhsText, rhsText, lhsBlocks, 
       blockMappingsQuerySide: selectionSide, 
       splitTextRHS: true, 
