@@ -1,0 +1,1792 @@
+{
+  "mappings": [
+    {
+      "description": "Brief introduction to the topic.",
+      "rhsRanges": [
+        {
+          "start": 6272,
+          "end": 6542
+        },
+        {
+          "start": 0,
+          "end": 21
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 0,
+          "end": 18
+        }
+      ]
+    },
+    {
+      "description": "X3DH protocol for secure authenticated key exchange with forward secrecy.",
+      "rhsRanges": [
+        {
+          "start": 23,
+          "end": 37
+        },
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 20,
+          "end": 293
+        }
+      ]
+    },
+    {
+      "description": "Key exchange protocol for secure asynchronous messaging.",
+      "rhsRanges": [
+        {
+          "start": 23,
+          "end": 37
+        },
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 295,
+          "end": 568
+        }
+      ]
+    },
+    {
+      "description": "Brief overview of foundational concepts and terminology.",
+      "rhsRanges": [
+        {
+          "start": 0,
+          "end": 21
+        },
+        {
+          "start": 6272,
+          "end": 6542
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 570,
+          "end": 589
+        }
+      ]
+    },
+    {
+      "description": "X3DH protocol parameters for secure key exchange.",
+      "rhsRanges": [
+        {
+          "start": 23,
+          "end": 37
+        },
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 591,
+          "end": 615
+        }
+      ]
+    },
+    {
+      "description": "X3DH requires parameter selection for secure application implementation.",
+      "rhsRanges": [
+        {
+          "start": 23,
+          "end": 37
+        },
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 617,
+          "end": 677
+        }
+      ]
+    },
+    {
+      "description": "Cryptographic parameters for X25519/X448 curves with hash functions.",
+      "rhsRanges": [
+        {
+          "start": 23,
+          "end": 37
+        },
+        {
+          "start": 1803,
+          "end": 1986
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 679,
+          "end": 872
+        }
+      ]
+    },
+    {
+      "description": "X25519 curve, SHA-512 hash, and \"MyProtocol\" info example.",
+      "rhsRanges": [
+        {
+          "start": 23,
+          "end": 37
+        },
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 874,
+          "end": 974
+        }
+      ]
+    },
+    {
+      "description": "X25519/X448 public key encoding with curve type and u-coordinate.",
+      "rhsRanges": [
+        {
+          "start": 23,
+          "end": 37
+        },
+        {
+          "start": 738,
+          "end": 1027
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 976,
+          "end": 1282
+        }
+      ]
+    },
+    {
+      "description": "Explanation of cryptographic symbols and terminology.",
+      "rhsRanges": [
+        {
+          "start": 1029,
+          "end": 1336
+        },
+        {
+          "start": 23,
+          "end": 37
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 1284,
+          "end": 1315
+        }
+      ]
+    },
+    {
+      "description": "Key exchange protocol using public keys and signatures.",
+      "rhsRanges": [
+        {
+          "start": 6941,
+          "end": 6950
+        },
+        {
+          "start": 23,
+          "end": 37
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 1317,
+          "end": 1354
+        }
+      ]
+    },
+    {
+      "description": "Definitions of cryptographic operations for secure communication.",
+      "rhsRanges": [
+        {
+          "start": 23,
+          "end": 37
+        },
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 1356,
+          "end": 2495
+        }
+      ]
+    },
+    {
+      "description": "Defines different roles and their responsibilities in the system.",
+      "rhsRanges": [
+        {
+          "start": 1803,
+          "end": 1986
+        },
+        {
+          "start": 4973,
+          "end": 5026
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 2497,
+          "end": 2511
+        }
+      ]
+    },
+    {
+      "description": "X3DH protocol connects Alice and Bob through a server.",
+      "rhsRanges": [
+        {
+          "start": 23,
+          "end": 37
+        },
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 2513,
+          "end": 2580
+        }
+      ]
+    },
+    {
+      "description": "Secure asynchronous communication protocol with server-assisted key exchange.",
+      "rhsRanges": [
+        {
+          "start": 5028,
+          "end": 5131
+        },
+        {
+          "start": 3507,
+          "end": 3924
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 2582,
+          "end": 3198
+        }
+      ]
+    },
+    {
+      "description": "Server provides functions for Alice and Bob in simplified system.",
+      "rhsRanges": [
+        {
+          "start": 5028,
+          "end": 5131
+        },
+        {
+          "start": 4973,
+          "end": 5026
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 3200,
+          "end": 3373
+        }
+      ]
+    },
+    {
+      "description": "Keys are unique identifiers for database records.",
+      "rhsRanges": [
+        {
+          "start": 620,
+          "end": 735
+        },
+        {
+          "start": 1676,
+          "end": 1800
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 3375,
+          "end": 3388
+        }
+      ]
+    },
+    {
+      "description": "X3DH protocol uses elliptic curve public keys.",
+      "rhsRanges": [
+        {
+          "start": 6941,
+          "end": 6950
+        },
+        {
+          "start": 23,
+          "end": 37
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 3390,
+          "end": 3441
+        }
+      ]
+    },
+    {
+      "description": "Table defining keys used in cryptographic protocol.",
+      "rhsRanges": [
+        {
+          "start": 2576,
+          "end": 2745
+        },
+        {
+          "start": 3507,
+          "end": 3924
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 3443,
+          "end": 3697
+        }
+      ]
+    },
+    {
+      "description": "Public keys correspond to private keys in cryptographic systems.",
+      "rhsRanges": [
+        {
+          "start": 5028,
+          "end": 5131
+        },
+        {
+          "start": 1676,
+          "end": 1800
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 3699,
+          "end": 3810
+        }
+      ]
+    },
+    {
+      "description": "X3DH protocol requires consistent use of either X25519 or X448 keys.",
+      "rhsRanges": [
+        {
+          "start": 23,
+          "end": 37
+        },
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 3812,
+          "end": 3967
+        }
+      ]
+    },
+    {
+      "description": "X3DH protocol uses long-term and prekeys for secure communication.",
+      "rhsRanges": [
+        {
+          "start": 23,
+          "end": 37
+        },
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 3969,
+          "end": 4395
+        }
+      ]
+    },
+    {
+      "description": "Alice generates new ephemeral key pair for each protocol run.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        },
+        {
+          "start": 5297,
+          "end": 5498
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 4397,
+          "end": 4495
+        }
+      ]
+    },
+    {
+      "description": "X3DH protocol generates shared 32-byte secret key for secure communication.",
+      "rhsRanges": [
+        {
+          "start": 23,
+          "end": 37
+        },
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 4497,
+          "end": 4705
+        }
+      ]
+    },
+    {
+      "description": "X3DH protocol enables secure communication between users.",
+      "rhsRanges": [
+        {
+          "start": 23,
+          "end": 37
+        },
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 4707,
+          "end": 4730
+        }
+      ]
+    },
+    {
+      "description": "Brief overview of section 3.1.",
+      "rhsRanges": [
+        {
+          "start": 6941,
+          "end": 6950
+        },
+        {
+          "start": 23,
+          "end": 37
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 4732,
+          "end": 4749
+        }
+      ]
+    },
+    {
+      "description": "Key exchange protocol with three phases.",
+      "rhsRanges": [
+        {
+          "start": 6941,
+          "end": 6950
+        },
+        {
+          "start": 23,
+          "end": 37
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 4751,
+          "end": 4773
+        }
+      ]
+    },
+    {
+      "description": "Signal protocol establishes secure communication through prekey exchange.",
+      "rhsRanges": [
+        {
+          "start": 5028,
+          "end": 5131
+        },
+        {
+          "start": 5133,
+          "end": 5295
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 4775,
+          "end": 4987
+        }
+      ]
+    },
+    {
+      "description": "Brief explanation of upcoming phases.",
+      "rhsRanges": [
+        {
+          "start": 738,
+          "end": 1027
+        },
+        {
+          "start": 6545,
+          "end": 6938
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 4989,
+          "end": 5033
+        }
+      ]
+    },
+    {
+      "description": "Publishing keys allows others to verify your digital signatures.",
+      "rhsRanges": [
+        {
+          "start": 5028,
+          "end": 5131
+        },
+        {
+          "start": 2576,
+          "end": 2745
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 5035,
+          "end": 5059
+        }
+      ]
+    },
+    {
+      "description": "Bob publishes elliptic curve public keys to server.",
+      "rhsRanges": [
+        {
+          "start": 5028,
+          "end": 5131
+        },
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 5061,
+          "end": 5137
+        }
+      ]
+    },
+    {
+      "description": "Bob's cryptographic keys for secure communication.",
+      "rhsRanges": [
+        {
+          "start": 2576,
+          "end": 2745
+        },
+        {
+          "start": 5028,
+          "end": 5131
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 5139,
+          "end": 5376
+        }
+      ]
+    },
+    {
+      "description": "Bob uploads identity key once, one-time prekeys as needed.",
+      "rhsRanges": [
+        {
+          "start": 5028,
+          "end": 5131
+        },
+        {
+          "start": 5133,
+          "end": 5295
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 5378,
+          "end": 5594
+        }
+      ]
+    },
+    {
+      "description": "Bob periodically uploads new signed prekey and signature.",
+      "rhsRanges": [
+        {
+          "start": 5028,
+          "end": 5131
+        },
+        {
+          "start": 5133,
+          "end": 5295
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 5596,
+          "end": 5788
+        }
+      ]
+    },
+    {
+      "description": "Bob should eventually delete old signed prekey for forward secrecy.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        },
+        {
+          "start": 5028,
+          "end": 5131
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 5790,
+          "end": 6162
+        }
+      ]
+    },
+    {
+      "description": "Initial message guidelines for effective communication.",
+      "rhsRanges": [
+        {
+          "start": 6272,
+          "end": 6542
+        },
+        {
+          "start": 4874,
+          "end": 4971
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 6164,
+          "end": 6200
+        }
+      ]
+    },
+    {
+      "description": "X3DH key agreement protocol for secure communication between parties.",
+      "rhsRanges": [
+        {
+          "start": 5028,
+          "end": 5131
+        },
+        {
+          "start": 23,
+          "end": 37
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 6202,
+          "end": 6333
+        }
+      ]
+    },
+    {
+      "description": "Bob's identity, signed prekey, signature, and optional one-time prekey.",
+      "rhsRanges": [
+        {
+          "start": 2576,
+          "end": 2745
+        },
+        {
+          "start": 3507,
+          "end": 3924
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 6335,
+          "end": 6531
+        }
+      ]
+    },
+    {
+      "description": "Server provides and deletes Bob's one-time prekey if available.",
+      "rhsRanges": [
+        {
+          "start": 5028,
+          "end": 5131
+        },
+        {
+          "start": 5133,
+          "end": 5295
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 6533,
+          "end": 6736
+        }
+      ]
+    },
+    {
+      "description": "Alice verifies prekey signature and generates ephemeral key pair.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        },
+        {
+          "start": 3507,
+          "end": 3924
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 6738,
+          "end": 6895
+        }
+      ]
+    },
+    {
+      "description": "Calculating without one-time prekey in bundle.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        },
+        {
+          "start": 3507,
+          "end": 3924
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 6897,
+          "end": 6962
+        }
+      ]
+    },
+    {
+      "description": "Cryptographic key derivation using multiple Diffie-Hellman exchanges.",
+      "rhsRanges": [
+        {
+          "start": 3507,
+          "end": 3924
+        },
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 6964,
+          "end": 7064
+        }
+      ]
+    },
+    {
+      "description": "Additional DH calculation when bundle contains one-time prekey.",
+      "rhsRanges": [
+        {
+          "start": 3507,
+          "end": 3924
+        },
+        {
+          "start": 5133,
+          "end": 5295
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 7066,
+          "end": 7168
+        }
+      ]
+    },
+    {
+      "description": "Key derivation using multiple Diffie-Hellman exchanges.",
+      "rhsRanges": [
+        {
+          "start": 3507,
+          "end": 3924
+        },
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 7170,
+          "end": 7234
+        }
+      ]
+    },
+    {
+      "description": "DH calculations enable mutual authentication and forward secrecy.",
+      "rhsRanges": [
+        {
+          "start": 6941,
+          "end": 6950
+        },
+        {
+          "start": 23,
+          "end": 37
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 7236,
+          "end": 7393
+        }
+      ]
+    },
+    {
+      "description": "Diffie-Hellman key exchange protocol using modular arithmetic.",
+      "rhsRanges": [
+        {
+          "start": 6941,
+          "end": 6950
+        },
+        {
+          "start": 23,
+          "end": 37
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 7395,
+          "end": 7454
+        }
+      ]
+    },
+    {
+      "description": "Alice deletes ephemeral key and DH outputs after calculating SK.",
+      "rhsRanges": [
+        {
+          "start": 3507,
+          "end": 3924
+        },
+        {
+          "start": 5133,
+          "end": 5295
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 7456,
+          "end": 7537
+        }
+      ]
+    },
+    {
+      "description": "Alice calculates identity data for both parties.",
+      "rhsRanges": [
+        {
+          "start": 5297,
+          "end": 5498
+        },
+        {
+          "start": 3507,
+          "end": 3924
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 7539,
+          "end": 7651
+        }
+      ]
+    },
+    {
+      "description": "Encoding and concatenating two identity keys.",
+      "rhsRanges": [
+        {
+          "start": 6062,
+          "end": 6168
+        },
+        {
+          "start": 5297,
+          "end": 5498
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 7653,
+          "end": 7694
+        }
+      ]
+    },
+    {
+      "description": "Alice can add extra identifying information to AD.",
+      "rhsRanges": [
+        {
+          "start": 5297,
+          "end": 5498
+        },
+        {
+          "start": 5133,
+          "end": 5295
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 7696,
+          "end": 7836
+        }
+      ]
+    },
+    {
+      "description": "Alice sends Bob an initial message.",
+      "rhsRanges": [
+        {
+          "start": 4587,
+          "end": 4871
+        },
+        {
+          "start": 5911,
+          "end": 5994
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 7838,
+          "end": 7889
+        }
+      ]
+    },
+    {
+      "description": "Alice's keys, Bob's prekey identifiers, and encrypted initial message.",
+      "rhsRanges": [
+        {
+          "start": 5297,
+          "end": 5498
+        },
+        {
+          "start": 5133,
+          "end": 5295
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 7891,
+          "end": 8224
+        }
+      ]
+    },
+    {
+      "description": "First ciphertext serves dual roles in post-X3DH communication.",
+      "rhsRanges": [
+        {
+          "start": 23,
+          "end": 37
+        },
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 8226,
+          "end": 8484
+        }
+      ]
+    },
+    {
+      "description": "Alice can use SK for post-X3DH communication with Bob.",
+      "rhsRanges": [
+        {
+          "start": 6941,
+          "end": 6950
+        },
+        {
+          "start": 23,
+          "end": 37
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 8486,
+          "end": 8668
+        }
+      ]
+    },
+    {
+      "description": "Initial message reception process.",
+      "rhsRanges": [
+        {
+          "start": 5800,
+          "end": 5886
+        },
+        {
+          "start": 6272,
+          "end": 6542
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 8670,
+          "end": 8708
+        }
+      ]
+    },
+    {
+      "description": "Bob retrieves keys to establish secure communication with Alice.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        },
+        {
+          "start": 3507,
+          "end": 3924
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 8710,
+          "end": 8966
+        }
+      ]
+    },
+    {
+      "description": "Bob derives shared key and deletes DH values.",
+      "rhsRanges": [
+        {
+          "start": 3507,
+          "end": 3924
+        },
+        {
+          "start": 5996,
+          "end": 6060
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 8968,
+          "end": 9097
+        }
+      ]
+    },
+    {
+      "description": "Bob decrypts initial ciphertext using SK and AD.",
+      "rhsRanges": [
+        {
+          "start": 6062,
+          "end": 6168
+        },
+        {
+          "start": 5297,
+          "end": 5498
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 9099,
+          "end": 9380
+        }
+      ]
+    },
+    {
+      "description": "Bob deletes one-time prekey after successful decryption.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        },
+        {
+          "start": 3507,
+          "end": 3924
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 9382,
+          "end": 9543
+        }
+      ]
+    },
+    {
+      "description": "Bob uses SK for post-X3DH communication with Alice.",
+      "rhsRanges": [
+        {
+          "start": 23,
+          "end": 37
+        },
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 9545,
+          "end": 9712
+        }
+      ]
+    },
+    {
+      "description": "Security considerations for system implementation.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        },
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 9714,
+          "end": 9743
+        }
+      ]
+    },
+    {
+      "description": "Authentication verifies user identity for system access.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        },
+        {
+          "start": 6545,
+          "end": 6938
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 9745,
+          "end": 9768
+        }
+      ]
+    },
+    {
+      "description": "Parties may authenticate identity keys outside the X3DH protocol.",
+      "rhsRanges": [
+        {
+          "start": 6941,
+          "end": 6950
+        },
+        {
+          "start": 23,
+          "end": 37
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 9770,
+          "end": 10082
+        }
+      ]
+    },
+    {
+      "description": "Authentication provides cryptographic guarantee of communication parties' identities.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        },
+        {
+          "start": 6545,
+          "end": 6938
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 10084,
+          "end": 10205
+        }
+      ]
+    },
+    {
+      "description": "Protocol replay attacks reuse captured legitimate messages.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        },
+        {
+          "start": 6545,
+          "end": 6938
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 10207,
+          "end": 10231
+        }
+      ]
+    },
+    {
+      "description": "Replay attacks possible without one-time prekeys.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        },
+        {
+          "start": 6545,
+          "end": 6938
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 10233,
+          "end": 10431
+        }
+      ]
+    },
+    {
+      "description": "Post-X3DH protocols may quickly negotiate new encryption keys.",
+      "rhsRanges": [
+        {
+          "start": 23,
+          "end": 37
+        },
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 10433,
+          "end": 10649
+        }
+      ]
+    },
+    {
+      "description": "Possible mitigations include blacklisting messages and replacing prekeys faster.",
+      "rhsRanges": [
+        {
+          "start": 5028,
+          "end": 5131
+        },
+        {
+          "start": 5133,
+          "end": 5295
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 10651,
+          "end": 10853
+        }
+      ]
+    },
+    {
+      "description": "Replay attacks prevented by nonce and key reuse avoided.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        },
+        {
+          "start": 738,
+          "end": 1027
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 10855,
+          "end": 10884
+        }
+      ]
+    },
+    {
+      "description": "Replayed initial messages cause Bob to derive identical session keys.",
+      "rhsRanges": [
+        {
+          "start": 5996,
+          "end": 6060
+        },
+        {
+          "start": 3507,
+          "end": 3924
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 10886,
+          "end": 11068
+        }
+      ]
+    },
+    {
+      "description": "Protocol must randomize encryption key before sending data.",
+      "rhsRanges": [
+        {
+          "start": 6941,
+          "end": 6950
+        },
+        {
+          "start": 23,
+          "end": 37
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 11070,
+          "end": 11323
+        }
+      ]
+    },
+    {
+      "description": "Encryption key randomization prevents catastrophic key reuse.",
+      "rhsRanges": [
+        {
+          "start": 3507,
+          "end": 3924
+        },
+        {
+          "start": 5028,
+          "end": 5131
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 11325,
+          "end": 11400
+        }
+      ]
+    },
+    {
+      "description": "Deniability allows hiding sensitive information from unauthorized observers.",
+      "rhsRanges": [
+        {
+          "start": 2747,
+          "end": 2984
+        },
+        {
+          "start": 6545,
+          "end": 6938
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 11402,
+          "end": 11422
+        }
+      ]
+    },
+    {
+      "description": "X3DH doesn't provide cryptographic proof of communication.",
+      "rhsRanges": [
+        {
+          "start": 23,
+          "end": 37
+        },
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 11424,
+          "end": 11570
+        }
+      ]
+    },
+    {
+      "description": "Deniable communication protocol prevents third-party verification of message authenticity.",
+      "rhsRanges": [
+        {
+          "start": 3507,
+          "end": 3924
+        },
+        {
+          "start": 5133,
+          "end": 5295
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 11572,
+          "end": 11988
+        }
+      ]
+    },
+    {
+      "description": "Asynchronous protocols lack online deniability when third parties are involved.",
+      "rhsRanges": [
+        {
+          "start": 23,
+          "end": 37
+        },
+        {
+          "start": 5133,
+          "end": 5295
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 11990,
+          "end": 12246
+        }
+      ]
+    },
+    {
+      "description": "Signatures authenticate document origin and verify identity.",
+      "rhsRanges": [
+        {
+          "start": 2747,
+          "end": 2984
+        },
+        {
+          "start": 5133,
+          "end": 5295
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 12248,
+          "end": 12267
+        }
+      ]
+    },
+    {
+      "description": "Prekey signatures prevent weak forward secrecy attacks.",
+      "rhsRanges": [
+        {
+          "start": 3507,
+          "end": 3924
+        },
+        {
+          "start": 5133,
+          "end": 5295
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 12269,
+          "end": 12609
+        }
+      ]
+    },
+    {
+      "description": "Replacing DH authentication with signatures reduces security and deniability.",
+      "rhsRanges": [
+        {
+          "start": 6941,
+          "end": 6950
+        },
+        {
+          "start": 23,
+          "end": 37
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 12611,
+          "end": 12947
+        }
+      ]
+    },
+    {
+      "description": "Key compromise threatens secure communication and requires immediate action.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        },
+        {
+          "start": 3507,
+          "end": 3924
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 12949,
+          "end": 12972
+        }
+      ]
+    },
+    {
+      "description": "Private key compromise severely threatens security despite mitigations.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        },
+        {
+          "start": 3507,
+          "end": 3924
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 12974,
+          "end": 13118
+        }
+      ]
+    },
+    {
+      "description": "Private key compromise enables impersonation and affects security.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        },
+        {
+          "start": 2576,
+          "end": 2745
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 13120,
+          "end": 13341
+        }
+      ]
+    },
+    {
+      "description": "Analysis of potential compromise scenarios.",
+      "rhsRanges": [
+        {
+          "start": 6941,
+          "end": 6950
+        },
+        {
+          "start": 23,
+          "end": 37
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 13343,
+          "end": 13499
+        }
+      ]
+    },
+    {
+      "description": "One-time prekeys enhance security against future key compromises.",
+      "rhsRanges": [
+        {
+          "start": 3507,
+          "end": 3924
+        },
+        {
+          "start": 23,
+          "end": 37
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 13501,
+          "end": 14581
+        }
+      ]
+    },
+    {
+      "description": "Servers must be trusted for secure communication.",
+      "rhsRanges": [
+        {
+          "start": 5028,
+          "end": 5131
+        },
+        {
+          "start": 5133,
+          "end": 5295
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 14583,
+          "end": 14604
+        }
+      ]
+    },
+    {
+      "description": "Malicious server can disrupt communication between users.",
+      "rhsRanges": [
+        {
+          "start": 4973,
+          "end": 5026
+        },
+        {
+          "start": 6272,
+          "end": 6542
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 14606,
+          "end": 14720
+        }
+      ]
+    },
+    {
+      "description": "Server can only limit forward secrecy by withholding one-time prekeys.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        },
+        {
+          "start": 3507,
+          "end": 3924
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 14722,
+          "end": 14992
+        }
+      ]
+    },
+    {
+      "description": "Server should prevent malicious draining of one-time prekeys.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        },
+        {
+          "start": 3507,
+          "end": 3924
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 14994,
+          "end": 15215
+        }
+      ]
+    },
+    {
+      "description": "Identity binding links user identity to authentication credentials.",
+      "rhsRanges": [
+        {
+          "start": 39,
+          "end": 111
+        },
+        {
+          "start": 4973,
+          "end": 5026
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 15217,
+          "end": 15242
+        }
+      ]
+    },
+    {
+      "description": "Authentication doesn't prevent identity misbinding or unknown key share attacks.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        },
+        {
+          "start": 3507,
+          "end": 3924
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 15244,
+          "end": 15361
+        }
+      ]
+    },
+    {
+      "description": "Man-in-the-middle attack using false identity key fingerprints.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        },
+        {
+          "start": 5028,
+          "end": 5131
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 15363,
+          "end": 15600
+        }
+      ]
+    },
+    {
+      "description": "Alice unknowingly sends message to Bob instead of Charlie.",
+      "rhsRanges": [
+        {
+          "start": 4973,
+          "end": 5026
+        },
+        {
+          "start": 6272,
+          "end": 6542
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 15602,
+          "end": 15726
+        }
+      ]
+    },
+    {
+      "description": "Parties can add identifiers to make impersonation harder.",
+      "rhsRanges": [
+        {
+          "start": 39,
+          "end": 111
+        },
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 15728,
+          "end": 16044
+        }
+      ]
+    },
+    {
+      "description": "Protocol cannot reliably prevent identity fraud despite privacy measures.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        },
+        {
+          "start": 23,
+          "end": 37
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 16046,
+          "end": 16349
+        }
+      ]
+    }
+  ],
+  "lhsLabels": [],
+  "rhsLabels": []
+}
