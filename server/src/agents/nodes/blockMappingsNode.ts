@@ -14,8 +14,8 @@ const blockMapping = async (block: Document, vectorStore: MemoryVectorStore): Pr
   const similarBlocks = await vectorStore.similaritySearch(block.pageContent, numMatches);
   return {
     description: block.metadata.description,
-    toRanges: [{ start: block.metadata.start, end: block.metadata.end }],
-    fromRanges: similarBlocks.map(doc => ({ start: doc.metadata.start, end: doc.metadata.end }))
+    fromRanges: [{ start: block.metadata.start, end: block.metadata.end }],
+    toRanges: similarBlocks.map(doc => ({ start: doc.metadata.start, end: doc.metadata.end }))
   };
 };
 
