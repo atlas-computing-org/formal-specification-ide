@@ -20,6 +20,7 @@ export type LabelClickHandler = (params: {
 
 interface AnnotationRowBaseProps {
   isHighlighted: boolean;
+  showCategories: boolean;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
   onDescriptionChange: (newDescription: string) => void;
@@ -51,7 +52,7 @@ function isMappingRowProps(props: AnnotationRowProps): props is MappingRowProps 
 // Component
 export const AnnotationRow: React.FC<AnnotationRowProps> = (props) => {
   const isMappingRow = isMappingRowProps(props);
-  const { item, onMouseEnter, onMouseLeave, onDescriptionChange, isHighlighted, className, dataIndex } = props;
+  const { item, onMouseEnter, onMouseLeave, onDescriptionChange, isHighlighted, className, dataIndex, showCategories } = props;
 
   // State and hooks
   const [editingCell, setEditingCell] = useState<'first' | 'second' | null>(null);
@@ -81,6 +82,7 @@ export const AnnotationRow: React.FC<AnnotationRowProps> = (props) => {
   const getLabelType = () => {
     if (item.isError) return 'error';
     if (item.isWarning) return 'warning';
+    if (showCategories && "category" in item && item.category) return `category-${item.category.toLowerCase()}`;
     return 'default';
   };
 

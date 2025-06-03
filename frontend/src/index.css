@@ -210,57 +210,137 @@ button {
   overflow-x: auto; /* Enable horizontal scrolling */
   overflow-y: auto; /* Enable vertical scrolling */
 }
-/* Underline warnings and errors */
-.text-panel-content > .default {
+.text-panel-content > .has-annotations {
   cursor: pointer;
 }
-.text-panel-content > .warning {
-  cursor: pointer;
+/* Underline warnings and errors */
+.text-panel-content > .max-severity-warning {
   text-decoration: underline;
   text-decoration-color: #f1c23288;
   text-decoration-style: wavy;
 }
-.text-panel-content > .error {
-  cursor: pointer;
+.text-panel-content > .max-severity-error {
   text-decoration: underline;
   text-decoration-color: #ff000088;
   text-decoration-style: wavy;
 }
-/* Normal highlights */
-.text-panel-content > .highlight-default {
-  background-color: #44444426;
+/* Category colors */
+.text-panel-content > .category-preamble {
+  background-color: #57aeff26; /* blue */
 }
-.text-panel-content > .highlight-warning {
-  background-color: #f1c23226;
+.text-panel-content > .category-navigation {
+  background-color: #ffb85726; /* orange */
 }
-.text-panel-content > .highlight-error {
-  background-color: #ff000026;
+.text-panel-content > .category-algorithm {
+  background-color: #57ff5726; /* green */
+}
+.text-panel-content > .category-parameter {
+  background-color: #00cc9926; /* teal */
+}
+.text-panel-content > .category-definition {
+  background-color: #8857ff26; /* purple */
+}
+.text-panel-content > .category-elaboration {
+  background-color: #57ffff26; /* cyan */
+}
+.text-panel-content > .category-diagram {
+  background-color: #ffff5726; /* bright yellow */
+}
+.text-panel-content > .category-intent {
+  background-color: #ff57ae26; /* pink */
+}
+.text-panel-content > .category-pre-condition {
+  background-color: #5757ff26; /* blue-purple */
+}
+.text-panel-content > .category-post-condition {
+  background-color: #ffb85726; /* orange */
+}
+.text-panel-content > .category-preference {
+  background-color: #cc663326; /* brown */
+}
+.text-panel-content > .category-example {
+  background-color: #aa00aa26; /* violet */
+}
+/* NOT in highlight-all mode:
+ * - Active highlights and selections, including category highlights
+ * - Prioritize category highlights over default highlights
+ */
+.text-panel-content > .highlight.default {
+  background-color: #44444426; /* dark gray */
+}
+.text-panel-content > .highlight.category-preamble {
+  background-color: #57aeff55; /* blue */
+}
+.text-panel-content > .highlight.category-navigation {
+  background-color: #ffb85755; /* orange */
+}
+.text-panel-content > .highlight.category-algorithm {
+  background-color: #57ff5755; /* green */
+}
+.text-panel-content > .highlight.category-parameter {
+  background-color: #00cc9955; /* teal */
+}
+.text-panel-content > .highlight.category-definition {
+  background-color: #8857ff55; /* purple */
+}
+.text-panel-content > .highlight.category-elaboration {
+  background-color: #57ffff55; /* cyan */
+}
+.text-panel-content > .highlight.category-diagram {
+  background-color: #ffff5755; /* bright yellow */
+}
+.text-panel-content > .highlight.category-intent {
+  background-color: #ff57ae55; /* pink */
+}
+.text-panel-content > .highlight.category-pre-condition {
+  background-color: #5757ff55; /* blue-purple */
+}
+.text-panel-content > .highlight.category-post-condition {
+  background-color: #ffb85755; /* orange */
+}
+.text-panel-content > .highlight.category-preference {
+  background-color: #cc663355; /* brown */
+}
+.text-panel-content > .highlight.category-example {
+  background-color: #aa00aa55; /* violet */
+}
+.text-panel-content > .highlight.warning {
+  background-color: #f1c23226; /* golden yellow */
+}
+.text-panel-content > .highlight.error {
+  background-color: #ff000026; /* red */
 }
 .text-panel-content > .selected-text {
-  background-color: #00bbff55;
+  background-color: #00bbff55; /* light blue */
 }
-/* Highlight all anotations */
+.text-panel-content > .highlight.selected-text {
+  background-color: #00bbff55; /* light blue */
+}
+/* Highlight-all annotations */
 #text-panels.highlight-all .text-panel-content > .default {
-  background-color: #44444426;
+  background-color: #44444426; /* dark gray */
 }
 #text-panels.highlight-all .text-panel-content > .warning {
-  background-color: #f1c23226;
+  background-color: #f1c23226; /* golden yellow */
 }
 #text-panels.highlight-all .text-panel-content > .error {
-  background-color: #ff000026;
+  background-color: #ff000026; /* red */
 }
-/* Emphasize selected highlights on top of highlight-all */
-#text-panels.highlight-all .text-panel-content > .highlight-default {
-  background-color: #44444455;
+/* Prioritize active highlights and selections over highlight-all */
+#text-panels.highlight-all .text-panel-content > .highlight.default {
+  background-color: #44444455; /* dark gray */
 }
-#text-panels.highlight-all .text-panel-content > .highlight-warning {
-  background-color: #f1c23255;
+#text-panels.highlight-all .text-panel-content > .highlight.warning {
+  background-color: #f1c23255; /* golden yellow */
 }
-#text-panels.highlight-all .text-panel-content > .highlight-error {
-  background-color: #ff000055;
+#text-panels.highlight-all .text-panel-content > .highlight.error {
+  background-color: #ff000055; /* red */
 }
 #text-panels.highlight-all .text-panel-content > .selected-text {
-  background-color: #00bbff55;
+  background-color: #00bbff55; /* light blue */
+}
+#text-panels.highlight-all .text-panel-content > .highlight.selected-text {
+  background-color: #00bbff55; /* light blue */
 }
 
 /***************************************************************************
@@ -314,14 +394,50 @@ button {
   padding: 10px;
   border: 1px solid #ccc;
 }
+#annotations .highlight.category-preamble {
+  background-color: #57aeff26; /* blue */
+}
+#annotations .highlight.category-navigation {
+  background-color: #ffb85726; /* orange */
+}
+#annotations .highlight.category-algorithm {
+  background-color: #57ff5726; /* green */
+}
+#annotations .highlight.category-parameter {
+  background-color: #00cc9926; /* teal */
+}
+#annotations .highlight.category-definition {
+  background-color: #8857ff26; /* purple */
+}
+#annotations .highlight.category-elaboration {
+  background-color: #57ffff26; /* cyan */
+}
+#annotations .highlight.category-diagram {
+  background-color: #ffff5726; /* bright yellow */
+}
+#annotations .highlight.category-intent {
+  background-color: #ff57ae26; /* pink */
+}
+#annotations .highlight.category-pre-condition {
+  background-color: #5757ff26; /* blue-purple */
+}
+#annotations .highlight.category-post-condition {
+  background-color: #ffb85726; /* orange */
+}
+#annotations .highlight.category-preference {
+  background-color: #cc663326; /* brown */
+}
+#annotations .highlight.category-example {
+  background-color: #aa00aa26; /* violet */
+}
 #annotations .highlight.default {
-  background-color: #44444426;
+  background-color: #44444426; /* dark gray */
 }
 #annotations .highlight.warning {
-  background-color: #f1c23226;
+  background-color: #f1c23226; /* golden yellow */
 }
 #annotations .highlight.error {
-  background-color: #ff000026;
+  background-color: #ff000026; /* red */
 }
 #annotations .warning > .description {
   text-decoration: underline;

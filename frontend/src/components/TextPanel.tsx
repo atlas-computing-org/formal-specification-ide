@@ -75,6 +75,7 @@ interface TextPanelPropsBase<T extends LeftTabMode | RightTabMode> {
   isAnnotationMode: boolean;
   onTextSelection: (direction: Direction, range: TextRange) => void;
   selectedRanges: TextRangeWithText[];
+  showCategories: boolean;
   style?: React.CSSProperties;
   className?: string;
 }
@@ -100,7 +101,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
   const { state, updateHighlights } = useAppContext();
   const { dataset, highlights } = state;
   const isLeftPanel = isLeftTextPanelProps(props);
-  const { contentRef, onClickTextMapping, isAnnotationMode, onTextSelection, selectedRanges } = props;
+  const { contentRef, onClickTextMapping, isAnnotationMode, onTextSelection, selectedRanges, showCategories } = props;
 
   const useAnnotationsSlice = useCallback((annotations: AnnotationsWithText, direction: Direction): AnnotationsSlice => {
     return new AnnotationsSliceWrapped(annotations, direction);
@@ -204,6 +205,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                   onClick={handleClick}
+                  showCategories={showCategories}
                 />
               ))}
             </div>
@@ -231,6 +233,7 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                   onClick={handleClick}
+                  showCategories={showCategories}
                 />
               ))}
             </div>
@@ -254,7 +257,8 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
     handleMouseLeave,
     handleMouseUp,
     handleClick,
-    selectedRanges
+    selectedRanges,
+    showCategories
   ]);
 
   const renderTabButton = useCallback((tab: LeftTabMode | RightTabMode) => {

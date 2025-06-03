@@ -7,12 +7,14 @@ interface AnnotationsPanelProps {
   className?: string;
   onMappingClick: MappingClickHandler;
   onLabelClick: LabelClickHandler;
+  showCategories: boolean;
 }
 
 export const AnnotationsPanel: React.FC<AnnotationsPanelProps> = ({ 
   className = '',
   onMappingClick,
   onLabelClick,
+  showCategories,
 }) => {
   const { state, updateDataset, updateHighlights } = useAppContext();
   const { dataset, highlights } = state;
@@ -80,6 +82,7 @@ export const AnnotationsPanel: React.FC<AnnotationsPanelProps> = ({
           key={index}
           item={mapping}
           isHighlighted={highlights.mappings.includes(mapping)}
+          showCategories={showCategories}
           onMouseEnter={() => handleMouseEnter(mapping)}
           onMouseLeave={handleMouseLeave}
           onDescriptionChange={(newDescription) => handleDescriptionChange(mapping, newDescription)}
@@ -99,6 +102,7 @@ export const AnnotationsPanel: React.FC<AnnotationsPanelProps> = ({
           key={index}
           item={label}
           isHighlighted={highlights.lhsLabels.includes(label)}
+          showCategories={showCategories}
           onMouseEnter={() => handleMouseEnter(label)}
           onMouseLeave={handleMouseLeave}
           onDescriptionChange={(newDescription) => handleDescriptionChange(label, newDescription)}
@@ -119,6 +123,7 @@ export const AnnotationsPanel: React.FC<AnnotationsPanelProps> = ({
           key={index}
           item={label}
           isHighlighted={highlights.rhsLabels.includes(label)}
+          showCategories={showCategories}
           onMouseEnter={() => handleMouseEnter(label)}
           onMouseLeave={handleMouseLeave}
           onDescriptionChange={(newDescription) => handleDescriptionChange(label, newDescription)}

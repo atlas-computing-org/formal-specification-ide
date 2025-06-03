@@ -13,6 +13,8 @@ interface FooterProps {
   annotationSetNames: string[];
   onAnnotationSetChange: (name: string) => void;
   useCachedResponses: boolean;
+  showCategories: boolean;
+  onToggleCategories: () => void;
 }
 
 // Component
@@ -28,6 +30,8 @@ export const Footer: React.FC<FooterProps> = ({
   annotationSetNames,
   onAnnotationSetChange,
   useCachedResponses,
+  showCategories,
+  onToggleCategories,
 }) => {
   // Event handlers
   const handleAnnotationSetChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -42,6 +46,9 @@ export const Footer: React.FC<FooterProps> = ({
     <footer>
       <button id="highlight-all-annotations" onClick={onToggleHighlights}>
         {isHighlightsVisible ? "Hide Highlights" : "Highlight All"}
+      </button>
+      <button id="toggle-categories" onClick={onToggleCategories}>
+        {showCategories ? "Hide Categories" : "Show Categories"}
       </button>
       <button id="hide-annotations-panel" onClick={onToggleAnnotationsPanel}>
         {isAnnotationsPanelVisible ? "Hide Annotations Panel" : "Show Annotations Panel"}

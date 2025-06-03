@@ -46,6 +46,7 @@ function AppContent() {
   const [currentAnnotationSetName, setCurrentAnnotationSetName] = useState(DEFAULT_ANNOTATIONS_SET_NAME);
   const [currentDatasetName, setCurrentDatasetName] = useState('');
   const [saveError, setSaveError] = useState<string | undefined>();
+  const [showCategories, setShowCategories] = useState(false);
 
   const handleDatasetChange = async (name: string) => {
     setCurrentDatasetName(name);
@@ -70,6 +71,10 @@ function AppContent() {
 
   const handleToggleAnnotationsPanel = () => {
     setIsAnnotationsPanelVisible(!isAnnotationsPanelVisible);
+  };
+
+  const handleToggleCategories = () => {
+    setShowCategories(!showCategories);
   };
 
   const annotationSetNames = Object.keys(state.currentAnnotationSets).sort();
@@ -184,6 +189,7 @@ function AppContent() {
       <MainContent 
         isHighlightsVisible={isHighlightsVisible}
         isAnnotationsPanelVisible={isAnnotationsPanelVisible}
+        showCategories={showCategories}
         pdfSrc={state.pdfSrc}
         selectedRanges={selectedRanges}
         isAnnotationMode={isAnnotationMode}
@@ -201,6 +207,8 @@ function AppContent() {
         currentAnnotationSetName={currentAnnotationSetName}
         annotationSetNames={annotationSetNames}
         onAnnotationSetChange={handleAnnotationSetChange}
+        showCategories={showCategories}
+        onToggleCategories={handleToggleCategories}
       />
       <Modal
         isOpen={isModalOpen}

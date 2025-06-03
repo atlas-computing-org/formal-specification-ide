@@ -17,6 +17,7 @@ const INITIAL_RIGHT_TAB_STATE: RightTabMode = 'pre-written';
 interface MainContentProps {
   isHighlightsVisible: boolean;
   isAnnotationsPanelVisible: boolean;
+  showCategories: boolean;
   pdfSrc: string;
   selectedRanges: {lhs: TextRangeWithText[], rhs: TextRangeWithText[]};
   isAnnotationMode: boolean;
@@ -102,7 +103,7 @@ export const MainContent: React.FC<MainContentProps> = (props) => {
     <main>
       <div 
         id="text-panels" 
-        className={props.isHighlightsVisible ? 'highlight-all' : ''}
+        className={`${props.isHighlightsVisible ? 'highlight-all' : ''} ${props.showCategories ? 'show-categories' : ''}`}
         ref={textPanelsRef}
       >
         <TextPanel
@@ -117,8 +118,7 @@ export const MainContent: React.FC<MainContentProps> = (props) => {
           isAnnotationMode={props.isAnnotationMode}
           onTextSelection={props.onTextSelection}
           selectedRanges={props.selectedRanges.lhs}
-          style={{ width: `${leftPanelWidth}%` }}
-          className="resizable"
+          showCategories={props.showCategories}
         />
         
         <PanelResizer 
@@ -137,6 +137,7 @@ export const MainContent: React.FC<MainContentProps> = (props) => {
           isAnnotationMode={props.isAnnotationMode}
           onTextSelection={props.onTextSelection}
           selectedRanges={props.selectedRanges.rhs}
+          showCategories={props.showCategories}
           style={{ width: `${100 - leftPanelWidth}%` }}
           className="resizable"
         />
@@ -146,6 +147,7 @@ export const MainContent: React.FC<MainContentProps> = (props) => {
         <AnnotationsPanel 
           onMappingClick={handleMappingClick}
           onLabelClick={handleLabelClick}
+          showCategories={props.showCategories}
         />
       )}
     </main>
