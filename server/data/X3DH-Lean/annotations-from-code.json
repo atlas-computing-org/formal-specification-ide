@@ -1,0 +1,861 @@
+{
+  "mappings": [
+    {
+      "description": "Imports Mathlib.Tactic module for mathematical proofs.",
+      "rhsRanges": [
+        {
+          "start": 0,
+          "end": 21
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 570,
+          "end": 589
+        },
+        {
+          "start": 1284,
+          "end": 1315
+        }
+      ]
+    },
+    {
+      "description": "Secure key exchange protocol for encrypted communication.",
+      "rhsRanges": [
+        {
+          "start": 23,
+          "end": 37
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 4707,
+          "end": 4730
+        },
+        {
+          "start": 591,
+          "end": 615
+        }
+      ]
+    },
+    {
+      "description": "Registry of agent identities and key pairs.",
+      "rhsRanges": [
+        {
+          "start": 39,
+          "end": 111
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 3443,
+          "end": 3697
+        },
+        {
+          "start": 679,
+          "end": 872
+        }
+      ]
+    },
+    {
+      "description": "Three kinds of visibility: public, private, and secret.",
+      "rhsRanges": [
+        {
+          "start": 113,
+          "end": 202
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 5139,
+          "end": 5376
+        },
+        {
+          "start": 7653,
+          "end": 7694
+        }
+      ]
+    },
+    {
+      "description": "Function converting Kind enum to string representation.",
+      "rhsRanges": [
+        {
+          "start": 204,
+          "end": 333
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 976,
+          "end": 1282
+        },
+        {
+          "start": 679,
+          "end": 872
+        }
+      ]
+    },
+    {
+      "description": "Function that reverses public/private kinds, preserves secret.",
+      "rhsRanges": [
+        {
+          "start": 335,
+          "end": 406
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 13120,
+          "end": 13341
+        },
+        {
+          "start": 5035,
+          "end": 5059
+        }
+      ]
+    },
+    {
+      "description": "Structure for storing user key information with metadata.",
+      "rhsRanges": [
+        {
+          "start": 408,
+          "end": 535
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 3375,
+          "end": 3388
+        },
+        {
+          "start": 679,
+          "end": 872
+        }
+      ]
+    },
+    {
+      "description": "Function converting key to string with username, label, and kind.",
+      "rhsRanges": [
+        {
+          "start": 537,
+          "end": 618
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 3375,
+          "end": 3388
+        },
+        {
+          "start": 7653,
+          "end": 7694
+        }
+      ]
+    },
+    {
+      "description": "Function checks if two keys match with specific criteria.",
+      "rhsRanges": [
+        {
+          "start": 620,
+          "end": 735
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 3375,
+          "end": 3388
+        },
+        {
+          "start": 9770,
+          "end": 10082
+        }
+      ]
+    },
+    {
+      "description": "Definition of ByteSequence with cryptographic operations.",
+      "rhsRanges": [
+        {
+          "start": 738,
+          "end": 1027
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 1356,
+          "end": 2495
+        },
+        {
+          "start": 976,
+          "end": 1282
+        }
+      ]
+    },
+    {
+      "description": "Function converting ByteSequence to String representation.",
+      "rhsRanges": [
+        {
+          "start": 1029,
+          "end": 1336
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 1356,
+          "end": 2495
+        },
+        {
+          "start": 7653,
+          "end": 7694
+        }
+      ]
+    },
+    {
+      "description": "ByteSequence instance for ToString using ByteSequence.toString method.",
+      "rhsRanges": [
+        {
+          "start": 1338,
+          "end": 1412
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 1356,
+          "end": 2495
+        },
+        {
+          "start": 976,
+          "end": 1282
+        }
+      ]
+    },
+    {
+      "description": "Function checks if two ByteSequence objects match.",
+      "rhsRanges": [
+        {
+          "start": 1414,
+          "end": 1673
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 1356,
+          "end": 2495
+        },
+        {
+          "start": 7653,
+          "end": 7694
+        }
+      ]
+    },
+    {
+      "description": "Abstract type for key pair with private and public keys.",
+      "rhsRanges": [
+        {
+          "start": 1676,
+          "end": 1800
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 3699,
+          "end": 3810
+        },
+        {
+          "start": 3443,
+          "end": 3697
+        }
+      ]
+    },
+    {
+      "description": "Data structure for agent with name and cryptographic keys.",
+      "rhsRanges": [
+        {
+          "start": 1803,
+          "end": 1986
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 3443,
+          "end": 3697
+        },
+        {
+          "start": 5139,
+          "end": 5376
+        }
+      ]
+    },
+    {
+      "description": "Function creates key pair with agent name and label.",
+      "rhsRanges": [
+        {
+          "start": 1988,
+          "end": 2148
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 4397,
+          "end": 4495
+        },
+        {
+          "start": 3443,
+          "end": 3697
+        }
+      ]
+    },
+    {
+      "description": "Registry storing a list of agents.",
+      "rhsRanges": [
+        {
+          "start": 2150,
+          "end": 2196
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 570,
+          "end": 589
+        },
+        {
+          "start": 2497,
+          "end": 2511
+        }
+      ]
+    },
+    {
+      "description": "Function creates agent with identity, signed prekey, and one-time prekeys.",
+      "rhsRanges": [
+        {
+          "start": 2198,
+          "end": 2445
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 3443,
+          "end": 3697
+        },
+        {
+          "start": 7653,
+          "end": 7694
+        }
+      ]
+    },
+    {
+      "description": "Function to find agent by name in registry.",
+      "rhsRanges": [
+        {
+          "start": 2447,
+          "end": 2574
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 679,
+          "end": 872
+        },
+        {
+          "start": 15217,
+          "end": 15242
+        }
+      ]
+    },
+    {
+      "description": "Bundle of keys and signature for secure communication.",
+      "rhsRanges": [
+        {
+          "start": 2576,
+          "end": 2745
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 5139,
+          "end": 5376
+        },
+        {
+          "start": 6335,
+          "end": 6531
+        }
+      ]
+    },
+    {
+      "description": "Verifies bundle by checking signature against SPK and IK.",
+      "rhsRanges": [
+        {
+          "start": 2747,
+          "end": 2984
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 6335,
+          "end": 6531
+        },
+        {
+          "start": 5139,
+          "end": 5376
+        }
+      ]
+    },
+    {
+      "description": "Function converts agent data to public bundle with keys and signature.",
+      "rhsRanges": [
+        {
+          "start": 2987,
+          "end": 3240
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 5139,
+          "end": 5376
+        },
+        {
+          "start": 6335,
+          "end": 6531
+        }
+      ]
+    },
+    {
+      "description": "Function converting agent data to private key bundle.",
+      "rhsRanges": [
+        {
+          "start": 3243,
+          "end": 3504
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 6335,
+          "end": 6531
+        },
+        {
+          "start": 5139,
+          "end": 5376
+        }
+      ]
+    },
+    {
+      "description": "Function derives shared secret using DH key exchanges.",
+      "rhsRanges": [
+        {
+          "start": 3507,
+          "end": 3924
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 4497,
+          "end": 4705
+        },
+        {
+          "start": 6964,
+          "end": 7064
+        }
+      ]
+    },
+    {
+      "description": "Message structure with sender info, keys, and encrypted content.",
+      "rhsRanges": [
+        {
+          "start": 3927,
+          "end": 4082
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 3443,
+          "end": 3697
+        },
+        {
+          "start": 7891,
+          "end": 8224
+        }
+      ]
+    },
+    {
+      "description": "Function to convert Message object to formatted string.",
+      "rhsRanges": [
+        {
+          "start": 4084,
+          "end": 4243
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 7653,
+          "end": 7694
+        },
+        {
+          "start": 1284,
+          "end": 1315
+        }
+      ]
+    },
+    {
+      "description": "Function encrypts plaintext using key and additional data.",
+      "rhsRanges": [
+        {
+          "start": 4245,
+          "end": 4358
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 7891,
+          "end": 8224
+        },
+        {
+          "start": 7653,
+          "end": 7694
+        }
+      ]
+    },
+    {
+      "description": "Function to decrypt AEAD ciphertext with key and authentication data.",
+      "rhsRanges": [
+        {
+          "start": 4361,
+          "end": 4584
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 9099,
+          "end": 9380
+        },
+        {
+          "start": 7891,
+          "end": 8224
+        }
+      ]
+    },
+    {
+      "description": "Function creates message with sender info and ciphertext.",
+      "rhsRanges": [
+        {
+          "start": 4587,
+          "end": 4871
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 7891,
+          "end": 8224
+        },
+        {
+          "start": 8226,
+          "end": 8484
+        }
+      ]
+    },
+    {
+      "description": "Function sends initial message from one agent to another.",
+      "rhsRanges": [
+        {
+          "start": 4874,
+          "end": 4971
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 6164,
+          "end": 6200
+        },
+        {
+          "start": 8670,
+          "end": 8708
+        }
+      ]
+    },
+    {
+      "description": "Alice and Bob interact as sender and target agents.",
+      "rhsRanges": [
+        {
+          "start": 4973,
+          "end": 5026
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 7838,
+          "end": 7889
+        },
+        {
+          "start": 15602,
+          "end": 15726
+        }
+      ]
+    },
+    {
+      "description": "Bob publishes elliptic curve public keys to server.",
+      "rhsRanges": [
+        {
+          "start": 5028,
+          "end": 5131
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 5061,
+          "end": 5137
+        },
+        {
+          "start": 6202,
+          "end": 6333
+        }
+      ]
+    },
+    {
+      "description": "Alice verifies prekey signature and generates key pair if valid.",
+      "rhsRanges": [
+        {
+          "start": 5133,
+          "end": 5295
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 6738,
+          "end": 6895
+        },
+        {
+          "start": 4397,
+          "end": 4495
+        }
+      ]
+    },
+    {
+      "description": "Deriving shared secret and appending encoded public keys.",
+      "rhsRanges": [
+        {
+          "start": 5297,
+          "end": 5498
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 7891,
+          "end": 8224
+        },
+        {
+          "start": 9099,
+          "end": 9380
+        }
+      ]
+    },
+    {
+      "description": "Encrypts plaintext with secret key and authentication data.",
+      "rhsRanges": [
+        {
+          "start": 5500,
+          "end": 5640
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 9099,
+          "end": 9380
+        },
+        {
+          "start": 7653,
+          "end": 7694
+        }
+      ]
+    },
+    {
+      "description": "Function to create and validate a message from Alice.",
+      "rhsRanges": [
+        {
+          "start": 5642,
+          "end": 5797
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 6738,
+          "end": 6895
+        },
+        {
+          "start": 8710,
+          "end": 8966
+        }
+      ]
+    },
+    {
+      "description": "Function processes initial message for agent, returning string or error.",
+      "rhsRanges": [
+        {
+          "start": 5800,
+          "end": 5886
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 8670,
+          "end": 8708
+        },
+        {
+          "start": 6164,
+          "end": 6200
+        }
+      ]
+    },
+    {
+      "description": "Bob is designated as the receiver.",
+      "rhsRanges": [
+        {
+          "start": 5888,
+          "end": 5909
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 7838,
+          "end": 7889
+        },
+        {
+          "start": 8670,
+          "end": 8708
+        }
+      ]
+    },
+    {
+      "description": "Receiving and extracting public keys from Alice's message.",
+      "rhsRanges": [
+        {
+          "start": 5911,
+          "end": 5994
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 8710,
+          "end": 8966
+        },
+        {
+          "start": 7891,
+          "end": 8224
+        }
+      ]
+    },
+    {
+      "description": "Derive shared secret using public keys and private bundle.",
+      "rhsRanges": [
+        {
+          "start": 5996,
+          "end": 6060
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 9545,
+          "end": 9712
+        },
+        {
+          "start": 9099,
+          "end": 9380
+        }
+      ]
+    },
+    {
+      "description": "Appends encoded public keys into a byte sequence.",
+      "rhsRanges": [
+        {
+          "start": 6062,
+          "end": 6168
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 7653,
+          "end": 7694
+        },
+        {
+          "start": 9099,
+          "end": 9380
+        }
+      ]
+    },
+    {
+      "description": "Function decrypts message with secret key, returns result or error.",
+      "rhsRanges": [
+        {
+          "start": 6170,
+          "end": 6269
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 9099,
+          "end": 9380
+        },
+        {
+          "start": 7653,
+          "end": 7694
+        }
+      ]
+    },
+    {
+      "description": "Registry with agents Alice and Bob exchanging an initial message.",
+      "rhsRanges": [
+        {
+          "start": 6272,
+          "end": 6542
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 7838,
+          "end": 7889
+        },
+        {
+          "start": 4775,
+          "end": 4987
+        }
+      ]
+    },
+    {
+      "description": "Function proving shared secret derivation in message exchange.",
+      "rhsRanges": [
+        {
+          "start": 6545,
+          "end": 6938
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 2582,
+          "end": 3198
+        },
+        {
+          "start": 4775,
+          "end": 4987
+        }
+      ]
+    },
+    {
+      "description": "Key exchange protocol for secure messaging.",
+      "rhsRanges": [
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ],
+      "lhsRanges": [
+        {
+          "start": 4707,
+          "end": 4730
+        },
+        {
+          "start": 1317,
+          "end": 1354
+        }
+      ]
+    }
+  ],
+  "lhsLabels": [],
+  "rhsLabels": []
+}

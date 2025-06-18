@@ -1,0 +1,1397 @@
+{
+  "mappings": [],
+  "lhsLabels": [
+    {
+      "description": "Section header for the introduction",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 0,
+          "end": 18
+        }
+      ]
+    },
+    {
+      "description": "Overview of X3DH key agreement protocol, its purpose and security properties",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 20,
+          "end": 293
+        }
+      ]
+    },
+    {
+      "description": "Explanation of the asynchronous setting where X3DH is designed to operate",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 295,
+          "end": 568
+        }
+      ]
+    },
+    {
+      "description": "Section header for preliminaries",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 570,
+          "end": 589
+        }
+      ]
+    },
+    {
+      "description": "Subsection header for X3DH parameters",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 591,
+          "end": 615
+        }
+      ]
+    },
+    {
+      "description": "Introduction to the parameters required by X3DH",
+      "category": "Parameter",
+      "ranges": [
+        {
+          "start": 617,
+          "end": 677
+        }
+      ]
+    },
+    {
+      "description": "Table defining the required parameters for X3DH: curve, hash function, and info string",
+      "category": "Parameter",
+      "ranges": [
+        {
+          "start": 679,
+          "end": 872
+        }
+      ]
+    },
+    {
+      "description": "Example of parameter choices for an application using X3DH",
+      "category": "Example",
+      "ranges": [
+        {
+          "start": 874,
+          "end": 974
+        }
+      ]
+    },
+    {
+      "description": "Definition of the public key encoding function required by X3DH",
+      "category": "Parameter",
+      "ranges": [
+        {
+          "start": 976,
+          "end": 1282
+        }
+      ]
+    },
+    {
+      "description": "Subsection header for cryptographic notation",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 1284,
+          "end": 1315
+        }
+      ]
+    },
+    {
+      "description": "Introduction to the notation used in X3DH",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 1317,
+          "end": 1354
+        }
+      ]
+    },
+    {
+      "description": "Formal definition of cryptographic notation used in X3DH including concatenation, DH function, signatures, and KDF",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 1356,
+          "end": 2495
+        }
+      ]
+    },
+    {
+      "description": "Subsection header for roles",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 2497,
+          "end": 2511
+        }
+      ]
+    },
+    {
+      "description": "Introduction to the three parties involved in X3DH",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 2513,
+          "end": 2580
+        }
+      ]
+    },
+    {
+      "description": "Detailed explanation of the roles of Alice, Bob, and the server in X3DH",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 2582,
+          "end": 3198
+        }
+      ]
+    },
+    {
+      "description": "Note about potential division of server role among multiple entities",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 3200,
+          "end": 3373
+        }
+      ]
+    },
+    {
+      "description": "Subsection header for keys",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 3375,
+          "end": 3388
+        }
+      ]
+    },
+    {
+      "description": "Introduction to the elliptic curve public keys used in X3DH",
+      "category": "Parameter",
+      "ranges": [
+        {
+          "start": 3390,
+          "end": 3441
+        }
+      ]
+    },
+    {
+      "description": "Table defining the public keys used in X3DH including identity keys, ephemeral key, signed prekey, and one-time prekey",
+      "category": "Parameter",
+      "ranges": [
+        {
+          "start": 3443,
+          "end": 3697
+        }
+      ]
+    },
+    {
+      "description": "Note about corresponding private keys for all public keys in X3DH",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 3699,
+          "end": 3810
+        }
+      ]
+    },
+    {
+      "description": "Requirement that all public keys in a protocol run must use the same curve (X25519 or X448)",
+      "category": "Pre-condition",
+      "ranges": [
+        {
+          "start": 3812,
+          "end": 3967
+        }
+      ]
+    },
+    {
+      "description": "Explanation of the different types of keys used by Alice and Bob in X3DH",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 3969,
+          "end": 4395
+        }
+      ]
+    },
+    {
+      "description": "Description of Alice's ephemeral key generation during protocol execution",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 4397,
+          "end": 4495
+        }
+      ]
+    },
+    {
+      "description": "Explanation of the shared secret key SK resulting from X3DH and its potential uses",
+      "category": "Post-condition",
+      "ranges": [
+        {
+          "start": 4497,
+          "end": 4705
+        }
+      ]
+    },
+    {
+      "description": "Section header for the X3DH protocol",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 4707,
+          "end": 4730
+        }
+      ]
+    },
+    {
+      "description": "Subsection header for protocol overview",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 4732,
+          "end": 4749
+        }
+      ]
+    },
+    {
+      "description": "Introduction to the three phases of X3DH",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 4751,
+          "end": 4773
+        }
+      ]
+    },
+    {
+      "description": "List of the three phases of X3DH: publishing keys, sending initial message, and processing the message",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 4775,
+          "end": 4987
+        }
+      ]
+    },
+    {
+      "description": "Transition to detailed explanation of protocol phases",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 4989,
+          "end": 5033
+        }
+      ]
+    },
+    {
+      "description": "Subsection header for publishing keys phase",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 5035,
+          "end": 5059
+        }
+      ]
+    },
+    {
+      "description": "Introduction to the keys Bob publishes to the server",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 5061,
+          "end": 5137
+        }
+      ]
+    },
+    {
+      "description": "List of keys and signatures Bob publishes to the server",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 5139,
+          "end": 5376
+        }
+      ]
+    },
+    {
+      "description": "Explanation of when Bob needs to upload identity key and one-time prekeys",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 5378,
+          "end": 5594
+        }
+      ]
+    },
+    {
+      "description": "Explanation of when Bob should upload new signed prekeys",
+      "category": "Preference",
+      "ranges": [
+        {
+          "start": 5596,
+          "end": 5788
+        }
+      ]
+    },
+    {
+      "description": "Guidance on retaining and eventually deleting previous signed prekey private keys for forward secrecy",
+      "category": "Preference",
+      "ranges": [
+        {
+          "start": 5790,
+          "end": 6162
+        }
+      ]
+    },
+    {
+      "description": "Subsection header for sending the initial message",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 6164,
+          "end": 6200
+        }
+      ]
+    },
+    {
+      "description": "Description of Alice fetching a prekey bundle from the server",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 6202,
+          "end": 6333
+        }
+      ]
+    },
+    {
+      "description": "List of values contained in the prekey bundle",
+      "category": "Parameter",
+      "ranges": [
+        {
+          "start": 6335,
+          "end": 6531
+        }
+      ]
+    },
+    {
+      "description": "Explanation of server behavior regarding one-time prekeys",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 6533,
+          "end": 6736
+        }
+      ]
+    },
+    {
+      "description": "Alice's verification of prekey signature and generation of ephemeral key pair",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 6738,
+          "end": 6895
+        }
+      ]
+    },
+    {
+      "description": "Introduction to key calculation without one-time prekey",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 6897,
+          "end": 6962
+        }
+      ]
+    },
+    {
+      "description": "Formal algorithm for calculating shared key SK without one-time prekey",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 6964,
+          "end": 7064
+        }
+      ]
+    },
+    {
+      "description": "Introduction to modified key calculation with one-time prekey",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 7066,
+          "end": 7168
+        }
+      ]
+    },
+    {
+      "description": "Formal algorithm for additional DH calculation with one-time prekey",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 7170,
+          "end": 7234
+        }
+      ]
+    },
+    {
+      "description": "Explanation of the purpose of different DH calculations in the protocol",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 7236,
+          "end": 7393
+        }
+      ]
+    },
+    {
+      "description": "Visual representation of DH calculations between keys",
+      "category": "Diagram",
+      "ranges": [
+        {
+          "start": 7395,
+          "end": 7454
+        }
+      ]
+    },
+    {
+      "description": "Alice's deletion of ephemeral private key and DH outputs after calculating SK",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 7456,
+          "end": 7537
+        }
+      ]
+    },
+    {
+      "description": "Introduction to associated data calculation",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 7539,
+          "end": 7651
+        }
+      ]
+    },
+    {
+      "description": "Formal algorithm for calculating associated data AD",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 7653,
+          "end": 7694
+        }
+      ]
+    },
+    {
+      "description": "Optional additional information that can be appended to associated data",
+      "category": "Preference",
+      "ranges": [
+        {
+          "start": 7696,
+          "end": 7836
+        }
+      ]
+    },
+    {
+      "description": "Introduction to Alice's initial message to Bob",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 7838,
+          "end": 7889
+        }
+      ]
+    },
+    {
+      "description": "Contents of Alice's initial message to Bob",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 7891,
+          "end": 8224
+        }
+      ]
+    },
+    {
+      "description": "Explanation of the dual role of the initial ciphertext",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 8226,
+          "end": 8484
+        }
+      ]
+    },
+    {
+      "description": "Alice's continued use of SK after sending the initial message",
+      "category": "Post-condition",
+      "ranges": [
+        {
+          "start": 8486,
+          "end": 8668
+        }
+      ]
+    },
+    {
+      "description": "Subsection header for receiving the initial message",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 8670,
+          "end": 8708
+        }
+      ]
+    },
+    {
+      "description": "Bob's retrieval of keys from Alice's message and loading of his own private keys",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 8710,
+          "end": 8966
+        }
+      ]
+    },
+    {
+      "description": "Bob's calculation of SK and deletion of DH values",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 8968,
+          "end": 9097
+        }
+      ]
+    },
+    {
+      "description": "Bob's construction of AD and decryption attempt of the initial ciphertext",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 9099,
+          "end": 9380
+        }
+      ]
+    },
+    {
+      "description": "Bob's deletion of one-time prekey private key after successful decryption",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 9382,
+          "end": 9543
+        }
+      ]
+    },
+    {
+      "description": "Bob's continued use of SK after successful protocol completion",
+      "category": "Post-condition",
+      "ranges": [
+        {
+          "start": 9545,
+          "end": 9712
+        }
+      ]
+    },
+    {
+      "description": "Section header for security considerations",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 9714,
+          "end": 9743
+        }
+      ]
+    },
+    {
+      "description": "Subsection header for authentication",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 9745,
+          "end": 9768
+        }
+      ]
+    },
+    {
+      "description": "Discussion of out-of-band authentication of identity keys",
+      "category": "Preference",
+      "ranges": [
+        {
+          "start": 9770,
+          "end": 10082
+        }
+      ]
+    },
+    {
+      "description": "Warning about lack of cryptographic guarantees without authentication",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 10084,
+          "end": 10205
+        }
+      ]
+    },
+    {
+      "description": "Subsection header for protocol replay",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 10207,
+          "end": 10231
+        }
+      ]
+    },
+    {
+      "description": "Explanation of potential replay attacks when one-time prekeys are not used",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 10233,
+          "end": 10431
+        }
+      ]
+    },
+    {
+      "description": "Suggested mitigation for replay attacks using post-X3DH protocols",
+      "category": "Preference",
+      "ranges": [
+        {
+          "start": 10433,
+          "end": 10649
+        }
+      ]
+    },
+    {
+      "description": "Additional potential mitigations for replay attacks",
+      "category": "Preference",
+      "ranges": [
+        {
+          "start": 10651,
+          "end": 10853
+        }
+      ]
+    },
+    {
+      "description": "Subsection header for replay and key reuse",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 10855,
+          "end": 10884
+        }
+      ]
+    },
+    {
+      "description": "Explanation of SK reuse risk from replayed initial messages",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 10886,
+          "end": 11068
+        }
+      ]
+    },
+    {
+      "description": "Mandatory requirement to randomize encryption key before Bob sends encrypted data",
+      "category": "Pre-condition",
+      "ranges": [
+        {
+          "start": 11070,
+          "end": 11323
+        }
+      ]
+    },
+    {
+      "description": "Warning about catastrophic key reuse if Bob's encryption key is not randomized",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 11325,
+          "end": 11400
+        }
+      ]
+    },
+    {
+      "description": "Subsection header for deniability",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 11402,
+          "end": 11422
+        }
+      ]
+    },
+    {
+      "description": "Explanation of deniability properties of X3DH",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 11424,
+          "end": 11570
+        }
+      ]
+    },
+    {
+      "description": "Discussion of deniability limitations when private keys are compromised",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 11572,
+          "end": 11988
+        }
+      ]
+    },
+    {
+      "description": "Explanation of online deniability limitations in asynchronous settings",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 11990,
+          "end": 12246
+        }
+      ]
+    },
+    {
+      "description": "Subsection header for signatures",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 12248,
+          "end": 12267
+        }
+      ]
+    },
+    {
+      "description": "Explanation of why prekey signatures are necessary despite DH calculations",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 12269,
+          "end": 12609
+        }
+      ]
+    },
+    {
+      "description": "Explanation of why signatures should not replace DH-based mutual authentication",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 12611,
+          "end": 12947
+        }
+      ]
+    },
+    {
+      "description": "Subsection header for key compromise",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 12949,
+          "end": 12972
+        }
+      ]
+    },
+    {
+      "description": "Overview of security impact from private key compromise",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 12974,
+          "end": 13118
+        }
+      ]
+    },
+    {
+      "description": "Explanation of different types of key compromise impacts",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 13120,
+          "end": 13341
+        }
+      ]
+    },
+    {
+      "description": "Introduction to partial analysis of key compromise scenarios",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 13343,
+          "end": 13499
+        }
+      ]
+    },
+    {
+      "description": "Detailed analysis of different key compromise scenarios and their security implications",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 13501,
+          "end": 14581
+        }
+      ]
+    },
+    {
+      "description": "Subsection header for server trust",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 14583,
+          "end": 14604
+        }
+      ]
+    },
+    {
+      "description": "Description of denial of service attack by malicious server",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 14606,
+          "end": 14720
+        }
+      ]
+    },
+    {
+      "description": "Analysis of server attacks when parties authenticate each other",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 14722,
+          "end": 14992
+        }
+      ]
+    },
+    {
+      "description": "Recommendation for server to prevent draining of one-time prekeys",
+      "category": "Preference",
+      "ranges": [
+        {
+          "start": 14994,
+          "end": 15215
+        }
+      ]
+    },
+    {
+      "description": "Subsection header for identity binding",
+      "category": "Navigation",
+      "ranges": [
+        {
+          "start": 15217,
+          "end": 15242
+        }
+      ]
+    },
+    {
+      "description": "Introduction to identity misbinding attacks",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 15244,
+          "end": 15361
+        }
+      ]
+    },
+    {
+      "description": "Explanation of how identity misbinding attacks work",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 15363,
+          "end": 15600
+        }
+      ]
+    },
+    {
+      "description": "Description of the effect of identity misbinding attacks",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 15602,
+          "end": 15726
+        }
+      ]
+    },
+    {
+      "description": "Suggested mitigations for identity misbinding attacks",
+      "category": "Preference",
+      "ranges": [
+        {
+          "start": 15728,
+          "end": 16044
+        }
+      ]
+    },
+    {
+      "description": "Discussion of trade-offs in mitigating identity misbinding attacks",
+      "category": "Intent",
+      "ranges": [
+        {
+          "start": 16046,
+          "end": 16349
+        }
+      ]
+    }
+  ],
+  "rhsLabels": [
+    {
+      "description": "Import statement for Mathlib.Tactic library",
+      "category": "Preamble",
+      "ranges": [
+        {
+          "start": 0,
+          "end": 21
+        }
+      ]
+    },
+    {
+      "description": "Declaration of X3DH namespace",
+      "category": "Preamble",
+      "ranges": [
+        {
+          "start": 23,
+          "end": 37
+        }
+      ]
+    },
+    {
+      "description": "Definition of AgentName type as a String alias with a comment",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 39,
+          "end": 111
+        }
+      ]
+    },
+    {
+      "description": "Definition of Kind enumeration with pub, prv, and sec variants",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 113,
+          "end": 202
+        }
+      ]
+    },
+    {
+      "description": "Implementation of ToString for Kind enumeration",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 204,
+          "end": 333
+        }
+      ]
+    },
+    {
+      "description": "Definition of Kind.rev function that maps between pub and prv kinds",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 335,
+          "end": 406
+        }
+      ]
+    },
+    {
+      "description": "Definition of Key structure with userName, label, and kind fields",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 408,
+          "end": 535
+        }
+      ]
+    },
+    {
+      "description": "Implementation of ToString for Key structure",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 537,
+          "end": 618
+        }
+      ]
+    },
+    {
+      "description": "Definition of match_key function that checks if two keys match",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 620,
+          "end": 735
+        }
+      ]
+    },
+    {
+      "description": "Definition of ByteSequence inductive type for cryptographic operations",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 738,
+          "end": 1027
+        }
+      ]
+    },
+    {
+      "description": "Implementation of toString method for ByteSequence",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 1029,
+          "end": 1336
+        }
+      ]
+    },
+    {
+      "description": "Implementation of ToString for ByteSequence",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 1338,
+          "end": 1412
+        }
+      ]
+    },
+    {
+      "description": "Definition of match_bs function that checks if two ByteSequences match",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 1414,
+          "end": 1673
+        }
+      ]
+    },
+    {
+      "description": "Definition of KeyPair structure with privateKey and publicKey fields",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 1676,
+          "end": 1800
+        }
+      ]
+    },
+    {
+      "description": "Definition of Agent structure with name, identity key, signed prekey, and one-time prekeys",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 1803,
+          "end": 1986
+        }
+      ]
+    },
+    {
+      "description": "Definition of generateKeyPair function that creates a key pair for an agent",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 1988,
+          "end": 2148
+        }
+      ]
+    },
+    {
+      "description": "Definition of Registry structure to store a list of agents",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 2150,
+          "end": 2196
+        }
+      ]
+    },
+    {
+      "description": "Definition of createAgent function that initializes an agent with keys",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 2198,
+          "end": 2445
+        }
+      ]
+    },
+    {
+      "description": "Definition of getAgent? function that finds an agent by name in the registry",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 2447,
+          "end": 2574
+        }
+      ]
+    },
+    {
+      "description": "Definition of Bundle structure to hold keys and signature for key exchange",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 2576,
+          "end": 2745
+        }
+      ]
+    },
+    {
+      "description": "Definition of verify function that checks the signature in a bundle",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 2747,
+          "end": 2984
+        }
+      ]
+    },
+    {
+      "description": "Definition of toPublicBundle function that creates a public key bundle from an agent",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 2987,
+          "end": 3240
+        }
+      ]
+    },
+    {
+      "description": "Definition of toPrivateBundle function that creates a private key bundle from an agent",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 3243,
+          "end": 3504
+        }
+      ]
+    },
+    {
+      "description": "Definition of deriveSharedSecret function that computes the shared secret in X3DH protocol",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 3507,
+          "end": 3924
+        }
+      ]
+    },
+    {
+      "description": "Definition of Message structure for X3DH protocol messages",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 3927,
+          "end": 4082
+        }
+      ]
+    },
+    {
+      "description": "Implementation of ToString for Message structure",
+      "category": "Definition",
+      "ranges": [
+        {
+          "start": 4084,
+          "end": 4243
+        }
+      ]
+    },
+    {
+      "description": "Definition of encrypt function that encrypts plaintext using AEAD",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 4245,
+          "end": 4358
+        }
+      ]
+    },
+    {
+      "description": "Definition of decrypt function that decrypts a message using AEAD",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 4361,
+          "end": 4584
+        }
+      ]
+    },
+    {
+      "description": "Definition of makeMessage function that creates a Message from components",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 4587,
+          "end": 4871
+        }
+      ]
+    },
+    {
+      "description": "Start of sendInitMessage function definition for X3DH protocol",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 4874,
+          "end": 4971
+        }
+      ]
+    },
+    {
+      "description": "Assigning sender and target agents to alice and bob variables",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 4973,
+          "end": 5026
+        }
+      ]
+    },
+    {
+      "description": "Creating a public key bundle for Bob in the X3DH protocol",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 5028,
+          "end": 5131
+        }
+      ]
+    },
+    {
+      "description": "Verifying Bob's prekey signature and generating an ephemeral key for Alice",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 5133,
+          "end": 5295
+        }
+      ]
+    },
+    {
+      "description": "Deriving shared secret and creating associated data for encryption",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 5297,
+          "end": 5498
+        }
+      ]
+    },
+    {
+      "description": "Selecting one-time prekey and encrypting plaintext with shared secret",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 5500,
+          "end": 5640
+        }
+      ]
+    },
+    {
+      "description": "Creating and returning the final message or error in sendInitMessage",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 5642,
+          "end": 5797
+        }
+      ]
+    },
+    {
+      "description": "Start of receiveInitMessage function definition for X3DH protocol",
+      "category": "Algorithm",
+      "ranges": [
+        {
+          "start": 5800,
+          "end": 5886
+        }
+      ]
+    },
+    {
+      "description": "Assigning receiver to bob variable",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 5888,
+          "end": 5909
+        }
+      ]
+    },
+    {
+      "description": "Extracting sender's identity and ephemeral keys from the message",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 5911,
+          "end": 5994
+        }
+      ]
+    },
+    {
+      "description": "Deriving shared secret for message decryption",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 5996,
+          "end": 6060
+        }
+      ]
+    },
+    {
+      "description": "Creating associated data for decryption",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 6062,
+          "end": 6168
+        }
+      ]
+    },
+    {
+      "description": "Decrypting the message and returning plaintext or error",
+      "category": "Elaboration",
+      "ranges": [
+        {
+          "start": 6170,
+          "end": 6269
+        }
+      ]
+    },
+    {
+      "description": "Example execution of the X3DH protocol between Alice and Bob",
+      "category": "Example",
+      "ranges": [
+        {
+          "start": 6272,
+          "end": 6542
+        }
+      ]
+    },
+    {
+      "description": "Theorem stating that the shared secret derived by both parties is the same",
+      "category": "Post-condition",
+      "ranges": [
+        {
+          "start": 6545,
+          "end": 6938
+        }
+      ]
+    },
+    {
+      "description": "End of X3DH namespace",
+      "category": "Preamble",
+      "ranges": [
+        {
+          "start": 6941,
+          "end": 6950
+        }
+      ]
+    }
+  ]
+}

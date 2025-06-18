@@ -85,7 +85,7 @@ const chain = prompt.pipe(llm).pipe(parser);
 const promptText = readFileSync(`${SERVER_SRC_DIR}/agents/nodes/blockCategoriesNodePrompt.txt`, 'utf-8');
 
 export const blockCategoriesNode = async (state: typeof StateInfo.State) => {
-  const blocks = state.blockMappingsQuerySide === "lhs" ? state.lhsBlocks : state.rhsBlocks;
+  const blocks = state.blockCategoriesQuerySide === "lhs" ? state.lhsBlocks : state.rhsBlocks;
   const labelledBlocks = labelBlocks(blocks);
 
   const userInput = JSON.stringify(labelledBlocks, null, 2);
@@ -102,7 +102,7 @@ export const blockCategoriesNode = async (state: typeof StateInfo.State) => {
   }
   
   const labels = makeLabels(blockCategories, state.logger);
-  if (state.blockMappingsQuerySide === "lhs") {
+  if (state.blockCategoriesQuerySide === "lhs") {
     const newAnnotations = { mappings: [], lhsLabels: labels, rhsLabels: [] };
     return { newAnnotations };
   } else {
