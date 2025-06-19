@@ -1,0 +1,1469 @@
+{
+  "mappings": [
+    {
+      "description": "Dafny implementation of arbitrary-precision integers with arithmetic operations.",
+      "lhsRanges": [
+        {
+          "start": 13777,
+          "end": 13798
+        },
+        {
+          "start": 15408,
+          "end": 15468
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 0,
+          "end": 14
+        }
+      ]
+    },
+    {
+      "description": "Normalizes bit strings by removing invalid characters and leading zeros.",
+      "lhsRanges": [
+        {
+          "start": 2703,
+          "end": 2905
+        },
+        {
+          "start": 2929,
+          "end": 3223
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 16,
+          "end": 1154
+        }
+      ]
+    },
+    {
+      "description": "Method adds two binary strings and returns their sum.",
+      "lhsRanges": [
+        {
+          "start": 4385,
+          "end": 4586
+        },
+        {
+          "start": 4610,
+          "end": 4869
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1156,
+          "end": 2899
+        }
+      ]
+    },
+    {
+      "description": "Subtracts binary strings by normalizing and processing bit by bit.",
+      "lhsRanges": [
+        {
+          "start": 7103,
+          "end": 7343
+        },
+        {
+          "start": 7367,
+          "end": 7623
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2901,
+          "end": 5366
+        }
+      ]
+    },
+    {
+      "description": "Multiplies two binary strings using shift-and-add algorithm.",
+      "lhsRanges": [
+        {
+          "start": 5655,
+          "end": 5856
+        },
+        {
+          "start": 5880,
+          "end": 6136
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5368,
+          "end": 7388
+        }
+      ]
+    },
+    {
+      "description": "Binary arithmetic operations with string representation of numbers.",
+      "lhsRanges": [
+        {
+          "start": 15408,
+          "end": 15468
+        },
+        {
+          "start": 15693,
+          "end": 15855
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 7390,
+          "end": 8029
+        }
+      ]
+    },
+    {
+      "description": "Modular exponentiation method for power-of-2 exponents.",
+      "lhsRanges": [
+        {
+          "start": 10135,
+          "end": 10433
+        },
+        {
+          "start": 10457,
+          "end": 10728
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 8031,
+          "end": 9685
+        }
+      ]
+    },
+    {
+      "description": "Modular exponentiation function using binary decomposition.",
+      "lhsRanges": [
+        {
+          "start": 10135,
+          "end": 10433
+        },
+        {
+          "start": 10457,
+          "end": 10728
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 9687,
+          "end": 11250
+        }
+      ]
+    },
+    {
+      "description": "Function converts '0' or '1' character to corresponding integer.",
+      "lhsRanges": [
+        {
+          "start": 15693,
+          "end": 15855
+        },
+        {
+          "start": 791,
+          "end": 935
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 11252,
+          "end": 11357
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving binary string to integer conversion property.",
+      "lhsRanges": [
+        {
+          "start": 14584,
+          "end": 14895
+        },
+        {
+          "start": 15693,
+          "end": 15855
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 11359,
+          "end": 13666
+        }
+      ]
+    },
+    {
+      "description": "Lemma proves Str2Int(s) equals sum of two parts at index i.",
+      "lhsRanges": [
+        {
+          "start": 14584,
+          "end": 14895
+        },
+        {
+          "start": 15693,
+          "end": 15855
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 13668,
+          "end": 13903
+        }
+      ]
+    },
+    {
+      "description": "Function creates string of n zeros with value 0.",
+      "lhsRanges": [
+        {
+          "start": 791,
+          "end": 935
+        },
+        {
+          "start": 13878,
+          "end": 14122
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 13905,
+          "end": 14583
+        }
+      ]
+    },
+    {
+      "description": "String is empty or contains only zeros.",
+      "lhsRanges": [
+        {
+          "start": 112,
+          "end": 156
+        },
+        {
+          "start": 0,
+          "end": 19
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 14585,
+          "end": 14670
+        }
+      ]
+    },
+    {
+      "description": "Function computes x raised to power y.",
+      "lhsRanges": [
+        {
+          "start": 9962,
+          "end": 9979
+        },
+        {
+          "start": 10135,
+          "end": 10433
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 14672,
+          "end": 14776
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving exponentiation of positive integers is positive.",
+      "lhsRanges": [
+        {
+          "start": 10135,
+          "end": 10433
+        },
+        {
+          "start": 11055,
+          "end": 11197
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 14778,
+          "end": 14982
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving exponentiation distributes over addition of non-negative integers.",
+      "lhsRanges": [
+        {
+          "start": 10135,
+          "end": 10433
+        },
+        {
+          "start": 9962,
+          "end": 9979
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 14984,
+          "end": 15515
+        }
+      ]
+    },
+    {
+      "description": "Modular exponentiation distributes over addition in exponents.",
+      "lhsRanges": [
+        {
+          "start": 10135,
+          "end": 10433
+        },
+        {
+          "start": 9962,
+          "end": 9979
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 15517,
+          "end": 16042
+        }
+      ]
+    },
+    {
+      "description": "Modular exponentiation for powers of 2 using recursion.",
+      "lhsRanges": [
+        {
+          "start": 10135,
+          "end": 10433
+        },
+        {
+          "start": 9962,
+          "end": 9979
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 16044,
+          "end": 16495
+        }
+      ]
+    },
+    {
+      "description": "Modular exponentiation function using binary decomposition.",
+      "lhsRanges": [
+        {
+          "start": 10135,
+          "end": 10433
+        },
+        {
+          "start": 9962,
+          "end": 9979
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 16497,
+          "end": 17576
+        }
+      ]
+    },
+    {
+      "description": "Modular arithmetic lemma proving addition distributes over modulo.",
+      "lhsRanges": [
+        {
+          "start": 8623,
+          "end": 9022
+        },
+        {
+          "start": 10135,
+          "end": 10433
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 17578,
+          "end": 18060
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving modular arithmetic property for linear equation.",
+      "lhsRanges": [
+        {
+          "start": 10135,
+          "end": 10433
+        },
+        {
+          "start": 8623,
+          "end": 9022
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 18062,
+          "end": 18459
+        }
+      ]
+    },
+    {
+      "description": "Multiplication by z is always divisible by z.",
+      "lhsRanges": [
+        {
+          "start": 12884,
+          "end": 13016
+        },
+        {
+          "start": 9962,
+          "end": 9979
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 18461,
+          "end": 18568
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving modular distributivity of multiplication over integers.",
+      "lhsRanges": [
+        {
+          "start": 10135,
+          "end": 10433
+        },
+        {
+          "start": 8623,
+          "end": 9022
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 18570,
+          "end": 19551
+        }
+      ]
+    },
+    {
+      "description": "Lemma proves x equals zero when bounded by divisor d.",
+      "lhsRanges": [
+        {
+          "start": 791,
+          "end": 935
+        },
+        {
+          "start": 13878,
+          "end": 14122
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 19553,
+          "end": 19669
+        }
+      ]
+    },
+    {
+      "description": "Predicate checks if string contains only '0' and '1' characters.",
+      "lhsRanges": [
+        {
+          "start": 1649,
+          "end": 1698
+        },
+        {
+          "start": 1523,
+          "end": 1549
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 19671,
+          "end": 19771
+        }
+      ]
+    },
+    {
+      "description": "Function converts binary string to natural number.",
+      "lhsRanges": [
+        {
+          "start": 2703,
+          "end": 2905
+        },
+        {
+          "start": 15693,
+          "end": 15855
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 19773,
+          "end": 19954
+        }
+      ]
+    },
+    {
+      "description": "Function converts valid bit string to natural number.",
+      "lhsRanges": [
+        {
+          "start": 2703,
+          "end": 2905
+        },
+        {
+          "start": 15693,
+          "end": 15855
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 19956,
+          "end": 20042
+        }
+      ]
+    },
+    {
+      "description": "Function converts natural numbers to binary strings.",
+      "lhsRanges": [
+        {
+          "start": 791,
+          "end": 935
+        },
+        {
+          "start": 15693,
+          "end": 15855
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 20044,
+          "end": 20355
+        }
+      ]
+    },
+    {
+      "description": "Binary division algorithm with quotient and remainder calculation.",
+      "lhsRanges": [
+        {
+          "start": 8623,
+          "end": 9022
+        },
+        {
+          "start": 8478,
+          "end": 8621
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 20357,
+          "end": 23803
+        }
+      ]
+    },
+    {
+      "description": "Proves equality by rearranging terms in arithmetic expression.",
+      "lhsRanges": [
+        {
+          "start": 11055,
+          "end": 11197
+        },
+        {
+          "start": 10135,
+          "end": 10433
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 23805,
+          "end": 23914
+        }
+      ]
+    },
+    {
+      "description": "Lemma proves quotient and remainder match division and modulo operations.",
+      "lhsRanges": [
+        {
+          "start": 8623,
+          "end": 9022
+        },
+        {
+          "start": 8478,
+          "end": 8621
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 23916,
+          "end": 24440
+        }
+      ]
+    },
+    {
+      "description": "Compares two bit strings by their integer values.",
+      "lhsRanges": [
+        {
+          "start": 11347,
+          "end": 11615
+        },
+        {
+          "start": 11639,
+          "end": 11887
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 24442,
+          "end": 25767
+        }
+      ]
+    },
+    {
+      "description": "Compares unequal-length bit strings and returns their relative order.",
+      "lhsRanges": [
+        {
+          "start": 11347,
+          "end": 11615
+        },
+        {
+          "start": 11219,
+          "end": 11345
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 25769,
+          "end": 26831
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving multiplication property with bit strings and shifting.",
+      "lhsRanges": [
+        {
+          "start": 5880,
+          "end": 6136
+        },
+        {
+          "start": 6296,
+          "end": 6462
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 26833,
+          "end": 31297
+        }
+      ]
+    },
+    {
+      "description": "Lemma proves leading zeros don't affect binary string's integer value.",
+      "lhsRanges": [
+        {
+          "start": 12643,
+          "end": 12860
+        },
+        {
+          "start": 13878,
+          "end": 14122
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 31299,
+          "end": 32159
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving binary string decomposition formula for integer conversion.",
+      "lhsRanges": [
+        {
+          "start": 2703,
+          "end": 2905
+        },
+        {
+          "start": 14584,
+          "end": 14895
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 32161,
+          "end": 33133
+        }
+      ]
+    },
+    {
+      "description": "Lemma proves prepending a digit to a binary string adds digit*2^n.",
+      "lhsRanges": [
+        {
+          "start": 2703,
+          "end": 2905
+        },
+        {
+          "start": 4385,
+          "end": 4586
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 33135,
+          "end": 34722
+        }
+      ]
+    },
+    {
+      "description": "Pow2 function is monotonically increasing for natural numbers.",
+      "lhsRanges": [
+        {
+          "start": 14584,
+          "end": 14895
+        },
+        {
+          "start": 14146,
+          "end": 14268
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 34724,
+          "end": 34937
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving binary string's integer value is less than 2^length.",
+      "lhsRanges": [
+        {
+          "start": 1649,
+          "end": 1698
+        },
+        {
+          "start": 2703,
+          "end": 2905
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 34939,
+          "end": 35530
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving binary number with trailing zeros equals number without zeros times power of 2.",
+      "lhsRanges": [
+        {
+          "start": 13878,
+          "end": 14122
+        },
+        {
+          "start": 14270,
+          "end": 14582
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 35532,
+          "end": 36622
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving multiplication is associative for natural numbers.",
+      "lhsRanges": [
+        {
+          "start": 5477,
+          "end": 5491
+        },
+        {
+          "start": 5655,
+          "end": 5856
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 36624,
+          "end": 36709
+        }
+      ]
+    },
+    {
+      "description": "Multiplication distributes over addition.",
+      "lhsRanges": [
+        {
+          "start": 10135,
+          "end": 10433
+        },
+        {
+          "start": 5477,
+          "end": 5491
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 36711,
+          "end": 36798
+        }
+      ]
+    },
+    {
+      "description": "Distributive property of multiplication over addition.",
+      "lhsRanges": [
+        {
+          "start": 6464,
+          "end": 6866
+        },
+        {
+          "start": 6296,
+          "end": 6462
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 36800,
+          "end": 36890
+        }
+      ]
+    },
+    {
+      "description": "Proof that Str2Int(\"1011\") equals 11 using binary conversion.",
+      "lhsRanges": [
+        {
+          "start": 15408,
+          "end": 15468
+        },
+        {
+          "start": 15492,
+          "end": 15691
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 36892,
+          "end": 37252
+        }
+      ]
+    },
+    {
+      "description": "Proof that binary string \"1101\" equals decimal 13.",
+      "lhsRanges": [
+        {
+          "start": 15408,
+          "end": 15468
+        },
+        {
+          "start": 15693,
+          "end": 15855
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 37254,
+          "end": 37681
+        }
+      ]
+    },
+    {
+      "description": "Recursive function calculates powers of 2.",
+      "lhsRanges": [
+        {
+          "start": 15857,
+          "end": 16011
+        },
+        {
+          "start": 9962,
+          "end": 9979
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 37683,
+          "end": 37770
+        }
+      ]
+    },
+    {
+      "description": "Proves Pow2(0) equals 1 by revealing Pow2 definition.",
+      "lhsRanges": [
+        {
+          "start": 14146,
+          "end": 14268
+        },
+        {
+          "start": 14584,
+          "end": 14895
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 37772,
+          "end": 37832
+        }
+      ]
+    },
+    {
+      "description": "Lemma proves Pow2(n) is positive for natural numbers.",
+      "lhsRanges": [
+        {
+          "start": 791,
+          "end": 935
+        },
+        {
+          "start": 13878,
+          "end": 14122
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 37834,
+          "end": 37975
+        }
+      ]
+    },
+    {
+      "description": "Lemma proves Pow2(i+1) equals 2*Pow2(i) using reveal.",
+      "lhsRanges": [
+        {
+          "start": 14584,
+          "end": 14895
+        },
+        {
+          "start": 15408,
+          "end": 15468
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 37977,
+          "end": 38062
+        }
+      ]
+    },
+    {
+      "description": "Predicate for binary addition with carry in string representation.",
+      "lhsRanges": [
+        {
+          "start": 1523,
+          "end": 1549
+        },
+        {
+          "start": 1722,
+          "end": 2059
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 38064,
+          "end": 38978
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality in binary addition with carry.",
+      "lhsRanges": [
+        {
+          "start": 4385,
+          "end": 4586
+        },
+        {
+          "start": 4610,
+          "end": 4869
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 38980,
+          "end": 39720
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality of binary addition expressions.",
+      "lhsRanges": [
+        {
+          "start": 4385,
+          "end": 4586
+        },
+        {
+          "start": 4610,
+          "end": 4869
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 39722,
+          "end": 40552
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality of expressions with binary string operations.",
+      "lhsRanges": [
+        {
+          "start": 4385,
+          "end": 4586
+        },
+        {
+          "start": 11055,
+          "end": 11197
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 40554,
+          "end": 41469
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality of expressions with binary number representations.",
+      "lhsRanges": [
+        {
+          "start": 4385,
+          "end": 4586
+        },
+        {
+          "start": 4610,
+          "end": 4869
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 41471,
+          "end": 42274
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality of binary addition expressions.",
+      "lhsRanges": [
+        {
+          "start": 4385,
+          "end": 4586
+        },
+        {
+          "start": 15408,
+          "end": 15468
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 42276,
+          "end": 43134
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality of expressions with associative multiplication.",
+      "lhsRanges": [
+        {
+          "start": 4385,
+          "end": 4586
+        },
+        {
+          "start": 11055,
+          "end": 11197
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 43136,
+          "end": 44079
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality of binary addition expressions.",
+      "lhsRanges": [
+        {
+          "start": 4385,
+          "end": 4586
+        },
+        {
+          "start": 5029,
+          "end": 5191
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 44081,
+          "end": 44853
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality of binary addition expressions.",
+      "lhsRanges": [
+        {
+          "start": 4385,
+          "end": 4586
+        },
+        {
+          "start": 4610,
+          "end": 4869
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 44855,
+          "end": 45655
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving addition with carry in binary string representation.",
+      "lhsRanges": [
+        {
+          "start": 4385,
+          "end": 4586
+        },
+        {
+          "start": 15408,
+          "end": 15468
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 45657,
+          "end": 46479
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality of binary addition with carry.",
+      "lhsRanges": [
+        {
+          "start": 4385,
+          "end": 4586
+        },
+        {
+          "start": 15408,
+          "end": 15468
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 46481,
+          "end": 47291
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality of binary addition expressions using modular arithmetic.",
+      "lhsRanges": [
+        {
+          "start": 4385,
+          "end": 4586
+        },
+        {
+          "start": 15408,
+          "end": 15468
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 47293,
+          "end": 48094
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality of binary addition expressions.",
+      "lhsRanges": [
+        {
+          "start": 4385,
+          "end": 4586
+        },
+        {
+          "start": 15408,
+          "end": 15468
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 48096,
+          "end": 49001
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality in binary addition algorithm.",
+      "lhsRanges": [
+        {
+          "start": 4385,
+          "end": 4586
+        },
+        {
+          "start": 15408,
+          "end": 15468
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 49003,
+          "end": 49790
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality of string-to-integer conversions with carry.",
+      "lhsRanges": [
+        {
+          "start": 4385,
+          "end": 4586
+        },
+        {
+          "start": 15408,
+          "end": 15468
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 49792,
+          "end": 50827
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving addition correctness with auxiliary functions.",
+      "lhsRanges": [
+        {
+          "start": 4385,
+          "end": 4586
+        },
+        {
+          "start": 5193,
+          "end": 5475
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 50829,
+          "end": 52679
+        }
+      ]
+    },
+    {
+      "description": "Predicate defining binary subtraction with borrowing in string representation.",
+      "lhsRanges": [
+        {
+          "start": 1523,
+          "end": 1549
+        },
+        {
+          "start": 7710,
+          "end": 7998
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 52681,
+          "end": 53744
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality in binary subtraction with borrowing.",
+      "lhsRanges": [
+        {
+          "start": 7103,
+          "end": 7343
+        },
+        {
+          "start": 7710,
+          "end": 7998
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 53746,
+          "end": 54523
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality of binary subtraction expressions.",
+      "lhsRanges": [
+        {
+          "start": 7103,
+          "end": 7343
+        },
+        {
+          "start": 7710,
+          "end": 7998
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 54525,
+          "end": 55542
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality of expressions with power of 2 multiplication.",
+      "lhsRanges": [
+        {
+          "start": 7103,
+          "end": 7343
+        },
+        {
+          "start": 7710,
+          "end": 7998
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 55544,
+          "end": 56796
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving subtraction algorithm correctness with borrowing.",
+      "lhsRanges": [
+        {
+          "start": 7103,
+          "end": 7343
+        },
+        {
+          "start": 7710,
+          "end": 7998
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 56798,
+          "end": 57586
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality of expressions with binary subtraction.",
+      "lhsRanges": [
+        {
+          "start": 7103,
+          "end": 7343
+        },
+        {
+          "start": 7710,
+          "end": 7998
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 57588,
+          "end": 58427
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality of expressions with different representations of rawDiff.",
+      "lhsRanges": [
+        {
+          "start": 7103,
+          "end": 7343
+        },
+        {
+          "start": 7710,
+          "end": 7998
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 58429,
+          "end": 59304
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving subtraction algorithm correctness with borrowing.",
+      "lhsRanges": [
+        {
+          "start": 7103,
+          "end": 7343
+        },
+        {
+          "start": 7710,
+          "end": 7998
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 59306,
+          "end": 60053
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality with binary subtraction and borrowing.",
+      "lhsRanges": [
+        {
+          "start": 7103,
+          "end": 7343
+        },
+        {
+          "start": 7710,
+          "end": 7998
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 60055,
+          "end": 60911
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality in binary subtraction algorithm.",
+      "lhsRanges": [
+        {
+          "start": 7103,
+          "end": 7343
+        },
+        {
+          "start": 7710,
+          "end": 7998
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 60913,
+          "end": 61648
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving equality of string-to-integer conversions with borrowing.",
+      "lhsRanges": [
+        {
+          "start": 7103,
+          "end": 7343
+        },
+        {
+          "start": 7710,
+          "end": 7998
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 61650,
+          "end": 62704
+        }
+      ]
+    },
+    {
+      "description": "Lemma proving subtraction algorithm correctness with borrowing.",
+      "lhsRanges": [
+        {
+          "start": 7103,
+          "end": 7343
+        },
+        {
+          "start": 7367,
+          "end": 7623
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 62706,
+          "end": 64273
+        }
+      ]
+    }
+  ],
+  "lhsLabels": [],
+  "rhsLabels": []
+}
