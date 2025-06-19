@@ -1,0 +1,785 @@
+{
+  "mappings": [
+    {
+      "description": "Analytics tool for tracking website visitors.",
+      "lhsRanges": [
+        {
+          "start": 15470,
+          "end": 15490
+        },
+        {
+          "start": 937,
+          "end": 957
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 0,
+          "end": 16
+        }
+      ]
+    },
+    {
+      "description": "Mathematical library for arbitrary-precision integer operations.",
+      "lhsRanges": [
+        {
+          "start": 5193,
+          "end": 5475
+        },
+        {
+          "start": 9822,
+          "end": 9960
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 18,
+          "end": 34
+        }
+      ]
+    },
+    {
+      "description": "Predicate checking if string is empty or contains only zeros.",
+      "lhsRanges": [
+        {
+          "start": 112,
+          "end": 156
+        },
+        {
+          "start": 21,
+          "end": 110
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 36,
+          "end": 183
+        }
+      ]
+    },
+    {
+      "description": "Decidability instance for checking if all characters are zero.",
+      "lhsRanges": [
+        {
+          "start": 112,
+          "end": 156
+        },
+        {
+          "start": 0,
+          "end": 19
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 185,
+          "end": 307
+        }
+      ]
+    },
+    {
+      "description": "Function creates string of n zeros.",
+      "lhsRanges": [
+        {
+          "start": 724,
+          "end": 789
+        },
+        {
+          "start": 791,
+          "end": 935
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 309,
+          "end": 429
+        }
+      ]
+    },
+    {
+      "description": "Defines a predicate for non-empty strings containing only 0s and 1s.",
+      "lhsRanges": [
+        {
+          "start": 1649,
+          "end": 1698
+        },
+        {
+          "start": 1523,
+          "end": 1549
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 431,
+          "end": 555
+        }
+      ]
+    },
+    {
+      "description": "Decidability instance for validBitString using infer_instance.",
+      "lhsRanges": [
+        {
+          "start": 1649,
+          "end": 1698
+        },
+        {
+          "start": 1523,
+          "end": 1549
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 557,
+          "end": 700
+        }
+      ]
+    },
+    {
+      "description": "Removes leading zeros from bit strings, keeping at least one digit.",
+      "lhsRanges": [
+        {
+          "start": 2703,
+          "end": 2905
+        },
+        {
+          "start": 2482,
+          "end": 2511
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 702,
+          "end": 933
+        }
+      ]
+    },
+    {
+      "description": "Function converts binary string to natural number using fold.",
+      "lhsRanges": [
+        {
+          "start": 15693,
+          "end": 15855
+        },
+        {
+          "start": 2703,
+          "end": 2905
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 936,
+          "end": 1076
+        }
+      ]
+    },
+    {
+      "description": "Function converts natural numbers to binary string representation.",
+      "lhsRanges": [
+        {
+          "start": 791,
+          "end": 935
+        },
+        {
+          "start": 15693,
+          "end": 15855
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1078,
+          "end": 1346
+        }
+      ]
+    },
+    {
+      "description": "Function adds binary strings representing large integers.",
+      "lhsRanges": [
+        {
+          "start": 4610,
+          "end": 4869
+        },
+        {
+          "start": 4385,
+          "end": 4586
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1349,
+          "end": 2112
+        }
+      ]
+    },
+    {
+      "description": "Adds two binary strings by reversing and processing bit by bit.",
+      "lhsRanges": [
+        {
+          "start": 4385,
+          "end": 4586
+        },
+        {
+          "start": 7710,
+          "end": 7998
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2114,
+          "end": 2202
+        }
+      ]
+    },
+    {
+      "description": "Binary multiplication algorithm using shift and add operations.",
+      "lhsRanges": [
+        {
+          "start": 5655,
+          "end": 5856
+        },
+        {
+          "start": 5880,
+          "end": 6136
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2205,
+          "end": 2827
+        }
+      ]
+    },
+    {
+      "description": "Applies mulStep 0 to s1 and reversed s2 data.",
+      "lhsRanges": [
+        {
+          "start": 5655,
+          "end": 5856
+        },
+        {
+          "start": 5880,
+          "end": 6136
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2829,
+          "end": 2863
+        }
+      ]
+    },
+    {
+      "description": "Function subtracts two bit strings representing big integers.",
+      "lhsRanges": [
+        {
+          "start": 7367,
+          "end": 7623
+        },
+        {
+          "start": 7103,
+          "end": 7343
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2866,
+          "end": 3304
+        }
+      ]
+    },
+    {
+      "description": "Function subtracts binary numbers with borrow handling.",
+      "lhsRanges": [
+        {
+          "start": 7103,
+          "end": 7343
+        },
+        {
+          "start": 7367,
+          "end": 7623
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3306,
+          "end": 3549
+        }
+      ]
+    },
+    {
+      "description": "Binary subtraction algorithm with borrow handling.",
+      "lhsRanges": [
+        {
+          "start": 7103,
+          "end": 7343
+        },
+        {
+          "start": 7710,
+          "end": 7998
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3551,
+          "end": 4021
+        }
+      ]
+    },
+    {
+      "description": "Subtracts binary strings with padding and reversal.",
+      "lhsRanges": [
+        {
+          "start": 7103,
+          "end": 7343
+        },
+        {
+          "start": 4385,
+          "end": 4586
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4023,
+          "end": 4240
+        }
+      ]
+    },
+    {
+      "description": "Function subtracts string representations of two numbers.",
+      "lhsRanges": [
+        {
+          "start": 15693,
+          "end": 15855
+        },
+        {
+          "start": 6868,
+          "end": 6882
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4242,
+          "end": 4315
+        }
+      ]
+    },
+    {
+      "description": "Compares two bit strings as big integers.",
+      "lhsRanges": [
+        {
+          "start": 11639,
+          "end": 11887
+        },
+        {
+          "start": 11347,
+          "end": 11615
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4317,
+          "end": 4533
+        }
+      ]
+    },
+    {
+      "description": "Compares strings by length, then lexicographically if same length.",
+      "lhsRanges": [
+        {
+          "start": 11347,
+          "end": 11615
+        },
+        {
+          "start": 16492,
+          "end": 16657
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4535,
+          "end": 5036
+        }
+      ]
+    },
+    {
+      "description": "Compares characters between two data files.",
+      "lhsRanges": [
+        {
+          "start": 11199,
+          "end": 11217
+        },
+        {
+          "start": 16492,
+          "end": 16657
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5038,
+          "end": 5076
+        }
+      ]
+    },
+    {
+      "description": "Binary division function implementing long division algorithm.",
+      "lhsRanges": [
+        {
+          "start": 8623,
+          "end": 9022
+        },
+        {
+          "start": 8478,
+          "end": 8621
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5079,
+          "end": 6231
+        }
+      ]
+    },
+    {
+      "description": "Divides dividend data by step 0 with empty list.",
+      "lhsRanges": [
+        {
+          "start": 9046,
+          "end": 9391
+        },
+        {
+          "start": 8623,
+          "end": 9022
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 6233,
+          "end": 6265
+        }
+      ]
+    },
+    {
+      "description": "Division of 15 by 3 using string conversion.",
+      "lhsRanges": [
+        {
+          "start": 9046,
+          "end": 9391
+        },
+        {
+          "start": 15693,
+          "end": 15855
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 6267,
+          "end": 6356
+        }
+      ]
+    },
+    {
+      "description": "Subtracts string representations of numbers, converts back to number.",
+      "lhsRanges": [
+        {
+          "start": 6868,
+          "end": 6882
+        },
+        {
+          "start": 15693,
+          "end": 15855
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 6358,
+          "end": 6432
+        }
+      ]
+    },
+    {
+      "description": "Modular exponentiation function using binary algorithm for bit strings.",
+      "lhsRanges": [
+        {
+          "start": 10135,
+          "end": 10433
+        },
+        {
+          "start": 9981,
+          "end": 10133
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 6435,
+          "end": 7449
+        }
+      ]
+    },
+    {
+      "description": "Function to modify expression with size parameters.",
+      "lhsRanges": [
+        {
+          "start": 10135,
+          "end": 10433
+        },
+        {
+          "start": 10457,
+          "end": 10728
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 7451,
+          "end": 7496
+        }
+      ]
+    },
+    {
+      "description": "Calculates 2^5 mod 10 using modular exponentiation.",
+      "lhsRanges": [
+        {
+          "start": 9962,
+          "end": 9979
+        },
+        {
+          "start": 15693,
+          "end": 15855
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 7498,
+          "end": 7558
+        }
+      ]
+    },
+    {
+      "description": "Theorem proves Add function correctly computes binary string addition.",
+      "lhsRanges": [
+        {
+          "start": 4385,
+          "end": 4586
+        },
+        {
+          "start": 4610,
+          "end": 4869
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 7560,
+          "end": 7792
+        }
+      ]
+    },
+    {
+      "description": "Theorem proves Mul function correctly multiplies binary strings.",
+      "lhsRanges": [
+        {
+          "start": 5655,
+          "end": 5856
+        },
+        {
+          "start": 5880,
+          "end": 6136
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 7794,
+          "end": 8026
+        }
+      ]
+    },
+    {
+      "description": "Theorem proves Sub function correctly computes binary string subtraction.",
+      "lhsRanges": [
+        {
+          "start": 7103,
+          "end": 7343
+        },
+        {
+          "start": 7367,
+          "end": 7623
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 8028,
+          "end": 8293
+        }
+      ]
+    },
+    {
+      "description": "Function zeros creates a valid bit string of n zeros.",
+      "lhsRanges": [
+        {
+          "start": 791,
+          "end": 935
+        },
+        {
+          "start": 14270,
+          "end": 14582
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 8295,
+          "end": 8491
+        }
+      ]
+    },
+    {
+      "description": "Theorem proves compare function correctly orders binary strings.",
+      "lhsRanges": [
+        {
+          "start": 11347,
+          "end": 11615
+        },
+        {
+          "start": 11639,
+          "end": 11887
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 8493,
+          "end": 8801
+        }
+      ]
+    },
+    {
+      "description": "Division function returns correct quotient and remainder.",
+      "lhsRanges": [
+        {
+          "start": 8623,
+          "end": 9022
+        },
+        {
+          "start": 9046,
+          "end": 9391
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 8803,
+          "end": 9230
+        }
+      ]
+    },
+    {
+      "description": "Theorem proves normalizeBitString preserves value while removing leading zeros.",
+      "lhsRanges": [
+        {
+          "start": 2703,
+          "end": 2905
+        },
+        {
+          "start": 2482,
+          "end": 2511
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 9232,
+          "end": 9509
+        }
+      ]
+    },
+    {
+      "description": "Theorem proves modExp function correctly computes modular exponentiation.",
+      "lhsRanges": [
+        {
+          "start": 10135,
+          "end": 10433
+        },
+        {
+          "start": 10457,
+          "end": 10728
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 9511,
+          "end": 9841
+        }
+      ]
+    },
+    {
+      "description": "Binary string value unchanged when removing leading zeros.",
+      "lhsRanges": [
+        {
+          "start": 12643,
+          "end": 12860
+        },
+        {
+          "start": 13878,
+          "end": 14122
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 9844,
+          "end": 10156
+        }
+      ]
+    },
+    {
+      "description": "Trailing zeros in binary multiply value by powers of 2.",
+      "lhsRanges": [
+        {
+          "start": 13878,
+          "end": 14122
+        },
+        {
+          "start": 14146,
+          "end": 14268
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 10158,
+          "end": 10478
+        }
+      ]
+    },
+    {
+      "description": "Proves \"1011\" equals 11 in decimal.",
+      "lhsRanges": [
+        {
+          "start": 15342,
+          "end": 15406
+        },
+        {
+          "start": 15492,
+          "end": 15691
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 10481,
+          "end": 10616
+        }
+      ]
+    },
+    {
+      "description": "Concise description of Bignum concept in programming.",
+      "lhsRanges": [
+        {
+          "start": 9962,
+          "end": 9979
+        },
+        {
+          "start": 9822,
+          "end": 9960
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 10619,
+          "end": 10630
+        }
+      ]
+    }
+  ],
+  "lhsLabels": [],
+  "rhsLabels": []
+}
