@@ -1,6 +1,7 @@
 import React, { useState, useRef, useCallback, useMemo } from 'react';
 import { TextPanel, LeftTabMode, RightTabMode } from './TextPanel.tsx';
 import { AnnotationsPanel } from './AnnotationsPanel.tsx';
+import { PanelResizer } from './PanelResizer.tsx';
 import { scrollToTextRange } from '../utils/textPanelScrollManager.ts';
 import { TextMappingSlice } from '../utils/AnnotationsSlice.ts';
 import { useAppContext } from '../context/AppContext.tsx';
@@ -29,8 +30,12 @@ export const MainContent: React.FC<MainContentProps> = (props) => {
 
   const leftContentRef = useRef<HTMLDivElement | null>(null);
   const rightContentRef = useRef<HTMLDivElement | null>(null);
+  const textPanelsRef = useRef<HTMLDivElement>(null);
+
+  // State
   const [leftTabMode, setLeftTabMode] = useState<LeftTabMode>(INITIAL_LEFT_TAB_STATE);
   const [rightTabMode, setRightTabMode] = useState<RightTabMode>(INITIAL_RIGHT_TAB_STATE);
+  const [leftPanelWidth, setLeftPanelWidth] = useState<number>(50); // percentage
 
   const handleMappingClick: MappingClickHandler = useCallback(({ mapping, clickedRange }) => {
     if (clickedRange) {
@@ -80,6 +85,14 @@ export const MainContent: React.FC<MainContentProps> = (props) => {
     handleTextMappingClick(mapping, "rhs", leftContentRef);
   }, [handleTextMappingClick]);
 
+  const handlePanelResize = useCallback((leftWidth: number) => {
+    if (!textPanelsRef.current) return;
+    
+    const containerWidth = textPanelsRef.current.offsetWidth;
+    const leftPercentage = (leftWidth / containerWidth) * 100;
+    setLeftPanelWidth(leftPercentage);
+  }, []);
+
   // Derived values
   const leftTabs = useMemo(() => ['pdf', 'full-text', 'selected-text'] as LeftTabMode[], []);
   const rightTabs = useMemo(() => ['pre-written', 'generated'] as RightTabMode[], []);
@@ -87,7 +100,11 @@ export const MainContent: React.FC<MainContentProps> = (props) => {
   // Main render
   return (
     <main>
-      <div id="text-panels" className={props.isHighlightsVisible ? 'highlight-all' : ''}>
+      <div 
+        id="text-panels" 
+        className={props.isHighlightsVisible ? 'highlight-all' : ''}
+        ref={textPanelsRef}
+      >
         <TextPanel
           side="left"
           title="Natural Language Documentation"
@@ -100,7 +117,15 @@ export const MainContent: React.FC<MainContentProps> = (props) => {
           isAnnotationMode={props.isAnnotationMode}
           onTextSelection={props.onTextSelection}
           selectedRanges={props.selectedRanges.lhs}
+          style={{ width: `${leftPanelWidth}%` }}
+          className="resizable"
         />
+        
+        <PanelResizer 
+          onResize={handlePanelResize}
+          containerRef={textPanelsRef}
+        />
+        
         <TextPanel
           side="right"
           title="Mechanized Spec"
@@ -112,6 +137,8 @@ export const MainContent: React.FC<MainContentProps> = (props) => {
           isAnnotationMode={props.isAnnotationMode}
           onTextSelection={props.onTextSelection}
           selectedRanges={props.selectedRanges.rhs}
+          style={{ width: `${100 - leftPanelWidth}%` }}
+          className="resizable"
         />
       </div>
 

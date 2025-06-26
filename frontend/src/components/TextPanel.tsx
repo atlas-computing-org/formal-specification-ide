@@ -75,6 +75,8 @@ interface TextPanelPropsBase<T extends LeftTabMode | RightTabMode> {
   isAnnotationMode: boolean;
   onTextSelection: (direction: Direction, range: TextRange) => void;
   selectedRanges: TextRangeWithText[];
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 interface LeftTextPanelProps extends TextPanelPropsBase<LeftTabMode> {
@@ -277,7 +279,11 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
 
   // Main render
   return (
-    <div id={isLeftPanel ? 'left-text' : 'right-text'} className="text-panel">
+    <div 
+      id={isLeftPanel ? 'left-text' : 'right-text'} 
+      className={`text-panel ${props.className || ''}`}
+      style={props.style}
+    >
       <div className="panel-header">
         <div className="header">{props.title}:</div>
         <div className="panel-tabs">

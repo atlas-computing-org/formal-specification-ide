@@ -117,6 +117,23 @@ button {
   min-width: 0; /* Allow flex item to shrink below content width */
 }
 
+.text-panel.resizable {
+  flex: none; /* Remove flex behavior when resizing is active */
+}
+
+/* Panel resizer */
+.panel-resizer {
+  width: 5px;
+  background-color: #ccc;
+  cursor: col-resize;
+  flex-shrink: 0;
+  transition: background-color 0.2s;
+}
+
+.panel-resizer:hover {
+  background-color: #999;
+}
+
 /***********************************
  * Panel header with tabs
  **********************************/
