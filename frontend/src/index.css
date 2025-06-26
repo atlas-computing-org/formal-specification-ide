@@ -114,6 +114,7 @@ button {
   display: flex;
   flex-direction: column;
   border: 1px solid #ccc;
+  min-width: 0; /* Allow flex item to shrink below content width */
 }
 
 /***********************************
@@ -189,6 +190,8 @@ button {
 #right-text .text-panel-content {
   font-family: monospace;
   white-space: pre;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 /* Underline warnings and errors */
 .text-panel-content > .default {
