@@ -473,7 +473,7 @@ button {
 .legend-items {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 2px;
 }
 
 .legend-item {
@@ -482,7 +482,8 @@ button {
   gap: 8px;
   padding: 4px 6px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 14px;
+  border: 1px solid transparent; /* Reserve space for border */
 }
 
 .legend-color {
@@ -493,6 +494,7 @@ button {
 }
 
 .legend-label {
+  color: #444444;
   flex: 1;
 }
 
@@ -543,6 +545,16 @@ button {
 
 .category-legend .legend-item.category-example .legend-color {
   background-color: #aa00aa55; /* violet */
+}
+
+/* Highlighted category legend items */
+.category-legend .legend-item.highlighted {
+  background-color: #f0f0f0;
+  border-color: #ccc; /* Change border color instead of adding border */
+}
+
+.category-legend .legend-item.highlighted .legend-label.bold {
+  color: #000000;
 }
 
 /***************************************************************************

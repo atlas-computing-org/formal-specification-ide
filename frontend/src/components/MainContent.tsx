@@ -28,7 +28,7 @@ interface MainContentProps {
 // Component
 export const MainContent: React.FC<MainContentProps> = (props) => {
   const { state } = useAppContext();
-  const { dataset } = state;
+  const { dataset, highlights } = state;
 
   const leftContentRef = useRef<HTMLDivElement | null>(null);
   const rightContentRef = useRef<HTMLDivElement | null>(null);
@@ -142,7 +142,7 @@ export const MainContent: React.FC<MainContentProps> = (props) => {
           style={{ width: `${100 - leftPanelWidth}%` }}
           className="resizable"
         />
-        {props.showCategories && <CategoryLegend />}
+        {props.showCategories && <CategoryLegend highlights={highlights} />}
       </div>
 
       {props.isAnnotationsPanelVisible && (
