@@ -229,7 +229,7 @@ button {
   background-color: #57aeff26; /* blue */
 }
 .text-panel-content > .category-navigation {
-  background-color: #ffb85726; /* orange */
+  background-color: #ce23dc26; /* magenta */
 }
 .text-panel-content > .category-algorithm {
   background-color: #57ff5726; /* green */
@@ -250,7 +250,7 @@ button {
   background-color: #ff57ae26; /* pink */
 }
 .text-panel-content > .category-pre-condition {
-  background-color: #5757ff26; /* blue-purple */
+  background-color: #213aff26; /* blue-purple */
 }
 .text-panel-content > .category-post-condition {
   background-color: #ffb85726; /* orange */
@@ -272,7 +272,7 @@ button {
   background-color: #57aeff55; /* blue */
 }
 .text-panel-content > .highlight.category-navigation {
-  background-color: #ffb85755; /* orange */
+  background-color: #ce23dc55; /* magenta */
 }
 .text-panel-content > .highlight.category-algorithm {
   background-color: #57ff5755; /* green */
@@ -293,7 +293,7 @@ button {
   background-color: #ff57ae55; /* pink */
 }
 .text-panel-content > .highlight.category-pre-condition {
-  background-color: #5757ff55; /* blue-purple */
+  background-color: #213aff55; /* blue-purple */
 }
 .text-panel-content > .highlight.category-post-condition {
   background-color: #ffb85755; /* orange */
@@ -398,7 +398,7 @@ button {
   background-color: #57aeff26; /* blue */
 }
 #annotations .highlight.category-navigation {
-  background-color: #ffb85726; /* orange */
+  background-color: #ce23dc26; /* magenta */
 }
 #annotations .highlight.category-algorithm {
   background-color: #57ff5726; /* green */
@@ -419,7 +419,7 @@ button {
   background-color: #ff57ae26; /* pink */
 }
 #annotations .highlight.category-pre-condition {
-  background-color: #5757ff26; /* blue-purple */
+  background-color: #213aff26; /* blue-purple */
 }
 #annotations .highlight.category-post-condition {
   background-color: #ffb85726; /* orange */
@@ -448,6 +448,101 @@ button {
   text-decoration: underline;
   text-decoration-color: #ff000088;
   text-decoration-style: wavy;
+}
+
+/***************************************************************************
+ * Category Legend
+ **************************************************************************/
+
+.category-legend {
+  width: 200px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.legend-header {
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+.legend-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.legend-label {
+  flex: 1;
+}
+
+/* Category color styles for legend */
+.category-legend .legend-item.category-preamble .legend-color {
+  background-color: #57aeff55; /* blue */
+}
+
+.category-legend .legend-item.category-navigation .legend-color {
+  background-color: #ce23dc55; /* magenta */
+}
+
+.category-legend .legend-item.category-algorithm .legend-color {
+  background-color: #57ff5755; /* green */
+}
+
+.category-legend .legend-item.category-parameter .legend-color {
+  background-color: #00cc9955; /* teal */
+}
+
+.category-legend .legend-item.category-definition .legend-color {
+  background-color: #8857ff55; /* purple */
+}
+
+.category-legend .legend-item.category-elaboration .legend-color {
+  background-color: #57ffff55; /* cyan */
+}
+
+.category-legend .legend-item.category-diagram .legend-color {
+  background-color: #ffff5755; /* bright yellow */
+}
+
+.category-legend .legend-item.category-intent .legend-color {
+  background-color: #ff57ae55; /* pink */
+}
+
+.category-legend .legend-item.category-pre-condition .legend-color {
+  background-color: #213aff55; /* blue-purple */
+}
+
+.category-legend .legend-item.category-post-condition .legend-color {
+  background-color: #ffb85755; /* orange */
+}
+
+.category-legend .legend-item.category-preference .legend-color {
+  background-color: #cc663355; /* brown */
+}
+
+.category-legend .legend-item.category-example .legend-color {
+  background-color: #aa00aa55; /* violet */
 }
 
 /***************************************************************************

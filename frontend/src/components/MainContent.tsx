@@ -1,6 +1,7 @@
 import React, { useState, useRef, useCallback, useMemo } from 'react';
 import { TextPanel, LeftTabMode, RightTabMode } from './TextPanel.tsx';
 import { AnnotationsPanel } from './AnnotationsPanel.tsx';
+import { CategoryLegend } from './CategoryLegend.tsx';
 import { PanelResizer } from './PanelResizer.tsx';
 import { scrollToTextRange } from '../utils/textPanelScrollManager.ts';
 import { TextMappingSlice } from '../utils/AnnotationsSlice.ts';
@@ -141,6 +142,7 @@ export const MainContent: React.FC<MainContentProps> = (props) => {
           style={{ width: `${100 - leftPanelWidth}%` }}
           className="resizable"
         />
+        {props.showCategories && <CategoryLegend />}
       </div>
 
       {props.isAnnotationsPanelVisible && (
