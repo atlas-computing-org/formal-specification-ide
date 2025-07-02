@@ -70,7 +70,7 @@ export const MainContent: React.FC<MainContentProps> = (props) => {
   const handleTextMappingClick = useCallback((sourceMapping: TextMappingSlice, sourceDirection: Direction, contentRef: React.RefObject<HTMLDivElement>) => {
     const targetMapping = getMatchingMappingInOppositeText(dataset.annotations, sourceMapping, sourceDirection);
     if (targetMapping?.ranges.length) {
-      const targetRange = targetMapping.ranges.reduce((prev, curr) => 
+      const targetRange = targetMapping.ranges.reduce((prev, curr) =>
         curr.start < prev.start ? curr : prev
       );
       if (contentRef.current) {
@@ -89,7 +89,7 @@ export const MainContent: React.FC<MainContentProps> = (props) => {
 
   const handlePanelResize = useCallback((leftWidth: number) => {
     if (!textPanelsRef.current) return;
-    
+
     const containerWidth = textPanelsRef.current.offsetWidth;
     const leftPercentage = (leftWidth / containerWidth) * 100;
     setLeftPanelWidth(leftPercentage);
@@ -102,51 +102,53 @@ export const MainContent: React.FC<MainContentProps> = (props) => {
   // Main render
   return (
     <main>
-      <div 
-        id="text-panels" 
-        className={`${props.isHighlightsVisible ? 'highlight-all' : ''} ${props.showCategories ? 'show-categories' : ''}`}
-        ref={textPanelsRef}
-      >
-        <TextPanel
-          side="left"
-          title="Natural Language Documentation"
-          tabs={leftTabs}
-          activeTab={leftTabMode}
-          onTabChange={setLeftTabMode}
-          pdfSrc={props.pdfSrc}
-          contentRef={leftContentRef}
-          onClickTextMapping={handleLeftTextMappingClick}
-          isAnnotationMode={props.isAnnotationMode}
-          onTextSelection={props.onTextSelection}
-          selectedRanges={props.selectedRanges.lhs}
-          showCategories={props.showCategories}
-        />
-        
-        <PanelResizer 
-          onResize={handlePanelResize}
-          containerRef={textPanelsRef}
-        />
-        
-        <TextPanel
-          side="right"
-          title="Mechanized Spec"
-          tabs={rightTabs}
-          activeTab={rightTabMode}
-          onTabChange={setRightTabMode}
-          contentRef={rightContentRef}
-          onClickTextMapping={handleRightTextMappingClick}
-          isAnnotationMode={props.isAnnotationMode}
-          onTextSelection={props.onTextSelection}
-          selectedRanges={props.selectedRanges.rhs}
-          showCategories={props.showCategories}
-          style={{ width: `${100 - leftPanelWidth}%` }}
-          className="resizable"
-        />
+      <div id="primary-content">
+        <div
+          id="text-panels"
+          className={`${props.isHighlightsVisible ? 'highlight-all' : ''} ${props.showCategories ? 'show-categories' : ''}`}
+          ref={textPanelsRef}
+        >
+          <TextPanel
+            side="left"
+            title="Natural Language Documentation"
+            tabs={leftTabs}
+            activeTab={leftTabMode}
+            onTabChange={setLeftTabMode}
+            pdfSrc={props.pdfSrc}
+            contentRef={leftContentRef}
+            onClickTextMapping={handleLeftTextMappingClick}
+            isAnnotationMode={props.isAnnotationMode}
+            onTextSelection={props.onTextSelection}
+            selectedRanges={props.selectedRanges.lhs}
+            showCategories={props.showCategories}
+          />
+
+          <PanelResizer
+            onResize={handlePanelResize}
+            containerRef={textPanelsRef}
+          />
+
+          <TextPanel
+            side="right"
+            title="Mechanized Spec"
+            tabs={rightTabs}
+            activeTab={rightTabMode}
+            onTabChange={setRightTabMode}
+            contentRef={rightContentRef}
+            onClickTextMapping={handleRightTextMappingClick}
+            isAnnotationMode={props.isAnnotationMode}
+            onTextSelection={props.onTextSelection}
+            selectedRanges={props.selectedRanges.rhs}
+            showCategories={props.showCategories}
+            style={{ width: `${100 - leftPanelWidth}%` }}
+            className="resizable"
+          />
+        </div>
         {props.showCategories && <CategoryLegend highlights={highlights} />}
       </div>
 
       {props.isAnnotationsPanelVisible && (
-        <AnnotationsPanel 
+        <AnnotationsPanel
           onMappingClick={handleMappingClick}
           onLabelClick={handleLabelClick}
           showCategories={props.showCategories}

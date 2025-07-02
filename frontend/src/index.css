@@ -76,6 +76,12 @@ main {
   padding-bottom: 60px; /* Give space for the fixed footer */
 }
 
+#primary-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
 select {
   padding: 4px;
   margin-right: 8px;
