@@ -20,6 +20,11 @@ button, select {
   cursor: pointer;
 }
 
+/* Override the default monospace font family for textareas */
+textarea {
+  font-family: Arial, sans-serif;
+}
+
 /***************************************************************************
  * Common
  **************************************************************************/
@@ -772,4 +777,94 @@ button {
   padding: 8px;
   border-radius: 4px;
   margin-bottom: 16px;
+}
+
+/***************************************************************************
+ * Edit Prompts
+ **************************************************************************/
+
+.modal-content.edit-prompts {
+  width: 80%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+#edit-prompts-header {
+  margin-bottom: 16px;
+}
+
+#edit-prompts-header h3 {
+  margin: 0 0 12px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#edit-prompts-header select {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 5px;
+}
+
+#edit-prompts-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#prompt-editor {
+  flex: 1;
+  font-size: 14px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+  overflow-wrap: normal;
+  overflow-x: auto;
+}
+
+.edit-prompts-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 40px;
+}
+
+.edit-prompts-loading p {
+  margin: 0;
+  color: #666;
+}
+
+.error-message {
+  color: #ff0000;
+  background-color: #ff000011;
+  padding: 8px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.button-group button {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.button-group button:hover:not(:disabled) {
+  background-color: #f0f0f0;
+}
+
+.button-group button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
