@@ -10,6 +10,7 @@ const SERVER_DIR = path.join(ROOT_DIR, '/server');
 export const SERVER_DATA_DIR = path.join(SERVER_DIR, '/data');
 export const SERVER_SRC_DIR = path.join(SERVER_DIR, '/src');
 export const EXPERIMENTS_DIR = path.join(ROOT_DIR, '/experiments');
+export const PROMPTS_DIR = path.join(SERVER_SRC_DIR, 'agents/prompts');
 
 export const overrideFileExtension = '.OVERRIDE';
 

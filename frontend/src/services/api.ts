@@ -9,6 +9,8 @@ import { ChatAboutAnnotationsRequest, ChatAboutAnnotationsResponse }
 import { SaveDatasetRequest, SaveDatasetResponse }
   from '@common/serverAPI/saveDatasetAPI.ts';
 import { ErrorResponse } from '@common/serverAPI/ErrorResponse.ts';
+import { GetAllAgentPromptsResponse } from '@common/serverAPI/getAllAgentPromptsAPI.ts';
+import { WriteAgentPromptOverrideRequest, WriteAgentPromptOverrideResponse } from '@common/serverAPI/writeAgentPromptOverrideAPI.ts';
 
 export const SERVER_BASE_URL = "http://localhost:3001";
 
@@ -64,4 +66,10 @@ export const api = {
 
   saveDataset: (request: SaveDatasetRequest) =>
     httpClient.post<SaveDatasetRequest, SaveDatasetResponse>('/save-dataset', request),
+
+  getAllAgentPrompts: () =>
+    httpClient.get<GetAllAgentPromptsResponse>('/getAllAgentPrompts'),
+
+  writeAgentPromptOverride: (request: WriteAgentPromptOverrideRequest) =>
+    httpClient.post<WriteAgentPromptOverrideRequest, WriteAgentPromptOverrideResponse>('/writeAgentPromptOverride', request),
 }; 
