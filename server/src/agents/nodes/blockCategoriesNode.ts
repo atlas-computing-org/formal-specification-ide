@@ -82,7 +82,7 @@ const prompt = ChatPromptTemplate.fromMessages([ new MessagesPlaceholder("messag
 const llm = newModel("Anthropic");
 const parser = new JsonOutputParser<BlockCategory[]>();
 const chain = prompt.pipe(llm).pipe(parser);
-const promptText = readFileSync(`${SERVER_SRC_DIR}/agents/nodes/blockCategoriesNodePrompt.txt`, 'utf-8');
+const promptText = readFileSync(`${SERVER_SRC_DIR}/agents/prompts/blockCategoriesNodePrompt.txt`, 'utf-8');
 
 export const blockCategoriesNode = async (state: typeof StateInfo.State) => {
   const blocks = state.blockCategoriesQuerySide === "lhs" ? state.lhsBlocks : state.rhsBlocks;
