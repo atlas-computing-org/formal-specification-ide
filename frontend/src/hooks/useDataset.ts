@@ -87,6 +87,47 @@ export const useDataset = () => {
     }
   };
 
+  const generateCategoryLabels = async () => {
+    try {
+      const { lhsText, rhsText, annotations } = state.dataset;
+
+      setGenerating(true);
+      setGenerationError(null);
+      const response = await api.generateCategoryLabels({
+        lhsText,
+        rhsText,
+        currentAnnotations: annotations,
+      });
+      console.log("Server's response:", response);
+
+      // Update raw model output
+      if (response.debugInfo?.rawModelOutput) {
+        updateState({
+          lastRawModelOutput: response.debugInfo.rawModelOutput,
+          allRawModelOutputs: [...state.allRawModelOutputs, response.debugInfo.rawModelOutput],
+        });
+      }
+
+      if ("error" in response) {
+        throw new Error(response.error);
+      }
+
+      const newDataset = cacheDatasetText({ lhsText, rhsText, annotations: response.data });
+      const mergedAnnotations = mergeAnnotations(annotations, newDataset.annotations);
+
+      // Update the dataset with the new annotations
+      updateDataset({
+        ...state.dataset,
+        annotations: mergedAnnotations,
+      });
+    } catch (err) {
+      setGenerationError(err as Error);
+      console.error("Error generating category labels:", err);
+    } finally {
+      setGenerating(false);
+    }
+  };
+
   const useAnnotationsSet = (name: string) => {
     const annotations = state.currentAnnotationSets[name] || EMPTY_ANNOTATIONS;
     const { lhsText, rhsText } = state.dataset;
@@ -102,6 +143,7 @@ export const useDataset = () => {
     generating,
     generationError,
     generateAnnotations,
+    generateCategoryLabels,
     useAnnotationsSet,
   };
 };

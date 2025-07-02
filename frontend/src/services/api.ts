@@ -2,6 +2,8 @@ import { GetDatasetNamesResponse } from '@common/serverAPI/getDatasetNamesAPI.ts
 import { GetDatasetResponse } from '@common/serverAPI/getDatasetAPI.ts';
 import { GenerateAnnotationsRequest, GenerateAnnotationsResponse }
   from '@common/serverAPI/generateAnnotationsAPI.ts';
+import { GenerateCategoryLabelsRequest, GenerateCategoryLabelsResponse }
+  from '@common/serverAPI/generateCategoryLabelsAPI.ts';
 import { ChatAboutAnnotationsRequest, ChatAboutAnnotationsResponse }
   from '@common/serverAPI/chatAboutAnnotationsAPI.ts';
 import { SaveDatasetRequest, SaveDatasetResponse }
@@ -53,6 +55,9 @@ export const api = {
 
   generateAnnotations: (request: GenerateAnnotationsRequest) => 
     httpClient.post<GenerateAnnotationsRequest, GenerateAnnotationsResponse>('/generate-annotations', request),
+
+  generateCategoryLabels: (request: GenerateCategoryLabelsRequest) =>
+    httpClient.post<GenerateCategoryLabelsRequest, GenerateCategoryLabelsResponse>('/generate-category-labels', request),
 
   chatAboutAnnotations: (request: ChatAboutAnnotationsRequest) =>
     httpClient.post<ChatAboutAnnotationsRequest, ChatAboutAnnotationsResponse>('/chat-with-assistant', request),
