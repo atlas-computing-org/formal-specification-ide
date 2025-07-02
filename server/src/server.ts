@@ -11,6 +11,8 @@ import { getLogger } from './Logger.ts';
 import { SERVER_DATA_DIR } from './util/fileUtils.ts';
 import { Counter } from '@common/util/Counter.ts';
 import { handleRequest, RequestHandler } from './endpoints/endpointUtils.ts';
+import { getAllAgentPromptsHandler } from './endpoints/getAllAgentPrompts.ts';
+import { writeAgentPromptOverrideHandler } from './endpoints/writeAgentPromptOverride.ts';
 
 const PORT = 3001;
 const CLIENT_PORT = 3000;
@@ -38,6 +40,7 @@ app.use(bodyParser.json({limit: '1mb'}));
 const getRoutes: Record<string, RequestHandler<any, any>> = {
   '/getDatasetNames': getDatasetNamesHandler,
   '/getDataset/:datasetName': getDatasetHandler,
+  '/getAllAgentPrompts': getAllAgentPromptsHandler,
 };
 
 // POST routes
@@ -46,6 +49,7 @@ const postRoutes: Record<string, RequestHandler<any, any>> = {
   '/generate-category-labels': generateCategoryLabelsHandler,
   '/chat-with-assistant': chatAboutAnnotationsHandler,
   '/save-dataset': saveDatasetHandler,
+  '/writeAgentPromptOverride': writeAgentPromptOverrideHandler,
 };
 
 // Register routes

@@ -1,9 +1,8 @@
-import { readFileSync } from 'fs';
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { Document } from "langchain/document";
 import { JsonOutputParser } from "@langchain/core/output_parsers";
 import { ChatPromptTemplate, MessagesPlaceholder } from "@langchain/core/prompts";
-import { SERVER_SRC_DIR } from '../../util/fileUtils.ts';
+import { SERVER_SRC_DIR, readFileAllowOverride } from '../../util/fileUtils.ts';
 import { newModel, StateInfo } from "../agent.ts";
 import { Logger } from '../../Logger.ts';
 import { TextLabel, CategoryType } from '@common/annotations.ts';
@@ -82,9 +81,9 @@ const prompt = ChatPromptTemplate.fromMessages([ new MessagesPlaceholder("messag
 const llm = newModel("Anthropic");
 const parser = new JsonOutputParser<BlockCategory[]>();
 const chain = prompt.pipe(llm).pipe(parser);
-const promptText = readFileSync(`${SERVER_SRC_DIR}/agents/nodes/blockCategoriesNodePrompt.txt`, 'utf-8');
 
 export const blockCategoriesNode = async (state: typeof StateInfo.State) => {
+  const promptText = await readFileAllowOverride(`${SERVER_SRC_DIR}/agents/prompts/blockCategoriesNodePrompt.txt`, state.logger);
   const blocks = state.blockCategoriesQuerySide === "lhs" ? state.lhsBlocks : state.rhsBlocks;
   const labelledBlocks = labelBlocks(blocks);
 

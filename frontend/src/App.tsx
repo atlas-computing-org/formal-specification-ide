@@ -7,6 +7,7 @@ import { ComingSoon } from './components/ComingSoon.tsx';
 import { DebugInfo } from './components/DebugInfo.tsx';
 import { SaveAsDialogue } from './components/SaveAsDialogue.tsx';
 import { Modal } from './components/Modal.tsx';
+import { EditPrompts } from './components/EditPrompts.tsx';
 import { useState, useEffect, useMemo } from 'react';
 import { useDataset } from './hooks/useDataset.ts';
 import { useDatasetNames } from './hooks/useDatasetNames.ts';
@@ -24,6 +25,7 @@ enum ModalState {
   CHAT = 'CHAT',
   COMING_SOON = 'COMING_SOON',
   SAVE_AS = 'SAVE_AS',
+  EDIT_PROMPTS = 'EDIT_PROMPTS',
 }
 
 function AppContent() {
@@ -60,6 +62,7 @@ function AppContent() {
   const handleOpenComingSoonModal = () => { setModalState(ModalState.COMING_SOON); };
   const handleOpenChatModal = () => { setModalState(ModalState.CHAT); };
   const handleOpenDebugModal = () => { setModalState(ModalState.DEBUG); };
+  const handleOpenEditPromptsModal = () => { setModalState(ModalState.EDIT_PROMPTS); };
   const handleOpenSaveAsModal = () => {
     setSaveError(undefined);
     setModalState(ModalState.SAVE_AS);
@@ -152,6 +155,8 @@ function AppContent() {
             error={saveError}
           />
         );
+      case ModalState.EDIT_PROMPTS:
+        return <EditPrompts onClose={handleCloseModal} />;
       default:
         return null;
     }
@@ -168,6 +173,8 @@ function AppContent() {
         return 'coming-soon';
       case ModalState.SAVE_AS:
         return 'save-as';
+      case ModalState.EDIT_PROMPTS:
+        return 'edit-prompts';
       default:
         return '';
     }
@@ -199,6 +206,7 @@ function AppContent() {
         onToggleHighlights={handleToggleHighlights}
         onToggleAnnotationsPanel={handleToggleAnnotationsPanel}
         onOpenDebug={handleOpenDebugModal}
+        onOpenEditPrompts={handleOpenEditPromptsModal}
         onToggleCachedResponses={handleToggleCachedResponses}
         onOpenSaveAs={handleOpenSaveAsModal}
         isHighlightsVisible={isHighlightsVisible}

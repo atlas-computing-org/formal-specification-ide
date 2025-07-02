@@ -1,11 +1,10 @@
-import { promises as fs } from 'fs';
 import { SystemMessage } from "@langchain/core/messages";
-import { SERVER_SRC_DIR } from '../../util/fileUtils.ts';
+import { SERVER_SRC_DIR, readFileAllowOverride } from '../../util/fileUtils.ts';
 import { StateInfo } from "../agent.ts";
 
 export const initChatNode = async (state: typeof StateInfo.State) => {
   try {
-    const PROMPT = await fs.readFile(`${SERVER_SRC_DIR}/agents/nodes/initChatNodePrompt.txt`, 'utf-8');
+    const PROMPT = await readFileAllowOverride(`${SERVER_SRC_DIR}/agents/prompts/initChatNodePrompt.txt`, state.logger);
     state.logger.debug(`System Message:\n${PROMPT + state.systemData}`);
     return { messages: [new SystemMessage(PROMPT + state.systemData)] };
 
