@@ -83,7 +83,7 @@ const parser = new JsonOutputParser<BlockCategory[]>();
 const chain = prompt.pipe(llm).pipe(parser);
 
 export const blockCategoriesNode = async (state: typeof StateInfo.State) => {
-  const promptText = await readFileAllowOverride(`${SERVER_SRC_DIR}/agents/prompts/blockCategoriesNodePrompt.txt`);
+  const promptText = await readFileAllowOverride(`${SERVER_SRC_DIR}/agents/prompts/blockCategoriesNodePrompt.txt`, state.logger);
   const blocks = state.blockCategoriesQuerySide === "lhs" ? state.lhsBlocks : state.rhsBlocks;
   const labelledBlocks = labelBlocks(blocks);
 

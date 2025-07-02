@@ -1,6 +1,7 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs/promises';
+import { Logger } from '../Logger.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,14 +30,17 @@ export async function writeFileOverride(filePath: string, fileContent: string): 
  * @param filePath - The original file path to read
  * @returns The content of the file (override version if it exists, otherwise original)
  */
-export async function readFileAllowOverride(filePath: string): Promise<string> {
+export async function readFileAllowOverride(filePath: string, logger: Logger): Promise<string> {
     const overridePath = `${filePath}${overrideFileExtension}`;
     
     try {
         // First try to read the override file
-        return await fs.readFile(overridePath, 'utf-8');
+        const overrideContent = await fs.readFile(overridePath, 'utf-8');
+        logger.warn(`Using override file for ${filePath}`);
+        return overrideContent;
     } catch (error) {
         // If override file doesn't exist, read the original file
+        logger.debug(`readFileAllowOverride: No override found, reading original file ${filePath}`);
         return await fs.readFile(filePath, 'utf-8');
     }
 }

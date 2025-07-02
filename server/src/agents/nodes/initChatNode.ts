@@ -4,7 +4,7 @@ import { StateInfo } from "../agent.ts";
 
 export const initChatNode = async (state: typeof StateInfo.State) => {
   try {
-    const PROMPT = await readFileAllowOverride(`${SERVER_SRC_DIR}/agents/prompts/initChatNodePrompt.txt`);
+    const PROMPT = await readFileAllowOverride(`${SERVER_SRC_DIR}/agents/prompts/initChatNodePrompt.txt`, state.logger);
     state.logger.debug(`System Message:\n${PROMPT + state.systemData}`);
     return { messages: [new SystemMessage(PROMPT + state.systemData)] };
 

@@ -6,7 +6,7 @@ import { ErrorResponse } from '@common/serverAPI/ErrorResponse.ts';
 import path from 'path';
 import { promises as fs } from 'fs';
 
-export const getAllAgentPromptsHandler = async (_req: Request, _logger: Logger): Promise<GetAllAgentPromptsResponse> => {
+export const getAllAgentPromptsHandler = async (_req: Request, logger: Logger): Promise<GetAllAgentPromptsResponse> => {
   try {
     const entries = await fs.readdir(PROMPTS_DIR, { withFileTypes: true });
     const promptFiles = entries
@@ -16,7 +16,7 @@ export const getAllAgentPromptsHandler = async (_req: Request, _logger: Logger):
     const prompts = await Promise.all(
       promptFiles.map(async (fileName) => {
         const filePath = path.join(PROMPTS_DIR, fileName);
-        const fileContent = await readFileAllowOverride(filePath);
+        const fileContent = await readFileAllowOverride(filePath, logger);
         return { fileName, fileContent };
       })
     );
