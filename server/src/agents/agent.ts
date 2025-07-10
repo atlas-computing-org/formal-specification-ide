@@ -14,6 +14,8 @@ import { OpenAIEmbeddings } from "@langchain/openai";
 export const StateInfo = Annotation.Root({
   lhsText: Annotation<string>,
   rhsText: Annotation<string>,
+  lhsFiles: Annotation<string[]>,
+  rhsFiles: Annotation<string[]>,
   lhsBlocks: Annotation<Document[]>,
   rhsBlocks: Annotation<Document[]>,
   splitTextLHS: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
@@ -22,6 +24,7 @@ export const StateInfo = Annotation.Root({
   summarizeBlocksRHS: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
   storeBlocksLHS: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
   storeBlocksRHS: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
+  blockMappingsMultifile: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
   blockMappingsQuerySide: Annotation<Direction>,
   blockCategoriesQuerySide: Annotation<Direction>,
   cacheUseDemo: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
