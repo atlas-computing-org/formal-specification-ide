@@ -1,0 +1,6958 @@
+{
+  "mappings": [
+    {
+      "description": "Secure messaging protocol with forward secrecy and self-healing.",
+      "lhsRanges": [
+        {
+          "start": 0,
+          "end": 30,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Secure messaging protocol using double ratchet algorithm.",
+      "lhsRanges": [
+        {
+          "start": 32,
+          "end": 138,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Signal protocol creators for secure messaging.",
+      "lhsRanges": [
+        {
+          "start": 140,
+          "end": 183,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 0,
+          "end": 93,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Organized list of document sections with page numbers.",
+      "lhsRanges": [
+        {
+          "start": 185,
+          "end": 205,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 1203,
+          "end": 3313,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Table of contents for Double Ratchet encryption protocol documentation.",
+      "lhsRanges": [
+        {
+          "start": 207,
+          "end": 2136,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Brief introduction to the topic.",
+      "lhsRanges": [
+        {
+          "start": 2138,
+          "end": 2156,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 653,
+          "end": 924,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 36369,
+          "end": 36389,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Secure messaging algorithm using shared secret key for encrypted communication.",
+      "lhsRanges": [
+        {
+          "start": 2158,
+          "end": 2479,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Double Ratchet protocol ensures forward and backward secrecy.",
+      "lhsRanges": [
+        {
+          "start": 2481,
+          "end": 2934,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Secure messaging protocol with header encryption and strong security properties.",
+      "lhsRanges": [
+        {
+          "start": 2936,
+          "end": 3055,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 7061,
+          "end": 7648,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Brief overview of the document's second section.",
+      "lhsRanges": [
+        {
+          "start": 3057,
+          "end": 3071,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 653,
+          "end": 924,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 90,
+          "end": 111,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "KDF chains derive multiple keys from a single master key.",
+      "lhsRanges": [
+        {
+          "start": 3073,
+          "end": 3092,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1333,
+          "end": 1369,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 6289,
+          "end": 6352,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "KDF chain is a core concept in Double Ratchet algorithm.",
+      "lhsRanges": [
+        {
+          "start": 3094,
+          "end": 3160,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 20393,
+          "end": 20487,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "KDF transforms secret key and input into secure random-like output.",
+      "lhsRanges": [
+        {
+          "start": 3162,
+          "end": 3677,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 505,
+          "end": 697,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 699,
+          "end": 1074,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "KDF chain processes inputs to produce output keys.",
+      "lhsRanges": [
+        {
+          "start": 3679,
+          "end": 3954,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1333,
+          "end": 1369,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 505,
+          "end": 697,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "KDF chain generates new keys from previous keys.",
+      "lhsRanges": [
+        {
+          "start": 3956,
+          "end": 4043,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "KDF chain provides secure key derivation with specific properties.",
+      "lhsRanges": [
+        {
+          "start": 4045,
+          "end": 4123,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1333,
+          "end": 1369,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 1371,
+          "end": 1780,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "KDF provides resilience, forward security, and break-in recovery.",
+      "lhsRanges": [
+        {
+          "start": 4125,
+          "end": 4591,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 505,
+          "end": 697,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 699,
+          "end": 1074,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Double Ratchet uses three KDF chains for secure messaging.",
+      "lhsRanges": [
+        {
+          "start": 4593,
+          "end": 4828,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Diffie-Hellman ratchet updates encryption keys during message exchange.",
+      "lhsRanges": [
+        {
+          "start": 4830,
+          "end": 5131,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Symmetric-key ratchet advances chains for message encryption/decryption.",
+      "lhsRanges": [
+        {
+          "start": 5133,
+          "end": 5317,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Explains symmetric-key and Diffie-Hellman ratchets in Double Ratchet protocol.",
+      "lhsRanges": [
+        {
+          "start": 5319,
+          "end": 5463,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Symmetric-key ratchet updates keys through hash function iterations.",
+      "lhsRanges": [
+        {
+          "start": 5465,
+          "end": 5495,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 26700,
+          "end": 26807,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 3943,
+          "end": 4048,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Messages encrypted with unique keys from KDF chains.",
+      "lhsRanges": [
+        {
+          "start": 5497,
+          "end": 5708,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 14382,
+          "end": 14582,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 18650,
+          "end": 18887,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Symmetric-key ratchet ensures unique keys for each message.",
+      "lhsRanges": [
+        {
+          "start": 5710,
+          "end": 6138,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Symmetric-key ratchet generates new keys from previous ones.",
+      "lhsRanges": [
+        {
+          "start": 6140,
+          "end": 6239,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Message keys can be stored without compromising security.",
+      "lhsRanges": [
+        {
+          "start": 6241,
+          "end": 6486,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 14382,
+          "end": 14582,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 8261,
+          "end": 8790,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Diffie-Hellman ratchet provides forward secrecy through key rotation.",
+      "lhsRanges": [
+        {
+          "start": 6488,
+          "end": 6519,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Double Ratchet combines symmetric-key and DH ratchets for secure messaging.",
+      "lhsRanges": [
+        {
+          "start": 6521,
+          "end": 6821,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "DH ratchet uses key pairs and updates them when receiving messages.",
+      "lhsRanges": [
+        {
+          "start": 6823,
+          "end": 7270,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 26700,
+          "end": 26807,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Ping-pong key rotation enhances security against temporary compromises.",
+      "lhsRanges": [
+        {
+          "start": 7272,
+          "end": 7677,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 26700,
+          "end": 26807,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Diagrams illustrate DH ratchet generating shared DH output sequence.",
+      "lhsRanges": [
+        {
+          "start": 7679,
+          "end": 7766,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Alice initializes with Bob's key for secure communication.",
+      "lhsRanges": [
+        {
+          "start": 7768,
+          "end": 7990,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Shared secret key generation using Diffie-Hellman key exchange.",
+      "lhsRanges": [
+        {
+          "start": 7992,
+          "end": 8087,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Ratchet protocol for secure key exchange between Alice and Bob.",
+      "lhsRanges": [
+        {
+          "start": 8089,
+          "end": 8423,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Shared secret key generation using Diffie-Hellman key exchange.",
+      "lhsRanges": [
+        {
+          "start": 8425,
+          "end": 8520,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Bob's messages update his public key for secure communication.",
+      "lhsRanges": [
+        {
+          "start": 8522,
+          "end": 8761,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Shared secret calculation using Diffie-Hellman key exchange.",
+      "lhsRanges": [
+        {
+          "start": 8763,
+          "end": 8858,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Alice advertises new public key for DH ratchet with Bob.",
+      "lhsRanges": [
+        {
+          "start": 8860,
+          "end": 9012,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Combining DH output with root key to create new keys.",
+      "lhsRanges": [
+        {
+          "start": 9014,
+          "end": 9109,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "DH outputs derive new chain keys during ratchet steps.",
+      "lhsRanges": [
+        {
+          "start": 9111,
+          "end": 9427,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Shared secret calculation using Diffie-Hellman key exchange.",
+      "lhsRanges": [
+        {
+          "start": 9429,
+          "end": 9524,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Parties alternate DH ratchet steps to create new sending chains.",
+      "lhsRanges": [
+        {
+          "start": 9526,
+          "end": 9628,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Shared secret calculation using Diffie-Hellman key exchange.",
+      "lhsRanges": [
+        {
+          "start": 9630,
+          "end": 9725,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "DH outputs feed KDF chains for improved security.",
+      "lhsRanges": [
+        {
+          "start": 9727,
+          "end": 10040,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 1333,
+          "end": 1369,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "DH ratchet updates root chain twice to create new message chains.",
+      "lhsRanges": [
+        {
+          "start": 10042,
+          "end": 10185,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 1333,
+          "end": 1369,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Combining DH and symmetric ratchets for secure messaging.",
+      "lhsRanges": [
+        {
+          "start": 10187,
+          "end": 10282,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Secure messaging protocol with forward secrecy and post-compromise security.",
+      "lhsRanges": [
+        {
+          "start": 10284,
+          "end": 10307,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 4127,
+          "end": 4230,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Double Ratchet combines symmetric-key and DH ratchets for secure messaging.",
+      "lhsRanges": [
+        {
+          "start": 10309,
+          "end": 10378,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Symmetric-key and DH ratchet steps secure message encryption.",
+      "lhsRanges": [
+        {
+          "start": 10380,
+          "end": 10656,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Alice initializes with Bob's key and generates new keys.",
+      "lhsRanges": [
+        {
+          "start": 10658,
+          "end": 10953,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 29052,
+          "end": 29250,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Initialization process for Double Ratchet encryption algorithm.",
+      "lhsRanges": [
+        {
+          "start": 10955,
+          "end": 11052,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Symmetric-key ratchet creates new message key from chain key.",
+      "lhsRanges": [
+        {
+          "start": 11054,
+          "end": 11347,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Encryption protocol using key ratchets for secure messaging.",
+      "lhsRanges": [
+        {
+          "start": 11349,
+          "end": 11444,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 4127,
+          "end": 4230,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "DH ratchet protocol updates keys for secure messaging.",
+      "lhsRanges": [
+        {
+          "start": 11446,
+          "end": 11812,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Symmetric key ratchet updates keys using KDF and previous keys.",
+      "lhsRanges": [
+        {
+          "start": 11814,
+          "end": 11909,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Alice sends messages, receives one, with ratcheting chains.",
+      "lhsRanges": [
+        {
+          "start": 11911,
+          "end": 12128,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Ratchet updates with new key exchanges during communication.",
+      "lhsRanges": [
+        {
+          "start": 12130,
+          "end": 12228,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Alice updates ratchet keys after receiving B3, B4 and sending A5.",
+      "lhsRanges": [
+        {
+          "start": 12230,
+          "end": 12370,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Updating message keys using ratchet chains for secure communication.",
+      "lhsRanges": [
+        {
+          "start": 12372,
+          "end": 12474,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Out-of-order messages can cause communication issues.",
+      "lhsRanges": [
+        {
+          "start": 12476,
+          "end": 12506,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1876,
+          "end": 2172,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 399,
+          "end": 634,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Handles lost messages by tracking message numbers and chain lengths.",
+      "lhsRanges": [
+        {
+          "start": 12508,
+          "end": 12876,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4127,
+          "end": 4230,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 1876,
+          "end": 2172,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "DH ratchet step calculates skipped messages in receiving chains.",
+      "lhsRanges": [
+        {
+          "start": 12878,
+          "end": 13178,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 7061,
+          "end": 7648,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Skipped messages calculated from chain length and received message number.",
+      "lhsRanges": [
+        {
+          "start": 13180,
+          "end": 13326,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4127,
+          "end": 4230,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Double Ratchet Algorithm handles skipped messages with stored keys.",
+      "lhsRanges": [
+        {
+          "start": 13328,
+          "end": 13695,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Handling skipped messages in Double Ratchet encryption protocol.",
+      "lhsRanges": [
+        {
+          "start": 13697,
+          "end": 13807,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 1876,
+          "end": 2172,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Secure messaging protocol with forward secrecy and post-compromise security.",
+      "lhsRanges": [
+        {
+          "start": 13809,
+          "end": 13829,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4127,
+          "end": 4230,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "External functions allow API calls during model execution.",
+      "lhsRanges": [
+        {
+          "start": 13831,
+          "end": 13858,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 600,
+          "end": 651,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 653,
+          "end": 924,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Functions needed to implement Double Ratchet encryption.",
+      "lhsRanges": [
+        {
+          "start": 13860,
+          "end": 14018,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Functions for secure messaging with Diffie-Hellman key exchange.",
+      "lhsRanges": [
+        {
+          "start": 14020,
+          "end": 15907,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Maximum skip limit prevents message loss while preventing computational attacks.",
+      "lhsRanges": [
+        {
+          "start": 15909,
+          "end": 16208,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 399,
+          "end": 634,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 1371,
+          "end": 1780,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "State variables track system conditions over time.",
+      "lhsRanges": [
+        {
+          "start": 16210,
+          "end": 16234,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 90,
+          "end": 111,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Parties track specific state variables.",
+      "lhsRanges": [
+        {
+          "start": 16236,
+          "end": 16292,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 229,
+          "end": 397,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Key pairs, keys, and message numbers for secure communication.",
+      "lhsRanges": [
+        {
+          "start": 16294,
+          "end": 16788,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Python code accesses state variables as members of state object.",
+      "lhsRanges": [
+        {
+          "start": 16790,
+          "end": 16889,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 6354,
+          "end": 7760,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Initialization sets up model parameters before training.",
+      "lhsRanges": [
+        {
+          "start": 16891,
+          "end": 16914,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 8030,
+          "end": 8209,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 4939,
+          "end": 5126,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Shared secret key and ratchet public key needed before initialization.",
+      "lhsRanges": [
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Initialization protocol for secure messaging with sequential message flow.",
+      "lhsRanges": [
+        {
+          "start": 17281,
+          "end": 17628,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Initializing ratchet protocol between Alice and Bob.",
+      "lhsRanges": [
+        {
+          "start": 17630,
+          "end": 17759,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Initializes Alice's state in a ratchet protocol.",
+      "lhsRanges": [
+        {
+          "start": 17761,
+          "end": 18047,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Initializes Bob's state in a ratchet protocol.",
+      "lhsRanges": [
+        {
+          "start": 18049,
+          "end": 18289,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 4939,
+          "end": 5126,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Encrypting messages protects communication from unauthorized access.",
+      "lhsRanges": [
+        {
+          "start": 18291,
+          "end": 18319,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 399,
+          "end": 634,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 636,
+          "end": 843,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Encrypts messages using symmetric-key ratchet and AEAD encryption.",
+      "lhsRanges": [
+        {
+          "start": 18321,
+          "end": 18644,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 26079,
+          "end": 26402,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function encrypts plaintext with ratcheting key derivation.",
+      "lhsRanges": [
+        {
+          "start": 18646,
+          "end": 18870,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Decrypting messages involves reversing encryption to reveal original content.",
+      "lhsRanges": [
+        {
+          "start": 18872,
+          "end": 18900,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 34041,
+          "end": 34640,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 33628,
+          "end": 34039,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Decrypts messages using ratchet-based encryption protocol.",
+      "lhsRanges": [
+        {
+          "start": 18902,
+          "end": 18983,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 34041,
+          "end": 34640,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 24942,
+          "end": 25112,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Decrypts messages using ratchet protocol for secure communication.",
+      "lhsRanges": [
+        {
+          "start": 18985,
+          "end": 19517,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 35831,
+          "end": 36367,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 34041,
+          "end": 34640,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Exception discards message and state changes; success accepts both.",
+      "lhsRanges": [
+        {
+          "start": 19519,
+          "end": 19750,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 23811,
+          "end": 24419,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 34041,
+          "end": 34640,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function decrypts messages using ratchet protocol with key management.",
+      "lhsRanges": [
+        {
+          "start": 19752,
+          "end": 20216,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 34041,
+          "end": 34640,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function tries to decrypt skipped messages using stored keys.",
+      "lhsRanges": [
+        {
+          "start": 20218,
+          "end": 20512,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 35831,
+          "end": 36367,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 34041,
+          "end": 34640,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function to skip message keys until a specified value.",
+      "lhsRanges": [
+        {
+          "start": 20514,
+          "end": 20790,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 399,
+          "end": 634,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function updates state with new keys after DH key exchange.",
+      "lhsRanges": [
+        {
+          "start": 20792,
+          "end": 21104,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Double Ratchet protocol with encrypted message headers.",
+      "lhsRanges": [
+        {
+          "start": 21106,
+          "end": 21149,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 7061,
+          "end": 7648,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Brief overview of section 4.1.",
+      "lhsRanges": [
+        {
+          "start": 21151,
+          "end": 21168,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 653,
+          "end": 924,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 399,
+          "end": 634,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Header encryption protects Double Ratchet message metadata.",
+      "lhsRanges": [
+        {
+          "start": 21170,
+          "end": 21249,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Message headers contain encrypted keys and values for secure communication.",
+      "lhsRanges": [
+        {
+          "start": 21251,
+          "end": 21493,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Header encryption uses symmetric keys for secure message transmission.",
+      "lhsRanges": [
+        {
+          "start": 21495,
+          "end": 21718,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 14382,
+          "end": 14582,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Message recipients must identify the correct Double Ratchet session.",
+      "lhsRanges": [
+        {
+          "start": 21720,
+          "end": 22004,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 6354,
+          "end": 7760,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Decryption process for secure messaging with ratcheting keys.",
+      "lhsRanges": [
+        {
+          "start": 22006,
+          "end": 22467,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 6354,
+          "end": 7760,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Signal protocol initializes keys and updates chains for secure messaging.",
+      "lhsRanges": [
+        {
+          "start": 22469,
+          "end": 22831,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Initializing encryption with shared secrets for secure communication.",
+      "lhsRanges": [
+        {
+          "start": 22833,
+          "end": 22933,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Encrypted message headers use initialization keys for secure communication.",
+      "lhsRanges": [
+        {
+          "start": 22935,
+          "end": 23051,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 35584,
+          "end": 35829,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 14382,
+          "end": 14582,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Encryption protocol for secure messaging with forward secrecy.",
+      "lhsRanges": [
+        {
+          "start": 23053,
+          "end": 23151,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 1876,
+          "end": 2172,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Alice processes Bob's response by updating encryption keys.",
+      "lhsRanges": [
+        {
+          "start": 23153,
+          "end": 23426,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Encryption header with key agreement and message encryption details.",
+      "lhsRanges": [
+        {
+          "start": 23428,
+          "end": 23526,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1876,
+          "end": 2172,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Alice exchanges messages with same header keys and ratchet public key.",
+      "lhsRanges": [
+        {
+          "start": 23528,
+          "end": 23801,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Encryption header format for Signal's Double Ratchet Algorithm.",
+      "lhsRanges": [
+        {
+          "start": 23803,
+          "end": 23904,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 1876,
+          "end": 2172,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Secure messaging protocol with ratchet keys for encrypted communication.",
+      "lhsRanges": [
+        {
+          "start": 23906,
+          "end": 24250,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Encryption header format for Signal's Double Ratchet Algorithm.",
+      "lhsRanges": [
+        {
+          "start": 24252,
+          "end": 24357,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "External functions allow API calls during model execution.",
+      "lhsRanges": [
+        {
+          "start": 24359,
+          "end": 24386,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 600,
+          "end": 651,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 653,
+          "end": 924,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Header encryption requires additional functions.",
+      "lhsRanges": [
+        {
+          "start": 24388,
+          "end": 24444,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        },
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Cryptographic functions for secure messaging with header encryption.",
+      "lhsRanges": [
+        {
+          "start": 24446,
+          "end": 25081,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        },
+        {
+          "start": 229,
+          "end": 397,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "State variables store contract data between function calls.",
+      "lhsRanges": [
+        {
+          "start": 25083,
+          "end": 25107,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 6354,
+          "end": 7760,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Additional state variables needed.",
+      "lhsRanges": [
+        {
+          "start": 25109,
+          "end": 25149,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 90,
+          "end": 111,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "32-byte Header Keys and Next Header Keys for communication.",
+      "lhsRanges": [
+        {
+          "start": 25151,
+          "end": 25281,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 399,
+          "end": 634,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 14584,
+          "end": 14644,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Variable definition changed.",
+      "lhsRanges": [
+        {
+          "start": 25283,
+          "end": 25330,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 90,
+          "end": 111,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 399,
+          "end": 634,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Dictionary tracking skipped message keys with exception for overflow.",
+      "lhsRanges": [
+        {
+          "start": 25332,
+          "end": 25484,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 8261,
+          "end": 8790,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 14382,
+          "end": 14582,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Initialization sets up model parameters before training.",
+      "lhsRanges": [
+        {
+          "start": 25486,
+          "end": 25509,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 8030,
+          "end": 8209,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 4939,
+          "end": 5126,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Shared secrets required for header key initialization.",
+      "lhsRanges": [
+        {
+          "start": 25511,
+          "end": 25585,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5179,
+          "end": 5249,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 2070,
+          "end": 2140,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Header keys must match for proper DH ratchet steps.",
+      "lhsRanges": [
+        {
+          "start": 25587,
+          "end": 25949,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Initializing ratchet protocol between Alice and Bob after key agreement.",
+      "lhsRanges": [
+        {
+          "start": 25951,
+          "end": 26110,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Alice initializes ratchet state with keys and counters.",
+      "lhsRanges": [
+        {
+          "start": 26112,
+          "end": 26521,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 6354,
+          "end": 7760,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Initializes Bob's state for ratchet protocol with Hybrid Encryption.",
+      "lhsRanges": [
+        {
+          "start": 26523,
+          "end": 26892,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 6354,
+          "end": 7760,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Encrypting messages protects communication from unauthorized access.",
+      "lhsRanges": [
+        {
+          "start": 26894,
+          "end": 26922,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 399,
+          "end": 634,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function encrypts messages with header encryption.",
+      "lhsRanges": [
+        {
+          "start": 26924,
+          "end": 27009,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 26079,
+          "end": 26402,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Encryption function using ratcheting for secure messaging.",
+      "lhsRanges": [
+        {
+          "start": 27011,
+          "end": 27291,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Decrypting messages involves converting ciphertext back to plaintext.",
+      "lhsRanges": [
+        {
+          "start": 27293,
+          "end": 27321,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 34041,
+          "end": 34640,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 33628,
+          "end": 34039,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Decrypts messages with header encryption.",
+      "lhsRanges": [
+        {
+          "start": 27323,
+          "end": 27395,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 24942,
+          "end": 25112,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 26079,
+          "end": 26402,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Decryption function with ratchet mechanism for secure messaging.",
+      "lhsRanges": [
+        {
+          "start": 27397,
+          "end": 27899,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 34041,
+          "end": 34640,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function tries decrypting message with skipped keys.",
+      "lhsRanges": [
+        {
+          "start": 27901,
+          "end": 28223,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 35831,
+          "end": 36367,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 34944,
+          "end": 35582,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function decrypts header using two possible keys.",
+      "lhsRanges": [
+        {
+          "start": 28227,
+          "end": 28476,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 360,
+          "end": 685,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        },
+        {
+          "start": 26978,
+          "end": 27064,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function to skip message keys in Double Ratchet protocol.",
+      "lhsRanges": [
+        {
+          "start": 28478,
+          "end": 28760,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 399,
+          "end": 634,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 229,
+          "end": 397,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function updates cryptographic state after receiving header with new DH key.",
+      "lhsRanges": [
+        {
+          "start": 28762,
+          "end": 29150,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Implementation considerations for effective system deployment.",
+      "lhsRanges": [
+        {
+          "start": 29152,
+          "end": 29187,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1203,
+          "end": 3313,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 600,
+          "end": 651,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "X3DH protocol enables secure key exchange between users.",
+      "lhsRanges": [
+        {
+          "start": 29189,
+          "end": 29219,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Double Ratchet algorithm uses X3DH session key as initial root key.",
+      "lhsRanges": [
+        {
+          "start": 29221,
+          "end": 29482,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "X3DH outputs used by Double Ratchet.",
+      "lhsRanges": [
+        {
+          "start": 29484,
+          "end": 29547,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "X3DH outputs connect to Double Ratchet initialization and encryption.",
+      "lhsRanges": [
+        {
+          "start": 29549,
+          "end": 30004,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Double Ratchet messages can serve as X3DH initial ciphertexts.",
+      "lhsRanges": [
+        {
+          "start": 30006,
+          "end": 30384,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Recommended cryptographic algorithms for secure data protection.",
+      "lhsRanges": [
+        {
+          "start": 30386,
+          "end": 30431,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        },
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Recommended cryptographic function choices for instantiation.",
+      "lhsRanges": [
+        {
+          "start": 30433,
+          "end": 30560,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        },
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Cryptographic functions for secure messaging protocol implementation.",
+      "lhsRanges": [
+        {
+          "start": 30562,
+          "end": 32570,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "Security considerations for system implementation.",
+      "lhsRanges": [
+        {
+          "start": 32572,
+          "end": 32601,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2019,
+          "end": 2068,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 5128,
+          "end": 5177,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Secure deletion permanently removes data to prevent recovery.",
+      "lhsRanges": [
+        {
+          "start": 32603,
+          "end": 32627,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2019,
+          "end": 2068,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 5128,
+          "end": 5177,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Secure messaging algorithm protects against future device compromise.",
+      "lhsRanges": [
+        {
+          "start": 32629,
+          "end": 33056,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 34041,
+          "end": 34640,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 26079,
+          "end": 26402,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Recovery from compromise requires secure backup and restoration procedures.",
+      "lhsRanges": [
+        {
+          "start": 33058,
+          "end": 33091,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5179,
+          "end": 5249,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 2070,
+          "end": 2140,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "DH ratchet recovers security after compromise against passive eavesdroppers.",
+      "lhsRanges": [
+        {
+          "start": 33093,
+          "end": 33426,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Compromised keys enable impersonation, eavesdropping, and future key prediction.",
+      "lhsRanges": [
+        {
+          "start": 33428,
+          "end": 33864,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Replace compromised keys or devices immediately.",
+      "lhsRanges": [
+        {
+          "start": 33866,
+          "end": 33962,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 29052,
+          "end": 29250,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 2674,
+          "end": 2873,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Cryptanalysis and ratchet public keys in secure messaging systems.",
+      "lhsRanges": [
+        {
+          "start": 33964,
+          "end": 34010,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 26700,
+          "end": 26807,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Unobserved ratchet keys can prevent session decryption by attackers.",
+      "lhsRanges": [
+        {
+          "start": 34012,
+          "end": 34214,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Weak cryptography requires replacing sessions with stronger alternatives.",
+      "lhsRanges": [
+        {
+          "start": 34216,
+          "end": 34469,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 4867,
+          "end": 4918,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Skipped message keys are deleted to maintain security.",
+      "lhsRanges": [
+        {
+          "start": 34471,
+          "end": 34512,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 14382,
+          "end": 14582,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 18650,
+          "end": 18887,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Storing skipped message keys poses security risks.",
+      "lhsRanges": [
+        {
+          "start": 34514,
+          "end": 34565,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 8261,
+          "end": 8790,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 399,
+          "end": 634,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Skipped message keys pose storage and security risks.",
+      "lhsRanges": [
+        {
+          "start": 34567,
+          "end": 34946,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 14382,
+          "end": 14582,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 35584,
+          "end": 35829,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Set limits and delete skipped message keys to reduce risks.",
+      "lhsRanges": [
+        {
+          "start": 34948,
+          "end": 35315,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Deferring ratchet key generation for improved security.",
+      "lhsRanges": [
+        {
+          "start": 35317,
+          "end": 35362,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 26700,
+          "end": 26807,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Deferring DH ratchet steps until sending messages improves security.",
+      "lhsRanges": [
+        {
+          "start": 35364,
+          "end": 35686,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 29052,
+          "end": 29250,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Authentication tags can be truncated for efficiency.",
+      "lhsRanges": [
+        {
+          "start": 35688,
+          "end": 35727,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2070,
+          "end": 2140,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 5179,
+          "end": 5249,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "HMAC truncation guidelines for ENCRYPT() function.",
+      "lhsRanges": [
+        {
+          "start": 35729,
+          "end": 36094,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1541,
+          "end": 1844,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        },
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "Avoid truncation with non-standard ENCRYPT() implementations.",
+      "lhsRanges": [
+        {
+          "start": 36096,
+          "end": 36231,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2657,
+          "end": 2888,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        },
+        {
+          "start": 26978,
+          "end": 27064,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Implementation fingerprinting identifies specific software versions.",
+      "lhsRanges": [
+        {
+          "start": 36233,
+          "end": 36271,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 1203,
+          "end": 3313,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Protocol requires identical implementation behavior with anonymous parties.",
+      "lhsRanges": [
+        {
+          "start": 36273,
+          "end": 36408,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Precise implementation guidelines for anonymous messaging contexts.",
+      "lhsRanges": [
+        {
+          "start": 36410,
+          "end": 36789,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 399,
+          "end": 634,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Intellectual property rights protect creative works and innovations.",
+      "lhsRanges": [
+        {
+          "start": 36791,
+          "end": 36800,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 473,
+          "end": 503,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 2174,
+          "end": 2227,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Document released to public domain.",
+      "lhsRanges": [
+        {
+          "start": 36802,
+          "end": 36854,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 653,
+          "end": 924,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Brief acknowledgement section for contributors and supporters.",
+      "lhsRanges": [
+        {
+          "start": 36856,
+          "end": 36878,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 36369,
+          "end": 36389,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 1203,
+          "end": 3313,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Cryptographic algorithm created by Perrin and Marlinspike.",
+      "lhsRanges": [
+        {
+          "start": 36880,
+          "end": 36947,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "Diffie-Hellman ratchet concept originated from OTR protocol.",
+      "lhsRanges": [
+        {
+          "start": 36949,
+          "end": 37075,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 7061,
+          "end": 7648,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Symmetric-key ratcheting is an established concept used in recent protocols.",
+      "lhsRanges": [
+        {
+          "start": 37077,
+          "end": 37198,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Ratchet term for forward-secure key updating originated from Langley.",
+      "lhsRanges": [
+        {
+          "start": 37200,
+          "end": 37295,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 26700,
+          "end": 26807,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Acknowledgment to Rogers and Back for mailing list contributions.",
+      "lhsRanges": [
+        {
+          "start": 37297,
+          "end": 37370,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 29052,
+          "end": 29250,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Adam Langley helped improve the receiving algorithm.",
+      "lhsRanges": [
+        {
+          "start": 37372,
+          "end": 37447,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 0,
+          "end": 93,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 0,
+          "end": 93,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Security analysis conducted by five researchers.",
+      "lhsRanges": [
+        {
+          "start": 37449,
+          "end": 37619,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Editorial acknowledgment for feedback from multiple contributors.",
+      "lhsRanges": [
+        {
+          "start": 37621,
+          "end": 37747,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "List of references for the document.",
+      "lhsRanges": [
+        {
+          "start": 37749,
+          "end": 37765,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1203,
+          "end": 3313,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 28558,
+          "end": 28658,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "X3DH protocol for secure key agreement in messaging.",
+      "lhsRanges": [
+        {
+          "start": 37767,
+          "end": 37894,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "HMAC: a keyed-hashing method for message authentication.",
+      "lhsRanges": [
+        {
+          "start": 37896,
+          "end": 38101,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 227,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "HMAC-based key derivation function for cryptographic applications.",
+      "lhsRanges": [
+        {
+          "start": 38103,
+          "end": 38308,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        },
+        {
+          "start": 505,
+          "end": 697,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Model for secure pseudo-random generation with applications to /dev/random.",
+      "lhsRanges": [
+        {
+          "start": 38310,
+          "end": 38509,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 113,
+          "end": 140,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 28558,
+          "end": 28658,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Introduces authenticated encryption with associated data (AEAD) concept.",
+      "lhsRanges": [
+        {
+          "start": 38511,
+          "end": 38712,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        },
+        {
+          "start": 2657,
+          "end": 2888,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "Secure messaging system for asynchronous communication.",
+      "lhsRanges": [
+        {
+          "start": 38714,
+          "end": 38771,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 28558,
+          "end": 28658,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "RFC on elliptic curves for security applications.",
+      "lhsRanges": [
+        {
+          "start": 38773,
+          "end": 38958,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "NIST's Secure Hash Standard document for cryptographic hash functions.",
+      "lhsRanges": [
+        {
+          "start": 38960,
+          "end": 39160,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        },
+        {
+          "start": 1295,
+          "end": 1539,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "Provable security analysis of key-wrap cryptographic problem.",
+      "lhsRanges": [
+        {
+          "start": 39162,
+          "end": 39431,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        },
+        {
+          "start": 2875,
+          "end": 3052,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "NIST's Advanced Encryption Standard specification document.",
+      "lhsRanges": [
+        {
+          "start": 39433,
+          "end": 39630,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2497,
+          "end": 2655,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        },
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "Standard for cryptographic message syntax.",
+      "lhsRanges": [
+        {
+          "start": 39632,
+          "end": 39812,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 399,
+          "end": 634,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 1876,
+          "end": 2172,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Off-the-record communication protocol as alternative to PGP.",
+      "lhsRanges": [
+        {
+          "start": 39814,
+          "end": 40041,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Comparative analysis of re-keying techniques for key lifetime extension.",
+      "lhsRanges": [
+        {
+          "start": 40043,
+          "end": 40372,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        },
+        {
+          "start": 29052,
+          "end": 29250,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Key coercion vulnerability after encrypted message transmission.",
+      "lhsRanges": [
+        {
+          "start": 40374,
+          "end": 40525,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 35584,
+          "end": 35829,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 399,
+          "end": 634,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Secure messaging protocol for encrypted communications.",
+      "lhsRanges": [
+        {
+          "start": 40527,
+          "end": 40711,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 1876,
+          "end": 2172,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Secure text messaging protocol design.",
+      "lhsRanges": [
+        {
+          "start": 40713,
+          "end": 40846,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 399,
+          "end": 634,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "MinimaLT: Low-latency networking protocol with enhanced security features.",
+      "lhsRanges": [
+        {
+          "start": 40848,
+          "end": 41125,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Secure messaging system with focus on forward secrecy.",
+      "lhsRanges": [
+        {
+          "start": 41127,
+          "end": 41243,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 28558,
+          "end": 28658,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Asynchronous forward secrecy encryption method proposed by Rogers and Back.",
+      "lhsRanges": [
+        {
+          "start": 41245,
+          "end": 41425,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Formal security analysis of Signal messaging protocol.",
+      "lhsRanges": [
+        {
+          "start": 41427,
+          "end": 41646,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1876,
+          "end": 2172,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Post-Compromise Security in cryptographic protocols.",
+      "lhsRanges": [
+        {
+          "start": 41648,
+          "end": 41810,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2875,
+          "end": 3052,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "Secure key exchange protocol for encrypted messaging.",
+      "lhsRanges": [
+        {
+          "start": 0,
+          "end": 33,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Secure key exchange protocol for encrypted messaging.",
+      "lhsRanges": [
+        {
+          "start": 35,
+          "end": 123,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Cryptography experts who developed secure communication protocols.",
+      "lhsRanges": [
+        {
+          "start": 125,
+          "end": 168,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 0,
+          "end": 93,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Organized list of document sections with page numbers.",
+      "lhsRanges": [
+        {
+          "start": 170,
+          "end": 190,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 1203,
+          "end": 3313,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Table of contents for X3DH secure messaging protocol documentation.",
+      "lhsRanges": [
+        {
+          "start": 192,
+          "end": 1234,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Brief introduction to the topic.",
+      "lhsRanges": [
+        {
+          "start": 1236,
+          "end": 1254,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 653,
+          "end": 924,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 36369,
+          "end": 36389,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "X3DH protocol for secure key agreement with mutual authentication.",
+      "lhsRanges": [
+        {
+          "start": 1256,
+          "end": 1529,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Key exchange protocol for secure asynchronous messaging.",
+      "lhsRanges": [
+        {
+          "start": 1531,
+          "end": 1804,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Brief overview of foundational concepts and terminology.",
+      "lhsRanges": [
+        {
+          "start": 1806,
+          "end": 1825,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 600,
+          "end": 651,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 28558,
+          "end": 28658,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "X3DH protocol parameters for secure key exchange.",
+      "lhsRanges": [
+        {
+          "start": 1827,
+          "end": 1851,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 5829,
+          "end": 6102,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "X3DH requires parameter selection for secure application implementation.",
+      "lhsRanges": [
+        {
+          "start": 1853,
+          "end": 1913,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Cryptographic parameters for X25519/X448 curves with hash functions.",
+      "lhsRanges": [
+        {
+          "start": 1915,
+          "end": 2114,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 399,
+          "end": 634,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "X25519, SHA-512, and \"MyProtocol\" as protocol parameters.",
+      "lhsRanges": [
+        {
+          "start": 2116,
+          "end": 2222,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "X25519/X448 public key encoding with curve type and u-coordinate.",
+      "lhsRanges": [
+        {
+          "start": 2224,
+          "end": 2534,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 473,
+          "end": 503,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Explanation of cryptographic notation and symbols.",
+      "lhsRanges": [
+        {
+          "start": 2536,
+          "end": 2567,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 399,
+          "end": 634,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "Key exchange protocol using notation for secure communication.",
+      "lhsRanges": [
+        {
+          "start": 2569,
+          "end": 2606,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Concatenation, cryptographic functions, and key derivation for secure communication.",
+      "lhsRanges": [
+        {
+          "start": 2608,
+          "end": 3836,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 399,
+          "end": 634,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Defines roles and responsibilities for project participants.",
+      "lhsRanges": [
+        {
+          "start": 3838,
+          "end": 3852,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1333,
+          "end": 1369,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "X3DH protocol involves Alice, Bob, and a server.",
+      "lhsRanges": [
+        {
+          "start": 3854,
+          "end": 3933,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Asynchronous encrypted communication protocol with server-mediated key exchange.",
+      "lhsRanges": [
+        {
+          "start": 3935,
+          "end": 4583,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Server provides functions for Alice and Bob in a system.",
+      "lhsRanges": [
+        {
+          "start": 4585,
+          "end": 4758,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 1782,
+          "end": 2017,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Keys are unique identifiers for database records.",
+      "lhsRanges": [
+        {
+          "start": 4760,
+          "end": 4773,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1333,
+          "end": 1369,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 473,
+          "end": 503,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "X3DH protocol uses elliptic curve public keys.",
+      "lhsRanges": [
+        {
+          "start": 4775,
+          "end": 4826,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 505,
+          "end": 697,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Key definitions for Alice and Bob in cryptographic protocol.",
+      "lhsRanges": [
+        {
+          "start": 4828,
+          "end": 5092,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 229,
+          "end": 397,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Public keys correspond to private keys in cryptographic systems.",
+      "lhsRanges": [
+        {
+          "start": 5094,
+          "end": 5205,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2142,
+          "end": 2216,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 28660,
+          "end": 28701,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "X3DH protocol requires consistent key format across all public keys.",
+      "lhsRanges": [
+        {
+          "start": 5207,
+          "end": 5364,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Parties have long-term identity public keys.",
+      "lhsRanges": [
+        {
+          "start": 5366,
+          "end": 5468,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 29052,
+          "end": 29250,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 2218,
+          "end": 2409,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Bob uses prekeys for secure communication initialization.",
+      "lhsRanges": [
+        {
+          "start": 5470,
+          "end": 5803,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 2674,
+          "end": 2873,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Alice generates new ephemeral key pair with public key EKA.",
+      "lhsRanges": [
+        {
+          "start": 5805,
+          "end": 5905,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 7781,
+          "end": 8028,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Alice and Bob share a secret key for secure communication.",
+      "lhsRanges": [
+        {
+          "start": 5907,
+          "end": 6147,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 5829,
+          "end": 6102,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "X3DH protocol enables secure communication between users.",
+      "lhsRanges": [
+        {
+          "start": 6149,
+          "end": 6172,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Brief overview of section 3.1.",
+      "lhsRanges": [
+        {
+          "start": 6174,
+          "end": 6191,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1333,
+          "end": 1369,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Key exchange protocol with three phases.",
+      "lhsRanges": [
+        {
+          "start": 6193,
+          "end": 6215,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 1333,
+          "end": 1369,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Signal protocol establishes secure communication through prekey exchange.",
+      "lhsRanges": [
+        {
+          "start": 6217,
+          "end": 6429,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 34642,
+          "end": 34942,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Brief overview of upcoming phase explanations.",
+      "lhsRanges": [
+        {
+          "start": 6431,
+          "end": 6475,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 90,
+          "end": 111,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 6354,
+          "end": 7760,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Publishing keys allows others to verify your digital signatures.",
+      "lhsRanges": [
+        {
+          "start": 6477,
+          "end": 6501,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 20489,
+          "end": 20592,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 1333,
+          "end": 1369,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Bob publishes elliptic curve public keys to server.",
+      "lhsRanges": [
+        {
+          "start": 6503,
+          "end": 6579,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Bob's cryptographic keys for secure communication.",
+      "lhsRanges": [
+        {
+          "start": 6581,
+          "end": 6863,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 229,
+          "end": 397,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 8261,
+          "end": 8790,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Bob uploads identity key once, one-time prekeys as needed.",
+      "lhsRanges": [
+        {
+          "start": 6865,
+          "end": 7081,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4939,
+          "end": 5126,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 2674,
+          "end": 2873,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Bob periodically uploads new signed prekey and signature.",
+      "lhsRanges": [
+        {
+          "start": 7083,
+          "end": 7275,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 34642,
+          "end": 34942,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 229,
+          "end": 397,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Bob should eventually delete old signed prekey for forward secrecy.",
+      "lhsRanges": [
+        {
+          "start": 7277,
+          "end": 7686,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 34642,
+          "end": 34942,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 8261,
+          "end": 8790,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Initial message guidelines for effective communication.",
+      "lhsRanges": [
+        {
+          "start": 7688,
+          "end": 7724,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 35584,
+          "end": 35829,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 34642,
+          "end": 34942,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "X3DH key agreement protocol for secure communication between parties.",
+      "lhsRanges": [
+        {
+          "start": 7726,
+          "end": 7857,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5829,
+          "end": 6102,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Bob's identity key, signed prekey, signature, and optional one-time prekey.",
+      "lhsRanges": [
+        {
+          "start": 7859,
+          "end": 8063,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 229,
+          "end": 397,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 8261,
+          "end": 8790,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Server provides and deletes one of Bob's one-time prekeys.",
+      "lhsRanges": [
+        {
+          "start": 8065,
+          "end": 8268,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2674,
+          "end": 2873,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 5829,
+          "end": 6102,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Alice verifies prekey signature and generates ephemeral key pair.",
+      "lhsRanges": [
+        {
+          "start": 8270,
+          "end": 8429,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 229,
+          "end": 397,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Calculating without one-time prekey in the bundle.",
+      "lhsRanges": [
+        {
+          "start": 8431,
+          "end": 8496,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2674,
+          "end": 2873,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 5829,
+          "end": 6102,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Formula for calculating shared key using Diffie-Hellman key exchanges.",
+      "lhsRanges": [
+        {
+          "start": 8498,
+          "end": 8658,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1333,
+          "end": 1369,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 505,
+          "end": 697,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Calculation modified to include additional DH with one-time prekey.",
+      "lhsRanges": [
+        {
+          "start": 8660,
+          "end": 8766,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2674,
+          "end": 2873,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 5829,
+          "end": 6102,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Key derivation using multiple Diffie-Hellman exchanges.",
+      "lhsRanges": [
+        {
+          "start": 8768,
+          "end": 8852,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1333,
+          "end": 1369,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Diagram shows DH calculations for authentication and forward secrecy.",
+      "lhsRanges": [
+        {
+          "start": 8854,
+          "end": 9021,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 5829,
+          "end": 6102,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Key exchange protocol using identity and ephemeral keys.",
+      "lhsRanges": [
+        {
+          "start": 9023,
+          "end": 9127,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Cryptographic key exchange protocol using Diffie-Hellman algorithm.",
+      "lhsRanges": [
+        {
+          "start": 9129,
+          "end": 9140,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 90,
+          "end": 111,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 2478,
+          "end": 2495,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "Alice deletes ephemeral private key and DH outputs after calculating SK.",
+      "lhsRanges": [
+        {
+          "start": 9142,
+          "end": 9227,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5829,
+          "end": 6102,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 2674,
+          "end": 2873,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Alice calculates associated data containing both parties' identity information.",
+      "lhsRanges": [
+        {
+          "start": 9229,
+          "end": 9343,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2411,
+          "end": 2546,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Encoding and concatenation of two identity keys.",
+      "lhsRanges": [
+        {
+          "start": 9345,
+          "end": 9406,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 229,
+          "end": 397,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 2875,
+          "end": 3052,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Alice can add extra identifying information to AD.",
+      "lhsRanges": [
+        {
+          "start": 9408,
+          "end": 9550,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 7781,
+          "end": 8028,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 1782,
+          "end": 2017,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Alice sends Bob an initial message.",
+      "lhsRanges": [
+        {
+          "start": 9552,
+          "end": 9603,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Alice's keys, Bob's prekey identifiers, and encrypted initial message.",
+      "lhsRanges": [
+        {
+          "start": 9605,
+          "end": 9948,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 229,
+          "end": 397,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "First ciphertext serves dual roles in post-X3DH communication.",
+      "lhsRanges": [
+        {
+          "start": 9950,
+          "end": 10208,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 636,
+          "end": 843,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 2875,
+          "end": 3052,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Alice can continue using SK or derived keys after X3DH.",
+      "lhsRanges": [
+        {
+          "start": 10210,
+          "end": 10426,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Initial message reception process.",
+      "lhsRanges": [
+        {
+          "start": 10428,
+          "end": 10466,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 34642,
+          "end": 34942,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Bob retrieves keys to establish secure communication with Alice.",
+      "lhsRanges": [
+        {
+          "start": 10468,
+          "end": 10724,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 34642,
+          "end": 34942,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Bob derives shared key SK using DH and KDF calculations.",
+      "lhsRanges": [
+        {
+          "start": 10726,
+          "end": 10863,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5829,
+          "end": 6102,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 3054,
+          "end": 3117,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Bob decrypts initial ciphertext using derived keys.",
+      "lhsRanges": [
+        {
+          "start": 10865,
+          "end": 11158,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 7061,
+          "end": 7648,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Bob completes protocol by decrypting ciphertext and deleting used keys.",
+      "lhsRanges": [
+        {
+          "start": 11160,
+          "end": 11523,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Security considerations for system implementation.",
+      "lhsRanges": [
+        {
+          "start": 11525,
+          "end": 11554,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2070,
+          "end": 2140,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 5179,
+          "end": 5249,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Authentication verifies user identity for system access.",
+      "lhsRanges": [
+        {
+          "start": 11556,
+          "end": 11579,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Parties may verify identity keys through authenticated channels.",
+      "lhsRanges": [
+        {
+          "start": 11581,
+          "end": 11897,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Authentication provides cryptographic guarantee of communication parties' identities.",
+      "lhsRanges": [
+        {
+          "start": 11899,
+          "end": 12020,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 29052,
+          "end": 29250,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Protocol replay attacks reuse captured legitimate messages.",
+      "lhsRanges": [
+        {
+          "start": 12022,
+          "end": 12046,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Replay attacks possible without one-time prekeys.",
+      "lhsRanges": [
+        {
+          "start": 12048,
+          "end": 12246,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 34642,
+          "end": 34942,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 8261,
+          "end": 8790,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Post-X3DH protocols may quickly negotiate new encryption keys.",
+      "lhsRanges": [
+        {
+          "start": 12248,
+          "end": 12464,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Possible mitigations include blacklisting messages and replacing prekeys faster.",
+      "lhsRanges": [
+        {
+          "start": 12466,
+          "end": 12668,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 34642,
+          "end": 34942,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Replay attacks and key reuse vulnerabilities in cryptographic systems.",
+      "lhsRanges": [
+        {
+          "start": 12670,
+          "end": 12699,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 229,
+          "end": 397,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Replayed initial messages cause Bob to derive identical session keys.",
+      "lhsRanges": [
+        {
+          "start": 12701,
+          "end": 12885,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 8030,
+          "end": 8209,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Protocol must randomize encryption key before sending data.",
+      "lhsRanges": [
+        {
+          "start": 12887,
+          "end": 13144,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Encryption key reuse risk from poor randomization.",
+      "lhsRanges": [
+        {
+          "start": 13146,
+          "end": 13221,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 33628,
+          "end": 34039,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Deniability allows hiding sensitive information from unauthorized observers.",
+      "lhsRanges": [
+        {
+          "start": 13223,
+          "end": 13243,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 33628,
+          "end": 34039,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "X3DH lacks cryptographic proof of communication or content.",
+      "lhsRanges": [
+        {
+          "start": 13245,
+          "end": 13391,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Deniable communication protocol prevents third-party verification of message authenticity.",
+      "lhsRanges": [
+        {
+          "start": 13393,
+          "end": 13809,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 2674,
+          "end": 2873,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Asynchronous protocols lack online deniability when third parties are involved.",
+      "lhsRanges": [
+        {
+          "start": 13811,
+          "end": 14067,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 2674,
+          "end": 2873,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Signatures authenticate document origin and verify identity.",
+      "lhsRanges": [
+        {
+          "start": 14069,
+          "end": 14088,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 14584,
+          "end": 14644,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 22634,
+          "end": 22698,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Prekey signatures prevent weak forward secrecy attacks.",
+      "lhsRanges": [
+        {
+          "start": 14090,
+          "end": 14436,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5829,
+          "end": 6102,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 5251,
+          "end": 5453,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Signatures reduce deniability and increase vulnerability compared to DH authentication.",
+      "lhsRanges": [
+        {
+          "start": 14438,
+          "end": 14778,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 34642,
+          "end": 34942,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Key compromise threatens secure communication and requires immediate action.",
+      "lhsRanges": [
+        {
+          "start": 14780,
+          "end": 14803,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 28660,
+          "end": 28701,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 1333,
+          "end": 1369,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Private key compromise severely threatens security despite mitigations.",
+      "lhsRanges": [
+        {
+          "start": 14805,
+          "end": 14949,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2674,
+          "end": 2873,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 5829,
+          "end": 6102,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Private key compromise enables impersonation and affects security.",
+      "lhsRanges": [
+        {
+          "start": 14951,
+          "end": 15174,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 229,
+          "end": 397,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 2674,
+          "end": 2873,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Analysis of potential compromise scenarios.",
+      "lhsRanges": [
+        {
+          "start": 15176,
+          "end": 15332,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2674,
+          "end": 2873,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 5829,
+          "end": 6102,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "One-time prekeys enhance security against future key compromises.",
+      "lhsRanges": [
+        {
+          "start": 15334,
+          "end": 16430,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2674,
+          "end": 2873,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 5829,
+          "end": 6102,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Servers must be trusted for secure communication.",
+      "lhsRanges": [
+        {
+          "start": 16432,
+          "end": 16453,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2411,
+          "end": 2546,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 5455,
+          "end": 5640,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Malicious server can disrupt communication between users.",
+      "lhsRanges": [
+        {
+          "start": 16455,
+          "end": 16569,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Server can only limit forward secrecy by withholding one-time prekeys.",
+      "lhsRanges": [
+        {
+          "start": 16571,
+          "end": 16865,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2674,
+          "end": 2873,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 5829,
+          "end": 6102,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Server should prevent malicious draining of one-time prekeys.",
+      "lhsRanges": [
+        {
+          "start": 16867,
+          "end": 17088,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2674,
+          "end": 2873,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 5829,
+          "end": 6102,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Identity binding links user identity to authentication credentials.",
+      "lhsRanges": [
+        {
+          "start": 17090,
+          "end": 17115,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 11163,
+          "end": 11258,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Authentication doesn't prevent identity misbinding attacks.",
+      "lhsRanges": [
+        {
+          "start": 17117,
+          "end": 17256,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 6354,
+          "end": 7760,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Man-in-the-middle attack using false identity key fingerprints.",
+      "lhsRanges": [
+        {
+          "start": 17258,
+          "end": 17495,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 35584,
+          "end": 35829,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Alice unknowingly sends message to Bob instead of Charlie.",
+      "lhsRanges": [
+        {
+          "start": 17497,
+          "end": 17621,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 35584,
+          "end": 35829,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Parties can add identifying info to make impersonation harder.",
+      "lhsRanges": [
+        {
+          "start": 17623,
+          "end": 17941,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2218,
+          "end": 2409,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 5455,
+          "end": 5640,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Protocol cannot reliably prevent identity fraud despite privacy trade-offs.",
+      "lhsRanges": [
+        {
+          "start": 17943,
+          "end": 18245,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 2411,
+          "end": 2546,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Intellectual property rights protect creative works and innovations.",
+      "lhsRanges": [
+        {
+          "start": 18247,
+          "end": 18256,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 473,
+          "end": 503,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 1203,
+          "end": 3313,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Document released to public domain.",
+      "lhsRanges": [
+        {
+          "start": 18258,
+          "end": 18310,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 653,
+          "end": 924,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Brief acknowledgement section for contributors and supporters.",
+      "lhsRanges": [
+        {
+          "start": 18312,
+          "end": 18334,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5128,
+          "end": 5177,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 1203,
+          "end": 3313,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Marlinspike and Perrin developed the X3DH protocol.",
+      "lhsRanges": [
+        {
+          "start": 18336,
+          "end": 18407,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Triple DH key agreement extends Double DH with signatures for authentication.",
+      "lhsRanges": [
+        {
+          "start": 18409,
+          "end": 18733,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 5251,
+          "end": 5453,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Acknowledgment to Mike Hamburg for discussions on specific topics.",
+      "lhsRanges": [
+        {
+          "start": 18735,
+          "end": 18828,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 229,
+          "end": 397,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Acknowledgment for discussions on deniability with two individuals.",
+      "lhsRanges": [
+        {
+          "start": 18830,
+          "end": 18902,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "Acknowledgment of editorial feedback from four individuals.",
+      "lhsRanges": [
+        {
+          "start": 18904,
+          "end": 19001,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "List of references for the document.",
+      "lhsRanges": [
+        {
+          "start": 19003,
+          "end": 19019,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1203,
+          "end": 3313,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 28558,
+          "end": 28658,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "RFC on elliptic curves for security applications.",
+      "lhsRanges": [
+        {
+          "start": 19021,
+          "end": 19206,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Signature schemes extending EdDSA for enhanced security.",
+      "lhsRanges": [
+        {
+          "start": 19208,
+          "end": 19327,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "HMAC-based key derivation function for cryptographic applications.",
+      "lhsRanges": [
+        {
+          "start": 19329,
+          "end": 19534,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        },
+        {
+          "start": 505,
+          "end": 697,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Authenticated encryption with associated data for secure communications.",
+      "lhsRanges": [
+        {
+          "start": 19536,
+          "end": 19737,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        },
+        {
+          "start": 2657,
+          "end": 2888,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "Perrin's work on the Double Ratchet Algorithm.",
+      "lhsRanges": [
+        {
+          "start": 19739,
+          "end": 19810,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 29052,
+          "end": 29250,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Off-the-record communication protocol for secure messaging.",
+      "lhsRanges": [
+        {
+          "start": 19812,
+          "end": 20038,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Deniable key exchange protocol for secure messaging.",
+      "lhsRanges": [
+        {
+          "start": 20040,
+          "end": 20255,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 35584,
+          "end": 35829,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        },
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Modular security proofs for key agreement protocols.",
+      "lhsRanges": [
+        {
+          "start": 20257,
+          "end": 20542,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2674,
+          "end": 2873,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 5829,
+          "end": 6102,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Security analysis of key agreement protocols.",
+      "lhsRanges": [
+        {
+          "start": 20544,
+          "end": 20827,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5829,
+          "end": 6102,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        },
+        {
+          "start": 2548,
+          "end": 2672,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "One-round key exchange with perfect forward secrecy and deniability.",
+      "lhsRanges": [
+        {
+          "start": 20829,
+          "end": 21027,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        },
+        {
+          "start": 2875,
+          "end": 3052,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Analysis of encryption and signature security in EMV protocol.",
+      "lhsRanges": [
+        {
+          "start": 21029,
+          "end": 21252,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        },
+        {
+          "start": 33628,
+          "end": 34039,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    }
+  ],
+  "lhsLabels": [],
+  "rhsLabels": []
+}

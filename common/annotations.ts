@@ -41,13 +41,17 @@ export interface Dataset<T extends TextRange = TextRange> {
   annotations: Annotations<T>;
 }
 
-export type TextRangeWithText = TextRange & {
-  text: string;
-};
+export type TextRangeWithText = TextRange & { text: string; };
 export type TextLabelWithText = TextLabel<TextRangeWithText>;
 export type TextMappingWithText = TextMapping<TextRangeWithText>;
 export type AnnotationsWithText = Annotations<TextRangeWithText>;
 export type DatasetWithText = Dataset<TextRangeWithText>;
+
+export type TextRangeWithFile = TextRange & { file: string; };
+export type TextLabelWithFile = TextLabel<TextRangeWithFile>;
+export type TextMappingWithFile = TextMapping<TextRangeWithFile>;
+export type AnnotationsWithFile = Annotations<TextRangeWithFile>;
+export type DatasetWithFile = Dataset<TextRangeWithFile>;
 
 export type LabelType = "default" | "warning" | "error";
 export type Direction = "lhs" | "rhs";

@@ -1,16 +1,16 @@
 import { StateInfo } from "../agent.ts";
-import { splitTextBySeparatorRegex } from "../../util/textUtils.ts";
+import { splitTextBySeparatorRegexMultifile } from "../../util/textUtils.ts";
 import { Document } from "langchain/document";
 
-export const splitTextNode = (state: typeof StateInfo.State) => {
+export const splitTextMultifileNode = (state: typeof StateInfo.State) => {
   try {
     const results : {lhsBlocks?: Document[], rhsBlocks?: Document[]} = {};
     if (state.splitTextLHS) {
-      results.lhsBlocks = splitTextBySeparatorRegex(state.lhsText);
+      results.lhsBlocks = splitTextBySeparatorRegexMultifile(state.lhsFiles);
       state.logger.info(`Number of LHS blocks: ${results.lhsBlocks.length}`);
     }
     if (state.splitTextRHS) {
-      results.rhsBlocks = splitTextBySeparatorRegex(state.rhsText);
+      results.rhsBlocks = splitTextBySeparatorRegexMultifile(state.rhsFiles);
       state.logger.info(`Number of RHS blocks: ${results.rhsBlocks.length}`);
     }
     return results;
