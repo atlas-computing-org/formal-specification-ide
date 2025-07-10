@@ -7,11 +7,11 @@ export const splitTextNode = (state: typeof StateInfo.State) => {
     const results : {lhsBlocks?: Document[], rhsBlocks?: Document[]} = {};
     if (state.splitTextLHS) {
       results.lhsBlocks = splitTextBySeparatorRegex(state.lhsText);
-      state.logger.info(`Number of lhs blocks: ${results.lhsBlocks.length}`);
+      state.logger.info(`Number of LHS blocks: ${results.lhsBlocks.length}`);
     }
     if (state.splitTextRHS) {
       results.rhsBlocks = splitTextBySeparatorRegex(state.rhsText);
-      state.logger.info(`Number of rhs blocks: ${results.rhsBlocks.length}`);
+      state.logger.info(`Number of RHS blocks: ${results.rhsBlocks.length}`);
     }
     return results;
   

@@ -7,11 +7,11 @@ export const splitTextMultifileNode = (state: typeof StateInfo.State) => {
     const results : {lhsBlocks?: Document[], rhsBlocks?: Document[]} = {};
     if (state.splitTextLHS) {
       results.lhsBlocks = splitTextBySeparatorRegexMultifile(state.lhsFiles);
-      state.logger.info(`Number of lhs blocks: ${results.lhsBlocks.length}`);
+      state.logger.info(`Number of LHS blocks: ${results.lhsBlocks.length}`);
     }
     if (state.splitTextRHS) {
       results.rhsBlocks = splitTextBySeparatorRegexMultifile(state.rhsFiles);
-      state.logger.info(`Number of rhs blocks: ${results.rhsBlocks.length}`);
+      state.logger.info(`Number of RHS blocks: ${results.rhsBlocks.length}`);
     }
     return results;
   
