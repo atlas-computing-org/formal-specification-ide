@@ -3,7 +3,7 @@ import { Document } from "langchain/document";
 import { JsonOutputParser } from "@langchain/core/output_parsers";
 import { ChatPromptTemplate, MessagesPlaceholder } from "@langchain/core/prompts";
 import { SERVER_SRC_DIR, readFileAllowOverride } from '../../util/fileUtils.ts';
-import { newModel, StateInfo } from "../agent.ts";
+import { newChatAnthropic, StateInfo } from "../agent.ts";
 import { Logger } from '../../Logger.ts';
 import { TextLabel, CategoryType } from '@common/annotations.ts';
 
@@ -76,9 +76,8 @@ const makeLabels = (blockCategories: BlockCategory[], logger: Logger) => {
   return labels;
 }
 
-
 const prompt = ChatPromptTemplate.fromMessages([ new MessagesPlaceholder("messages") ]);
-const llm = newModel("Anthropic");
+const llm = newChatAnthropic();
 const parser = new JsonOutputParser<BlockCategory[]>();
 const chain = prompt.pipe(llm).pipe(parser);
 
