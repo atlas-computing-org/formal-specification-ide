@@ -3,7 +3,7 @@ import { Document } from "langchain/document";
 import { JsonOutputParser } from "@langchain/core/output_parsers";
 import { ChatPromptTemplate, MessagesPlaceholder } from "@langchain/core/prompts";
 import { SERVER_SRC_DIR, readFileAllowOverride } from '../../util/fileUtils.ts';
-import { newModel, StateInfo } from "../agent.ts";
+import { newChatAnthropic, StateInfo } from "../agent.ts";
 import { Logger } from '../../Logger.ts';
 import { TextLabel, CategoryType } from '@common/annotations.ts';
 
@@ -76,11 +76,8 @@ const makeLabels = (blockCategories: BlockCategory[], logger: Logger) => {
   return labels;
 }
 
-
-const prompt = ChatPromptTemplate.fromMessages([ new MessagesPlaceholder("messages") ]);
-const llm = newModel("Anthropic");
+const llm = newChatAnthropic();
 const parser = new JsonOutputParser<BlockCategory[]>();
-const chain = prompt.pipe(llm).pipe(parser);
 
 export const blockCategoriesNode = async (state: typeof StateInfo.State) => {
   const promptText = await readFileAllowOverride(`${SERVER_SRC_DIR}/agents/prompts/blockCategoriesNodePrompt.txt`, state.logger);
@@ -88,10 +85,12 @@ export const blockCategoriesNode = async (state: typeof StateInfo.State) => {
   const labelledBlocks = labelBlocks(blocks);
 
   const userInput = JSON.stringify(labelledBlocks, null, 2);
-  const blockCategories = await chain.invoke({ messages: [
+  const messages = [
     new SystemMessage(promptText),
     new HumanMessage(userInput)
-  ]});
+  ];
+  const output = await llm.invoke(messages);
+  const blockCategories = await parser.invoke(output.text);
 
   const isCorrect = checkBlockCategories(blockCategories, labelledBlocks, state.logger);
   if (!isCorrect) {

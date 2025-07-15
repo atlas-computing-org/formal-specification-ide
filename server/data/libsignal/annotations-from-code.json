@@ -1,0 +1,4010 @@
+{
+  "mappings": [
+    {
+      "description": "Signal Messenger copyright notice with AGPL-3.0 license.",
+      "lhsRanges": [
+        {
+          "start": 41427,
+          "end": 41646,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 13697,
+          "end": 13807,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 0,
+          "end": 88,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "Rust module for handling operation outcomes.",
+      "lhsRanges": [
+        {
+          "start": 13831,
+          "end": 13858,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 13809,
+          "end": 13829,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 90,
+          "end": 114,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "AES-256 encryption with HMAC-SHA256 authentication for secure data handling.",
+      "lhsRanges": [
+        {
+          "start": 30562,
+          "end": 32570,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 24388,
+          "end": 24444,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 116,
+          "end": 245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "Error type for encryption failures due to invalid key/IV.",
+      "lhsRanges": [
+        {
+          "start": 28227,
+          "end": 28476,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 2224,
+          "end": 2534,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 247,
+          "end": 358,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "Error enum for decryption failures with bad key/IV or ciphertext.",
+      "lhsRanges": [
+        {
+          "start": 28227,
+          "end": 28476,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 27293,
+          "end": 27321,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 360,
+          "end": 685,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "AES-256 CTR encryption function using 32-byte key.",
+      "lhsRanges": [
+        {
+          "start": 18321,
+          "end": 18644,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 30562,
+          "end": 32570,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 687,
+          "end": 855,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "AES-256 cipher initialized with zero nonce in CTR mode.",
+      "lhsRanges": [
+        {
+          "start": 11054,
+          "end": 11347,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 30562,
+          "end": 32570,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 857,
+          "end": 977,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "Encrypts plaintext using cipher keystream.",
+      "lhsRanges": [
+        {
+          "start": 11054,
+          "end": 11347,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 27011,
+          "end": 27291,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 979,
+          "end": 1070,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "AES-256 CTR decryption function using encryption for implementation.",
+      "lhsRanges": [
+        {
+          "start": 18902,
+          "end": 18983,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 27293,
+          "end": 27321,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1072,
+          "end": 1293,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "HMAC-SHA256 function using a key to hash input data.",
+      "lhsRanges": [
+        {
+          "start": 37896,
+          "end": 38101,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 35729,
+          "end": 36094,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1295,
+          "end": 1539,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "Encrypts data using AES-256-CTR with HMAC-SHA256 authentication.",
+      "lhsRanges": [
+        {
+          "start": 35729,
+          "end": 36094,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 18291,
+          "end": 18319,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1541,
+          "end": 1844,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "AES-256 CTR decryption with HMAC-SHA256 verification.",
+      "lhsRanges": [
+        {
+          "start": 18902,
+          "end": 18983,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 18872,
+          "end": 18900,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1846,
+          "end": 2427,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "Rust module with hex-related test configuration.",
+      "lhsRanges": [
+        {
+          "start": 2536,
+          "end": 2567,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 1915,
+          "end": 2114,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2429,
+          "end": 2476,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "Imports all items from parent module.",
+      "lhsRanges": [
+        {
+          "start": 13831,
+          "end": 13858,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 24359,
+          "end": 24386,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2478,
+          "end": 2495,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "AES-CTR encryption test with fixed key and zero plaintext.",
+      "lhsRanges": [
+        {
+          "start": 27011,
+          "end": 27291,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 33964,
+          "end": 34010,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2497,
+          "end": 2655,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "AES-256-CTR encryption test with key validation and output verification.",
+      "lhsRanges": [
+        {
+          "start": 30562,
+          "end": 32570,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 27011,
+          "end": 27291,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2657,
+          "end": 2888,
+          "file": "../server/data/libsignal/code/rust-protocol-src-crypto.rs"
+        }
+      ]
+    },
+    {
+      "description": "Signal Messenger copyright notice for 2020-2021 with AGPL license.",
+      "lhsRanges": [
+        {
+          "start": 41427,
+          "end": 41646,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 13697,
+          "end": 13807,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 0,
+          "end": 93,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Rust implementation of Signal Protocol for secure messaging.",
+      "lhsRanges": [
+        {
+          "start": 37767,
+          "end": 37894,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 35,
+          "end": 123,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 598,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Warns about unwrap usage and forbids unsafe code in Rust.",
+      "lhsRanges": [
+        {
+          "start": 13831,
+          "end": 13858,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 24359,
+          "end": 24386,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 600,
+          "end": 651,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Aspiration to enforce docstrings for public members in Rust code.",
+      "lhsRanges": [
+        {
+          "start": 32,
+          "end": 138,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 1915,
+          "end": 2114,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 653,
+          "end": 924,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Rust module structure for a cryptographic library.",
+      "lhsRanges": [
+        {
+          "start": 14020,
+          "end": 15907,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 207,
+          "end": 2136,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 926,
+          "end": 1201,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Signal Protocol library with cryptographic messaging components.",
+      "lhsRanges": [
+        {
+          "start": 2608,
+          "end": 3836,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 41427,
+          "end": 41646,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1203,
+          "end": 3313,
+          "file": "../server/data/libsignal/code/rust-protocol-src-lib.rs"
+        }
+      ]
+    },
+    {
+      "description": "Signal Messenger copyright notice for 2020-2021 with AGPL license.",
+      "lhsRanges": [
+        {
+          "start": 41427,
+          "end": 41646,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 13697,
+          "end": 13807,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 0,
+          "end": 93,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Cryptographic code using HMAC, SHA256, and random number generation.",
+      "lhsRanges": [
+        {
+          "start": 37896,
+          "end": 38101,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 1915,
+          "end": 2114,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 95,
+          "end": 227,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Functions for managing cryptographic keys in Signal Protocol.",
+      "lhsRanges": [
+        {
+          "start": 7859,
+          "end": 8063,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 6581,
+          "end": 6863,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 229,
+          "end": 397,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Constants defining message version numbers for encryption protocols.",
+      "lhsRanges": [
+        {
+          "start": 25151,
+          "end": 25281,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 5497,
+          "end": 5708,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 399,
+          "end": 634,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Enum for different types of encrypted messages.",
+      "lhsRanges": [
+        {
+          "start": 9950,
+          "end": 10208,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 5497,
+          "end": 5708,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 636,
+          "end": 843,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Enum defining types of encrypted messages in a communication system.",
+      "lhsRanges": [
+        {
+          "start": 9950,
+          "end": 10208,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 40713,
+          "end": 40846,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 845,
+          "end": 1047,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Method to determine the type of a ciphertext message.",
+      "lhsRanges": [
+        {
+          "start": 9950,
+          "end": 10208,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 18291,
+          "end": 18319,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1049,
+          "end": 1515,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Serializes different types of ciphertext messages.",
+      "lhsRanges": [
+        {
+          "start": 18291,
+          "end": 18319,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 6241,
+          "end": 6486,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1517,
+          "end": 1874,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Signal protocol message structure with encryption and ratchet components.",
+      "lhsRanges": [
+        {
+          "start": 13697,
+          "end": 13807,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 22833,
+          "end": 22933,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1876,
+          "end": 2172,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Implements SignalMessage with 8-byte MAC length constant.",
+      "lhsRanges": [
+        {
+          "start": 15909,
+          "end": 16208,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 1915,
+          "end": 2114,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2174,
+          "end": 2227,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Constructor for creating a SignalMessage with encryption parameters.",
+      "lhsRanges": [
+        {
+          "start": 11054,
+          "end": 11347,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 10380,
+          "end": 10656,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2229,
+          "end": 3849,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns the message version as a u8.",
+      "lhsRanges": [
+        {
+          "start": 10428,
+          "end": 10466,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 12476,
+          "end": 12506,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3851,
+          "end": 3941,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns the sender's ratchet key.",
+      "lhsRanges": [
+        {
+          "start": 5465,
+          "end": 5495,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 5133,
+          "end": 5317,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3943,
+          "end": 4048,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns the counter value from self.",
+      "lhsRanges": [
+        {
+          "start": 16210,
+          "end": 16234,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 13831,
+          "end": 13858,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4050,
+          "end": 4125,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns reference to serialized PQ ratchet message.",
+      "lhsRanges": [
+        {
+          "start": 5465,
+          "end": 5495,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 13697,
+          "end": 13807,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4127,
+          "end": 4230,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns serialized data as byte slice.",
+      "lhsRanges": [
+        {
+          "start": 2224,
+          "end": 2534,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 9345,
+          "end": 9406,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4232,
+          "end": 4316,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns ciphertext as byte slice.",
+      "lhsRanges": [
+        {
+          "start": 9950,
+          "end": 10208,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 24252,
+          "end": 24357,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4318,
+          "end": 4396,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function verifies MAC by comparing computed and provided values.",
+      "lhsRanges": [
+        {
+          "start": 11581,
+          "end": 11897,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 10468,
+          "end": 10724,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4398,
+          "end": 5239,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function computes MAC using identity keys and message.",
+      "lhsRanges": [
+        {
+          "start": 10468,
+          "end": 10724,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 5497,
+          "end": 5708,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5241,
+          "end": 5687,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Updates MAC with keys and message, returns finalized result.",
+      "lhsRanges": [
+        {
+          "start": 18291,
+          "end": 18319,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 10468,
+          "end": 10724,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5689,
+          "end": 6028,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "SignalMessage implements AsRef<[u8]> by returning serialized bytes.",
+      "lhsRanges": [
+        {
+          "start": 13697,
+          "end": 13807,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 6241,
+          "end": 6486,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 6030,
+          "end": 6131,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Converts byte slice to SignalMessage with error handling.",
+      "lhsRanges": [
+        {
+          "start": 12476,
+          "end": 12506,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 10428,
+          "end": 10466,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 6133,
+          "end": 6210,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function validates message version in byte array.",
+      "lhsRanges": [
+        {
+          "start": 18872,
+          "end": 18900,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 27293,
+          "end": 27321,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 6212,
+          "end": 6852,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Decodes a SignalMessage from protobuf data, excluding MAC.",
+      "lhsRanges": [
+        {
+          "start": 10428,
+          "end": 10466,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 41427,
+          "end": 41646,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 6854,
+          "end": 7059,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Extracts and validates message components from protocol structure.",
+      "lhsRanges": [
+        {
+          "start": 5133,
+          "end": 5317,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 7061,
+          "end": 7648,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function returns SignalMessage with various fields.",
+      "lhsRanges": [
+        {
+          "start": 13697,
+          "end": 13807,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 10955,
+          "end": 11052,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 7650,
+          "end": 7943,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Kyber encryption payload with pre-key ID and ciphertext.",
+      "lhsRanges": [
+        {
+          "start": 9605,
+          "end": 9948,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 7859,
+          "end": 8063,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 7945,
+          "end": 8070,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function creates KyberPayload with ID and ciphertext.",
+      "lhsRanges": [
+        {
+          "start": 9605,
+          "end": 9948,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 7859,
+          "end": 8063,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 8072,
+          "end": 8259,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "PreKeySignalMessage struct for encrypted communication setup.",
+      "lhsRanges": [
+        {
+          "start": 7859,
+          "end": 8063,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 6581,
+          "end": 6863,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 8261,
+          "end": 8790,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Constructor for PreKeySignalMessage with encryption parameters.",
+      "lhsRanges": [
+        {
+          "start": 7859,
+          "end": 8063,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 6217,
+          "end": 6429,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 8792,
+          "end": 10373,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns the message version as a u8.",
+      "lhsRanges": [
+        {
+          "start": 10428,
+          "end": 10466,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 12476,
+          "end": 12506,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 10375,
+          "end": 10465,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns the registration ID value.",
+      "lhsRanges": [
+        {
+          "start": 17090,
+          "end": 17115,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 36233,
+          "end": 36271,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 10467,
+          "end": 10558,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns optional PreKeyId from struct.",
+      "lhsRanges": [
+        {
+          "start": 7859,
+          "end": 8063,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 6581,
+          "end": 6863,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 10560,
+          "end": 10654,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns the signed pre-key ID.",
+      "lhsRanges": [
+        {
+          "start": 7859,
+          "end": 8063,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 6581,
+          "end": 6863,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 10656,
+          "end": 10762,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns KyberPreKeyId from kyber_payload if present.",
+      "lhsRanges": [
+        {
+          "start": 7859,
+          "end": 8063,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 6581,
+          "end": 6863,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 10764,
+          "end": 10911,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns optional reference to Kyber ciphertext.",
+      "lhsRanges": [
+        {
+          "start": 9950,
+          "end": 10208,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 21170,
+          "end": 21249,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 10913,
+          "end": 11074,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns reference to base public key.",
+      "lhsRanges": [
+        {
+          "start": 6477,
+          "end": 6501,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 6581,
+          "end": 6863,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 11076,
+          "end": 11161,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns the identity key reference.",
+      "lhsRanges": [
+        {
+          "start": 17090,
+          "end": 17115,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 4760,
+          "end": 4773,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 11163,
+          "end": 11258,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns reference to SignalMessage from self.",
+      "lhsRanges": [
+        {
+          "start": 6241,
+          "end": 6486,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 10428,
+          "end": 10466,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 11260,
+          "end": 11347,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns a reference to serialized bytes.",
+      "lhsRanges": [
+        {
+          "start": 2224,
+          "end": 2534,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 9345,
+          "end": 9406,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 11349,
+          "end": 11435,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "PreKeySignalMessage implements AsRef<[u8]> returning serialized bytes.",
+      "lhsRanges": [
+        {
+          "start": 7859,
+          "end": 8063,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 6581,
+          "end": 6863,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 11437,
+          "end": 11544,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Converts byte array to PreKeySignalMessage, may return error.",
+      "lhsRanges": [
+        {
+          "start": 10468,
+          "end": 10724,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 7859,
+          "end": 8063,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 11546,
+          "end": 11629,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function to convert byte array to Self, checking for empty input.",
+      "lhsRanges": [
+        {
+          "start": 41427,
+          "end": 41646,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 27901,
+          "end": 28223,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 11631,
+          "end": 11803,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Validates message version against supported ciphertext versions.",
+      "lhsRanges": [
+        {
+          "start": 27293,
+          "end": 27321,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 18985,
+          "end": 19517,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 11805,
+          "end": 12245,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Decodes PreKeySignalMessage from protobuf data, handling errors.",
+      "lhsRanges": [
+        {
+          "start": 10428,
+          "end": 10466,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 10468,
+          "end": 10724,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 12247,
+          "end": 12403,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Extracts required fields from proto_structure with error handling.",
+      "lhsRanges": [
+        {
+          "start": 7859,
+          "end": 8063,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 10468,
+          "end": 10724,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 12405,
+          "end": 12940,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Deserializes a public key from a reference.",
+      "lhsRanges": [
+        {
+          "start": 33964,
+          "end": 34010,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 10468,
+          "end": 10724,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 12942,
+          "end": 13008,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Processes Kyber payload from protocol structure with validation checks.",
+      "lhsRanges": [
+        {
+          "start": 10468,
+          "end": 10724,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 7859,
+          "end": 8063,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 13010,
+          "end": 13865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "PreKeySignalMessage structure with cryptographic components.",
+      "lhsRanges": [
+        {
+          "start": 7859,
+          "end": 8063,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 6581,
+          "end": 6863,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 13867,
+          "end": 14380,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Rust struct for encrypted group messaging with distribution details.",
+      "lhsRanges": [
+        {
+          "start": 5497,
+          "end": 5708,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 11054,
+          "end": 11347,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 14382,
+          "end": 14582,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Implements SenderKeyMessage with a 64-byte signature length constant.",
+      "lhsRanges": [
+        {
+          "start": 14069,
+          "end": 14088,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 25151,
+          "end": 25281,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 14584,
+          "end": 14644,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function creates encrypted sender key message with signature.",
+      "lhsRanges": [
+        {
+          "start": 10468,
+          "end": 10724,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 6217,
+          "end": 6429,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 14646,
+          "end": 15925,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Verifies signature using public key on serialized data.",
+      "lhsRanges": [
+        {
+          "start": 8270,
+          "end": 8429,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 14069,
+          "end": 14088,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 15927,
+          "end": 16223,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Valid response confirmed.",
+      "lhsRanges": [
+        {
+          "start": 1915,
+          "end": 2114,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 14069,
+          "end": 14088,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 16225,
+          "end": 16248,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns the message version as a u8.",
+      "lhsRanges": [
+        {
+          "start": 10428,
+          "end": 10466,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 12476,
+          "end": 12506,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 16250,
+          "end": 16340,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns the distribution ID as a UUID.",
+      "lhsRanges": [
+        {
+          "start": 17090,
+          "end": 17115,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 36233,
+          "end": 36271,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 16342,
+          "end": 16434,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns the chain ID value.",
+      "lhsRanges": [
+        {
+          "start": 3073,
+          "end": 3092,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 3094,
+          "end": 3160,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 16436,
+          "end": 16513,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns the current iteration count.",
+      "lhsRanges": [
+        {
+          "start": 13809,
+          "end": 13829,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 16891,
+          "end": 16914,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 16515,
+          "end": 16594,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns reference to ciphertext byte slice.",
+      "lhsRanges": [
+        {
+          "start": 9950,
+          "end": 10208,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 2536,
+          "end": 2567,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 16596,
+          "end": 16680,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns a reference to serialized bytes.",
+      "lhsRanges": [
+        {
+          "start": 2224,
+          "end": 2534,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 9345,
+          "end": 9406,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 16682,
+          "end": 16768,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "SenderKeyMessage implements AsRef<[u8]> to access serialized data.",
+      "lhsRanges": [
+        {
+          "start": 5497,
+          "end": 5708,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 6241,
+          "end": 6486,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 16770,
+          "end": 16874,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Converts byte array to SenderKeyMessage with error handling.",
+      "lhsRanges": [
+        {
+          "start": 27901,
+          "end": 28223,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 25151,
+          "end": 25281,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 16876,
+          "end": 16956,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function validates sender key message format and version.",
+      "lhsRanges": [
+        {
+          "start": 27901,
+          "end": 28223,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 20218,
+          "end": 20512,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 16958,
+          "end": 17791,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Extracts and validates fields from a protocol structure.",
+      "lhsRanges": [
+        {
+          "start": 3956,
+          "end": 4043,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 41427,
+          "end": 41646,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 17793,
+          "end": 18429,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function returning SenderKeyMessage with various parameters.",
+      "lhsRanges": [
+        {
+          "start": 5497,
+          "end": 5708,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 11054,
+          "end": 11347,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 18431,
+          "end": 18648,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Struct for distributing sender key information in messaging protocol.",
+      "lhsRanges": [
+        {
+          "start": 5497,
+          "end": 5708,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 11054,
+          "end": 11347,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 18650,
+          "end": 18887,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Constructor for SenderKeyDistributionMessage with encryption parameters.",
+      "lhsRanges": [
+        {
+          "start": 5497,
+          "end": 5708,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 17281,
+          "end": 17628,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 18889,
+          "end": 19767,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Constructs a new Self object with specified parameters.",
+      "lhsRanges": [
+        {
+          "start": 16294,
+          "end": 16788,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 5497,
+          "end": 5708,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 19769,
+          "end": 20009,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns the message version as a u8.",
+      "lhsRanges": [
+        {
+          "start": 10428,
+          "end": 10466,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 12476,
+          "end": 12506,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 20011,
+          "end": 20101,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns the distribution ID as a UUID.",
+      "lhsRanges": [
+        {
+          "start": 17090,
+          "end": 17115,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 6477,
+          "end": 6501,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 20103,
+          "end": 20207,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns the chain ID value.",
+      "lhsRanges": [
+        {
+          "start": 3073,
+          "end": 3092,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 3094,
+          "end": 3160,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 20209,
+          "end": 20298,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns the iteration value.",
+      "lhsRanges": [
+        {
+          "start": 13809,
+          "end": 13829,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 10284,
+          "end": 10307,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 20300,
+          "end": 20391,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns chain key as byte slice.",
+      "lhsRanges": [
+        {
+          "start": 3094,
+          "end": 3160,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 3073,
+          "end": 3092,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 20393,
+          "end": 20487,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns the signing public key.",
+      "lhsRanges": [
+        {
+          "start": 6477,
+          "end": 6501,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 14069,
+          "end": 14088,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 20489,
+          "end": 20592,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns serialized data as byte slice.",
+      "lhsRanges": [
+        {
+          "start": 2224,
+          "end": 2534,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 9345,
+          "end": 9406,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 20594,
+          "end": 20680,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Implements AsRef<[u8]> for SenderKeyDistributionMessage to access serialized data.",
+      "lhsRanges": [
+        {
+          "start": 5497,
+          "end": 5708,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 6241,
+          "end": 6486,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 20682,
+          "end": 20798,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Converts byte array to SenderKeyDistributionMessage with error handling.",
+      "lhsRanges": [
+        {
+          "start": 2224,
+          "end": 2534,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 25151,
+          "end": 25281,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 20800,
+          "end": 20892,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function to convert byte array to Self, validating length.",
+      "lhsRanges": [
+        {
+          "start": 2224,
+          "end": 2534,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 10468,
+          "end": 10724,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 20894,
+          "end": 21145,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Extracts message version from first 4 bits of value.",
+      "lhsRanges": [
+        {
+          "start": 12476,
+          "end": 12506,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 10428,
+          "end": 10466,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 21147,
+          "end": 21191,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Validates sender key message version against current version.",
+      "lhsRanges": [
+        {
+          "start": 6241,
+          "end": 6486,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 18985,
+          "end": 19517,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 21193,
+          "end": 21584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Decodes SenderKeyDistributionMessage from protobuf data, handling errors.",
+      "lhsRanges": [
+        {
+          "start": 10428,
+          "end": 10466,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 21586,
+          "end": 21751,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Extracts fields from proto_structure with error handling.",
+      "lhsRanges": [
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 16294,
+          "end": 16788,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 21753,
+          "end": 22489,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Invalid key lengths trigger SignalProtocolError.",
+      "lhsRanges": [
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 9727,
+          "end": 10040,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 22491,
+          "end": 22632,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Deserializes a public key for signing.",
+      "lhsRanges": [
+        {
+          "start": 14069,
+          "end": 14088,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 8270,
+          "end": 8429,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 22634,
+          "end": 22698,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "SenderKeyDistributionMessage struct with message components and serialization.",
+      "lhsRanges": [
+        {
+          "start": 5497,
+          "end": 5708,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 11054,
+          "end": 11347,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 22700,
+          "end": 22953,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Struct for storing serialized plaintext data.",
+      "lhsRanges": [
+        {
+          "start": 19519,
+          "end": 19750,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 40713,
+          "end": 40846,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 22955,
+          "end": 23037,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Identifies and validates serialized plaintext content with a byte identifier.",
+      "lhsRanges": [
+        {
+          "start": 2536,
+          "end": 2567,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 40713,
+          "end": 40846,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 23039,
+          "end": 23356,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Marks end of message and start of padding.",
+      "lhsRanges": [
+        {
+          "start": 18321,
+          "end": 18644,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 2224,
+          "end": 2534,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 23358,
+          "end": 23636,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns byte slice of serialized data excluding first byte.",
+      "lhsRanges": [
+        {
+          "start": 9552,
+          "end": 9603,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 24252,
+          "end": 24357,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 23638,
+          "end": 23721,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns a reference to serialized bytes.",
+      "lhsRanges": [
+        {
+          "start": 2224,
+          "end": 2534,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 9345,
+          "end": 9406,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 23723,
+          "end": 23809,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Converts DecryptionErrorMessage to PlaintextContent using protocol buffers.",
+      "lhsRanges": [
+        {
+          "start": 19519,
+          "end": 19750,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 27293,
+          "end": 27321,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 23811,
+          "end": 24419,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Converts byte slice to PlaintextContent with error handling.",
+      "lhsRanges": [
+        {
+          "start": 19519,
+          "end": 19750,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 27293,
+          "end": 27321,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 24421,
+          "end": 24501,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function converts byte array to plaintext message with validation.",
+      "lhsRanges": [
+        {
+          "start": 27293,
+          "end": 27321,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 18872,
+          "end": 18900,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 24503,
+          "end": 24940,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Struct for handling decryption errors with device and timing information.",
+      "lhsRanges": [
+        {
+          "start": 27323,
+          "end": 27395,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 18985,
+          "end": 19517,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 24942,
+          "end": 25112,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Constructor for error message with original message details.",
+      "lhsRanges": [
+        {
+          "start": 27323,
+          "end": 27395,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 18872,
+          "end": 18900,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 25114,
+          "end": 26077,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Serializes a DecryptionErrorMessage with timestamp, ratchet key, and device ID.",
+      "lhsRanges": [
+        {
+          "start": 21106,
+          "end": 21149,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 18985,
+          "end": 19517,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 26079,
+          "end": 26402,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Creates a new Self struct with provided fields.",
+      "lhsRanges": [
+        {
+          "start": 5465,
+          "end": 5495,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 10284,
+          "end": 10307,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 26404,
+          "end": 26611,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns the timestamp value from the struct.",
+      "lhsRanges": [
+        {
+          "start": 14069,
+          "end": 14088,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 1915,
+          "end": 2114,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 26613,
+          "end": 26698,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns optional reference to ratchet key.",
+      "lhsRanges": [
+        {
+          "start": 33964,
+          "end": 34010,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 5465,
+          "end": 5495,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 26700,
+          "end": 26807,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns the device ID as a 32-bit unsigned integer.",
+      "lhsRanges": [
+        {
+          "start": 36233,
+          "end": 36271,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 17090,
+          "end": 17115,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 26809,
+          "end": 26888,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns a reference to serialized bytes.",
+      "lhsRanges": [
+        {
+          "start": 2224,
+          "end": 2534,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 9345,
+          "end": 9406,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 26890,
+          "end": 26976,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Implements conversion from byte slice to DecryptionErrorMessage with error handling.",
+      "lhsRanges": [
+        {
+          "start": 27293,
+          "end": 27321,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 18872,
+          "end": 18900,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 26978,
+          "end": 27064,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Decodes and validates a decryption error message from bytes.",
+      "lhsRanges": [
+        {
+          "start": 21106,
+          "end": 21149,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 18985,
+          "end": 19517,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 27066,
+          "end": 27811,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function extracts decryption error message from serialized content.",
+      "lhsRanges": [
+        {
+          "start": 27293,
+          "end": 27321,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 18872,
+          "end": 18900,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 27813,
+          "end": 28556,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Tests for random number generation functionality.",
+      "lhsRanges": [
+        {
+          "start": 38310,
+          "end": 38509,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 30433,
+          "end": 30560,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 28558,
+          "end": 28658,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Defines module imports for KeyPair and parent module functionality.",
+      "lhsRanges": [
+        {
+          "start": 2224,
+          "end": 2534,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 14780,
+          "end": 14803,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 28660,
+          "end": 28701,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Creates a SignalMessage with random MAC key.",
+      "lhsRanges": [
+        {
+          "start": 41427,
+          "end": 41646,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 18291,
+          "end": 18319,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 28703,
+          "end": 28928,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Fills array with random bytes using cryptographic random number generator.",
+      "lhsRanges": [
+        {
+          "start": 9950,
+          "end": 10208,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 2536,
+          "end": 2567,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 28930,
+          "end": 29050,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Generates key pairs for secure communication between sender and receiver.",
+      "lhsRanges": [
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 35364,
+          "end": 35686,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 29052,
+          "end": 29250,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "SignalMessage constructor with encryption parameters.",
+      "lhsRanges": [
+        {
+          "start": 10380,
+          "end": 10656,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 5133,
+          "end": 5317,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 29252,
+          "end": 29584,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function compares two SignalMessage objects for equality.",
+      "lhsRanges": [
+        {
+          "start": 13697,
+          "end": 13807,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 41427,
+          "end": 41646,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 29586,
+          "end": 30001,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Test for SignalMessage serialization and deserialization.",
+      "lhsRanges": [
+        {
+          "start": 41427,
+          "end": 41646,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 13697,
+          "end": 13807,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 30003,
+          "end": 30396,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Test for PreKeySignalMessage serialization and deserialization.",
+      "lhsRanges": [
+        {
+          "start": 10468,
+          "end": 10724,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 6217,
+          "end": 6429,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 30398,
+          "end": 32328,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Test for SenderKeyMessage serialization and deserialization.",
+      "lhsRanges": [
+        {
+          "start": 5497,
+          "end": 5708,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 17281,
+          "end": 17628,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 32330,
+          "end": 33626,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Tests error message when decryption fails.",
+      "lhsRanges": [
+        {
+          "start": 18872,
+          "end": 18900,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 27293,
+          "end": 27321,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 33628,
+          "end": 34039,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Tests DecryptionErrorMessage creation and validation for Whisper messages.",
+      "lhsRanges": [
+        {
+          "start": 18985,
+          "end": 19517,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 18872,
+          "end": 18900,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 34041,
+          "end": 34640,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Creates PreKeySignalMessage with specified parameters.",
+      "lhsRanges": [
+        {
+          "start": 10468,
+          "end": 10724,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 6217,
+          "end": 6429,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 34642,
+          "end": 34942,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Creates and validates DecryptionErrorMessage for PreKey message.",
+      "lhsRanges": [
+        {
+          "start": 18985,
+          "end": 19517,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 22006,
+          "end": 22467,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 34944,
+          "end": 35582,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Creates a new SenderKeyMessage with specified parameters.",
+      "lhsRanges": [
+        {
+          "start": 11054,
+          "end": 11347,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 5497,
+          "end": 5708,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 35584,
+          "end": 35829,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Creates and validates DecryptionErrorMessage for SenderKey message.",
+      "lhsRanges": [
+        {
+          "start": 18985,
+          "end": 19517,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 5133,
+          "end": 5317,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 35831,
+          "end": 36367,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Returns Ok with empty tuple.",
+      "lhsRanges": [
+        {
+          "start": 1806,
+          "end": 1825,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 1915,
+          "end": 2114,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 36369,
+          "end": 36389,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Test validates error handling for plaintext decryption with empty input.",
+      "lhsRanges": [
+        {
+          "start": 18872,
+          "end": 18900,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 27293,
+          "end": 27321,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 36391,
+          "end": 36764,
+          "file": "../server/data/libsignal/code/rust-protocol-src-protocol.rs"
+        }
+      ]
+    },
+    {
+      "description": "Signal Messenger copyright notice with AGPL-3.0 license.",
+      "lhsRanges": [
+        {
+          "start": 41427,
+          "end": 41646,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 13697,
+          "end": 13807,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 0,
+          "end": 88,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Rust modules for keys and parameters.",
+      "lhsRanges": [
+        {
+          "start": 25109,
+          "end": 25149,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 1827,
+          "end": 1851,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 90,
+          "end": 111,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Generate random numbers with cryptographic security.",
+      "lhsRanges": [
+        {
+          "start": 13860,
+          "end": 14018,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 38310,
+          "end": 38509,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 113,
+          "end": 140,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Cryptographic key management for Signal Protocol.",
+      "lhsRanges": [
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 22833,
+          "end": 22933,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 142,
+          "end": 471,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "32-byte array type for initial PQR key.",
+      "lhsRanges": [
+        {
+          "start": 25151,
+          "end": 25281,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 2224,
+          "end": 2534,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 473,
+          "end": 503,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function derives cryptographic keys from secret input.",
+      "lhsRanges": [
+        {
+          "start": 9727,
+          "end": 10040,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 3679,
+          "end": 3954,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 505,
+          "end": 697,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Derives cryptographic keys using HKDF with a label and secret input.",
+      "lhsRanges": [
+        {
+          "start": 9727,
+          "end": 10040,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 3679,
+          "end": 3954,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 699,
+          "end": 1074,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Initializes cryptographic keys with expected byte lengths.",
+      "lhsRanges": [
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 10658,
+          "end": 10953,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1076,
+          "end": 1331,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Cryptographic keys for secure communication.",
+      "lhsRanges": [
+        {
+          "start": 9727,
+          "end": 10040,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 4593,
+          "end": 4828,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1333,
+          "end": 1369,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Function configures SPQR chain parameters with jump and key limits.",
+      "lhsRanges": [
+        {
+          "start": 15909,
+          "end": 16208,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1371,
+          "end": 1780,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Initializes Alice's session with cryptographic parameters.",
+      "lhsRanges": [
+        {
+          "start": 17761,
+          "end": 18047,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 26112,
+          "end": 26521,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 1782,
+          "end": 2017,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Creates a vector with capacity for 192 elements.",
+      "lhsRanges": [
+        {
+          "start": 25511,
+          "end": 25585,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 32603,
+          "end": 32627,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2019,
+          "end": 2068,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Adds 32 bytes of 0xFF as \"discontinuity bytes\" to secrets.",
+      "lhsRanges": [
+        {
+          "start": 25511,
+          "end": 25585,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 2608,
+          "end": 3836,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2070,
+          "end": 2140,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Defines a variable for our base private key.",
+      "lhsRanges": [
+        {
+          "start": 1827,
+          "end": 1851,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 33964,
+          "end": 34010,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2142,
+          "end": 2216,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Adds shared secret from identity key and signed pre-key.",
+      "lhsRanges": [
+        {
+          "start": 25511,
+          "end": 25585,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2218,
+          "end": 2409,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Extends secrets with calculated agreement between private and public keys.",
+      "lhsRanges": [
+        {
+          "start": 25511,
+          "end": 25585,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2411,
+          "end": 2546,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Adds shared secret from our private key and their signed pre-key.",
+      "lhsRanges": [
+        {
+          "start": 25511,
+          "end": 25585,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2548,
+          "end": 2672,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Conditionally adds agreement with one-time prekey to secrets.",
+      "lhsRanges": [
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 8660,
+          "end": 8766,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2674,
+          "end": 2873,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Generates Kyber ciphertext and stores shared secret.",
+      "lhsRanges": [
+        {
+          "start": 9950,
+          "end": 10208,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 9605,
+          "end": 9948,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 2875,
+          "end": 3052,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Derives three keys from secrets.",
+      "lhsRanges": [
+        {
+          "start": 9727,
+          "end": 10040,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3054,
+          "end": 3117,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Generates keys for secure message sending in a cryptographic protocol.",
+      "lhsRanges": [
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 22469,
+          "end": 22831,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3119,
+          "end": 3353,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Initialize post-quantum ratchet state based on parameters.",
+      "lhsRanges": [
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 26523,
+          "end": 26892,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 3355,
+          "end": 4463,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Initializes session state with identity keys and encryption chains.",
+      "lhsRanges": [
+        {
+          "start": 4593,
+          "end": 4828,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4465,
+          "end": 4865,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Sets Kyber ciphertext for the session.",
+      "lhsRanges": [
+        {
+          "start": 9950,
+          "end": 10208,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        },
+        {
+          "start": 34216,
+          "end": 34469,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4867,
+          "end": 4918,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Session validation result.",
+      "lhsRanges": [
+        {
+          "start": 21720,
+          "end": 22004,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 34216,
+          "end": 34469,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4920,
+          "end": 4937,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Initializes Bob's session with provided parameters.",
+      "lhsRanges": [
+        {
+          "start": 18049,
+          "end": 18289,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 26523,
+          "end": 26892,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 4939,
+          "end": 5126,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Creates a vector with capacity for 192 elements.",
+      "lhsRanges": [
+        {
+          "start": 25511,
+          "end": 25585,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 32603,
+          "end": 32627,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5128,
+          "end": 5177,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Adds 32 bytes of 0xFF as \"discontinuity bytes\" to secrets.",
+      "lhsRanges": [
+        {
+          "start": 25511,
+          "end": 25585,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 2608,
+          "end": 3836,
+          "file": "../server/data/libsignal/text/x3dh.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5179,
+          "end": 5249,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Adds shared secret from our pre-key and their identity key.",
+      "lhsRanges": [
+        {
+          "start": 25511,
+          "end": 25585,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5251,
+          "end": 5453,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Extends secrets with calculated agreement between private and base keys.",
+      "lhsRanges": [
+        {
+          "start": 25511,
+          "end": 25585,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5455,
+          "end": 5640,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Adds shared secret from our private key and their base key.",
+      "lhsRanges": [
+        {
+          "start": 25511,
+          "end": 25585,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5642,
+          "end": 5827,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Conditionally adds key agreement to secrets if one-time pre-key exists.",
+      "lhsRanges": [
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 25511,
+          "end": 25585,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 5829,
+          "end": 6102,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Extends secrets with decapsulated Kyber ciphertext using our secret key.",
+      "lhsRanges": [
+        {
+          "start": 25511,
+          "end": 25585,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 6104,
+          "end": 6287,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Derives three keys from secrets.",
+      "lhsRanges": [
+        {
+          "start": 9727,
+          "end": 10040,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 6289,
+          "end": 6352,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Initialize session state with identity keys and ratchet parameters.",
+      "lhsRanges": [
+        {
+          "start": 16916,
+          "end": 17279,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 4593,
+          "end": 4828,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 6354,
+          "end": 7760,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Session validation result.",
+      "lhsRanges": [
+        {
+          "start": 21720,
+          "end": 22004,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 34216,
+          "end": 34469,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 7762,
+          "end": 7779,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Initialize Alice's session record with provided parameters and random generator.",
+      "lhsRanges": [
+        {
+          "start": 17630,
+          "end": 17759,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 7768,
+          "end": 7990,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 7781,
+          "end": 8028,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    },
+    {
+      "description": "Creates a session record for Bob using protocol parameters.",
+      "lhsRanges": [
+        {
+          "start": 26523,
+          "end": 26892,
+          "file": "../server/data/libsignal/text/rachet.md"
+        },
+        {
+          "start": 18049,
+          "end": 18289,
+          "file": "../server/data/libsignal/text/rachet.md"
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 8030,
+          "end": 8209,
+          "file": "../server/data/libsignal/code/rust-protocol-src-ratchet.rs"
+        }
+      ]
+    }
+  ],
+  "lhsLabels": [],
+  "rhsLabels": []
+}

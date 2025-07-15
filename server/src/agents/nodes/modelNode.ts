@@ -1,6 +1,6 @@
-import { newModel, StateInfo } from "../agent.ts";
+import { newChatAnthropic, StateInfo } from "../agent.ts";
 
-const llm = newModel("Anthropic");
+const llm = newChatAnthropic();
 
 // Define the function that calls the model
 export const modelNode = async (state: typeof StateInfo.State) => {

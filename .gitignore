@@ -3,6 +3,7 @@ frontend/dist
 *.swp
 .vscode
 log/
+deno.lock
 
 **/.DS_Store
 

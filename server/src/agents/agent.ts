@@ -11,11 +11,11 @@ import { DebugInfo } from "@common/serverAPI/DebugInfo.ts";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
 import { OpenAIEmbeddings } from "@langchain/openai";
 
-export const MODEL_PROVIDERS = ["Anthopic", "OpenAI", "DeepSeek"];
-
 export const StateInfo = Annotation.Root({
   lhsText: Annotation<string>,
   rhsText: Annotation<string>,
+  lhsFiles: Annotation<string[]>,
+  rhsFiles: Annotation<string[]>,
   lhsBlocks: Annotation<Document[]>,
   rhsBlocks: Annotation<Document[]>,
   splitTextLHS: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
@@ -24,6 +24,7 @@ export const StateInfo = Annotation.Root({
   summarizeBlocksRHS: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
   storeBlocksLHS: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
   storeBlocksRHS: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
+  blockMappingsMultifile: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
   blockMappingsQuerySide: Annotation<Direction>,
   blockCategoriesQuerySide: Annotation<Direction>,
   cacheUseDemo: Annotation<boolean>({ value: (_prev, next) => next, default: () => false }),
@@ -52,39 +53,39 @@ export class GraphError extends Error {
   }
 }
 
-export function newModel(provider: string): ChatAnthropic | ChatDeepSeek | ChatOpenAI {
-  if (provider === "Anthropic") {
-    // https://docs.anthropic.com/en/docs/about-claude/models/all-models 
-    return new ChatAnthropic({
-      model: "claude-3-7-sonnet-20250219",
-      temperature: 0,
-      maxTokens: 10000,
-      maxRetries: 2,
-      apiKey: process.env.ANTHROPIC_API_KEY,
-    });
-  } else if (provider === "DeepSeek") {
-    // https://api-docs.deepseek.com/quick_start/pricing
-    return new ChatDeepSeek({
-      model: "deepseek-reasoner",
-      temperature: 0,
-      maxTokens: undefined,
-      maxRetries: undefined,
-      timeout: undefined,
-      apiKey: process.env.DEEPSEEK_API_KEY,
-    });
-  } else if (provider === "OpenAI") {
-    // https://platform.openai.com/docs/models/compare 
-    return new ChatOpenAI({
-      model: "o3-mini",
-      temperature: undefined,
-      maxTokens: undefined,
-      maxRetries: 2,
-      timeout: undefined,
-      apiKey: process.env.OPENAI_API_KEY,
-    });
-  } else {
-    throw new Error(`Unsupported provider: ${provider}`);
-  }
+export function newChatAnthropic(overrides?: any): ChatAnthropic {
+  return new ChatAnthropic({
+    model: "claude-3-7-sonnet-20250219",
+    temperature: 0,
+    maxTokens: 10000,
+    maxRetries: 2,
+    apiKey: process.env.ANTHROPIC_API_KEY,
+    ...overrides,
+  });
+}
+
+export function newChatDeepSeek(overrides?: any): ChatDeepSeek {
+  return new ChatDeepSeek({
+    model: "deepseek-reasoner",
+    temperature: 0,
+    maxTokens: undefined,
+    maxRetries: undefined,
+    timeout: undefined,
+    apiKey: process.env.DEEPSEEK_API_KEY,
+    ...overrides,
+  });
+}
+
+export function newChatOpenAI(overrides?: any): ChatOpenAI {
+  return new ChatOpenAI({
+    model: "o3-mini",
+    temperature: undefined,
+    maxTokens: undefined,
+    maxRetries: 2,
+    timeout: undefined,
+    apiKey: process.env.OPENAI_API_KEY,
+    ...overrides,
+  });
 }
 
 export function response(state: typeof StateInfo.State): BaseMessage {
