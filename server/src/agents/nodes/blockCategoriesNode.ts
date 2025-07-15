@@ -1,7 +1,6 @@
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { Document } from "langchain/document";
 import { JsonOutputParser } from "@langchain/core/output_parsers";
-import { ChatPromptTemplate, MessagesPlaceholder } from "@langchain/core/prompts";
 import { SERVER_SRC_DIR, readFileAllowOverride } from '../../util/fileUtils.ts';
 import { newChatAnthropic, StateInfo } from "../agent.ts";
 import { Logger } from '../../Logger.ts';

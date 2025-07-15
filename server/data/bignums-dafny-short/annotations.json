@@ -1,0 +1,63 @@
+{
+  "mappings": [
+    {
+      "description": "String concatenation method that combines two input strings.",
+      "lhsRanges": [
+        {
+          "start": 0,
+          "end": 15
+        },
+        {
+          "start": 66,
+          "end": 169
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 0,
+          "end": 57
+        }
+      ]
+    },
+    {
+      "description": "Ensures valid bit strings for inputs and output.",
+      "lhsRanges": [
+        {
+          "start": 17,
+          "end": 64
+        },
+        {
+          "start": 66,
+          "end": 169
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 59,
+          "end": 140
+        }
+      ]
+    },
+    {
+      "description": "Function adds two string-represented integers correctly.",
+      "lhsRanges": [
+        {
+          "start": 66,
+          "end": 169
+        },
+        {
+          "start": 0,
+          "end": 15
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 144,
+          "end": 195
+        }
+      ]
+    }
+  ],
+  "lhsLabels": [],
+  "rhsLabels": []
+}

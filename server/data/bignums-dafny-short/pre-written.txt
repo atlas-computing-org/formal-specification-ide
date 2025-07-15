@@ -1,0 +1,8 @@
+
+method Add(s1: string, s2: string) returns (res: string)
+
+  requires ValidBitString(s1) && ValidBitString(s2)
+  ensures ValidBitString(res)
+  
+  ensures Str2Int(res) == Str2Int(s1) + Str2Int(s2)
+

@@ -1,0 +1,10 @@
+
+# function add
+
+If the input is valid, then the output is valid
+
+the output string interpreted as an integer equals the sum of the input strings
+interpreted as integers
+
+
+
