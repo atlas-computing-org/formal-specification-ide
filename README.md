@@ -34,3 +34,9 @@ npm run dev
 ```
 
 3. Visit http://localhost:3000 to see the result
+
+
+## License
+
+See LICENSE
+
