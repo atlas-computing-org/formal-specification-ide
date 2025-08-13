@@ -13,28 +13,50 @@ import { Counter } from '@common/util/Counter.ts';
 import { handleRequest, RequestHandler } from './endpoints/endpointUtils.ts';
 import { getAllAgentPromptsHandler } from './endpoints/getAllAgentPrompts.ts';
 import { writeAgentPromptOverrideHandler } from './endpoints/writeAgentPromptOverride.ts';
+import { 
+  securityHeaders, 
+  rateLimiter, 
+  aiRateLimiter, 
+  pathTraversalProtection, 
+  sanitizeInput 
+} from './middleware/security.ts';
+import { env, validateEnvironment } from './config/environment.ts';
 
-const PORT = 3001;
-const CLIENT_PORT = 3000;
-const CLIENT_ORIGIN = `http://localhost:${CLIENT_PORT}`;
+// Validate environment configuration before starting
+validateEnvironment();
 
 const logger = getLogger();
 
 const app = express();
 const requestCounter = new Counter();
 
+// Security middleware - apply first
+app.use(securityHeaders);
+app.use(pathTraversalProtection);
+app.use(sanitizeInput);
+
+// Rate limiting - apply to all routes
+app.use(rateLimiter);
+
 // Enable CORS for all routes, allowing requests from the client server
 app.use(cors({
-  origin: CLIENT_ORIGIN,
+  origin: `http://localhost:${env.CLIENT_PORT}`,
   methods: 'GET,POST',
   allowedHeaders: 'Content-Type',
+  credentials: false, // Disable credentials for security
 }));
 
-// Serve static files from the data directory
-app.use('/data', express.static(SERVER_DATA_DIR));
+// Serve static files from the data directory with additional security
+app.use('/data', express.static(SERVER_DATA_DIR, {
+  setHeaders: (res, _path) => {
+    // Set security headers for static files
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'DENY');
+  }
+}));
 
-// Middleware to parse JSON
-app.use(bodyParser.json({limit: '1mb'}));
+// Middleware to parse JSON with size limit
+app.use(bodyParser.json({limit: env.MAX_FILE_SIZE_BYTES}));
 
 // GET routes
 const getRoutes: Record<string, RequestHandler<any, any>> = {
@@ -52,16 +74,33 @@ const postRoutes: Record<string, RequestHandler<any, any>> = {
   '/writeAgentPromptOverride': writeAgentPromptOverrideHandler,
 };
 
-// Register routes
+// Register routes with appropriate rate limiting
 Object.entries(getRoutes).forEach(([path, handler]) => {
   app.get(path, handleRequest(handler, `GET ${path}`, requestCounter, logger));
 });
+
 Object.entries(postRoutes).forEach(([path, handler]) => {
-  app.post(path, handleRequest(handler, `POST ${path}`, requestCounter, logger));
+  // Apply stricter rate limiting to AI endpoints
+  if (path === '/generate-annotations' || path === '/generate-category-labels' || path === '/chat-with-assistant') {
+    app.post(path, aiRateLimiter, handleRequest(handler, `POST ${path}`, requestCounter, logger));
+  } else {
+    app.post(path, handleRequest(handler, `POST ${path}`, requestCounter, logger));
+  }
 });
 
 // Serve static files (including your frontend)
-app.use(express.static('public'));
+app.use(express.static('public', {
+  setHeaders: (res, _path) => {
+    // Set security headers for static files
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'DENY');
+  }
+}));
+
+// 404 handler
+app.use((_req: Request, res: Response) => {
+  res.status(404).json({ error: 'Not found' });
+});
 
 // Error handling middleware
 app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
@@ -75,8 +114,11 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
 });
 
 // Start the server
-app.listen(PORT, () => {
-  logger.info(`Server running at http://localhost:${PORT}`);
+app.listen(env.PORT, () => {
+  logger.info(`Server running at http://localhost:${env.PORT}`);
+  logger.info(`Environment: ${env.NODE_ENV}`);
+  logger.info(`Client Port: ${env.CLIENT_PORT}`);
+  logger.info('Security middleware enabled: Helmet, Rate Limiting, Path Traversal Protection, Input Sanitization');
 });
 
 
