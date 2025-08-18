@@ -1,0 +1,577 @@
+{
+  "mappings": [
+    {
+      "description": "Constants definition",
+      "lhsRanges": [
+        {
+          "start": 138,
+          "end": 255
+        },
+        {
+          "start": 256,
+          "end": 288
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 457,
+          "end": 596
+        },
+        {
+          "start": 49507,
+          "end": 49696
+        }
+      ]
+    },
+    {
+      "description": "Scalar type definition",
+      "lhsRanges": [
+        {
+          "start": 290,
+          "end": 310
+        },
+        {
+          "start": 530,
+          "end": 676
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 6507,
+          "end": 6582
+        },
+        {
+          "start": 6585,
+          "end": 6679
+        },
+        {
+          "start": 6680,
+          "end": 6796
+        }
+      ]
+    },
+    {
+      "description": "from_bytes_mod_order function",
+      "lhsRanges": [
+        {
+          "start": 978,
+          "end": 1148
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 8793,
+          "end": 8969
+        },
+        {
+          "start": 8972,
+          "end": 9074
+        },
+        {
+          "start": 9076,
+          "end": 9195
+        }
+      ]
+    },
+    {
+      "description": "from_bytes_mod_order_wide function",
+      "lhsRanges": [
+        {
+          "start": 1150,
+          "end": 1331
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 9257,
+          "end": 9439
+        },
+        {
+          "start": 9442,
+          "end": 9495
+        }
+      ]
+    },
+    {
+      "description": "from_canonical_bytes function",
+      "lhsRanges": [
+        {
+          "start": 1333,
+          "end": 1559
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 9503,
+          "end": 9777
+        },
+        {
+          "start": 9848,
+          "end": 9918
+        },
+        {
+          "start": 9919,
+          "end": 9975
+        },
+        {
+          "start": 9976,
+          "end": 10017
+        },
+        {
+          "start": 10018,
+          "end": 10093
+        }
+      ]
+    },
+    {
+      "description": "ZERO constant",
+      "lhsRanges": [
+        {
+          "start": 1561,
+          "end": 1642
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 18314,
+          "end": 18395
+        }
+      ]
+    },
+    {
+      "description": "ONE constant",
+      "lhsRanges": [
+        {
+          "start": 1644,
+          "end": 1723
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 18399,
+          "end": 18614
+        }
+      ]
+    },
+    {
+      "description": "random function",
+      "lhsRanges": [
+        {
+          "start": 1725,
+          "end": 1922
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 18616,
+          "end": 18936
+        },
+        {
+          "start": 19223,
+          "end": 19286
+        },
+        {
+          "start": 19287,
+          "end": 19328
+        },
+        {
+          "start": 19329,
+          "end": 19371
+        },
+        {
+          "start": 19372,
+          "end": 19428
+        }
+      ]
+    },
+    {
+      "description": "hash_from_bytes function",
+      "lhsRanges": [
+        {
+          "start": 1924,
+          "end": 2232
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 19436,
+          "end": 19682
+        },
+        {
+          "start": 20272,
+          "end": 20388
+        },
+        {
+          "start": 20389,
+          "end": 20425
+        },
+        {
+          "start": 20426,
+          "end": 20453
+        },
+        {
+          "start": 20454,
+          "end": 20485
+        }
+      ]
+    },
+    {
+      "description": "from_hash function",
+      "lhsRanges": [
+        {
+          "start": 2234,
+          "end": 2519
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 20493,
+          "end": 20748
+        },
+        {
+          "start": 21936,
+          "end": 22031
+        },
+        {
+          "start": 22032,
+          "end": 22067
+        },
+        {
+          "start": 22068,
+          "end": 22127
+        },
+        {
+          "start": 22128,
+          "end": 22178
+        }
+      ]
+    },
+    {
+      "description": "to_bytes function",
+      "lhsRanges": [
+        {
+          "start": 2521,
+          "end": 2655
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 22186,
+          "end": 22454
+        },
+        {
+          "start": 22455,
+          "end": 22501
+        },
+        {
+          "start": 11282,
+          "end": 11300
+        }
+      ]
+    },
+    {
+      "description": "as_bytes function",
+      "lhsRanges": [
+        {
+          "start": 2657,
+          "end": 2832
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 22528,
+          "end": 22816
+        },
+        {
+          "start": 22817,
+          "end": 22864
+        },
+        {
+          "start": 22865,
+          "end": 22884
+        }
+      ]
+    },
+    {
+      "description": "invert function",
+      "lhsRanges": [
+        {
+          "start": 2834,
+          "end": 3004
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 22892,
+          "end": 23131
+        },
+        {
+          "start": 24354,
+          "end": 24390
+        },
+        {
+          "start": 24391,
+          "end": 24428
+        }
+      ]
+    },
+    {
+      "description": "batch_invert function",
+      "lhsRanges": [
+        {
+          "start": 3006,
+          "end": 3145
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 24436,
+          "end": 24691
+        },
+        {
+          "start": 25565,
+          "end": 25653
+        },
+        {
+          "start": 25654,
+          "end": 26013
+        }
+      ]
+    },
+    {
+      "description": "bits_le function",
+      "lhsRanges": [
+        {
+          "start": 3147,
+          "end": 3333
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 27539,
+          "end": 27678
+        },
+        {
+          "start": 27679,
+          "end": 27705
+        },
+        {
+          "start": 27706,
+          "end": 27944
+        },
+        {
+          "start": 27945,
+          "end": 28001
+        },
+        {
+          "start": 28002,
+          "end": 28012
+        }
+      ]
+    },
+    {
+      "description": "non_adjacent_form function",
+      "lhsRanges": [
+        {
+          "start": 3335,
+          "end": 3773
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": -1,
+          "end": -1
+        },
+        {
+          "start": 31280,
+          "end": 31347
+        },
+        {
+          "start": 31348,
+          "end": 31420
+        },
+        {
+          "start": 31421,
+          "end": 31504
+        }
+      ]
+    },
+    {
+      "description": "as_radix_16 function",
+      "lhsRanges": [
+        {
+          "start": 3775,
+          "end": 4013
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": -1,
+          "end": -1
+        },
+        {
+          "start": 33614,
+          "end": 33664
+        },
+        {
+          "start": 33665,
+          "end": 33704
+        },
+        {
+          "start": 33705,
+          "end": 33740
+        },
+        {
+          "start": 33741,
+          "end": 33773
+        },
+        {
+          "start": 33774,
+          "end": 33837
+        }
+      ]
+    },
+    {
+      "description": "to_radix_2w_size_hint function",
+      "lhsRanges": [
+        {
+          "start": 4015,
+          "end": 4239
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 34646,
+          "end": 34898
+        },
+        {
+          "start": 34899,
+          "end": 34929
+        },
+        {
+          "start": 31474,
+          "end": 31504
+        },
+        {
+          "start": 34961,
+          "end": 34997
+        },
+        {
+          "start": 34998,
+          "end": 35041
+        },
+        {
+          "start": 35042,
+          "end": 35115
+        },
+        {
+          "start": 35116,
+          "end": 35165
+        },
+        {
+          "start": 35166,
+          "end": 35217
+        },
+        {
+          "start": 32280,
+          "end": 32290
+        },
+        {
+          "start": 35229,
+          "end": 35271
+        },
+        {
+          "start": 35272,
+          "end": 35292
+        }
+      ]
+    },
+    {
+      "description": "as_radix_2w function",
+      "lhsRanges": [
+        {
+          "start": 4241,
+          "end": 4574
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 35304,
+          "end": 35700
+        },
+        {
+          "start": 36448,
+          "end": 36575
+        },
+        {
+          "start": 34899,
+          "end": 34929
+        },
+        {
+          "start": 31474,
+          "end": 31504
+        },
+        {
+          "start": 36638,
+          "end": 36657
+        },
+        {
+          "start": 36658,
+          "end": 36696
+        },
+        {
+          "start": 14051,
+          "end": 14060
+        }
+      ]
+    },
+    {
+      "description": "unpack function",
+      "lhsRanges": [
+        {
+          "start": 4576,
+          "end": 4722
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 38877,
+          "end": 39003
+        },
+        {
+          "start": 39004,
+          "end": 39051
+        }
+      ]
+    },
+    {
+      "description": "pack function",
+      "lhsRanges": [
+        {
+          "start": 4724,
+          "end": 4855
+        }
+      ],
+      "rhsRanges": [
+        {
+          "start": 39662,
+          "end": 39757
+        },
+        {
+          "start": 14061,
+          "end": 14077
+        },
+        {
+          "start": 39775,
+          "end": 39810
+        },
+        {
+          "start": 14051,
+          "end": 14060
+        }
+      ]
+    }
+  ],
+  "lhsLabels": [],
+  "rhsLabels": []
+}
