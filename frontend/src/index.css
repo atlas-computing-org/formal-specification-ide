@@ -451,14 +451,50 @@ button {
   background-color: #ff000026; /* red */
 }
 #annotations .warning > .description {
-  text-decoration: underline;
-  text-decoration-color: #f1c23288;
-  text-decoration-style: wavy;
+  color: #f1c232;
 }
 #annotations .error > .description {
-  text-decoration: underline;
-  text-decoration-color: #ff000088;
-  text-decoration-style: wavy;
+  color: #ff0000;
+}
+
+/***************************************************************************
+ * Quality Score Indicators
+ **************************************************************************/
+
+.quality-score-indicator {
+  position: absolute;
+  bottom: -8px;
+  left: 0px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  z-index: 10;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Different colors for different quality scores */
+.quality-score-indicator[data-score="1"] {
+  background-color: #dc3545; /* red for very bad */
+}
+
+.quality-score-indicator[data-score="2"] {
+  background-color: #fd7e14; /* orange for bad */
+}
+
+.quality-score-indicator[data-score="3"] {
+  background-color: #ffc107; /* yellow for good */
+}
+
+.quality-score-indicator[data-score="4"] {
+  background-color: #28a745; /* green for very good */
 }
 
 /***************************************************************************

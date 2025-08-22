@@ -5,6 +5,7 @@ export interface TextMappingSlice {
   ranges: TextRangeWithText[];
   isWarning?: boolean;
   isError?: boolean;
+  quality?: 1 | 2 | 3 | 4;
 }
 
 export interface AnnotationsSlice {
@@ -17,12 +18,14 @@ export class TextMappingSliceWrapped implements TextMappingSlice {
   readonly ranges: TextRangeWithText[];
   readonly isWarning?: boolean;
   readonly isError?: boolean;
+  readonly quality?: 1 | 2 | 3 | 4;
 
   constructor(mapping: TextMappingWithText, direction: Direction) {
     this.description = mapping.description;
     this.ranges = direction === "lhs" ? mapping.lhsRanges : mapping.rhsRanges;
     this.isWarning = mapping.isWarning;
     this.isError = mapping.isError;
+    this.quality = mapping.quality;
   }
 }
 

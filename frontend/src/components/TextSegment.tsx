@@ -42,6 +42,31 @@ export const TextSegment: React.FC<TextSegmentProps> = ({
     range.start <= startIndex && startIndex + text.length <= range.end
   );
 
+  // Get quality score from annotations or highlights
+  const getQualityScore = (): 1 | 2 | 3 | 4 | undefined => {
+    // Check highlights first (for hovered annotations)
+    if (hasHighlights) {
+      if (highlights.mappings.length > 0 && highlights.mappings[0].quality) {
+        return highlights.mappings[0].quality;
+      }
+      if (highlights.labels.length > 0 && highlights.labels[0].quality) {
+        return highlights.labels[0].quality;
+      }
+    }
+    // Check regular annotations
+    if (hasAnnotations) {
+      if (annotations.mappings.length > 0 && annotations.mappings[0].quality) {
+        return annotations.mappings[0].quality;
+      }
+      if (annotations.labels.length > 0 && annotations.labels[0].quality) {
+        return annotations.labels[0].quality;
+      }
+    }
+    return undefined;
+  };
+
+  const qualityScore = getQualityScore();
+
   const hasAnnotationsClass = hasAnnotations ? "has-annotations" : "";
   const highlightClass = hasHighlights ? "highlight" : "";
   const selectedClass = isSelected ? "selected-text" : "";
@@ -64,8 +89,17 @@ export const TextSegment: React.FC<TextSegmentProps> = ({
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      style={{ position: 'relative' }}
     >
       {text}
+      {qualityScore && (
+        <span 
+          className="quality-score-indicator"
+          data-score={qualityScore}
+        >
+          {qualityScore}
+        </span>
+      )}
     </span>
   );
 }; 
