@@ -11,6 +11,7 @@ export type TextLabel<T extends TextRange = TextRange> = {
   category?: CategoryType;
   isWarning?: boolean;
   isError?: boolean;
+  quality?: 1 | 2 | 3 | 4; // 1-4: very bad, bad, good, very good
 };
 
 export type TextMapping<T extends TextRange = TextRange> = {
@@ -19,6 +20,7 @@ export type TextMapping<T extends TextRange = TextRange> = {
   rhsRanges: T[];
   isWarning?: boolean;
   isError?: boolean;
+  quality?: 1 | 2 | 3 | 4; // 1-4: very bad, bad, good, very good
 };
 
 export interface Annotations<T extends TextRange = TextRange> {
