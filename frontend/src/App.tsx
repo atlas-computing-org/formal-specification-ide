@@ -8,13 +8,14 @@ import { DebugInfo } from './components/DebugInfo.tsx';
 import { SaveAsDialogue } from './components/SaveAsDialogue.tsx';
 import { Modal } from './components/Modal.tsx';
 import { EditPrompts } from './components/EditPrompts.tsx';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useDataset } from './hooks/useDataset.ts';
 import { useDatasetNames } from './hooks/useDatasetNames.ts';
 import { useAnnotationMode } from './hooks/useAnnotationMode.ts';
 import { handleApplicationLevelHotkeys } from './utils/keyEventUtils.ts';
 import { api } from './services/api.ts';
 import { stripDatasetCache } from './utils/annotationCachingUtils.ts';
+import { AnnotationsWithText } from '@common/annotations.ts';
 
 const DEFAULT_ANNOTATIONS_SET_NAME = 'annotations';
 
@@ -91,6 +92,32 @@ function AppContent() {
     setUseCachedResponses(!useCachedResponses);
   };
 
+  const handleScoreAnnotation = useCallback((score: 1 | 2 | 3 | 4) => {
+    const { state, updateDataset } = useAppContext();
+    const { dataset, hoveredAnnotation } = state;
+    
+    if (!hoveredAnnotation) return;
+
+    // Create a new annotations object with the updated quality
+    const newAnnotations: AnnotationsWithText = {
+      mappings: dataset.annotations.mappings.map(m => 
+        m === hoveredAnnotation ? { ...m, quality: score } : m
+      ),
+      lhsLabels: dataset.annotations.lhsLabels.map(l => 
+        l === hoveredAnnotation ? { ...l, quality: score } : l
+      ),
+      rhsLabels: dataset.annotations.rhsLabels.map(l => 
+        l === hoveredAnnotation ? { ...l, quality: score } : l
+      ),
+    };
+
+    // Update the dataset with new annotations
+    updateDataset({
+      ...dataset,
+      annotations: newAnnotations,
+    });
+  }, []);
+
   const handleSaveAs = async (datasetName: string, annotationsName: string) => {
     try {
       const dataset = stripDatasetCache(state.dataset);
@@ -129,13 +156,14 @@ function AppContent() {
       onEnterAnnotationMode: () => handleSetAnnotationMode(true),
       onAddAnnotation: handleAddAnnotation,
       onCancelAnnotation: handleCancelAnnotation,
+      onScoreAnnotation: handleScoreAnnotation,
       isAnnotationMode,
       isModalOpen,
     });
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isAnnotationMode, isModalOpen, handleAddAnnotation, handleCancelAnnotation, handleSetAnnotationMode]);
+  }, [isAnnotationMode, isModalOpen, handleAddAnnotation, handleCancelAnnotation, handleSetAnnotationMode, handleScoreAnnotation]);
 
   // Render modal content based on state
   const renderModalContent = () => {

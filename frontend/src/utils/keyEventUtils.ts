@@ -4,12 +4,17 @@ export const keyCodes = Object.freeze({
   A: 'a',
   ENTER: 'Enter',
   ESCAPE: 'Escape',
+  ONE: '1',
+  TWO: '2',
+  THREE: '3',
+  FOUR: '4',
 });
 
 interface ApplicationLevelHotkeysOptions {
   onEnterAnnotationMode: () => void;
   onAddAnnotation: () => void;
   onCancelAnnotation: () => void;
+  onScoreAnnotation?: (score: 1 | 2 | 3 | 4) => void;
   isAnnotationMode: boolean;
   isModalOpen: boolean;
 }
@@ -47,6 +52,15 @@ export function handleApplicationLevelHotkeys(options: ApplicationLevelHotkeysOp
         case keyCodes.ESCAPE:
           if (options.isAnnotationMode) {
             options.onCancelAnnotation();
+          }
+          break;
+        case keyCodes.ONE:
+        case keyCodes.TWO:
+        case keyCodes.THREE:
+        case keyCodes.FOUR:
+          if (options.onScoreAnnotation) {
+            const score = parseInt(e.key) as 1 | 2 | 3 | 4;
+            options.onScoreAnnotation(score);
           }
           break;
       }

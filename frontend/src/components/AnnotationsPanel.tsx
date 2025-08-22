@@ -16,7 +16,7 @@ export const AnnotationsPanel: React.FC<AnnotationsPanelProps> = ({
   onLabelClick,
   showCategories,
 }) => {
-  const { state, updateDataset, updateHighlights } = useAppContext();
+  const { state, updateDataset, updateHighlights, updateHoveredAnnotation } = useAppContext();
   const { dataset, highlights } = state;
 
   const handleDescriptionChange = useCallback((item: TextMappingWithText | TextLabelWithText, newDescription: string) => {
@@ -63,7 +63,8 @@ export const AnnotationsPanel: React.FC<AnnotationsPanelProps> = ({
     }
 
     updateHighlights(newHighlights);
-  }, [dataset.annotations, updateHighlights]);
+    updateHoveredAnnotation(item);
+  }, [dataset.annotations, updateHighlights, updateHoveredAnnotation]);
 
   const handleMouseLeave = useCallback(() => {
     updateHighlights({
@@ -71,7 +72,8 @@ export const AnnotationsPanel: React.FC<AnnotationsPanelProps> = ({
       lhsLabels: [],
       rhsLabels: [],
     });
-  }, [updateHighlights]);
+    updateHoveredAnnotation(null);
+  }, [updateHighlights, updateHoveredAnnotation]);
 
   // Memoize the panel sections to prevent unnecessary re-renders
   const mappingsPanel = useMemo(() => (

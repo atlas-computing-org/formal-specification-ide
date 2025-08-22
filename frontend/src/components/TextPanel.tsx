@@ -98,7 +98,7 @@ type TextPanelProps = LeftTextPanelProps | RightTextPanelProps;
 // Component
 export const TextPanel: React.FC<TextPanelProps> = (props) => {
   // State and hooks
-  const { state, updateHighlights } = useAppContext();
+  const { state, updateHighlights, updateHoveredAnnotation } = useAppContext();
   const { dataset, highlights } = state;
   const isLeftPanel = isLeftTextPanelProps(props);
   const { contentRef, onClickTextMapping, isAnnotationMode, onTextSelection, selectedRanges, showCategories } = props;
@@ -119,7 +119,18 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
   const handleMouseEnter = useCallback((index: number) => {
     const filteredAnnotations = filterAnnotationsForIndex(dataset.annotations, index, direction);
     updateHighlights(filteredAnnotations);
-  }, [dataset.annotations, direction, updateHighlights]);
+    
+    // Update the hovered annotation for scoring
+    if (filteredAnnotations.mappings.length > 0) {
+      updateHoveredAnnotation(filteredAnnotations.mappings[0]);
+    } else if (filteredAnnotations.lhsLabels.length > 0) {
+      updateHoveredAnnotation(filteredAnnotations.lhsLabels[0]);
+    } else if (filteredAnnotations.rhsLabels.length > 0) {
+      updateHoveredAnnotation(filteredAnnotations.rhsLabels[0]);
+    } else {
+      updateHoveredAnnotation(null);
+    }
+  }, [dataset.annotations, direction, updateHighlights, updateHoveredAnnotation]);
 
   const handleMouseLeave = useCallback(() => {
     updateHighlights({
@@ -127,7 +138,8 @@ export const TextPanel: React.FC<TextPanelProps> = (props) => {
       lhsLabels: [],
       rhsLabels: [],
     });
-  }, [updateHighlights]);
+    updateHoveredAnnotation(null);
+  }, [updateHighlights, updateHoveredAnnotation]);
 
   const getFullTextOffset = useCallback((container: Node, offset: number) => {
     const containerStartIndex = parseInt(container.parentElement?.getAttribute('data-start-index') || '0');

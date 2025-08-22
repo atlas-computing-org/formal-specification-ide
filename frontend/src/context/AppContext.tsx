@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useState } from 'react';
-import { AnnotationSets, AnnotationsWithText, DatasetWithText } from '@common/annotations.ts';
+import { AnnotationSets, AnnotationsWithText, DatasetWithText, TextMappingWithText, TextLabelWithText } from '@common/annotations.ts';
 
 interface AppState {
   dataset: DatasetWithText;
   highlights: AnnotationsWithText;
   pdfSrc: string;
   fullText: string;
+  hoveredAnnotation: TextMappingWithText | TextLabelWithText | null;
 
   // Developer-only features
   currentAnnotationSets: AnnotationSets;
@@ -35,6 +36,7 @@ const initialState: AppState = {
   allRawModelOutputs: [],
   pdfSrc: '',
   fullText: '',
+  hoveredAnnotation: null,
 };
 
 interface AppContextType {
@@ -43,6 +45,7 @@ interface AppContextType {
   updateDataset: (dataset: DatasetWithText) => void;
   updateHighlights: (highlights: AnnotationsWithText) => void;
   updateAnnotationSets: (annotationSets: AnnotationSets) => void;
+  updateHoveredAnnotation: (annotation: TextMappingWithText | TextLabelWithText | null) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -66,6 +69,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     updateState({ currentAnnotationSets: annotationSets });
   };
 
+  const updateHoveredAnnotation = (annotation: TextMappingWithText | TextLabelWithText | null) => {
+    updateState({ hoveredAnnotation: annotation });
+  };
+
   return (
     <AppContext.Provider value={{
       state,
@@ -73,6 +80,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       updateDataset,
       updateHighlights,
       updateAnnotationSets,
+      updateHoveredAnnotation,
     }}>
       {children}
     </AppContext.Provider>
