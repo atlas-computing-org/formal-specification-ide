@@ -30,7 +30,7 @@ enum ModalState {
 }
 
 function AppContent() {
-  const { state } = useAppContext();
+  const { state, updateDataset } = useAppContext();
   const { datasetNames, loadDatasetNames, loading: _datasetNamesLoading } = useDatasetNames();
   const { generateAnnotations, generateCategoryLabels, useAnnotationsSet, loadDataset, loading: _datasetLoading } = useDataset();
   const {
@@ -93,7 +93,6 @@ function AppContent() {
   };
 
   const handleScoreAnnotation = useCallback((score: 1 | 2 | 3 | 4) => {
-    const { state, updateDataset } = useAppContext();
     const { dataset, hoveredAnnotation } = state;
     
     if (!hoveredAnnotation) return;
@@ -116,7 +115,7 @@ function AppContent() {
       ...dataset,
       annotations: newAnnotations,
     });
-  }, []);
+  }, [state, updateDataset]);
 
   const handleSaveAs = async (datasetName: string, annotationsName: string) => {
     try {
