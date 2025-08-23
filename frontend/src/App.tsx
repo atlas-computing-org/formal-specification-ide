@@ -31,7 +31,7 @@ enum ModalState {
 }
 
 function AppContent() {
-  const { state, updateDataset } = useAppContext();
+  const { state, updateDataset, updateHighlights } = useAppContext();
   const { datasetNames, loadDatasetNames, loading: _datasetNamesLoading } = useDatasetNames();
   const { generateAnnotations, generateCategoryLabels, useAnnotationsSet, loadDataset, loading: _datasetLoading } = useDataset();
   const {
@@ -94,7 +94,7 @@ function AppContent() {
   };
 
   const handleScoreAnnotation = useCallback((score: 1 | 2 | 3 | 4) => {
-    const { dataset, hoveredAnnotationId } = state;
+    const { dataset, hoveredAnnotationId, highlights } = state;
     
     if (!hoveredAnnotationId) return;
 
@@ -116,7 +116,25 @@ function AppContent() {
       ...dataset,
       annotations: newAnnotations,
     });
-  }, [state, updateDataset]);
+
+    // TODO: A better approach would be to rewrite the highlights to use stable IDs
+    // so that highlights can't get out of sync with annotations
+    //
+    // Also update highlights if the hovered annotation is in highlights
+    const newHighlights: AnnotationsWithText = {
+      mappings: highlights.mappings.map(m => 
+        generateAnnotationId(m) === hoveredAnnotationId ? { ...m, quality: score } : m
+      ),
+      lhsLabels: highlights.lhsLabels.map(l => 
+        generateAnnotationId(l) === hoveredAnnotationId ? { ...l, quality: score } : l
+      ),
+      rhsLabels: highlights.rhsLabels.map(l => 
+        generateAnnotationId(l) === hoveredAnnotationId ? { ...l, quality: score } : l
+      ),
+    };
+
+    updateHighlights(newHighlights);
+  }, [state, updateDataset, updateHighlights]);
 
   const handleSaveAs = async (datasetName: string, annotationsName: string) => {
     try {
