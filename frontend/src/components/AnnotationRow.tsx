@@ -120,6 +120,7 @@ export const AnnotationRow: React.FC<AnnotationRowProps> = (props) => {
       <div
         className="cell description"
         onDoubleClick={() => handleDoubleClick(() => handleDoubleClickCell(cell))}
+        style={{ position: 'relative' }}
       >
         {isEditing ? (
           <input
@@ -131,7 +132,17 @@ export const AnnotationRow: React.FC<AnnotationRowProps> = (props) => {
             autoFocus
           />
         ) : (
-          item.description || "[no description]"
+          <>
+            {item.description || "[no description]"}
+            {item.quality && (
+              <span 
+                className="quality-score-indicator"
+                data-score={item.quality}
+              >
+                {item.quality}
+              </span>
+            )}
+          </>
         )}
       </div>
     );
