@@ -490,7 +490,7 @@ button {
 }
 
 .quality-score-indicator[data-score="3"] {
-  background-color: #ffc107; /* yellow for good */
+  background-color: #17a2b8; /* teal for good */
 }
 
 .quality-score-indicator[data-score="4"] {
