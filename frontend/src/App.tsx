@@ -93,7 +93,8 @@ function AppContent() {
     setUseCachedResponses(!useCachedResponses);
   };
 
-  const handleScoreAnnotation = useCallback((score: 1 | 2 | 3 | 4) => {
+  // Helper function to update annotation quality (set or clear)
+  const setAnnotationQuality = useCallback((score: 1 | 2 | 3 | 4 | undefined) => {
     const { dataset, hoveredAnnotationId, highlights } = state;
     
     if (!hoveredAnnotationId) return;
@@ -136,6 +137,14 @@ function AppContent() {
     updateHighlights(newHighlights);
   }, [state, updateDataset, updateHighlights]);
 
+  const handleScoreAnnotation = useCallback((score: 1 | 2 | 3 | 4) => {
+    setAnnotationQuality(score);
+  }, [setAnnotationQuality]);
+
+  const handleClearAnnotationScore = useCallback(() => {
+    setAnnotationQuality(undefined);
+  }, [setAnnotationQuality]);
+
   const handleSaveAs = async (datasetName: string, annotationsName: string) => {
     try {
       const dataset = stripDatasetCache(state.dataset);
@@ -175,13 +184,14 @@ function AppContent() {
       onAddAnnotation: handleAddAnnotation,
       onCancelAnnotation: handleCancelAnnotation,
       onScoreAnnotation: handleScoreAnnotation,
+      onClearAnnotationScore: handleClearAnnotationScore,
       isAnnotationMode,
       isModalOpen,
     });
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isAnnotationMode, isModalOpen, handleAddAnnotation, handleCancelAnnotation, handleSetAnnotationMode, handleScoreAnnotation]);
+  }, [isAnnotationMode, isModalOpen, handleAddAnnotation, handleCancelAnnotation, handleSetAnnotationMode, handleScoreAnnotation, handleClearAnnotationScore]);
 
   // Render modal content based on state
   const renderModalContent = () => {
