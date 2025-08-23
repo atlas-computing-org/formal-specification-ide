@@ -16,6 +16,7 @@ import { handleApplicationLevelHotkeys } from './utils/keyEventUtils.ts';
 import { api } from './services/api.ts';
 import { stripDatasetCache } from './utils/annotationCachingUtils.ts';
 import { AnnotationsWithText } from '@common/annotations.ts';
+import { generateAnnotationId } from './utils/annotationUtils.ts';
 
 const DEFAULT_ANNOTATIONS_SET_NAME = 'annotations';
 
@@ -93,20 +94,20 @@ function AppContent() {
   };
 
   const handleScoreAnnotation = useCallback((score: 1 | 2 | 3 | 4) => {
-    const { dataset, hoveredAnnotation } = state;
+    const { dataset, hoveredAnnotationId } = state;
     
-    if (!hoveredAnnotation) return;
+    if (!hoveredAnnotationId) return;
 
     // Create a new annotations object with the updated quality
     const newAnnotations: AnnotationsWithText = {
       mappings: dataset.annotations.mappings.map(m => 
-        m === hoveredAnnotation ? { ...m, quality: score } : m
+        generateAnnotationId(m) === hoveredAnnotationId ? { ...m, quality: score } : m
       ),
       lhsLabels: dataset.annotations.lhsLabels.map(l => 
-        l === hoveredAnnotation ? { ...l, quality: score } : l
+        generateAnnotationId(l) === hoveredAnnotationId ? { ...l, quality: score } : l
       ),
       rhsLabels: dataset.annotations.rhsLabels.map(l => 
-        l === hoveredAnnotation ? { ...l, quality: score } : l
+        generateAnnotationId(l) === hoveredAnnotationId ? { ...l, quality: score } : l
       ),
     };
 

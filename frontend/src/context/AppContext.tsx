@@ -1,12 +1,13 @@
 import React, { createContext, useContext, useState } from 'react';
 import { AnnotationSets, AnnotationsWithText, DatasetWithText, TextMappingWithText, TextLabelWithText } from '@common/annotations.ts';
+import { generateAnnotationId } from '../utils/annotationUtils.ts';
 
 interface AppState {
   dataset: DatasetWithText;
   highlights: AnnotationsWithText;
   pdfSrc: string;
   fullText: string;
-  hoveredAnnotation: TextMappingWithText | TextLabelWithText | null;
+  hoveredAnnotationId: string | null;
 
   // Developer-only features
   currentAnnotationSets: AnnotationSets;
@@ -36,7 +37,7 @@ const initialState: AppState = {
   allRawModelOutputs: [],
   pdfSrc: '',
   fullText: '',
-  hoveredAnnotation: null,
+  hoveredAnnotationId: null,
 };
 
 interface AppContextType {
@@ -70,7 +71,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const updateHoveredAnnotation = (annotation: TextMappingWithText | TextLabelWithText | null) => {
-    updateState({ hoveredAnnotation: annotation });
+    updateState({ hoveredAnnotationId: annotation ? generateAnnotationId(annotation) : null });
   };
 
   return (
