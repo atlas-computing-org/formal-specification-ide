@@ -6,6 +6,12 @@ Running this prototype requires an Anthropic API key. In our experience, experim
 
 ## How to use
 
+To add a manual annotation, either press the A key or click the
+Annotate button. Then, select one or more text ranges and hit Enter to
+create the new annotation. Alternatively, hit Escape or click Cancel
+Annotation to cancel. A newly-created annotation does not have a
+description, but descriptions can always be edited by double-clicking
+the description text in the Annotations panel.
 
 Pressing 1, 2, 3, or 4 while hovering over an annotation adds (or
 overwrites) that score to the annotation. Pressing backspace clears
