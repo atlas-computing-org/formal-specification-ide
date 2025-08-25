@@ -4,6 +4,16 @@ This prototype helps engineers write correct mechanized specs and review other p
 
 Running this prototype requires an Anthropic API key. In our experience, experimenting with the built-in examples uses API credits at a rate of cents per hour.
 
+## How to use
+
+
+Pressing 1, 2, 3, or 4 while hovering over an annotation adds (or
+overwrites) that score to the annotation. Pressing backspace clears
+the score. This works on both the main displays and the annotation
+panel. Scores can be saved to the backend using the Save button.
+
+
+
 ## Install and Setup
 
 1. Install Node.js & npm if needed (skip if installed)

@@ -13,7 +13,8 @@
           "start": 1795,
           "end": 1825
         }
-      ]
+      ],
+      "quality": 1
     },
     {
       "description": "message schedule",
@@ -32,7 +33,8 @@
           "start": 2165,
           "end": 2351
         }
-      ]
+      ],
+      "quality": 1
     },
     {
       "description": "working variables",
@@ -142,7 +144,8 @@
           "start": 277,
           "end": 435
         }
-      ]
+      ],
+      "quality": 1
     },
     {
       "description": "pad and parse the message",
@@ -157,7 +160,8 @@
           "start": 1841,
           "end": 1913
         }
-      ]
+      ],
+      "quality": 1
     },
     {
       "description": "padding",
@@ -180,7 +184,8 @@
           "start": 772,
           "end": 1317
         }
-      ]
+      ],
+      "quality": 1
     },
     {
       "description": "parsing",
@@ -203,7 +208,8 @@
           "start": 1319,
           "end": 1621
         }
-      ]
+      ],
+      "quality": 1
     },
     {
       "description": "message length",
@@ -218,7 +224,8 @@
           "start": 842,
           "end": 905
         }
-      ]
+      ],
+      "quality": 1
     },
     {
       "description": "append bit 1",
