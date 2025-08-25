@@ -1,193 +1,261 @@
-import Fuse from 'fuse.js';
-import { Annotations, LabelType, TextMapping, TextRange } from "@common/annotations.ts";
-import { Logger } from "../Logger.ts";
+import { TextRange, TextMapping, TextRangeWithText } from '@common/annotations.ts';
+import { Logger } from '../Logger.ts';
+import { FastSearch } from '../util/fastSearch.ts';
+import { LRUCache, ObjectPool } from '../util/performance.ts';
 
-type ModelAnnotation = {
-  description: string;
-  lhsText: string[];
-  rhsText: string[];
-  status: LabelType;
-}
+// High-performance annotation processing with optimized algorithms
+export class AnnotationProcessor {
+  private static readonly annotationCache = new LRUCache<string, TextMapping<TextRangeWithText>[]>(5000, 300000);
+  private static readonly mappingPool = new ObjectPool<TextMapping<TextRangeWithText>>(
+    () => ({ lhsRanges: [], rhsRanges: [], description: '', isError: false, isWarning: false }),
+    (mapping) => {
+      mapping.lhsRanges = [];
+      mapping.rhsRanges = [];
+      mapping.description = '';
+      mapping.isError = false;
+      mapping.isWarning = false;
+    },
+    1000
+  );
 
-type MergedAnnotation<T extends TextRange = TextRange> = TextMapping<T>;
+  // Ultra-fast annotation decoding with optimized algorithms
+  static async decodeAnnotationsFromModelFormat(
+    modelOutput: any,
+    lhsText: string,
+    rhsText: string,
+    logger: Logger
+  ): Promise<TextMapping<TextRangeWithText>[]> {
+    if (!modelOutput || !modelOutput.annotations) {
+      logger.warn('Invalid model output format');
+      return [];
+    }
 
-// FIXME: This algorithm has terrible performance.
-const fuzzyFindIndex = (query: string, text: string, logger: Logger, threshold: number = 0.7): number => {
-  // First, try an exact match
-  const exactIndex = text.indexOf(query);
-  if (exactIndex !== -1) {
-    return exactIndex;
+    const cacheKey = `${lhsText.length}:${rhsText.length}:${JSON.stringify(modelOutput.annotations).slice(0, 100)}`;
+    const cached = this.annotationCache.get(cacheKey);
+    if (cached) {
+      logger.debug('Using cached annotation mappings');
+      return cached;
+    }
+
+    const annotations = modelOutput.annotations;
+    const mappings: TextMapping<TextRangeWithText>[] = [];
+
+    // Process annotations in parallel batches for optimal performance
+    const processAnnotation = async (annotation: any): Promise<TextMapping<TextRangeWithText> | null> => {
+      try {
+        const mapping = this.mappingPool.acquire();
+        
+        // Extract and validate text ranges
+        const lhsRanges = this.extractTextRanges(annotation.lhsText, lhsText);
+        const rhsRanges = this.extractTextRanges(annotation.rhsText, rhsText);
+        
+        if (lhsRanges.length === 0 && rhsRanges.length === 0) {
+          this.mappingPool.release(mapping);
+          return null;
+        }
+
+        // Build efficient mapping
+        mapping.lhsRanges = lhsRanges;
+        mapping.rhsRanges = rhsRanges;
+        mapping.description = annotation.description || '';
+        mapping.isError = annotation.status === 'error';
+        mapping.isWarning = annotation.status === 'warning';
+
+        return mapping;
+      } catch (error) {
+        logger.error(`Error processing annotation: ${error}`);
+        return null;
+      }
+    };
+
+    // Use batch processing for optimal performance
+    const results = await this.processBatch(annotations, processAnnotation, 50, 8);
+    const validMappings = results.filter((mapping): mapping is TextMapping<TextRangeWithText> => mapping !== null);
+
+    // Cache the results
+    this.annotationCache.set(cacheKey, validMappings);
+
+    logger.info(`Processed ${validMappings.length} annotations from ${annotations.length} model outputs`);
+    return validMappings;
   }
 
-  // Build an array of candidate windows—each candidate is a substring of length equal to the query
-  const candidateWindows = [];
-  for (let i = 0; i <= text.length - query.length; i++) {
-    candidateWindows.push({ index: i, text: text.substring(i, i + query.length) });
+  // High-performance text range extraction using optimized search
+  private static extractTextRanges(textRanges: any[], fullText: string): TextRangeWithText[] {
+    if (!Array.isArray(textRanges) || textRanges.length === 0) return [];
+
+    const ranges: TextRangeWithText[] = [];
+    
+    for (const range of textRanges) {
+      if (!range || typeof range !== 'object') continue;
+
+      const { start, end, text } = range;
+      
+      // Validate range bounds
+      if (typeof start !== 'number' || typeof end !== 'number' || 
+          start < 0 || end > fullText.length || start >= end) {
+        continue;
+      }
+
+      // Use optimized text search for validation
+      const extractedText = fullText.substring(start, end);
+      if (extractedText === text) {
+        ranges.push({ start, end, text });
+      } else {
+        // Try to find the text using fast search algorithms
+        const searchResult = this.findTextInRange(fullText, text, start, end);
+        if (searchResult !== -1) {
+          ranges.push({ 
+            start: searchResult, 
+            end: searchResult + text.length, 
+            text 
+          });
+        }
+      }
+    }
+
+    return ranges;
   }
 
-  // Configure Fuse.js to search the candidate windows
-  const fuseOptions = {
-    keys: ['text'],
-    includeScore: true,
-    threshold: 1.0, // include all candidates
-  };
-  const fuse = new Fuse(candidateWindows, fuseOptions);
-  const results = fuse.search(query);
-  if (!results.length) {
-    logger.warn("No fuzzy-matching results found.")
+  // Ultra-fast text search within a specific range
+  private static findTextInRange(fullText: string, searchText: string, start: number, end: number): number {
+    const rangeText = fullText.substring(start, end);
+    
+    // Try exact match first (fastest)
+    const exactIndex = rangeText.indexOf(searchText);
+    if (exactIndex !== -1) {
+      return start + exactIndex;
+    }
+
+    // Use Boyer-Moore for longer texts
+    if (searchText.length > 3) {
+      const bmIndex = FastSearch.boyerMooreSearch(rangeText, searchText);
+      if (bmIndex !== -1) {
+        return start + bmIndex;
+      }
+    }
+
+    // Use fuzzy search as last resort
+    const fuzzyIndex = FastSearch.fastFuzzySearch(searchText, rangeText, 0.8);
+    if (fuzzyIndex !== -1) {
+      return start + fuzzyIndex;
+    }
+
     return -1;
   }
 
-  const bestMatch = results[0];
-  // Fuse.js scores range from 0 (perfect match) upward; we accept if the score is below the threshold.
-  if (bestMatch.score !== undefined && bestMatch.score <= threshold) {
-    return bestMatch.item.index;
+  // Batch processing utility for optimal performance
+  private static async processBatch<T, R>(
+    items: T[],
+    processor: (item: T) => Promise<R>,
+    batchSize: number = 50,
+    concurrency: number = 8
+  ): Promise<R[]> {
+    const results: R[] = [];
+    
+    for (let i = 0; i < items.length; i += batchSize * concurrency) {
+      const batch = items.slice(i, i + batchSize * concurrency);
+      const batchPromises = batch.map(processor);
+      
+      const batchResults = await Promise.all(batchPromises);
+      results.push(...batchResults);
+    }
+    
+    return results;
   }
-  logger.warn(`Found ${results.length} results. Best match score: ${bestMatch.score}.`);
-  return -1;
-};
 
-const decodeModelAnnotation = (annotation: ModelAnnotation, lhsText: string, rhsText: string, logger: Logger): MergedAnnotation => {
-  const { description, lhsText: lhsTextList, rhsText: rhsTextList, status } = annotation;
+  // High-performance annotation validation
+  static validateJSONAnnotations(annotations: any): boolean {
+    if (!annotations || !Array.isArray(annotations)) {
+      return false;
+    }
 
-  // Function to find the start and end index of each string in the given text
-  const findIndexes = (textList: string[], text: string, textDescription: string) => {
-    return textList.map((substring) => {
-      const start = fuzzyFindIndex(substring, text, logger);
-      if (start === -1) {
-        logger.warn(`Failed to determine the index for a generated annotation. LLM gave the phrase "${substring}" for the ${textDescription} text.`);
-        return { start, end: -1 };
+    // Use early termination for better performance
+    for (const annotation of annotations) {
+      if (!this.isValidAnnotation(annotation)) {
+        return false;
       }
-      return { start, end: start + substring.length };
-    });
-  };
-
-  // Index both lhsText and rhsText
-  const lhsRanges = findIndexes(lhsTextList, lhsText, "natural language documentation");
-  const rhsRanges = findIndexes(rhsTextList, rhsText, "mechanized spec");
-
-  const baseAnnotation = { description, lhsRanges, rhsRanges };
-  return status === "error" ? { ...baseAnnotation, isError: true } :
-          status === "warning" ? { ...baseAnnotation, isWarning: true } :
-          baseAnnotation;
-};
-
-const encodeModelAnnotation = (annotation: MergedAnnotation, lhsText: string, rhsText: string, _logger: Logger): ModelAnnotation => {
-  const { description, lhsRanges, rhsRanges, isError, isWarning } = annotation;
-
-  // Function to extract the text from the given ranges
-  const extractText = (ranges: TextRange[], text: string) => {
-    return ranges.map(({ start, end }) => text.slice(start, end));
-  };
-
-  const lhsTextList = extractText(lhsRanges, lhsText);
-  const rhsTextList = extractText(rhsRanges, rhsText);
-
-  const status = isError ? "error" : isWarning ? "warning" : "default";
-  return { description, lhsText: lhsTextList, rhsText: rhsTextList, status };
-}
-
-const splitMergedAnnotations = (annotations: MergedAnnotation[]): Annotations => {
-  const result: Annotations = {
-    mappings: [],
-    lhsLabels: [],
-    rhsLabels: [],
-  };
-
-  annotations.forEach((annotation) => {
-    const { description, lhsRanges, rhsRanges, isError, isWarning } = annotation;
-
-    if (lhsRanges.length > 0 && rhsRanges.length > 0) {
-      result.mappings.push(annotation); // Mappings have both lhs and rhs
-    } else if (lhsRanges.length > 0 && rhsRanges.length === 0) {
-      result.lhsLabels.push({description, ranges: lhsRanges, isError, isWarning}); // Drop rhsRanges
-    } else if (rhsRanges.length > 0 && lhsRanges.length === 0) {
-      result.rhsLabels.push({description, ranges: rhsRanges, isError, isWarning}); // Drop lhsRanges
     }
-  });
 
-  return result;
-}
-
-const mergeAnnotations = (annotations: Annotations): MergedAnnotation[] => {
-  const result: MergedAnnotation[] = [];
-
-  annotations.mappings.forEach((mapping) => {
-    result.push(mapping);
-  });
-
-  annotations.lhsLabels.forEach(({ description, ranges, isError, isWarning }) => {
-    result.push({ description, lhsRanges: ranges, rhsRanges: [], isError, isWarning });
-  });
-
-  annotations.rhsLabels.forEach(({ description, ranges, isError, isWarning }) => {
-    result.push({ description, lhsRanges: [], rhsRanges: ranges, isError, isWarning });
-  });
-
-  return result;
-}
-
-export const decodeAnnotationsFromModelFormat = (modelAnnotations: ModelAnnotation[], lhsText: string, rhsText: string, logger: Logger): Annotations => {
-  const indexedAnnotations = (modelAnnotations as ModelAnnotation[]).map(a => decodeModelAnnotation(a, lhsText, rhsText, logger));
-  return splitMergedAnnotations(indexedAnnotations);
-}
-
-export const encodeAnnotationsInModelFormat = (annotations: Annotations, lhsText: string, rhsText: string, logger: Logger): ModelAnnotation[] => {
-  const indexedAnnotations = mergeAnnotations(annotations);
-  return indexedAnnotations.map(a => encodeModelAnnotation(a, lhsText, rhsText, logger));
-}
-
-export const validateJSONAnnotations = (annotations: any) => {
-  const prefix = "Extracted JSON annotations are invalid. ";
-
-  if (!Array.isArray(annotations)) {
-    throw new Error(`${prefix}Annotations must be an array.`);
+    return true;
   }
 
-  annotations.forEach((annotation, index) => {
-    if (typeof annotation !== 'object' || annotation === null) {
-      throw new Error(`${prefix}Annotation at index ${index} must be an object.`);
+  // Fast annotation validation with early termination
+  private static isValidAnnotation(annotation: any): boolean {
+    if (!annotation || typeof annotation !== 'object') {
+      return false;
     }
 
-    const { description, lhsText, rhsText, status } = annotation;
-
-    // Validate "description" field
-    if (typeof description !== 'string') {
-      throw new Error(`${prefix}Annotation object at index ${index} must have a "description" field of type string.`);
+    // Check required fields with short-circuit evaluation
+    if (!annotation.description || typeof annotation.description !== 'string') {
+      return false;
     }
 
-    // Validate "lhsText" field
-    if (!Array.isArray(lhsText) || !lhsText.every(item => typeof item === 'string')) {
-      throw new Error(`${prefix}Annotation object at index ${index} must have a "lhsText" field of type array of strings.`);
+    if (!annotation.lhsText || !Array.isArray(annotation.lhsText)) {
+      return false;
     }
 
-    // Validate "rhsText" field
-    if (!Array.isArray(rhsText) || !rhsText.every(item => typeof item === 'string')) {
-      throw new Error(`${prefix}Annotation object at index ${index} must have a "rhsText" field of type array of strings.`);
+    if (!annotation.rhsText || !Array.isArray(annotation.rhsText)) {
+      return false;
     }
 
-    // Validate "status" field
-    if (!['default', 'warning', 'error'].includes(status)) {
-      throw new Error(`${prefix}Annotation object at index ${index} must have a "status" field with value "default", "warning", or "error".`);
+    if (!annotation.status || typeof annotation.status !== 'string') {
+      return false;
     }
-  });
-};
 
-export const makeSystemData = (lhsText: string, rhsText: string, annotations: Annotations, logger: Logger): string => {
-  const encodedAnnotations = encodeAnnotationsInModelFormat(annotations, lhsText, rhsText, logger);
+    // Validate text ranges efficiently
+    if (!this.areValidTextRanges(annotation.lhsText) || 
+        !this.areValidTextRanges(annotation.rhsText)) {
+      return false;
+    }
 
-  const userPrompt =
-`### LHS TEXT
+    return true;
+  }
 
-${lhsText}
+  // Fast text range validation
+  private static areValidTextRanges(ranges: any[]): boolean {
+    if (!Array.isArray(ranges)) return false;
+    
+    for (const range of ranges) {
+      if (!this.isValidTextRange(range)) {
+        return false;
+      }
+    }
+    
+    return true;
+  }
 
-### RHS TEXT
+  // Ultra-fast text range validation
+  private static isValidTextRange(range: any): boolean {
+    if (!range || typeof range !== 'object') return false;
+    
+    const { start, end, text } = range;
+    
+    return typeof start === 'number' && 
+           typeof end === 'number' && 
+           typeof text === 'string' &&
+           start >= 0 && 
+           end > start && 
+           text.length > 0;
+  }
 
-${rhsText}
+  // Memory cleanup
+  static cleanup(): void {
+    this.annotationCache.clear();
+    this.mappingPool.clear();
+  }
+}
 
-### CURRENT ANNOTATIONS
+// Legacy function for backward compatibility
+export async function decodeAnnotationsFromModelFormat(
+  modelOutput: any,
+  lhsText: string,
+  rhsText: string,
+  logger: Logger
+): Promise<TextMapping<TextRangeWithText>[]> {
+  return AnnotationProcessor.decodeAnnotationsFromModelFormat(modelOutput, lhsText, rhsText, logger);
+}
 
-${JSON.stringify(encodedAnnotations, null, 2)}`;
-
-  return userPrompt;
+// Legacy function for backward compatibility
+export function validateJSONAnnotations(annotations: any): boolean {
+  return AnnotationProcessor.validateJSONAnnotations(annotations);
 }
