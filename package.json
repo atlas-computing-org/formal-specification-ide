@@ -8,7 +8,7 @@
     "dev": "npm run type-check && npm run dev-skip-checks",
     "build": "vite build",
     "preview": "vite preview",
-    "start-skip-checks": "npx tsx server/src/server.ts",
+    "start-skip-checks": "NODE_OPTIONS='--no-deprecation' npx tsx server/src/server.ts",
     "start": "npm run type-check && npm run start-skip-checks"
   },
   "devDependencies": {
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
-    "@langchain/anthropic": "^0.3.11",
+    "@langchain/anthropic": "^0.3.34",
     "@langchain/core": "^0.3.43",
     "@langchain/deepseek": "^0.0.1",
     "@langchain/langgraph": "^0.2.44",

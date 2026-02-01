@@ -35,7 +35,8 @@ const getDataset = async (datasetName: string) => {
 }
 
 export const getDatasetHandler = async (req: Request, requestLogger: Logger): Promise<GetDatasetResponse> => {
-  const datasetName = req.params.datasetName;
+  const datasetNameParam = req.params.datasetName;
+  const datasetName = Array.isArray(datasetNameParam) ? datasetNameParam[0] : datasetNameParam;
 
   requestLogger.debug(`Request param: ${datasetName}`);
 
