@@ -37,9 +37,9 @@
     "uuid": "^11.1.0",
     "winston": "^3.17.0",
     "winston-transport": "^4.9.0",
-    "fast-xml-parser": "^5.3.4"
+    "fast-xml-parser": "^5.3.6"
   },
   "overrides": {
-    "fast-xml-parser": "^5.3.4"
+    "fast-xml-parser": "^5.3.6"
   }
 }
